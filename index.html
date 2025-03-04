@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activist Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Find Your Activist Type</h1>
+    <form id="quiz-form">
+        <fieldset>
+            <legend>How do you handle challenges?</legend>
+            <label><input type="radio" name="challenge-approach" value="A"> I confront them head-on.</label>
+            <label><input type="radio" name="challenge-approach" value="B"> I analyze and plan before acting.</label>
+            <label><input type="radio" name="challenge-approach" value="C"> I find creative ways to work around them.</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>What is your communication style?</legend>
+            <label><input type="radio" name="communication" value="D"> Bold and direct</label>
+            <label><input type="radio" name="communication" value="E"> Persuasive and engaging</label>
+            <label><input type="radio" name="communication" value="F"> Analytical and fact-driven</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>What motivates you to take action?</legend>
+            <label><input type="radio" name="motivation" value="G"> A sense of justice and fairness</label>
+            <label><input type="radio" name="motivation" value="H"> Helping others in need</label>
+            <label><input type="radio" name="motivation" value="I"> Innovating and problem-solving</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Do you prefer working alone or in teams?</legend>
+            <label><input type="radio" name="work-style" value="J"> I prefer working independently.</label>
+            <label><input type="radio" name="work-style" value="K"> I thrive in team environments.</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>How do you like to make an impact?</legend>
+            <label><input type="radio" name="impact-style" value="L"> Organizing protests and direct action</label>
+            <label><input type="radio" name="impact-style" value="M"> Using technology to support activism</label>
+            <label><input type="radio" name="impact-style" value="N"> Creating content and storytelling</label>
+            <label><input type="radio" name="impact-style" value="O"> Helping people directly through aid</label>
+            <label><input type="radio" name="impact-style" value="P"> Increasing voter participation</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>How do you prefer to contribute?</legend>
+            <label><input type="radio" name="contribution" value="Q"> Policy and legal changes</label>
+            <label><input type="radio" name="contribution" value="R"> Fundraising and resource gathering</label>
+            <label><input type="radio" name="contribution" value="S"> Digital media and online advocacy</label>
+            <label><input type="radio" name="contribution" value="T"> Logistics and event coordination</label>
+        </fieldset>
+
+        <button type="submit">Find My Activist Type</button>
+    </form>
+
+    <div id="result-container" style="display: none;">
+        <h2>Your Activist Type:</h2>
+        <p id="result-text"></p>
+        <img id="persona-image" src="" alt="Activist Type Image">
+        <a id="action-link" href="#" target="_blank">Take Action Now!</a>
+        <h3>Local Organizations:</h3>
+        <ul id="local-orgs"></ul>
+        <h3>National Organizations:</h3>
+        <ul id="national-orgs"></ul>
+        <button id="copy-button">Copy My Activist Type</button>
+        <a id="skillset-link" href="#" target="_blank">Enhance Your Activism Skills!</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
