@@ -1,74 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activist Quiz</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Find Your Activist Type</h1>
-    <form id="quiz-form">
-        <fieldset>
-            <legend>How do you handle challenges?</legend>
-            <label><input type="radio" name="challenge-approach" value="A"> I confront them head-on.</label>
-            <label><input type="radio" name="challenge-approach" value="B"> I analyze and plan before acting.</label>
-            <label><input type="radio" name="challenge-approach" value="C"> I find creative ways to work around them.</label>
-        </fieldset>
+'use strict';
 
-        <fieldset>
-            <legend>What is your communication style?</legend>
-            <label><input type="radio" name="communication" value="D"> Bold and direct</label>
-            <label><input type="radio" name="communication" value="E"> Persuasive and engaging</label>
-            <label><input type="radio" name="communication" value="F"> Analytical and fact-driven</label>
-        </fieldset>
+document.addEventListener("DOMContentLoaded", function () {
+    var quizForm = document.getElementById("quiz-form");
+    var resultContainer = document.getElementById("result-container");
+    var resultText = document.getElementById("result-text");
+    var personaImage = document.getElementById("persona-image");
+    var actionLink = document.getElementById("action-link");
+    var localOrgsContainer = document.getElementById("local-orgs");
+    var nationalOrgsContainer = document.getElementById("national-orgs");
+    var copyButton = document.getElementById("copy-button");
+    var skillsetLink = document.getElementById("skillset-link");
 
-        <fieldset>
-            <legend>What motivates you to take action?</legend>
-            <label><input type="radio" name="motivation" value="G"> A sense of justice and fairness</label>
-            <label><input type="radio" name="motivation" value="H"> Helping others in need</label>
-            <label><input type="radio" name="motivation" value="I"> Innovating and problem-solving</label>
-        </fieldset>
+    var activistTypes = {
+        "firestarter": { letters: ["A", "D", "G", "J", "L"], name: "🔥 Frontline Firestarter", image: "firestarter.jpg", action: "https://blacklivesmatter.com" },
+        "guardian": { letters: ["B", "E", "I", "K", "M"], name: "📡 Digital Guardian", image: "digital_guardian.jpg", action: "https://www.eff.org" },
+        "community_helper": { letters: ["C", "H", "J", "O", "R"], name: "🤲 Community Helper", image: "community_helper.jpg", action: "https://www.feedingamerica.org" },
+        "remote_strategist": { letters: ["B", "F", "I", "K", "M"], name: "💻 Remote Strategist", image: "remote_strategist.jpg", action: "https://www.mediamatters.org" },
+        "fundraiser": { letters: ["C", "E", "H", "K", "R"], name: "💰 Fundraising Champion", image: "fundraiser.jpg", action: "https://www.habitat.org" },
+        "content_creator": { letters: ["B", "E", "N", "K", "S"], name: "🎥 Content Creator", image: "content_creator.jpg", action: "https://www.creativecommons.org" },
+        "legal_advocate": { letters: ["A", "F", "G", "J", "Q"], name: "⚖️ Legal Advocate", image: "legal_advocate.jpg", action: "https://www.aclu.org" },
+        "tech_supporter": { letters: ["B", "F", "I", "M", "T"], name: "🖥️ Tech Supporter", image: "tech_supporter.jpg", action: "https://opensource.org" },
+        "educator": { letters: ["C", "E", "H", "K", "S"], name: "📚 Knowledge Spreader", image: "educator.jpg", action: "https://www.khanacademy.org" },
+        "environmentalist": { letters: ["A", "G", "O", "J", "P"], name: "🌱 Earth Defender", image: "environmentalist.jpg", action: "https://www.sierraclub.org" },
+        "voter_mobilizer": { letters: ["A", "E", "G", "K", "P"], name: "🗳️ Democracy Protector", image: "voter_mobilizer.jpg", action: "https://www.vote.org" },
+        "labor_advocate": { letters: ["A", "G", "H", "J", "Q"], name: "⚒️ Workers' Rights Champion", image: "labor_advocate.jpg", action: "https://www.aflcio.org" },
+        "healthcare_advocate": { letters: ["C", "H", "O", "J", "Q"], name: "🏥 Health Equity Fighter", image: "healthcare_advocate.jpg", action: "https://www.healthcare.gov" },
+        "logistics_coordinator": { letters: ["B", "F", "I", "K", "T"], name: "🚛 Logistics Coordinator", image: "logistics_coordinator.jpg", action: "https://www.redcross.org" },
+        "policy_influencer": { letters: ["A", "F", "G", "K", "Q"], name: "🏛️ Policy Influencer", image: "policy_influencer.jpg", action: "https://www.brookings.edu" }
+    };
 
-        <fieldset>
-            <legend>Do you prefer working alone or in teams?</legend>
-            <label><input type="radio" name="work-style" value="J"> I prefer working independently.</label>
-            <label><input type="radio" name="work-style" value="K"> I thrive in team environments.</label>
-        </fieldset>
+    quizForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        
+        var answerCounts = {};
+        Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
+        
+        var answers = new FormData(quizForm);
+        answers.forEach((value) => {
+            Object.keys(activistTypes).forEach(type => {
+                if (activistTypes[type].letters.includes(value)) {
+                    answerCounts[type]++;
+                }
+            });
+        });
+        
+        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
+        var result = activistTypes[topType];
 
-        <fieldset>
-            <legend>How do you like to make an impact?</legend>
-            <label><input type="radio" name="impact-style" value="L"> Organizing protests and direct action</label>
-            <label><input type="radio" name="impact-style" value="M"> Using technology to support activism</label>
-            <label><input type="radio" name="impact-style" value="N"> Creating content and storytelling</label>
-            <label><input type="radio" name="impact-style" value="O"> Helping people directly through aid</label>
-            <label><input type="radio" name="impact-style" value="P"> Increasing voter participation</label>
-        </fieldset>
-
-        <fieldset>
-            <legend>How do you prefer to contribute?</legend>
-            <label><input type="radio" name="contribution" value="Q"> Policy and legal changes</label>
-            <label><input type="radio" name="contribution" value="R"> Fundraising and resource gathering</label>
-            <label><input type="radio" name="contribution" value="S"> Digital media and online advocacy</label>
-            <label><input type="radio" name="contribution" value="T"> Logistics and event coordination</label>
-        </fieldset>
-
-        <button type="submit">Find My Activist Type</button>
-    </form>
-
-    <div id="result-container" style="display: none;">
-        <h2>Your Activist Type:</h2>
-        <p id="result-text"></p>
-        <img id="persona-image" src="" alt="Activist Type Image">
-        <a id="action-link" href="#" target="_blank">Take Action Now!</a>
-        <h3>Local Organizations:</h3>
-        <ul id="local-orgs"></ul>
-        <h3>National Organizations:</h3>
-        <ul id="national-orgs"></ul>
-        <button id="copy-button">Copy My Activist Type</button>
-        <a id="skillset-link" href="#" target="_blank">Enhance Your Activism Skills!</a>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+        resultText.innerHTML = `<h2>${result.name}</h2>`;
+        personaImage.src = `images/${result.image}`;
+        actionLink.href = result.action;
+        actionLink.innerText = "Take Action Now!";
+        
+        resultContainer.style.display = "block";
+    });
+});
