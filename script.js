@@ -2,7 +2,7 @@
 
 const API_KEY = 'AIzaSyDzOC2_OhVMgAKA3NzfYyt_iCs8-rqz3C0';  
 const spreadsheetId = '1GcKLQwm5OeGB21NZH74a74vOzfR78Pb8TtJ4BQDMDi4'; 
-const sheetName = 'Activist Organizations Database';
+const sheetName = 'National Organizations';
 const baseUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${API_KEY}`;
 
 document.addEventListener("DOMContentLoaded", function () {
