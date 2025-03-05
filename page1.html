@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz - Page 1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Quiz - Page 1</h1>
+  
+  <!-- PAGE 1 FORM -->
+  <form id="quiz-form-page1">
+    <p>1. How do you prefer to take action?</p>
+    <label><input type="radio" name="question1" value="A"> On the front lines (protests, direct action)</label><br>
+    <label><input type="radio" name="question1" value="B"> Behind the scenes (research, organizing)</label><br>
+    <label><input type="radio" name="question1" value="C"> Educating others (writing, teaching)</label><br>
+    <label><input type="radio" name="question1" value="D"> Using technology (social media, cybersecurity)</label><br>
+    <label><input type="radio" name="question1" value="E"> Logistics and planning (event coordination)</label><br>
+    <label><input type="radio" name="question1" value="F"> Advocacy from home (letter writing, remote work)</label><br>
+    <label><input type="radio" name="question1" value="G"> Supporting veterans and military families</label><br>
+
+    <button type="submit">Next</button>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const quizFormPage1 = document.getElementById("quiz-form-page1");
+
+      quizFormPage1.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Collect the user’s choice
+        const formData = new FormData(quizFormPage1);
+        const question1Answer = formData.get("question1"); // e.g. "A", "B", etc.
+
+        // Store the result in localStorage
+        localStorage.setItem("question1", question1Answer || "");
+
+        // Navigate to the next page
+        window.location.href = "page2.html";
+      });
+    });
+  </script>
+</body>
+</html>
