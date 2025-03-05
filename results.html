@@ -1,58 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Quiz Results</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Your Activist Type</h1>
-  <div id="result-container">
-    <h2 id="result-heading"></h2>
-    <p id="result-description"></p>
-    <img id="result-image" src="" alt="Activist Persona" style="display:none;" />
+  
+  <div id="result-container" style="display: none;">
+    <h2>Your Activist Type:</h2>
+    <p id="result-text"></p>
+    <img id="persona-image" src="" alt="Your Activist Persona" style="display: none;" />
+    
+    <!-- Local organizations/resources list -->
+    <ul id="local-orgs"></ul>
+
+    <!-- Copy button for resources -->
+    <button id="copy-button">Copy Organizations</button>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve answers from localStorage
-      const q1 = localStorage.getItem("question1") || "";
-      const q2 = localStorage.getItem("question2") || "";
+    document.addEventListener('DOMContentLoaded', function () {
+      // 1. Retrieve all answers from localStorage
+      const q1 = localStorage.getItem('question1') || '';
+      const q2 = localStorage.getItem('question2') || '';
+      const q3 = localStorage.getItem('question3') || '';
+      const q4 = localStorage.getItem('question4') || '';
+      const q5 = localStorage.getItem('question5') || '';
+      const q6 = localStorage.getItem('question6') || '';
 
-      // For debugging:
-      console.log("Q1 answer:", q1);
-      console.log("Q2 answer:", q2);
+      // 2. Reference to DOM elements
+      const resultContainer = document.getElementById('result-container');
+      const resultText = document.getElementById('result-text');
+      const personaImage = document.getElementById('persona-image');
+      const localOrgsList = document.getElementById('local-orgs');
+      const copyButton = document.getElementById('copy-button');
 
-      // Simple logic to determine final type
-      let finalType;
-      let finalDesc;
-      let finalImage;
+      // 3. Activist types data (Shortened; add the rest of your types!)
+      const activistTypes = {
+        "firestarter": { 
+          name: "🔥 Frontline Firestarter", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Frontline_Firestarter.png",
+          resources: [
+            {
+                name: "Indivisible",
+                link: "https://www.indivisible.org/",
+                description: "Research shows that people are more likely to make a difference..."
+            },
+            {
+                name: "Movement for Black Lives",
+                link: "https://m4bl.org/",
+                description: "A platform for Black-led organizations fighting for racial justice..."
+            },
+            {
+                name: "Rising Majority",
+                link: "https://risingmajority.com/",
+                description: "A coalition of grassroots activists organizing protests, direct action..."
+            }
+          ],
+          description: "You are the spark that ignites change! Whether you're leading a protest or mobilizing people on the ground, you thrive in the heat of action."
+        },
+        "guardian": { 
+          name: "📡 Digital Guardian", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Digital_Guardian.png",
+          resources: [
+            {
+                name: "Fight for the Future",
+                link: "https://www.fightforthefuture.org/",
+                description: "The best time to act is now. Take immediate action to protect digital rights..."
+            },
+            {
+                name: "Access Now",
+                link: "https://www.accessnow.org/",
+                description: "A nonprofit advocating for global internet freedom..."
+            },
+            {
+                name: "Electronic Frontier Foundation (EFF)",
+                link: "https://www.eff.org/",
+                description: "A leading organization defending digital privacy, free speech, and innovation online."
+            }
+          ],
+          description: "You are the protector of truth in the digital age! You fight misinformation, organize movements online, and use technology to connect communities."
+        }
+        // Add more (community_helper, fundraiser, etc.)
+      };
 
-      // Example conditions:
-      if (q1 === "A" && q2 === "H") {
-        finalType = "🔥 Frontline Firestarter";
-        finalDesc = "You prefer direct, front-line activism and seek policy change!";
-        finalImage = "images/firestarter.png";
-      } else if (q1 === "B" && q2 === "I") {
-        finalType = "📡 Digital Guardian";
-        finalDesc = "You prefer behind-the-scenes organizing and supporting marginalized communities.";
-        finalImage = "images/digital_guardian.png";
-      } else {
-        // Default/fallback
-        finalType = "🤲 Community Helper";
-        finalDesc = "You lend a hand wherever needed, providing direct support and community service.";
-        finalImage = "images/community_helper.png";
+      // 4. Decide final type with a simple logic example (You must expand this!)
+      let finalKey = "firestarter"; // default fallback
+
+      // Example logic: if question1 = 'B' and question2 = 'I', user is guardian
+      if (q1 === 'B' && q2 === 'I') {
+        finalKey = "guardian";
       }
+      // Otherwise remains 'firestarter'
+      // Expand logic to match all combos you want.
 
-      // Fill in the results
-      const headingEl = document.getElementById("result-heading");
-      const descEl = document.getElementById("result-description");
-      const imgEl = document.getElementById("result-image");
+      // 5. Grab the final type data
+      const finalTypeData = activistTypes[finalKey];
 
-      headingEl.textContent = finalType;
-      descEl.textContent = finalDesc;
-      imgEl.src = finalImage;
-      imgEl.style.display = "block";
+      // 6. Populate results
+      resultText.innerHTML = `<strong>${finalTypeData.name}</strong><br>${finalTypeData.description}`;
+      personaImage.src = finalTypeData.image;
+      personaImage.style.display = "block"; // Show the image
+      resultContainer.style.display = "block"; // Reveal results container
+
+      // Build the local orgs list
+      localOrgsList.innerHTML = finalTypeData.resources
+        .map(org => `
+          <li>
+            <a href="${org.link}" target="_blank"><strong>${org.name}</strong></a>
+            <p>${org.description}</p>
+          </li>
+        `).join("");
+
+      // 7. Copy button logic
+      copyButton.addEventListener('click', function () {
+        // Combine all resources text
+        const combinedText = finalTypeData.resources
+          .map(org => `${org.name} - ${org.link} - ${org.description}`)
+          .join('\\n');
+
+        // Create a temporary textarea to copy
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = combinedText;
+        document.body.appendChild(tempTextArea);
+
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
+
+        alert('Local organizations copied to clipboard!');
+      });
     });
   </script>
 </body>
