@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var result = activistTypes[topType];
 
         resultText.innerHTML = `<h2>${result.name}</h2>`;
-        personaImage.src = `images/${result.image}`;  // Dynamically loads the correct image
+        personaImage.src = `my-folder/${result.image}`;  // 👈 Uses `my-folder/` instead of `images/`
         actionLink.href = result.action;
         actionLink.innerText = "Take Action Now!";
         
