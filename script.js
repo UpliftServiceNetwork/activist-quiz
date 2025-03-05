@@ -106,7 +106,31 @@ document.addEventListener("DOMContentLoaded", function () {
             ],
             description: "You are the engine that powers movements! Every campaign, every protest, every grassroots effort needs funding—and you make that happen."
         },
-
+        
+        "Equality Ally": { 
+            letters: ["C", "E", "H", "K", "W"],
+            name: "📚 Knowledge Spreader", 
+            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
+            resources: [
+                {
+                    name: "The Trevor Project",
+                    link: "https://www.thetrevorproject.org/get-involved/",
+                    description: "Provides crisis intervention and suicide prevention services to LGBTQ+ youth."
+                },
+                {
+                    name: "The Human Rights Campaign",
+                    link: "https://www.hrc.org/resources/ways-to-get-involved",
+                    description: "Strives to end discrimination against LGBTQ+ individuals and achieve equality."
+                },
+                {
+                    name: "Movement for Black Lives",
+                    link: "https://m4bl.org/",
+                    description: "A platform for Black-led organizations fighting for racial justice through protests, advocacy, and policy change."
+                }
+            ],
+            description: "You turn knowledge into power! You educate, inform, and empower communities with the facts and strategies they need to take action."
+        },        
+        
         "environmentalist": { 
             letters: ["A", "G", "O", "J", "P"],
             name: "🌱 Earth Defender", 
@@ -122,14 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     link: "https://www.greenpeace.org/international/",
                     description: "A global network leading campaigns to stop climate change, protect forests, and reduce pollution."
                 },
-                {
-                    name: "Sunrise Movement",
-                    link: "https://www.sunrisemovement.org/",
-                    description: "A youth-led movement fighting for climate justice and the Green New Deal."
-                }
-            ],
-            description: "You fight for the planet! Whether it's climate justice, sustainability, or environmental activism, you're on the frontlines of protecting the Earth."
-        },
 
         "veterans_advocate": { 
             letters: ["G", "M", "T", "Z"],
