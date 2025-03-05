@@ -2,6 +2,12 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     var quizForm = document.getElementById("quiz-form");
+    if (!quizForm) {
+        console.error("Quiz form not found! Check the form ID in HTML.");
+        return;
+    }
+    console.log("Quiz form loaded correctly.");
+});
     var resultContainer = document.getElementById("result-container");
     var resultText = document.getElementById("result-text");
     var personaImage = document.getElementById("persona-image");
