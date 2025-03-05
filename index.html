@@ -1,57 +1,69 @@
-'use strict';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activist Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-document.addEventListener("DOMContentLoaded", function () {
-    var quizForm = document.getElementById("quiz-form");
-    var resultContainer = document.getElementById("result-container");
-    var resultText = document.getElementById("result-text");
-    var personaImage = document.getElementById("persona-image");
-    var actionLink = document.getElementById("action-link");
-    var localOrgsContainer = document.getElementById("local-orgs");
-    var nationalOrgsContainer = document.getElementById("national-orgs");
-    var copyButton = document.getElementById("copy-button");
-    var skillsetLink = document.getElementById("skillset-link");
+    <h1>Find Your Activist Type</h1>
 
-    var activistTypes = {
-        "firestarter": { letters: ["A", "D", "G", "J", "L"], name: "🔥 Frontline Firestarter", image: "firestarter.jpg", action: "https://blacklivesmatter.com" },
-        "guardian": { letters: ["B", "E", "I", "K", "M"], name: "📡 Digital Guardian", image: "digital_guardian.jpg", action: "https://www.eff.org" },
-        "community_helper": { letters: ["C", "H", "J", "O", "R"], name: "🤲 Community Helper", image: "community_helper.jpg", action: "https://www.feedingamerica.org" },
-        "remote_strategist": { letters: ["B", "F", "I", "K", "M"], name: "💻 Remote Strategist", image: "remote_strategist.jpg", action: "https://www.mediamatters.org" },
-        "fundraiser": { letters: ["C", "E", "H", "K", "R"], name: "💰 Fundraising Champion", image: "fundraiser.jpg", action: "https://www.habitat.org" },
-        "content_creator": { letters: ["B", "E", "N", "K", "S"], name: "🎥 Content Creator", image: "content_creator.jpg", action: "https://www.creativecommons.org" },
-        "legal_advocate": { letters: ["A", "F", "G", "J", "Q"], name: "⚖️ Legal Advocate", image: "legal_advocate.jpg", action: "https://www.aclu.org" },
-        "tech_supporter": { letters: ["B", "F", "I", "M", "T"], name: "🖥️ Tech Supporter", image: "tech_supporter.jpg", action: "https://opensource.org" },
-        "educator": { letters: ["C", "E", "H", "K", "S"], name: "📚 Knowledge Spreader", image: "educator.jpg", action: "https://www.khanacademy.org" },
-        "environmentalist": { letters: ["A", "G", "O", "J", "P"], name: "🌱 Earth Defender", image: "environmentalist.jpg", action: "https://www.sierraclub.org" },
-        "voter_mobilizer": { letters: ["A", "E", "G", "K", "P"], name: "🗳️ Democracy Protector", image: "voter_mobilizer.jpg", action: "https://www.vote.org" },
-        "labor_advocate": { letters: ["A", "G", "H", "J", "Q"], name: "⚒️ Workers' Rights Champion", image: "labor_advocate.jpg", action: "https://www.aflcio.org" },
-        "healthcare_advocate": { letters: ["C", "H", "O", "J", "Q"], name: "🏥 Health Equity Fighter", image: "healthcare_advocate.jpg", action: "https://www.healthcare.gov" },
-        "logistics_coordinator": { letters: ["B", "F", "I", "K", "T"], name: "🚛 Logistics Coordinator", image: "logistics_coordinator.jpg", action: "https://www.redcross.org" },
-        "policy_influencer": { letters: ["A", "F", "G", "K", "Q"], name: "🏛️ Policy Influencer", image: "policy_influencer.jpg", action: "https://www.brookings.edu" }
-    };
+    <form id="quiz-form">
+        <p>1. How do you prefer to take action?</p>
+        <label><input type="radio" name="question1" value="A"> On the front lines (protests, direct action)</label><br>
+        <label><input type="radio" name="question1" value="B"> Behind the scenes (research, organizing)</label><br>
+        <label><input type="radio" name="question1" value="C"> Educating others (writing, teaching)</label><br>
+        <label><input type="radio" name="question1" value="D"> Using technology (social media, cybersecurity)</label><br>
+        <label><input type="radio" name="question1" value="E"> Logistics and planning (event coordination)</label><br>
 
-    quizForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        
-        var answerCounts = {};
-        Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
-        
-        var answers = new FormData(quizForm);
-        answers.forEach((value) => {
-            Object.keys(activistTypes).forEach(type => {
-                if (activistTypes[type].letters.includes(value)) {
-                    answerCounts[type]++;
-                }
-            });
-        });
-        
-        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
-        var result = activistTypes[topType];
+        <p>2. What type of impact do you want to make?</p>
+        <label><input type="radio" name="question2" value="F"> Change laws and policies</label><br>
+        <label><input type="radio" name="question2" value="G"> Support marginalized communities</label><br>
+        <label><input type="radio" name="question2" value="H"> Raise awareness and spread information</label><br>
+        <label><input type="radio" name="question2" value="I"> Use digital tools to fight injustice</label><br>
+        <label><input type="radio" name="question2" value="J"> Organize and lead grassroots movements</label><br>
 
-        resultText.innerHTML = `<h2>${result.name}</h2>`;
-        personaImage.src = `images/${result.image}`;
-        actionLink.href = result.action;
-        actionLink.innerText = "Take Action Now!";
-        
-        resultContainer.style.display = "block";
-    });
-});
+        <p>3. How much time can you commit?</p>
+        <label><input type="radio" name="question3" value="K"> Full-time activism</label><br>
+        <label><input type="radio" name="question3" value="L"> Weekly efforts</label><br>
+        <label><input type="radio" name="question3" value="M"> Occasional help</label><br>
+        <label><input type="radio" name="question3" value="N"> Remote work only</label><br>
+        <label><input type="radio" name="question3" value="O"> Funding and donations</label><br>
+
+        <p>4. What skills do you bring to activism?</p>
+        <label><input type="radio" name="question4" value="P"> Public speaking & outreach</label><br>
+        <label><input type="radio" name="question4" value="Q"> Legal knowledge & advocacy</label><br>
+        <label><input type="radio" name="question4" value="R"> Writing & storytelling</label><br>
+        <label><input type="radio" name="question4" value="S"> Digital security & tech skills</label><br>
+        <label><input type="radio" name="question4" value="T"> Organizing & management</label><br>
+
+        <p>5. Which causes are most important to you?</p>
+        <label><input type="radio" name="question5" value="U"> Climate change & environmental justice</label><br>
+        <label><input type="radio" name="question5" value="V"> Racial justice & civil rights</label><br>
+        <label><input type="radio" name="question5" value="W"> LGBTQ+ rights</label><br>
+        <label><input type="radio" name="question5" value="X"> Economic justice & labor rights</label><br>
+        <label><input type="radio" name="question5" value="Y"> Women's rights & reproductive justice</label><br>
+
+        <p>6. How do you prefer to work?</p>
+        <label><input type="radio" name="question6" value="Z"> In-person community efforts</label><br>
+        <label><input type="radio" name="question6" value="AA"> Online and remote activism</label><br>
+        <label><input type="radio" name="question6" value="BB"> Hybrid (both online and in-person)</label><br>
+
+        <button type="submit">Find My Activist Type</button>
+    </form>
+
+    <div id="result-container" style="display: none;">
+        <h2>Your Activist Type:</h2>
+        <p id="result-text"></p>
+        <img id="persona-image" src="" alt="Your Activist Persona">
+        <a id="action-link" href="#" target="_blank">Take Action Now!</a>
+        <ul id="local-orgs"></ul>
+        <button id="copy-button">Copy Organizations</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
