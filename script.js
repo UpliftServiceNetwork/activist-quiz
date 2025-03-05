@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 "fundraiser": { 
     name: "💰 Fundraising Champion", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Fundraising_Champion.png",
-    action: "https://www.gofundme.com/start/fundraising-ideas",  // ✅ Start a fundraising campaign
+    action: "https://secure.actblue.com",  // ✅ Start a fundraising campaign
     resources: [
         {
             name: "Network for Good",
