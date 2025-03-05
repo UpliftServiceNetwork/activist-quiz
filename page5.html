@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +24,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const quizFormPage5 = document.getElementById("quiz-form-page2");
+      // Correct the ID reference
+      const quizFormPage5 = document.getElementById("quiz-form-page5");
 
       quizFormPage5.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -36,8 +36,8 @@
         // Save answer to localStorage
         localStorage.setItem("question5", question5Answer || "");
 
-        // Navigate to the final results page (or page3.html if you have a third page)
-        window.location.href = "results.html";
+        // Navigate to the next page (adjust the file name if you have a page6.html)
+        window.location.href = "page6.html";
       });
     });
   </script>
