@@ -406,11 +406,13 @@ document.addEventListener("DOMContentLoaded", function () {
 quizForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
+        // Collect user answers from radio buttons
         var answerCounts = {};
         Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
 
-        var answers = new FormData(quizForm);
-        answers.forEach((value) => {
+        var selectedAnswers = new FormData(quizForm);
+
+        selectedAnswers.forEach((value) => {
             Object.keys(activistTypes).forEach(type => {
                 if (activistTypes[type].name.toLowerCase().includes(value.toLowerCase())) {
                     answerCounts[type]++;
@@ -418,15 +420,14 @@ quizForm.addEventListener("submit", function (e) {
             });
         });
 
+        // Find the most selected activist type
         var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
         var result = activistTypes[topType];
 
-        // Add "Take Action Now" as the first resource
+        // Generate resource links
         var resourceLinks = [
-            `<li><strong>Take Action Now!</strong><br>Research shows that people are more likely to make a difference when they act immediately. If you wait, life’s demands may push this aside, and your opportunity to contribute could be lost. <a href="${result.action}" target="_blank">Start here</a>.</li>`
+            `<li><strong>Take Action Now!</strong><br>Research shows that people are more likely to make a difference when they act immediately. <a href="${result.action}" target="_blank">Start here</a>.</li>`
         ];
-
-        // Append the existing resources
         resourceLinks.push(...result.resources.map(resource => 
             `<li><a href="${resource.link}" target="_blank">${resource.name}</a>: ${resource.description}</li>`
         ));
