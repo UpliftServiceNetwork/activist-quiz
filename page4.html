@@ -6,7 +6,7 @@
 </head>
 <body>
   <h1>Quiz - Page 4</h1>
-  <form id="quiz-form-page2">
+  <form id="quiz-form-page4">
     <p>4. What skills do you bring to activism?</p>
     <label><input type="radio" name="question4" value="U"> Public speaking & outreach</label><br>
     <label><input type="radio" name="question4" value="V"> Legal knowledge & advocacy</label><br>
@@ -20,16 +20,16 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const quizFormPage2 = document.getElementById('quiz-form-page2');
+      const quizFormPage4 = document.getElementById('quiz-form-page4');
 
-      quizFormPage2.addEventListener('submit', function (e) {
+      quizFormPage4.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const formData = new FormData(quizFormPage2);
-        const question2Answer = formData.get('question2'); // e.g. "H", "I", etc.
+        const formData = new FormData(quizFormPage4);
+        const question2Answer = formData.get('question4'); // e.g. "H", "I", etc.
 
         // Save answer to localStorage
-        localStorage.setItem('question2', question2Answer || '');
+        localStorage.setItem('question4', question2Answer || '');
 
         // Navigate to the final results page
         window.location.href = 'results.html';
