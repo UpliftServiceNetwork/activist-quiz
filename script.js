@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var personaImage = document.getElementById("persona-image");
 
     var activistTypes = {
-        "firestarter": { 
+       "firestarter": { 
             letters: ["A", "D", "G", "J", "L"],
             name: "🔥 Frontline Firestarter", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Frontline_Firestarter.png",
             resources: [
                 {
-                    name: "Indivisible"
+                    name: "Indivisible",
                     link: "https://www.indivisible.org/",
                     description: "Research shows that people are more likely to make a difference when they act immediately. If you wait, life’s demands may push this aside, and your opportunity to contribute could be lost. [Start here](https://www.indivisible.org/)."
                 },
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ],
             description: "You are the spark that ignites change! Whether you're leading a protest, speaking truth to power, or mobilizing people on the ground, you thrive in the heat of action."
         },
-
         "guardian": { 
             letters: ["B", "E", "I", "K", "M"],
             name: "📡 Digital Guardian", 
@@ -54,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ],
             description: "You are the protector of truth in the digital age! You fight misinformation, organize movements online, and use technology to connect and empower communities."
         },
-
         "community_helper": { 
             letters: ["C", "H", "J", "O", "R"],
             name: "🤲 Community Helper", 
@@ -367,56 +365,56 @@ document.addEventListener("DOMContentLoaded", function () {
     description: "Justice needs warriors! You fight unjust laws, protect the rights of the vulnerable, and hold those in power accountable."
 },
 
-"knowledge_spreader": { 
-    letters: ["C", "E", "H", "K", "W"] 
-    name: "📚 Knowledge Spreader", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
-    resources: [
-        {
-            name: "Catch Fire",
-            link: "https://www.catchafire.org/volunteer/",
-            description: "Use your teaching skills to educate and empower others through nonprofit organizations."
+ "knowledge_spreader": { 
+            letters: ["C", "E", "H", "K", "W"],
+            name: "📚 Knowledge Spreader", 
+            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
+            resources: [
+                {
+                    name: "Catchafire",
+                    link: "https://www.catchafire.org/volunteer/",
+                    description: "Use your teaching skills to educate and empower others through nonprofit organizations."
+                },
+                {
+                    name: "Khan Academy",
+                    link: "https://www.khanacademy.org/",
+                    description: "A nonprofit platform offering free education in various subjects for learners worldwide."
+                },
+                {
+                    name: "EdX",
+                    link: "https://www.edx.org/",
+                    description: "Provides high-quality online courses from top universities on social justice, education, and activism."
+                }
+            ],
+            description: "You turn knowledge into power! You educate, inform, and empower communities with the facts and strategies they need to take action."
         },
-        {
-            name: "Khan Academy",
-            link: "https://www.khanacademy.org/",
-            description: "A nonprofit platform offering free education in various subjects for learners worldwide."
-        },
-        {
-            name: "EdX",
-            link: "https://www.edx.org/",
-            description: "Provides high-quality online courses from top universities on social justice, education, and activism."
-        }
-    ],
-    description: "You turn knowledge into power! You educate, inform, and empower communities with the facts and strategies they need to take action."
-},
 
-"tech_supporter": { 
-    letters: ["B", "D", "K", "M", "X"]
-    name: "🖥️ Tech Supporter", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Tech_Supporter.png",
-    resources: [
-        {
-            name: "Code For America",
-            link: "https://www.codeforamerica.org/",
-            description: "Volunteer your tech skills to build innovative solutions for social good."
-        },
-        {
-            name: "Catchafire",
-            link: "https://www.catchafire.org/volunteer/",
-            description: "Matches skilled tech volunteers with nonprofits needing digital support."
-        },
-        {
-            name: "Mozilla Foundation",
-            link: "https://foundation.mozilla.org/",
-            description: "Advocates for internet privacy, security, and open-source technology."
+ "tech_supporter": { 
+            letters: ["B", "D", "K", "M", "X"],
+            name: "🖥️ Tech Supporter", 
+            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Tech_Supporter.png",
+            resources: [
+                {
+                    name: "Code for America",
+                    link: "https://www.codeforamerica.org/",
+                    description: "Volunteer your tech skills to build innovative solutions for social good."
+                },
+                {
+                    name: "Catchafire",
+                    link: "https://www.catchafire.org/volunteer/",
+                    description: "Matches skilled tech volunteers with nonprofits needing digital support."
+                },
+                {
+                    name: "Mozilla Foundation",
+                    link: "https://foundation.mozilla.org/",
+                    description: "Advocates for internet privacy, security, and open-source technology."
+                }
+            ],
+            description: "You are the architect of digital activism! You ensure technology is used to empower people, protect privacy, and support grassroots movements."
         }
-    ],
-    description: "You are the architect of digital activism! You ensure technology is used to empower people, protect privacy, and support grassroots movements."
-       }
     };
     
-    quizForm.addEventListener("submit", function (e) {
+   quizForm.addEventListener("submit", function (e) {
         e.preventDefault();
         
         var answerCounts = {};
@@ -437,10 +435,6 @@ document.addEventListener("DOMContentLoaded", function () {
         resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p>`;
         personaImage.src = result.image;
         personaImage.style.display = "block";
-
-        actionLink.href = result.action;
-        actionLink.innerText = `Learn More at ${result.name}`;
-        actionLink.style.display = "inline-block";
 
         resultContainer.style.display = "block";
     });
