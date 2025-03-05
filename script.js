@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var actionLink = document.getElementById("action-link");
 
     var activistTypes = {
-        "firestarter": { 
+"firestarter": { 
     name: "🔥 Frontline Firestarter", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Frontline_Firestarter.png",
     action: "https://www.indivisible.org/",  // ✅ Join a movement and take immediate action
@@ -290,35 +290,59 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
     description: "You may not be in the streets, but you are behind every powerful movement! Your strategic mind ensures that activism is effective and well-organized."
 },
+"environmentalist": { 
+    name: "🌱 Earth Defender", 
+    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Earth_Defender.png",
+    action: "https://www.sierraclub.org/get-involved",  // ✅ Join environmental activism
+    resources: [
+        {
+            name: "Greenpeace",
+            link: "https://www.greenpeace.org/international/",
+            description: "A global network leading campaigns to stop climate change, protect forests, and reduce pollution."
+        },
+        {
+            name: "Sunrise Movement",
+            link: "https://www.sunrisemovement.org/",
+            description: "A youth-led movement fighting for climate justice and the Green New Deal."
+        }
+    ],
+    description: "You fight for the planet! Whether it's climate justice, sustainability, or environmental activism, you're on the frontlines of protecting the Earth."
+},
     };
 
-    quizForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        
-        var answerCounts = {};
-        Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
-        
-        var answers = new FormData(quizForm);
-        answers.forEach((value) => {
-            Object.keys(activistTypes).forEach(type => {
-                if (activistTypes[type].name.toLowerCase().includes(value.toLowerCase())) {
-                    answerCounts[type]++;
-                }
-            });
+   quizForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    
+    var answerCounts = {};
+    Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
+    
+    var answers = new FormData(quizForm);
+    answers.forEach((value) => {
+        Object.keys(activistTypes).forEach(type => {
+            if (activistTypes[type].name.toLowerCase().includes(value.toLowerCase())) {
+                answerCounts[type]++;
+            }
         });
-        
-        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
-        var result = activistTypes[topType];
-
-        resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p>`;
-        personaImage.src = result.image;
-        personaImage.style.display = "block";
-
-        actionLink.setAttribute("href", result.action);
-        actionLink.setAttribute("target", "_blank");
-        actionLink.innerText = "Take Action Now!";
-        actionLink.style.display = "inline-block";
-
-        resultContainer.style.display = "block";
     });
+
+    // Identify the highest scoring activist type
+    var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
+    var result = activistTypes[topType];
+
+    // Generate Resource Links for Display
+    var resourceLinks = result.resources.map(resource => 
+        `<li><a href="${resource.link}" target="_blank">${resource.name}</a>: ${resource.description}</li>`
+    ).join("");
+
+    // Display Results
+    resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p><ul>${resourceLinks}</ul>`;
+    personaImage.src = result.image;
+    personaImage.style.display = "block";
+
+    actionLink.setAttribute("href", result.action);
+    actionLink.setAttribute("target", "_blank");
+    actionLink.innerText = "Take Action Now!";
+    actionLink.style.display = "inline-block";
+
+    resultContainer.style.display = "block";
 });
