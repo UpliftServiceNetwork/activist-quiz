@@ -1,58 +1,5 @@
 'use strict';
 
-const API_KEY = 'AIzaSyDzOC2_OhVMgAKA3NzfYyt_iCs8-rqz3C0';  
-const spreadsheetId = '1GcKLQwm5OeGB21NZH74a74vOzfR78Pb8TtJ4BQDMDi4'; 
-const sheetName = 'Organizations'; 
-const baseUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${API_KEY}`;
-
-async function fetchOrganizations() {
-    try {
-        console.log("Fetching data from:", baseUrl);
-        const response = await fetch(baseUrl);
-        const data = await response.json();
-        console.log("API Response:", data);
-
-        if (!data.values) {
-            throw new Error("No data found in Google Sheets response.");
-        }
-
-        const rows = data.values;
-        const headers = rows[0];
-        const orgs = rows.slice(1).map(row => {
-            let org = {};
-            headers.forEach((header, index) => {
-                org[header] = row[index] || "";
-            });
-            return org;
-        });
-
-        return orgs;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return [];
-    }
-}
-
-async function displayOrganizations(activistType) {
-    const localOrgsContainer = document.getElementById("local-orgs");
-    const organizations = await fetchOrganizations();
-
-    const filteredOrgs = organizations.filter(org => org["Activism Type(s)"].includes(activistType));
-
-    localOrgsContainer.innerHTML = filteredOrgs.length > 0
-        ? filteredOrgs.map(org => `<li><a href="${org["Website URL"]}" target="_blank">${org["Organization Name"]}</a>: ${org["Description"]}</li>`).join('')
-        : "No organizations found.";
-
-    const actionOrg = filteredOrgs.length > 0 ? filteredOrgs[0] : null;
-    if (actionOrg) {
-        document.getElementById("action-link").href = actionOrg["Take Action Link"];
-        document.getElementById("action-link").innerText = "Take Action Now!";
-    } else {
-        document.getElementById("action-link").href = "#";
-        document.getElementById("action-link").innerText = "No Action Available";
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     var quizForm = document.getElementById("quiz-form");
     var resultContainer = document.getElementById("result-container");
@@ -60,8 +7,26 @@ document.addEventListener("DOMContentLoaded", function () {
     var personaImage = document.getElementById("persona-image");
     var actionLink = document.getElementById("action-link");
 
+    var activistTypes = {
+        "firestarter": { letters: ["A", "D", "G", "J", "L"], name: "🔥 Frontline Firestarter", image: "firestarter.jpg", action: "https://blacklivesmatter.com" },
+        "guardian": { letters: ["B", "E", "I", "K", "M"], name: "📡 Digital Guardian", image: "digital_guardian.jpg", action: "https://www.eff.org" },
+        "community_helper": { letters: ["C", "H", "J", "O", "R"], name: "🤲 Community Helper", image: "community_helper.jpg", action: "https://www.feedingamerica.org" },
+        "remote_strategist": { letters: ["B", "F", "I", "K", "M"], name: "💻 Remote Strategist", image: "remote_strategist.jpg", action: "https://www.mediamatters.org" },
+        "fundraiser": { letters: ["C", "E", "H", "K", "R"], name: "💰 Fundraising Champion", image: "fundraiser.jpg", action: "https://www.habitat.org" },
+        "content_creator": { letters: ["B", "E", "N", "K", "S"], name: "🎥 Content Creator", image: "content_creator.jpg", action: "https://www.creativecommons.org" },
+        "legal_advocate": { letters: ["A", "F", "G", "J", "Q"], name: "⚖️ Legal Advocate", image: "legal_advocate.jpg", action: "https://www.aclu.org" },
+        "tech_supporter": { letters: ["B", "F", "I", "M", "T"], name: "🖥️ Tech Supporter", image: "tech_supporter.jpg", action: "https://opensource.org" },
+        "educator": { letters: ["C", "E", "H", "K", "S"], name: "📚 Knowledge Spreader", image: "educator.jpg", action: "https://www.khanacademy.org" },
+        "environmentalist": { letters: ["A", "G", "O", "J", "P"], name: "🌱 Earth Defender", image: "environmentalist.jpg", action: "https://www.sierraclub.org" },
+        "voter_mobilizer": { letters: ["A", "E", "G", "K", "P"], name: "🗳️ Democracy Protector", image: "voter_mobilizer.jpg", action: "https://www.vote.org" },
+        "labor_advocate": { letters: ["A", "G", "H", "J", "Q"], name: "⚒️ Workers' Rights Champion", image: "labor_advocate.jpg", action: "https://www.aflcio.org" },
+        "healthcare_advocate": { letters: ["C", "H", "O", "J", "Q"], name: "🏥 Health Equity Fighter", image: "healthcare_advocate.jpg", action: "https://www.healthcare.gov" },
+        "logistics_coordinator": { letters: ["B", "F", "I", "K", "T"], name: "🚛 Logistics Coordinator", image: "logistics_coordinator.jpg", action: "https://www.redcross.org" },
+        "policy_influencer": { letters: ["A", "F", "G", "K", "Q"], name: "🏛️ Policy Influencer", image: "policy_influencer.jpg", action: "https://www.brookings.edu" }
+    };
+
     quizForm.addEventListener("submit", function (e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevent page refresh
 
         var answerCounts = {};
         Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
@@ -80,9 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         resultText.innerHTML = `<h2>${result.name}</h2>`;
         personaImage.src = `images/${result.image}`;
+        actionLink.href = result.action;
+        actionLink.innerText = "Take Action Now!";
 
-        displayOrganizations(result.name);
-
-        resultContainer.style.display = "block";
+        resultContainer.style.display = "block"; // Show results
     });
 });
