@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz - Page 6</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Quiz - Page 6</h1>
+
+  <form id="quiz-form-page6">
+    <p>6. How do you prefer to work?</p>
+    <label><input type="radio" name="question6" value="AI"> In-person community efforts</label><br>
+    <label><input type="radio" name="question6" value="AJ"> Online and remote activism</label><br>
+    <label><input type="radio" name="question6" value="AK"> Hybrid (both online and in-person)</label><br>
+
+    <button type="submit">Next</button>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const quizFormPage6 = document.getElementById("quiz-form-page6");
+
+      quizFormPage6.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Gather the answer for question 6
+        const formData = new FormData(quizFormPage6);
+        const question6Answer = formData.get("question6"); // e.g. "AI", "AJ", "AK"
+
+        // Store answer in localStorage
+        localStorage.setItem("question6", question6Answer || "");
+
+        // Redirect to results page (adjust this if you have more quiz pages left)
+        window.location.href = "results.html";
+      });
+    });
+  </script>
+</body>
+</html>
