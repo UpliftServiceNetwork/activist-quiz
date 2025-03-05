@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Results</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Your Activist Type</h1>
+  <div id="result-container">
+    <h2 id="result-heading"></h2>
+    <p id="result-description"></p>
+    <img id="result-image" src="" alt="Activist Persona" style="display:none;" />
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Retrieve answers from localStorage
+      const q1 = localStorage.getItem("question1") || "";
+      const q2 = localStorage.getItem("question2") || "";
+
+      // For debugging:
+      console.log("Q1 answer:", q1);
+      console.log("Q2 answer:", q2);
+
+      // Simple logic to determine final type
+      let finalType;
+      let finalDesc;
+      let finalImage;
+
+      // Example conditions:
+      if (q1 === "A" && q2 === "H") {
+        finalType = "🔥 Frontline Firestarter";
+        finalDesc = "You prefer direct, front-line activism and seek policy change!";
+        finalImage = "images/firestarter.png";
+      } else if (q1 === "B" && q2 === "I") {
+        finalType = "📡 Digital Guardian";
+        finalDesc = "You prefer behind-the-scenes organizing and supporting marginalized communities.";
+        finalImage = "images/digital_guardian.png";
+      } else {
+        // Default/fallback
+        finalType = "🤲 Community Helper";
+        finalDesc = "You lend a hand wherever needed, providing direct support and community service.";
+        finalImage = "images/community_helper.png";
+      }
+
+      // Fill in the results
+      const headingEl = document.getElementById("result-heading");
+      const descEl = document.getElementById("result-description");
+      const imgEl = document.getElementById("result-image");
+
+      headingEl.textContent = finalType;
+      descEl.textContent = finalDesc;
+      imgEl.src = finalImage;
+      imgEl.style.display = "block";
+    });
+  </script>
+</body>
+</html>
