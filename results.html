@@ -30,6 +30,8 @@
       const q5 = localStorage.getItem('question5') || '';
       const q6 = localStorage.getItem('question6') || '';
 
+      const answers = [q1, q2, q3, q4, q5, q6];
+
       // 2. Reference to DOM elements
       const resultContainer = document.getElementById('result-container');
       const resultText = document.getElementById('result-text');
@@ -37,464 +39,480 @@
       const localOrgsList = document.getElementById('local-orgs');
       const copyButton = document.getElementById('copy-button');
 
-      // 3. Activist types data (Shortened; add the rest of your types!)
+      // 3. Activist types data (I've corrected missing brackets)
       const activistTypes = {
-         "firestarter": { 
-            letters: ["A", "D", "G", "J", "L"],
-            name: "🔥 Frontline Firestarter", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Frontline_Firestarter.png",
-            resources: [
-                {
-                    name: "Indivisible",
-                    link: "https://www.indivisible.org/",
-                    description: "Research shows that people are more likely to make a difference when they act immediately. If you wait, life’s demands may push this aside, and your opportunity to contribute could be lost. [Start here](https://www.indivisible.org/)."
-                },
-                {
-                    name: "Movement for Black Lives",
-                    link: "https://m4bl.org/",
-                    description: "A platform for Black-led organizations fighting for racial justice through protests, advocacy, and policy change."
-                },
-                {
-                    name: "Rising Majority",
-                    link: "https://risingmajority.com/",
-                    description: "A coalition of grassroots activists organizing protests, direct action, and advocacy to dismantle systemic injustice."
-                }
-            ],
-            description: "You are the spark that ignites change! Whether you're leading a protest, speaking truth to power, or mobilizing people on the ground, you thrive in the heat of action."
+        "firestarter": { 
+          letters: ["A", "D", "G", "J", "L"],
+          name: "🔥 Frontline Firestarter", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Frontline_Firestarter.png",
+          resources: [
+            {
+              name: "Indivisible",
+              link: "https://www.indivisible.org/",
+              description: "Research shows that people are more likely to make a difference..."
+            },
+            {
+              name: "Movement for Black Lives",
+              link: "https://m4bl.org/",
+              description: "A platform for Black-led organizations fighting for racial justice..."
+            },
+            {
+              name: "Rising Majority",
+              link: "https://risingmajority.com/",
+              description: "A coalition of grassroots activists organizing protests..."
+            }
+          ],
+          description: "You are the spark that ignites change! Whether you're leading a protest..."
         },
         "guardian": { 
-            letters: ["B", "E", "I", "K", "M"],
-            name: "📡 Digital Guardian", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Digital_Guardian.png",
-            resources: [
-                {
-                    name: "Fight for the Future",
-                    link: "https://www.fightforthefuture.org/",
-                    description: "The best time to act is now. Take immediate action to protect digital rights. [Start here](https://www.fightforthefuture.org/)."
-                },
-                {
-                    name: "Access Now",
-                    link: "https://www.accessnow.org/",
-                    description: "A nonprofit advocating for global internet freedom and fighting against censorship and digital surveillance."
-                },
-                {
-                    name: "Electronic Frontier Foundation (EFF)",
-                    link: "https://www.eff.org/",
-                    description: "A leading organization defending digital privacy, free speech, and innovation online."
-                }
-            ],
-            description: "You are the protector of truth in the digital age! You fight misinformation, organize movements online, and use technology to connect and empower communities."
+          letters: ["B", "E", "I", "K", "M"],
+          name: "📡 Digital Guardian", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Digital_Guardian.png",
+          resources: [
+            {
+              name: "Fight for the Future",
+              link: "https://www.fightforthefuture.org/",
+              description: "The best time to act is now. Take immediate action to protect digital rights..."
+            },
+            {
+              name: "Access Now",
+              link: "https://www.accessnow.org/",
+              description: "A nonprofit advocating for global internet freedom..."
+            },
+            {
+              name: "Electronic Frontier Foundation (EFF)",
+              link: "https://www.eff.org/",
+              description: "A leading organization defending digital privacy and innovation online."
+            }
+          ],
+          description: "You are the protector of truth in the digital age! You fight misinformation..."
         },
         "community_helper": { 
-            letters: ["C", "H", "J", "O", "R"],
-            name: "🤲 Community Helper", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Community_Helper.png",
-            resources: [
-                {
-                    name: "VolunteerMatch",
-                    link: "https://www.volunteermatch.org/",
-                    description: "Volunteering locally starts with a single step. Find an opportunity near you today. [Start here](https://www.volunteermatch.org/)."
-                },
-                {
-                    name: "Mutual Aid Hub",
-                    link: "https://www.mutualaidhub.org/",
-                    description: "Connects people with local mutual aid networks that provide direct assistance to those in need."
-                },
-                {
-                    name: "AmeriCorps",
-                    link: "https://www.americorps.gov/",
-                    description: "A national service program offering long-term volunteer opportunities for community impact."
-                }
-            ],
-            description: "You are the heart of the movement! Whether you're feeding the hungry, helping displaced families, or creating safe spaces, you make direct change in people's lives."
+          letters: ["C", "H", "J", "O", "R"],
+          name: "🤲 Community Helper", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Community_Helper.png",
+          resources: [
+            {
+              name: "VolunteerMatch",
+              link: "https://www.volunteermatch.org/",
+              description: "Volunteering locally starts with a single step..."
+            },
+            {
+              name: "Mutual Aid Hub",
+              link: "https://www.mutualaidhub.org/",
+              description: "Connects people with local mutual aid networks..."
+            },
+            {
+              name: "AmeriCorps",
+              link: "https://www.americorps.gov/",
+              description: "A national service program offering long-term volunteer opportunities..."
+            }
+          ],
+          description: "You are the heart of the movement! Whether you're feeding the hungry..."
         },
-
         "fundraiser": { 
-            letters: ["C", "E", "H", "K", "R"],
-            name: "💰 Fundraising Champion", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Fundraising_Champion.png",
-            resources: [
-                {
-                    name: "Act Blue",
-                    link: "https://secure.actblue.com",
-                    description: "Raising funds is the key to keeping movements alive. Start your campaign today. [Start here](https://secure.actblue.com)."
-                },
-                {
-                    name: "Network for Good",
-                    link: "https://www.networkforgood.com/",
-                    description: "A platform providing tools and training to help individuals fundraise effectively for nonprofits."
-                },
-                {
-                    name: "Classy",
-                    link: "https://www.classy.org/",
-                    description: "An online fundraising platform that helps individuals and organizations create successful fundraising campaigns."
-                }
-            ],
-            description: "You are the engine that powers movements! Every campaign, every protest, every grassroots effort needs funding—and you make that happen."
+          letters: ["C", "E", "H", "K", "R"],
+          name: "💰 Fundraising Champion", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Fundraising_Champion.png",
+          resources: [
+            {
+              name: "Act Blue",
+              link: "https://secure.actblue.com",
+              description: "Raising funds is the key to keeping movements alive. Start your campaign today..."
+            },
+            {
+              name: "Network for Good",
+              link: "https://www.networkforgood.com/",
+              description: "A platform providing tools and training to help individuals fundraise effectively."
+            },
+            {
+              name: "Classy",
+              link: "https://www.classy.org/",
+              description: "An online fundraising platform that helps individuals and organizations..."
+            }
+          ],
+          description: "You are the engine that powers movements! Every campaign, every grassroots effort needs funding..."
         },
-        
         "equality ally": { 
-            letters: ["AD", "AC", "H", "J"],
-            name: "🏳️‍🌈 Equality Ally", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
-            resources: [
-                {
-                    name: "The Trevor Project",
-                    link: "https://www.thetrevorproject.org/get-involved/",
-                    description: "Provides crisis intervention and suicide prevention services to LGBTQ+ youth."
-                },
-                {
-                    name: "The Human Rights Campaign",
-                    link: "https://www.hrc.org/resources/ways-to-get-involved",
-                    description: "Strives to end discrimination against LGBTQ+ individuals and achieve equality."
-                },
-                {
-                    name: "Movement for Black Lives",
-                    link: "https://m4bl.org/",
-                    description: "A platform for Black-led organizations fighting for racial justice through protests, advocacy, and policy change."
-                }
-            ],
-            description: "You turn knowledge into power! You educate, inform, and empower communities with the facts and strategies they need to take action."
-        },        
-        
+          letters: ["AD", "AC", "H", "J"],
+          name: "🏳️‍🌈 Equality Ally", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
+          resources: [
+            {
+              name: "The Trevor Project",
+              link: "https://www.thetrevorproject.org/get-involved/",
+              description: "Provides crisis intervention for LGBTQ+ youth."
+            },
+            {
+              name: "The Human Rights Campaign",
+              link: "https://www.hrc.org/resources/ways-to-get-involved",
+              description: "Strives to end discrimination against LGBTQ+ individuals and achieve equality."
+            },
+            {
+              name: "Movement for Black Lives",
+              link: "https://m4bl.org/",
+              description: "A platform for Black-led organizations fighting for racial justice..."
+            }
+          ],
+          description: "You turn knowledge into power! You educate, inform, and empower communities..."
+        },
         "environmentalist": { 
-            letters: ["A", "G", "O", "J", "P"],
-            name: "🌱 Earth Defender", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Earth_Defender.png",
-            resources: [
-                {
-                    name: "Sierra Club",
-                    link: "https://www.sierraclub.org/get-involved",
-                    description: "The environment needs you today, not tomorrow. Take action for the planet. [Start here](https://www.sierraclub.org/get-involved)."
-                },
-                {
-                    name: "Greenpeace",
-                    link: "https://www.greenpeace.org/international/",
-                    description: "A global network leading campaigns to stop climate change, protect forests, and reduce pollution."
-                },
-
+          letters: ["A", "G", "O", "J", "P"],
+          name: "🌱 Earth Defender", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Earth_Defender.png",
+          resources: [
+            {
+              name: "Sierra Club",
+              link: "https://www.sierraclub.org/get-involved",
+              description: "The environment needs you today, not tomorrow..."
+            },
+            {
+              name: "Greenpeace",
+              link: "https://www.greenpeace.org/international/",
+              description: "A global network leading campaigns to stop climate change..."
+            },
+            {
+              name: "Sunrise Movement",
+              link: "https://www.sunrisemovement.org/",
+              description: "A youth-led movement fighting for climate justice..."
+            }
+          ],
+          description: "You fight for the planet! Whether it's climate justice, sustainability, or environmental activism..."
+        },
         "veterans_advocate": { 
-            letters: ["G", "M", "T", "Z"],
-            name: "🎖️ Veterans Advocate", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Veterans_Advocate.png",
-            resources: [
-                {
-                    name: "The Wounded Warrior Project",
-                    link: "https://www.woundedwarriorproject.org/programs",
-                    description: "Support programs that help veterans reintegrate, receive medical care, and access benefits."
-                },
-                {
-                    name: "IAVA (Iraq and Afghanistan Veterans of America)",
-                    link: "https://iava.org/",
-                    description: "Advocates for policy change and provides community support for post-9/11 veterans."
-                },
-                {
-                    name: "Veterans Crisis Line",
-                    link: "https://www.veteranscrisisline.net/",
-                    description: "Provides immediate mental health support for veterans in crisis."
-                }
-            ],
-            description: "You are a fierce advocate for those who have served. You help veterans access healthcare, fight for policy changes, and ensure they get the support they deserve."
+          letters: ["G", "M", "T", "Z"],
+          name: "🎖️ Veterans Advocate", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Veterans_Advocate.png",
+          resources: [
+            {
+              name: "The Wounded Warrior Project",
+              link: "https://www.woundedwarriorproject.org/programs",
+              description: "Support programs that help veterans reintegrate..."
+            },
+            {
+              name: "IAVA (Iraq and Afghanistan Veterans of America)",
+              link: "https://iava.org/",
+              description: "Advocates for policy change and provides community support..."
+            },
+            {
+              name: "Veterans Crisis Line",
+              link: "https://www.veteranscrisisline.net/",
+              description: "Provides immediate mental health support for veterans in crisis."
+            }
+          ],
+          description: "You are a fierce advocate for those who have served..."
         },
-        
-    "voter_mobilizer": { 
-    letters: ["A", "E", "G", "K", "P"],
-    name: "🗳️ Democracy Protector", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Democracy_Protector.png",
-    resources: [
-        {
-            name: "When We All Vote",
-            link: "https://www.whenweallvote.org/",
-            description: "Ensure that everyone has access to voting and is informed about their rights."
+        "voter_mobilizer": { 
+          letters: ["A", "E", "G", "K", "P"],
+          name: "🗳️ Democracy Protector", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Democracy_Protector.png",
+          resources: [
+            {
+              name: "When We All Vote",
+              link: "https://www.whenweallvote.org/",
+              description: "Ensure that everyone has access to voting and is informed about their rights."
+            },
+            {
+              name: "Coalition for Community for Democracy",
+              link: "https://cc4democracy.com/",
+              description: "A grassroots group committed to strengthening democratic engagement..."
+            },
+            {
+              name: "Fair Fight Action",
+              link: "https://fairfight.com/",
+              description: "An organization dedicated to fighting voter suppression..."
+            }
+          ],
+          description: "You defend democracy! By registering voters, fighting suppression, and encouraging civic engagement..."
         },
-        {
-            name: "Coalition for Community for Democracy",
-            link: "https://cc4democracy.com/",
-            description: "A grassroots group committed to strengthening democratic engagement and voter rights."
-        },
-        {
-            name: "Fair Fight Action",
-            link: "https://fairfight.com/",
-            description: "An organization dedicated to fighting voter suppression and ensuring fair elections."
-        }
-    ],
-    description: "You defend democracy! By registering voters, fighting suppression, and encouraging civic engagement, you make sure every voice is heard."
-},
         "home_activist": { 
-            letters: ["F", "N", "R", "AA"],
-            name: "🏡 Home-Based Activist", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Home_Activist.png",
-            resources: [
-                { 
-                    name: "CC4D Card Campaign", 
-                    link: "https://cc4democracy.com/", 
-                    description: "Make an impact without leaving your home! Join the CC4D Card Campaign and encourage civic engagement through handwritten letters." 
-                },
-                { 
-                    name: "VolunteerMatch Virtual Opportunities", 
-                    link: "https://www.volunteermatch.org/virtual-volunteering", 
-                    description: "Find meaningful ways to contribute remotely through volunteer projects that fit your skills." 
-                },
-                { 
-                    name: "Fair Fight Action", 
-                    link: "https://fairfight.com/", 
-                    description: "Support efforts to fight voter suppression and ensure fair elections across the country." 
-                }
-            ],
-            description: "You take action from home! Whether writing letters, organizing online, fundraising, or spreading awareness, your work fuels movements without stepping outside your door."
+          letters: ["F", "N", "R", "AA"],
+          name: "🏡 Home-Based Activist", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Home_Activist.png",
+          resources: [
+            { 
+              name: "CC4D Card Campaign", 
+              link: "https://cc4democracy.com/", 
+              description: "Make an impact without leaving your home! Join the CC4D Card Campaign..."
+            },
+            { 
+              name: "VolunteerMatch Virtual Opportunities", 
+              link: "https://www.volunteermatch.org/virtual-volunteering", 
+              description: "Find meaningful ways to contribute remotely..."
+            },
+            { 
+              name: "Fair Fight Action", 
+              link: "https://fairfight.com/", 
+              description: "Support efforts to fight voter suppression..."
+            }
+          ],
+          description: "You take action from home! Whether writing letters, organizing online, or fundraising..."
+        },
+        "labor_advocate": {
+          letters: ["A", "G", "H", "J", "Q"],
+          name: "⚒️ Workers' Rights Champion", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Labor_Advocate.png",
+          resources: [
+            {
+              name: "AFL-CIO America's Unions",
+              link: "https://aflcio.org/take-action",
+              description: "Support workers' rights and advocate for fair wages..."
+            },
+            {
+              name: "Jobs with Justice",
+              link: "https://www.jwj.org/",
+              description: "A grassroots network advocating for labor rights..."
+            },
+            {
+              name: "National Domestic Workers Alliance",
+              link: "https://www.domesticworkers.org/",
+              description: "Fights for fair pay and protections for domestic workers..."
+            }
+          ],
+          description: "You stand up for workers! Whether fighting for fair wages, safer conditions..."
+        },
+        "healthcare_advocate": { 
+          letters: ["C", "H", "O", "J", "Q"],
+          name: "🏥 Health Equity Fighter", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Health_Equity_Fighter.png",
+          resources: [
+            {
+              name: "Families USA",
+              link: "https://familiesusa.org/take-action/",
+              description: "Join efforts to make healthcare more accessible and equitable for all."
+            },
+            {
+              name: "Physicians for a National Health Program",
+              link: "https://pnhp.org/",
+              description: "Advocates for universal healthcare and medical access for all."
+            },
+            {
+              name: "Health Leads",
+              link: "https://healthleadsusa.org/",
+              description: "Works to address social determinants of health for underserved communities."
+            }
+          ],
+          description: "You believe healthcare should be a right, not a privilege..."
+        },
+        "logistics_coordinator": { 
+          letters: ["B", "F", "I", "K", "T"],
+          name: "🚛 Logistics Coordinator", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Logistics_Coordinator.png",
+          resources: [
+            {
+              name: "Mutual Aid Hub",
+              link: "https://mutualaidhub.org/",
+              description: "Support mutual aid efforts by organizing essential supplies..."
+            },
+            {
+              name: "Direct Action Everywhere",
+              link: "https://www.directactioneverywhere.com/",
+              description: "Organizes protests and direct action events requiring logistics coordination."
+            },
+            {
+              name: "World Central Kitchen",
+              link: "https://wck.org/",
+              description: "Provides food relief in disaster-stricken areas..."
+            }
+          ],
+          description: "You keep movements running smoothly! Whether managing transportation, supplies, or event logistics..."
+        },
+        "policy_influencer": { 
+          letters: ["A", "F", "G", "K", "Q"],
+          name: "🏛️ Policy Influencer", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Policy_Influencer.png",
+          resources: [
+            {
+              name: "Common Cause",
+              link: "https://commoncause.org/take-action/",
+              description: "Engage in policy advocacy and work toward systemic change."
+            },
+            {
+              name: "Coalition for Community for Democracy",
+              link: "https://cc4democracy.com/",
+              description: "A movement focused on engaging communities in policy advocacy."
+            },
+            {
+              name: "Brennan Center for Justice",
+              link: "https://www.brennancenter.org/",
+              description: "A law and policy institute focused on democracy, justice reform, and voting rights."
+            }
+          ],
+          description: "You work to change the system from within! Whether through lobbying, policy writing, or advocacy..."
+        },
+        "remote_strategist": { 
+          letters: ["B", "F", "I", "K", "M"],
+          name: "💻 Remote Strategist", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Remote_Strategist.png",
+          resources: [
+            {
+              name: "Take Action Now",
+              link: "https://www.catchafire.org/volunteer/",
+              description: "Use your remote skills to support nonprofits from anywhere in the world."
+            },
+            {
+              name: "VolunteerMatch Virtual Opportunities",
+              link: "https://www.volunteermatch.org/virtual-volunteering",
+              description: "Find remote volunteer opportunities with organizations in need of support."
+            },
+            {
+              name: "Idealist Remote Volunteering",
+              link: "https://www.idealist.org/en/remote-volunteering",
+              description: "Offers remote roles for activists in research, advocacy, and project management."
+            }
+          ],
+          description: "You may not be in the streets, but you are behind every powerful movement!..."
+        },
+        "content_creator": { 
+          letters: ["B", "E", "N", "K", "S"],
+          name: "🎥 Content Creator", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Content_Creator.png",
+          resources: [
+            {
+              name: "Take Action Now",
+              link: "https://www.catchafire.org/volunteer/",
+              description: "Your skills are needed to amplify important causes..."
+            },
+            {
+              name: "Canva",
+              link: "https://www.canva.com/",
+              description: "A powerful, easy-to-use design tool for creating engaging activist content."
+            },
+            {
+              name: "Buffer",
+              link: "https://buffer.com/",
+              description: "A social media management tool to help activists and organizations amplify their message."
+            }
+          ],
+          description: "Your creativity shapes movements! Whether through videos, social media, or design..."
+        },
+        "legal_advocate": { 
+          letters: ["A", "F", "G", "J", "Q"],
+          name: "⚖️ Legal Advocate", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Legal_Advocate.png",
+          resources: [
+            {
+              name: "Take Action Now",
+              link: "https://www.aclu.org/action/",
+              description: "Get involved in legal activism and help fight unjust laws..."
+            },
+            {
+              name: "Equal Justice Initiative",
+              link: "https://eji.org/",
+              description: "A legal advocacy group fighting against mass incarceration..."
+            },
+            {
+              name: "National Lawyers Guild",
+              link: "https://www.nlg.org/",
+              description: "A network of activist lawyers providing legal support..."
+            }
+          ],
+          description: "Justice needs warriors! You fight unjust laws, protect the rights of the vulnerable..."
+        },
+        "knowledge_spreader": { 
+          letters: ["C", "E", "H", "K", "W"],
+          name: "📚 Knowledge Spreader", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
+          resources: [
+            {
+              name: "Catchafire",
+              link: "https://www.catchafire.org/volunteer/",
+              description: "Use your teaching skills to educate and empower others..."
+            },
+            {
+              name: "Khan Academy",
+              link: "https://www.khanacademy.org/",
+              description: "A nonprofit platform offering free education in various subjects..."
+            },
+            {
+              name: "EdX",
+              link: "https://www.edx.org/",
+              description: "Provides high-quality online courses from top universities..."
+            }
+          ],
+          description: "You turn knowledge into power! You educate, inform, and empower communities..."
+        },
+        "tech_supporter": { 
+          letters: ["B", "D", "K", "M", "X"],
+          name: "🖥️ Tech Supporter", 
+          image: "https://upliftservicenetwork.github.io/activist-quiz/images/Tech_Supporter.png",
+          resources: [
+            {
+              name: "Code for America",
+              link: "https://www.codeforamerica.org/",
+              description: "Volunteer your tech skills to build innovative solutions for social good."
+            },
+            {
+              name: "Catchafire",
+              link: "https://www.catchafire.org/volunteer/",
+              description: "Matches skilled tech volunteers with nonprofits needing digital support."
+            },
+            {
+              name: "Mozilla Foundation",
+              link: "https://foundation.mozilla.org/",
+              description: "Advocates for internet privacy, security, and open-source technology."
+            }
+          ],
+          description: "You are the architect of digital activism! You ensure technology is used to empower people..."
         }
-    };
-    
-    "labor_advocate": {
-    letters: ["A", "G", "H", "J", "Q"],
-    name: "⚒️ Workers' Rights Champion", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Labor_Advocate.png",
-    resources: [
-        {
-            name: "AFL-CIO America's Unions",
-            link: "https://aflcio.org/take-action",
-            description: "Support workers' rights and advocate for fair wages and better working conditions."
-        },
-        {
-            name: "Jobs with Justice",
-            link: "https://www.jwj.org/",
-            description: "A grassroots network advocating for labor rights and economic justice."
-        },
-        {
-            name: "National Domestic Workers Alliance",
-            link: "https://www.domesticworkers.org/",
-            description: "Fights for fair pay and protections for domestic workers across the U.S."
+      };
+
+      // 4. Initialize a scores object, starting at 0 for each type
+      const scores = {};
+      Object.keys(activistTypes).forEach(type => {
+        scores[type] = 0;
+      });
+
+      // 5. For each user answer, increment the score for any type whose letters include that answer
+      for (const ans of answers) {
+        for (const type in activistTypes) {
+          if (activistTypes[type].letters.includes(ans)) {
+            scores[type]++;
+          }
         }
-    ],
-    description: "You stand up for workers! Whether fighting for fair wages, safer conditions, or labor rights, you ensure dignity in the workplace."
-},
+      }
 
-"healthcare_advocate": { 
-    letters: ["C", "H", "O", "J", "Q"],
-    name: "🏥 Health Equity Fighter", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Health_Equity_Fighter.png",
-    resources: [
-        {
-            name: "Families USA",
-            link: "https://familiesusa.org/take-action/",
-            description: "Join efforts to make healthcare more accessible and equitable for all."
-        },
-        {
-            name: "Physicians for a National Health Program",
-            link: "https://pnhp.org/",
-            description: "Advocates for universal healthcare and medical access for all."
-        },
-        {
-            name: "Health Leads",
-            link: "https://healthleadsusa.org/",
-            description: "Works to address social determinants of health for underserved communities."
-        }
-    ],
-    description: "You believe healthcare should be a right, not a privilege. You fight for policies that expand access to quality medical care for all."
-},
+      // 6. Identify the type with the highest score
+      let finalKey = Object.keys(scores).reduce((a, b) => {
+        return scores[a] > scores[b] ? a : b;
+      });
 
-"logistics_coordinator": { 
-    letters: ["B", "F", "I", "K", "T"],
-    name: "🚛 Logistics Coordinator", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Logistics_Coordinator.png",
-    resources: [
-        {
-            name: "Mutual Aid Hub",
-            link: "https://mutualaidhub.org/",
-            description: "Support mutual aid efforts by organizing essential supplies and resources."
-        },
-        {
-            name: "Direct Action Everywhere",
-            link: "https://www.directactioneverywhere.com/",
-            description: "Organizes protests and direct action events requiring logistics coordination."
-        },
-        {
-            name: "World Central Kitchen",
-            link: "https://wck.org/",
-            description: "Provides food relief in disaster-stricken areas through rapid response coordination."
-        },
-    ],
-    description: "You keep movements running smoothly! Whether managing transportation, supplies, or event logistics, your planning makes activism possible."
-},
+      // 7. Now 'finalKey' is the highest-scoring type. Grab its data and display it
+      const finalTypeData = activistTypes[finalKey];
 
-"policy_influencer": { 
-    letters: ["A", "F", "G", "K", "Q"],
-    name: "🏛️ Policy Influencer", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Policy_Influencer.png",
-    resources: [
-        {
-            name: "Common Cause",
-            link: "https://commoncause.org/take-action/",
-            description: "Engage in policy advocacy and work toward systemic change."
-        },
-        {
-            name: "Coalition for Community for Democracy",
-            link: "https://cc4democracy.com/",
-            description: "A movement focused on engaging communities in policy advocacy."
-        },
-        {
-            name: "Brennan Center for Justice",
-            link: "https://www.brennancenter.org/",
-            description: "A law and policy institute focused on democracy, justice reform, and voting rights."
-        }
-    ],
-    description: "You work to change the system from within! Whether through lobbying, policy writing, or advocacy, you shape the future of legislation."
-},
+      resultText.innerHTML = `<strong>${finalTypeData.name}</strong><br>${finalTypeData.description}`;
+      personaImage.src = finalTypeData.image;
+      personaImage.style.display = 'block';
+      resultContainer.style.display = 'block';
 
-"remote_strategist": { 
-    letters: ["B", "F", "I", "K", "M"],
-    name: "💻 Remote Strategist", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Remote_Strategist.png",
-    resources: [
-        {
-            name: "Take Action Now",
-            link: "https://www.catchafire.org/volunteer/",
-            description: "Use your remote skills to support nonprofits from anywhere in the world."
-        },
-        {
-            name: "VolunteerMatch Virtual Opportunities",
-            link: "https://www.volunteermatch.org/virtual-volunteering",
-            description: "Find remote volunteer opportunities with organizations in need of support."
-        },
-        {
-            name: "Idealist Remote Volunteering",
-            link: "https://www.idealist.org/en/remote-volunteering",
-            description: "Offers remote roles for activists in research, advocacy, and project management."
-        }
-    ],
-    description: "You may not be in the streets, but you are behind every powerful movement! Your strategic mind ensures activism is effective and well-organized."
-},
+      // 8. Display local orgs/resources
+      localOrgsList.innerHTML = finalTypeData.resources
+        .map(org => `
+          <li>
+            <a href="${org.link}" target="_blank"><strong>${org.name}</strong></a>
+            <p>${org.description}</p>
+          </li>
+        `)
+        .join("");
 
-"content_creator": { 
-    letters: ["B", "E", "N", "K", "S"],
-    name: "🎥 Content Creator", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Content_Creator.png",
-    resources: [
-        {
-            name: "Take Action Now",
-            link: "https://www.catchafire.org/volunteer/",
-            description: "Your skills are needed to amplify important causes. Volunteer your creative talents to make a difference."
-        },
-        {
-            name: "Canva",
-            link: "https://www.canva.com/",
-            description: "A powerful, easy-to-use design tool for creating engaging activist content."
-        },
-        {
-            name: "Buffer",
-            link: "https://buffer.com/",
-            description: "A social media management tool to help activists and organizations amplify their message."
-        }
-    ],
-    description: "Your creativity shapes movements! Whether through videos, social media, branding, or design, your work shifts perspectives and rallies people behind causes that matter."
-},
+      // 9. Copy button logic
+      copyButton.addEventListener('click', function () {
+        const combinedText = finalTypeData.resources
+          .map(org => `${org.name} - ${org.link} - ${org.description}`)
+          .join('\\n');
 
-"legal_advocate": { 
-    letters: ["A", "F", "G", "J", "Q"],
-    name: "⚖️ Legal Advocate", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Legal_Advocate.png",
-    resources: [
-        {
-            name: "Take Action Now",
-            link: "https://www.aclu.org/action/",
-            description: "Get involved in legal activism and help fight unjust laws and protect rights."
-        },
-        {
-            name: "Equal Justice Initiative",
-            link: "https://eji.org/",
-            description: "A legal advocacy group fighting against mass incarceration, racial injustice, and excessive punishment."
-        },
-        {
-            name: "National Lawyers Guild",
-            link: "https://www.nlg.org/",
-            description: "A network of activist lawyers providing legal support for social justice movements."
-        }
-    ],
-    description: "Justice needs warriors! You fight unjust laws, protect the rights of the vulnerable, and hold those in power accountable."
-},
+        const tempTextArea = document.createElement('textarea');
+        tempTextArea.value = combinedText;
+        document.body.appendChild(tempTextArea);
 
- "knowledge_spreader": { 
-            letters: ["C", "E", "H", "K", "W"],
-            name: "📚 Knowledge Spreader", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
-            resources: [
-                {
-                    name: "Catchafire",
-                    link: "https://www.catchafire.org/volunteer/",
-                    description: "Use your teaching skills to educate and empower others through nonprofit organizations."
-                },
-                {
-                    name: "Khan Academy",
-                    link: "https://www.khanacademy.org/",
-                    description: "A nonprofit platform offering free education in various subjects for learners worldwide."
-                },
-                {
-                    name: "EdX",
-                    link: "https://www.edx.org/",
-                    description: "Provides high-quality online courses from top universities on social justice, education, and activism."
-                }
-            ],
-            description: "You turn knowledge into power! You educate, inform, and empower communities with the facts and strategies they need to take action."
-        },
+        tempTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextArea);
 
- "tech_supporter": { 
-            letters: ["B", "D", "K", "M", "X"],
-            name: "🖥️ Tech Supporter", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Tech_Supporter.png",
-            resources: [
-                {
-                    name: "Code for America",
-                    link: "https://www.codeforamerica.org/",
-                    description: "Volunteer your tech skills to build innovative solutions for social good."
-                },
-                {
-                    name: "Catchafire",
-                    link: "https://www.catchafire.org/volunteer/",
-                    description: "Matches skilled tech volunteers with nonprofits needing digital support."
-                },
-                {
-                    name: "Mozilla Foundation",
-                    link: "https://foundation.mozilla.org/",
-                    description: "Advocates for internet privacy, security, and open-source technology."
-                }
-            ],
-            description: "You are the architect of digital activism! You ensure technology is used to empower people, protect privacy, and support grassroots movements."
-        }
-    };
+        alert('Local organizations copied to clipboard!');
+      });
+    });
+  </script>
+</body>
+</html>
 
-     const scores = {};
-Object.keys(activistTypes).forEach(type => {
-  scores[type] = 0;
-});
-
-// 4. For each user answer, increment the score for any type whose letters include that answer
-for (const ans of answers) {
-  for (const type in activistTypes) {
-    if (activistTypes[type].letters.includes(ans)) {
-      scores[type]++;
-    }
-  }
-}
-
-// 5. Identify the type with the highest score
-let finalKey = Object.keys(scores).reduce((a, b) => {
-  return scores[a] > scores[b] ? a : b;
-});
-
-// 6. Now 'finalKey' is the highest-scoring type. Grab its data and display it
-const finalTypeData = activistTypes[finalKey];
-
-// (example references to your result elements)
-resultText.innerHTML = `<strong>${finalTypeData.name}</strong><br>${finalTypeData.description}`;
-personaImage.src = finalTypeData.image;
-personaImage.style.display = 'block';
-resultContainer.style.display = 'block';
-
-// 7. If you have local orgs or resources, display them, plus your copy button logic, etc.
-localOrgsList.innerHTML = finalTypeData.resources
-  .map(org => `
-    <li>
-      <a href="${org.link}" target="_blank"><strong>${org.name}</strong></a>
-      <p>${org.description}</p>
-    </li>
-  `).join("");
