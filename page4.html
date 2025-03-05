@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Quiz - Page 4</title>
-  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Quiz - Page 4</h1>
+  
+  <!-- PAGE 4 FORM -->
   <form id="quiz-form-page4">
     <p>4. What skills do you bring to activism?</p>
     <label><input type="radio" name="question4" value="U"> Public speaking & outreach</label><br>
@@ -15,25 +18,25 @@
     <label><input type="radio" name="question4" value="Y"> Organizing & management</label><br>
     <label><input type="radio" name="question4" value="Z"> Providing resources and direct aid to veterans</label><br>
     <label><input type="radio" name="question4" value="AA"> Letter writing, phone banking, and home-based advocacy</label><br>
+
     <button type="submit">Next</button>
   </form>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const quizFormPage4 = document.getElementById('quiz-form-page4');
+    document.addEventListener("DOMContentLoaded", function () {
+      const quizFormPage4 = document.getElementById("quiz-form-page4");
 
-      quizFormPage4.addEventListener('submit', function (e) {
+      quizFormPage4.addEventListener("submit", function (e) {
         e.preventDefault();
 
         const formData = new FormData(quizFormPage4);
-        const question4Answer = formData.get('question4'); // e.g. "U", "V", "W", etc.
+        const question4Answer = formData.get("question4");
 
         // Save answer to localStorage
-        localStorage.setItem('question4', question4Answer || '');
+        localStorage.setItem("question4", question4Answer || "");
 
-        // Navigate to the next page
-        // (Adjust the page name if you have a Page 5, etc.)
-        window.location.href = 'page5.html';
+        // Navigate to Page 5
+        window.location.href = "page5.html";
       });
     });
   </script>
