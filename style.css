@@ -100,3 +100,11 @@ ul {
 ul li {
     margin: 5px 0;
 }
+#persona-image {
+    display: block;  /* Ensures the image is visible */
+    max-width: 100%;  /* Prevents images from overflowing */
+    height: auto;  /* Maintains the correct aspect ratio */
+    max-height: 300px;  /* Limits how big the image gets */
+    margin: 10px auto;  /* Centers the image */
+    border-radius: 10px; /* Smooth edges for a clean look */
+}
