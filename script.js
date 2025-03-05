@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: "World Central Kitchen",
             link: "https://wck.org/",
             description: "Provides food relief in disaster-stricken areas through rapid response coordination."
-        }
+        },
     ],
     description: "You keep movements running smoothly! Whether managing transportation, supplies, or event logistics, your planning makes activism possible."
 },
@@ -413,37 +413,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ],
     description: "You are the architect of digital activism! You ensure technology is used to empower people, protect privacy, and support grassroots movements."
-},
+       }
+    };
     
-quizForm.addEventListener("submit", function (e) {
+    quizForm.addEventListener("submit", function (e) {
         e.preventDefault();
-
+        
         var answerCounts = {};
         Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
-
-        var selectedAnswers = new FormData(quizForm);
-
-        selectedAnswers.forEach((value) => {
+        
+        var answers = new FormData(quizForm);
+        answers.forEach((value) => {
             Object.keys(activistTypes).forEach(type => {
-                if (activistTypes[type].name.toLowerCase().includes(value.toLowerCase())) {
+                if (activistTypes[type].letters.includes(value)) {
                     answerCounts[type]++;
                 }
             });
         });
-
-        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b, "home_activist"); // Default to Home-Based Activist
+        
+        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b, "home_activist");
         var result = activistTypes[topType];
 
-        var resourceLinks = [
-            `<li><strong>Take Action Now!</strong><br>Act now to make an impact from home. <a href="${result.action}" target="_blank">Start here</a>.</li>`
-        ];
-        resourceLinks.push(...result.resources.map(resource => 
-            `<li><a href="${resource.link}" target="_blank">${resource.name}</a>: ${resource.description}</li>`
-        ));
-
-        resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p><ul>${resourceLinks.join("")}</ul>`;
+        resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p>`;
         personaImage.src = result.image;
         personaImage.style.display = "block";
+
+        actionLink.href = result.action;
+        actionLink.innerText = `Learn More at ${result.name}`;
+        actionLink.style.display = "inline-block";
 
         resultContainer.style.display = "block";
     });
