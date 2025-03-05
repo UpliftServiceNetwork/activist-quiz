@@ -128,28 +128,28 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         "veterans_advocate": { 
-    name: "🎖️ Veterans Advocate", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Veterans_Advocate.png",
-    resources: [
-        {
-            name: "Take Action Now",
-            link: "https://www.woundedwarriorproject.org/programs",
-            description: "Support programs that help veterans reintegrate, receive medical care, and access benefits."
+            name: "🎖️ Veterans Advocate", 
+            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Veterans_Advocate.png",
+            resources: [
+                {
+                    name: "Take Action Now",
+                    link: "https://www.woundedwarriorproject.org/programs",
+                    description: "Support programs that help veterans reintegrate, receive medical care, and access benefits."
+                },
+                {
+                    name: "IAVA (Iraq and Afghanistan Veterans of America)",
+                    link: "https://iava.org/",
+                    description: "Advocates for policy change and provides community support for post-9/11 veterans."
+                },
+                {
+                    name: "Veterans Crisis Line",
+                    link: "https://www.veteranscrisisline.net/",
+                    description: "Provides immediate mental health support for veterans in crisis."
+                }
+            ],
+            description: "You are a fierce advocate for those who have served. You help veterans access healthcare, fight for policy changes, and ensure they get the support they deserve."
         },
-        {
-            name: "IAVA (Iraq and Afghanistan Veterans of America)",
-            link: "https://iava.org/",
-            description: "Advocates for policy change and provides community support for post-9/11 veterans."
-        },
-        {
-            name: "Veterans Crisis Line",
-            link: "https://www.veteranscrisisline.net/",
-            description: "Provides immediate mental health support for veterans in crisis."
-        }
-    ],
-    description: "You are a fierce advocate for those who have served. You help veterans access healthcare, fight for policy changes, and ensure they get the support they deserve."
-},
-
+        
 "voter_mobilizer": { 
     name: "🗳️ Democracy Protector", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Democracy_Protector.png",
@@ -424,8 +424,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ],
     description: "You are the architect of digital activism! You ensure technology is used to empower people, protect privacy, and support grassroots movements."
-}
-
+},
+"home_activist": { 
+            name: "🏡 Home-Based Activist", 
+            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Home_Activist.png",
+            resources: [
+                {
+                    name: "Take Action Now",
+                    link: "https://cc4democracy.com/",
+                    description: "Engage in powerful activism from home by writing letters, making calls, and supporting key movements remotely."
+                },
+                {
+                    name: "Vote Forward",
+                    link: "https://votefwd.org/",
+                    description: "Write letters to encourage voter participation and protect democracy from home."
+                },
+                {
+                    name: "5 Calls",
+                    link: "https://5calls.org/",
+                    description: "Make impactful calls to legislators and representatives advocating for social justice."
+                }
+            ],
+            description: "You make an impact without ever leaving home! By writing letters, signing petitions, phone banking, and supporting digital advocacy, you play a crucial role in activism."
+        }
+    };
     
 quizForm.addEventListener("submit", function (e) {
         e.preventDefault();
