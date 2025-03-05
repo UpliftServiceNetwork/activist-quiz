@@ -5,39 +5,47 @@
   <title>Quiz Results</title>
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    font-family: sans-serif;
-    font-size: 18px; /* Increase base font size for mobile */
-    margin: 16px;
-  }
-  h1 {
-    font-size: 1.4em; /* Slightly larger heading on small screens */
-    margin-bottom: 0.5em;
-  }
-  form, .result-container {
-    margin-top: 1em;
-  }
-  label {
-    display: block;
-    margin-bottom: 0.5em;
-    line-height: 1.4;
-  }
-  button {
-    margin-top: 1em;
-    padding: 0.75em 1.5em;
-    font-size: 1em; 
-    cursor: pointer;
-  }
-</style>
-
+  <style>
+    body {
+      font-family: sans-serif;
+      font-size: 18px;
+      margin: 16px;
+      color: #444;
+      background: #fff;
+    }
+    h1 {
+      font-size: 1.4em;
+      margin-bottom: 0.5em;
+      text-align: center;
+    }
+    .result-container {
+      margin-top: 1em;
+    }
+    button {
+      margin-top: 1em;
+      padding: 0.75em 1.5em;
+      font-size: 1em; 
+      cursor: pointer;
+    }
+    #result-text {
+      margin-bottom: 1em;
+    }
+    #persona-image {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0.5em 0;
+    }
+  </style>
 </head>
 <body>
+  <h1>Your Activist Type</h1>
+
   <div id="result-container" style="display: none;">
     <h2>Your Activist Type:</h2>
     <p id="result-text"></p>
     <img id="persona-image" src="" alt="Your Activist Persona" style="display: none;" />
-    
+
     <!-- Local organizations/resources list -->
     <ul id="local-orgs"></ul>
 
@@ -64,7 +72,7 @@
       const localOrgsList = document.getElementById('local-orgs');
       const copyButton = document.getElementById('copy-button');
 
-      // 3. Activist types data (FIXED MISSING BRACKETS)
+      // 3. Activist types data (FIXED missing quotes/brackets)
       const activistTypes = {
         "firestarter": { 
           letters: ["A", "D", "G", "J", "L"],
@@ -133,8 +141,7 @@
               description: "A national service program offering long-term volunteer opportunities..."
             }
           ],
-          description: "You are the compassionate heart of the movement! Whether organizing food drives, helping displaced families, or creating safe spaces, your generosity and warmth uplift those who need it most. Your hands-on approach makes a direct, meaningful impact on people’s lives every day. Take pride in knowing that your kindness and empathy lay the foundation for lasting community change.
-
+          description: "You are the compassionate heart of the movement! Whether organizing food drives, helping displaced families, or creating safe spaces, your generosity and warmth uplift those who need it most. Your hands-on approach makes a direct, meaningful impact on people’s lives every day. Take pride in knowing that your kindness and empathy lay the foundation for lasting community change."
         },
         "fundraiser": { 
           letters: ["C", "E", "H", "K", "R"],
@@ -246,7 +253,7 @@
             {
               name: "Fair Fight Action",
               link: "https://fairfight.com/",
-              description: "An organization dedicated to fighting voter suppression and ensuring fair elections."
+              description: "An organization dedicated to fighting voter suppression..."
             }
           ],
           description: "You defend democracy by ensuring every voice is heard and every vote is counted. Through registration drives, awareness campaigns, and fighting suppression, you preserve the bedrock of civic engagement. Be proud of your efforts to keep the voting process fair, transparent, and accessible—without your passion, many would remain unheard."
@@ -292,7 +299,7 @@
             {
               name: "National Domestic Workers Alliance",
               link: "https://www.domesticworkers.org/",
-              description: "Fights for fair pay and protections for domestic workers across the U.S."
+              description: "Fights for fair pay and protections for domestic workers..."
             }
           ],
           description: "You stand up for workers everywhere, ensuring fair wages, safe conditions, and dignified treatment. Your voice resonates in unions, negotiations, and community halls, pushing for a future where employees can thrive without exploitation. Be proud that you champion the folks who keep our world running—your efforts uplift entire families and communities."
@@ -387,7 +394,7 @@
               description: "Offers remote roles for activists in research, advocacy, and project management."
             }
           ],
-          description: "You may not be in the streets, but your strategic mind is the engine behind every powerful movement! Coordinating advocacy from afar, you connect activists globally, ensuring that campaigns stay organized and impactful. Your efforts illustrate that distance is no barrier to solidarity—your remote coordination is a lifeline for meaningful change."
+          description: "You may not be in the streets, but your strategic mind is the engine behind every powerful movement! Coordinating advocacy from afar, you connect activists globally, ensuring campaigns stay organized and impactful. Your efforts illustrate that distance is no barrier to solidarity—your remote coordination is a lifeline for meaningful change."
         },
         "content_creator": { 
           letters: ["B", "E", "N", "K", "S"],
@@ -501,16 +508,15 @@
       // 6. Identify the type with the highest score
       let finalKey = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
 
-      // 7. Now 'finalKey' is the highest-scoring type. Grab its data
+      // 7. Grab its data and display
       const finalTypeData = activistTypes[finalKey];
 
-      // 8. Populate results
       resultText.innerHTML = `<strong>${finalTypeData.name}</strong><br>${finalTypeData.description}`;
       personaImage.src = finalTypeData.image;
       personaImage.style.display = 'block';
       resultContainer.style.display = 'block';
 
-      // 9. Render local orgs/resources
+      // 8. Render local orgs/resources
       localOrgsList.innerHTML = finalTypeData.resources
         .map(org => `
           <li>
@@ -519,7 +525,7 @@
           </li>
         `).join("");
 
-      // 10. Copy button logic
+      // 9. Copy button logic
       copyButton.addEventListener('click', function () {
         const combinedText = finalTypeData.resources
           .map(org => `${org.name} - ${org.link} - ${org.description}`)
