@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz - Page 4</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <h1>Quiz - Page 4</h1>
+  <form id="quiz-form-page2">
+    <p>4. What skills do you bring to activism?</p>
+    <label><input type="radio" name="question4" value="U"> Public speaking & outreach</label><br>
+    <label><input type="radio" name="question4" value="V"> Legal knowledge & advocacy</label><br>
+    <label><input type="radio" name="question4" value="W"> Writing & storytelling</label><br>
+    <label><input type="radio" name="question4" value="X"> Digital security & tech skills</label><br>
+    <label><input type="radio" name="question4" value="Y"> Organizing & management</label><br>
+    <label><input type="radio" name="question4" value="Z"> Providing resources and direct aid to veterans</label><br>
+    <label><input type="radio" name="question4" value="AA"> Letter writing, phone banking, and home-based advocacy</label><br>
+    <button type="submit">Next</button>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const quizFormPage2 = document.getElementById('quiz-form-page2');
+
+      quizFormPage2.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(quizFormPage2);
+        const question2Answer = formData.get('question2'); // e.g. "H", "I", etc.
+
+        // Save answer to localStorage
+        localStorage.setItem('question2', question2Answer || '');
+
+        // Navigate to the final results page
+        window.location.href = 'results.html';
+      });
+    });
+  </script>
+</body>
+</html>
+Key Notes for Page 2:
