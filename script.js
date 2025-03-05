@@ -75,7 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
         resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p>`;
         personaImage.src = result.image;
         personaImage.style.display = "block";
-        actionLink.href = result.action;
+        actionLink.setAttribute("href", result.action);
+        actionLink.setAttribute("target", "_blank"); // Opens in new tab
+        actionLink.style.pointerEvents = "auto"; // Ensures it's clickable
         actionLink.innerText = "Take Action Now!";
         actionLink.style.display = "inline-block"; // Ensure the button is visible
         
