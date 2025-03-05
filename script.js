@@ -13,24 +13,22 @@ document.addEventListener("DOMContentLoaded", function () {
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Frontline_Firestarter.png",
     action: "https://www.indivisible.org/",  // ✅ Join a movement and take immediate action
     resources: [
-        {
-            name: "Movement for Black Lives",
-            link: "https://m4bl.org/",
-            description: "A platform for Black-led organizations fighting for racial justice through protests, advocacy, and policy change."
-        },
-        {
-            name: "Rising Majority",
-            link: "https://risingmajority.com/",
-            description: "A coalition of grassroots activists organizing protests, direct action, and advocacy to dismantle systemic injustice."
-        }
-        {
-            name: "Women’s March",
-            link: "https://www.womensmarch.com/",
-            description: "A global movement fighting for women's rights, social justice, and civic engagement through protests and direct action."
-        }
-    ],
-    description: "You are the spark that ignites change! Whether you're leading a protest, speaking truth to power, or mobilizing people on the ground, you thrive in the heat of action."
-},
+    {
+        name: "Movement for Black Lives",
+        link: "https://m4bl.org/",
+        description: "A platform for Black-led organizations fighting for racial justice through protests, advocacy, and policy change."
+    },
+    {
+        name: "Rising Majority",
+        link: "https://risingmajority.com/",
+        description: "A coalition of grassroots activists organizing protests, direct action, and advocacy to dismantle systemic injustice."
+    } , 
+    {
+        name: "Women’s March",
+        link: "https://www.womensmarch.com/",
+        description: "A global movement fighting for women's rights, social justice, and civic engagement through protests and direct action."
+    }
+],
 
 "guardian": { 
     name: "📡 Digital Guardian", 
