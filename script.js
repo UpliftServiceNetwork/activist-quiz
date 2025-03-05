@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         
         "Equality Ally": { 
-            letters: ["C", "E", "H", "K", "W"],
+            letters: ["AD", "AC", "H", "K", "W"],
             name: "📚 Knowledge Spreader", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
             resources: [
