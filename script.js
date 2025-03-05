@@ -172,8 +172,32 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
     description: "You defend democracy! By registering voters, fighting suppression, and encouraging civic engagement, you make sure every voice is heard."
 },
-
-"labor_advocate": { 
+        "home_activist": { 
+            name: "🏡 Home-Based Activist", 
+            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Home_Activist.png",
+            action: "https://cc4democracy.com/",
+            resources: [
+                { 
+                    name: "Take Action Now!", 
+                    link: "https://cc4democracy.com/", 
+                    description: "Make an impact without leaving your home! Join the CC4D Card Campaign and encourage civic engagement through handwritten letters." 
+                },
+                { 
+                    name: "VolunteerMatch Virtual Opportunities", 
+                    link: "https://www.volunteermatch.org/virtual-volunteering", 
+                    description: "Find meaningful ways to contribute remotely through volunteer projects that fit your skills." 
+                },
+                { 
+                    name: "Fair Fight Action", 
+                    link: "https://fairfight.com/", 
+                    description: "Support efforts to fight voter suppression and ensure fair elections across the country." 
+                }
+            ],
+            description: "You take action from home! Whether writing letters, organizing online, fundraising, or spreading awareness, your work fuels movements without stepping outside your door."
+        }
+    };
+    
+    "labor_advocate": { 
     name: "⚒️ Workers' Rights Champion", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Labor_Advocate.png",
     resources: [
@@ -406,7 +430,6 @@ document.addEventListener("DOMContentLoaded", function () {
 quizForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Collect user answers from radio buttons
         var answerCounts = {};
         Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
 
@@ -420,19 +443,16 @@ quizForm.addEventListener("submit", function (e) {
             });
         });
 
-        // Find the most selected activist type
-        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
+        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b, "home_activist"); // Default to Home-Based Activist
         var result = activistTypes[topType];
 
-        // Generate resource links
         var resourceLinks = [
-            `<li><strong>Take Action Now!</strong><br>Research shows that people are more likely to make a difference when they act immediately. <a href="${result.action}" target="_blank">Start here</a>.</li>`
+            `<li><strong>Take Action Now!</strong><br>Act now to make an impact from home. <a href="${result.action}" target="_blank">Start here</a>.</li>`
         ];
         resourceLinks.push(...result.resources.map(resource => 
             `<li><a href="${resource.link}" target="_blank">${resource.name}</a>: ${resource.description}</li>`
         ));
 
-        // Display Results
         resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p><ul>${resourceLinks.join("")}</ul>`;
         personaImage.src = result.image;
         personaImage.style.display = "block";
