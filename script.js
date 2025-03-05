@@ -404,37 +404,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
 quizForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+        e.preventDefault();
 
-    var answerCounts = {};
-    Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
+        var answerCounts = {};
+        Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
 
-    var answers = new FormData(quizForm);
-    answers.forEach((value) => {
-        Object.keys(activistTypes).forEach(type => {
-            if (activistTypes[type].name.toLowerCase().includes(value.toLowerCase())) {
-                answerCounts[type]++;
-            }
+        var answers = new FormData(quizForm);
+        answers.forEach((value) => {
+            Object.keys(activistTypes).forEach(type => {
+                if (activistTypes[type].name.toLowerCase().includes(value.toLowerCase())) {
+                    answerCounts[type]++;
+                }
+            });
         });
+
+        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
+        var result = activistTypes[topType];
+
+        // Add "Take Action Now" as the first resource
+        var resourceLinks = [
+            `<li><strong>Take Action Now!</strong><br>Research shows that people are more likely to make a difference when they act immediately. If you wait, life’s demands may push this aside, and your opportunity to contribute could be lost. <a href="${result.action}" target="_blank">Start here</a>.</li>`
+        ];
+
+        // Append the existing resources
+        resourceLinks.push(...result.resources.map(resource => 
+            `<li><a href="${resource.link}" target="_blank">${resource.name}</a>: ${resource.description}</li>`
+        ));
+
+        // Display Results
+        resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p><ul>${resourceLinks.join("")}</ul>`;
+        personaImage.src = result.image;
+        personaImage.style.display = "block";
+
+        resultContainer.style.display = "block";
     });
-
-    var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
-    var result = activistTypes[topType];
-
-    // Add "Take Action Now" as the first resource
-    var resourceLinks = [
-        `<li><strong>Take Action Now!</strong><br>Research shows that people are more likely to make a difference when they act immediately. If you wait, life’s demands may push this aside, and your opportunity to contribute could be lost. <a href="${result.action}" target="_blank">Start here</a>.</li>`
-    ];
-
-    // Append the existing resources
-    resourceLinks.push(...result.resources.map(resource => 
-        `<li><a href="${resource.link}" target="_blank">${resource.name}</a>: ${resource.description}</li>`
-    ));
-
-    // Display Results
-    resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p><ul>${resourceLinks.join("")}</ul>`;
-    personaImage.src = result.image;
-    personaImage.style.display = "block";
-
-    resultContainer.style.display = "block";
 });
