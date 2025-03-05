@@ -26,16 +26,16 @@
         e.preventDefault();
 
         const formData = new FormData(quizFormPage4);
-        const question4Answer = formData.get('question4'); // e.g. "H", "I", etc.
+        const question4Answer = formData.get('question4'); // e.g. "U", "V", "W", etc.
 
         // Save answer to localStorage
-        localStorage.setItem('question4', question2Answer || '');
+        localStorage.setItem('question4', question4Answer || '');
 
-        // Navigate to the final results page
+        // Navigate to the next page
+        // (Adjust the page name if you have a Page 5, etc.)
         window.location.href = 'results.html';
       });
     });
   </script>
 </body>
 </html>
-Key Notes for Page 2:
