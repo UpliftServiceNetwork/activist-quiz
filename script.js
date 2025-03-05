@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
         name: "Rising Majority",
         link: "https://risingmajority.com/",
         description: "A coalition of grassroots activists organizing protests, direct action, and advocacy to dismantle systemic injustice."
-    } , 
+    }, 
     {
         name: "Women’s March",
         link: "https://www.womensmarch.com/",
         description: "A global movement fighting for women's rights, social justice, and civic engagement through protests and direct action."
-    }
+    },
 ],
 
 "guardian": { 
