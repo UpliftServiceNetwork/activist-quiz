@@ -25,16 +25,16 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const quizFormPage2 = document.getElementById("quiz-form-page2");
+      const quizFormPage5 = document.getElementById("quiz-form-page2");
 
-      quizFormPage2.addEventListener("submit", function (e) {
+      quizFormPage5.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const formData = new FormData(quizFormPage2);
-        const question2Answer = formData.get("question2");
+        const formData = new FormData(quizFormPage5);
+        const question5Answer = formData.get("question5");
 
         // Save answer to localStorage
-        localStorage.setItem("question2", question2Answer || "");
+        localStorage.setItem("question5", question5Answer || "");
 
         // Navigate to the final results page (or page3.html if you have a third page)
         window.location.href = "results.html";
