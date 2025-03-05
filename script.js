@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
             link: "https://risingmajority.com/",
             description: "A coalition of grassroots activists organizing protests, direct action, and advocacy to dismantle systemic injustice."
         }
+        {
+            name: "Women’s March",
+            link: "https://www.womensmarch.com/",
+            description: "A global movement fighting for women's rights, social justice, and civic engagement through protests and direct action."
+        }
     ],
     description: "You are the spark that ignites change! Whether you're leading a protest, speaking truth to power, or mobilizing people on the ground, you thrive in the heat of action."
 },
@@ -307,6 +312,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     ],
     description: "You fight for the planet! Whether it's climate justice, sustainability, or environmental activism, you're on the frontlines of protecting the Earth."
+},
+"veterans_advocate": { 
+    name: "🎖️ Veterans Advocate", 
+    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Veterans_Advocate.png",
+    action: "https://www.woundedwarriorproject.org/programs",  // ✅ Engage in direct veteran support programs
+    resources: [
+        {
+            name: "IAVA (Iraq and Afghanistan Veterans of America)",
+            link: "https://iava.org/",
+            description: "Advocates for policy change and provides community support for post-9/11 veterans."
+        },
+        {
+            name: "Veterans Crisis Line",
+            link: "https://www.veteranscrisisline.net/",
+            description: "Provides immediate mental health support for veterans in crisis."
+        }
+    ],
+    description: "You are a fierce advocate for those who have served. Whether helping veterans navigate benefits, supporting mental health initiatives, or fighting for policy changes, you ensure that veterans receive the care, respect, and resources they deserve."
 },
     };
 
