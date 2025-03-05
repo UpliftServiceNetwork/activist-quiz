@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var result = activistTypes[topType];
 
         resultText.innerHTML = `<h2>${result.name}</h2>`;
-        personaImage.src = result.image;  // 👈 Uses the GitHub Pages path
+        personaImage.src = result.image; 
         actionLink.href = result.action;
         actionLink.innerText = "Take Action Now!";
         
