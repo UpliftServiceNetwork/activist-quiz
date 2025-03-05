@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         name: "Women’s March",
         link: "https://www.womensmarch.com/",
         description: "A global movement fighting for women's rights, social justice, and civic engagement through protests and direct action."
-    },
+    }
 ],
 
 "guardian": { 
