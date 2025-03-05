@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz - Page 5</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Quiz - Page 5</h1>
+  
+  <!-- PAGE 5 FORM -->
+  <form id="quiz-form-page5">
+    <p>5. Which causes are most important to you?</p>
+    <label><input type="radio" name="question5" value="AB"> Climate change & environmental justice</label><br>
+    <label><input type="radio" name="question5" value="AC"> Racial justice & civil rights</label><br>
+    <label><input type="radio" name="question5" value="AD"> LGBTQ+ rights</label><br>
+    <label><input type="radio" name="question5" value="AE"> Economic justice & labor rights</label><br>
+    <label><input type="radio" name="question5" value="AF"> Women's rights & reproductive justice</label><br>
+    <label><input type="radio" name="question5" value="AG"> Veterans' rights and military support</label><br>
+    <label><input type="radio" name="question5" value="AH"> Expanding remote activism efforts</label><br>
+
+    <button type="submit">Next</button>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const quizFormPage2 = document.getElementById("quiz-form-page2");
+
+      quizFormPage2.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(quizFormPage2);
+        const question2Answer = formData.get("question2");
+
+        // Save answer to localStorage
+        localStorage.setItem("question2", question2Answer || "");
+
+        // Navigate to the final results page (or page3.html if you have a third page)
+        window.location.href = "results.html";
+      });
+    });
+  </script>
+</body>
+</html>
