@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz - Page 3</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <h1>Quiz - Page 3</h1>
+  <form id="quiz-form-page3">
+    <p>3. How much time can you commit?</p>
+    <label><input type="radio" name="question3" value="O"> Full-time activism</label><br>
+    <label><input type="radio" name="question3" value="P"> Weekly efforts</label><br>
+    <label><input type="radio" name="question3" value="Q"> Occasional help</label><br>
+    <label><input type="radio" name="question3" value="R"> Remote work only</label><br>
+    <label><input type="radio" name="question3" value="S"> Funding and donations</label><br>
+    <label><input type="radio" name="question3" value="T"> Supporting veterans and military families</label><br>
+    <button type="submit">Next</button>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const quizFormPage2 = document.getElementById('quiz-form-page2');
+
+      quizFormPage2.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(quizFormPage2);
+        const question2Answer = formData.get('question2'); // e.g. "H", "I", etc.
+
+        // Save answer to localStorage
+        localStorage.setItem('question2', question2Answer || '');
+
+        // Navigate to the final results page
+        window.location.href = 'results.html';
+      });
+    });
+  </script>
+</body>
+</html>
