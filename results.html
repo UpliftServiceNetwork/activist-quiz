@@ -197,7 +197,7 @@
             description: "You are a fierce advocate for those who have served. You help veterans access healthcare, fight for policy changes, and ensure they get the support they deserve."
         },
         
-"voter_mobilizer": { 
+    "voter_mobilizer": { 
     letters: ["A", "E", "G", "K", "P"],
     name: "🗳️ Democracy Protector", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Democracy_Protector.png",
@@ -462,53 +462,39 @@
         }
     };
 
-      // 4. Decide final type with a simple logic example (You must expand this!)
-      let finalKey = "firestarter"; // default fallback
+     const scores = {};
+Object.keys(activistTypes).forEach(type => {
+  scores[type] = 0;
+});
 
-      // Example logic: if question1 = 'B' and question2 = 'I', user is guardian
-      if (q1 === 'B' && q2 === 'I') {
-        finalKey = "guardian";
-      }
-      // Otherwise remains 'firestarter'
-      // Expand logic to match all combos you want.
+// 4. For each user answer, increment the score for any type whose letters include that answer
+for (const ans of answers) {
+  for (const type in activistTypes) {
+    if (activistTypes[type].letters.includes(ans)) {
+      scores[type]++;
+    }
+  }
+}
 
-      // 5. Grab the final type data
-      const finalTypeData = activistTypes[finalKey];
+// 5. Identify the type with the highest score
+let finalKey = Object.keys(scores).reduce((a, b) => {
+  return scores[a] > scores[b] ? a : b;
+});
 
-      // 6. Populate results
-      resultText.innerHTML = `<strong>${finalTypeData.name}</strong><br>${finalTypeData.description}`;
-      personaImage.src = finalTypeData.image;
-      personaImage.style.display = "block"; // Show the image
-      resultContainer.style.display = "block"; // Reveal results container
+// 6. Now 'finalKey' is the highest-scoring type. Grab its data and display it
+const finalTypeData = activistTypes[finalKey];
 
-      // Build the local orgs list
-      localOrgsList.innerHTML = finalTypeData.resources
-        .map(org => `
-          <li>
-            <a href="${org.link}" target="_blank"><strong>${org.name}</strong></a>
-            <p>${org.description}</p>
-          </li>
-        `).join("");
+// (example references to your result elements)
+resultText.innerHTML = `<strong>${finalTypeData.name}</strong><br>${finalTypeData.description}`;
+personaImage.src = finalTypeData.image;
+personaImage.style.display = 'block';
+resultContainer.style.display = 'block';
 
-      // 7. Copy button logic
-      copyButton.addEventListener('click', function () {
-        // Combine all resources text
-        const combinedText = finalTypeData.resources
-          .map(org => `${org.name} - ${org.link} - ${org.description}`)
-          .join('\\n');
-
-        // Create a temporary textarea to copy
-        const tempTextArea = document.createElement('textarea');
-        tempTextArea.value = combinedText;
-        document.body.appendChild(tempTextArea);
-
-        tempTextArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempTextArea);
-
-        alert('Local organizations copied to clipboard!');
-      });
-    });
-  </script>
-</body>
-</html>
+// 7. If you have local orgs or resources, display them, plus your copy button logic, etc.
+localOrgsList.innerHTML = finalTypeData.resources
+  .map(org => `
+    <li>
+      <a href="${org.link}" target="_blank"><strong>${org.name}</strong></a>
+      <p>${org.description}</p>
+    </li>
+  `).join("");
