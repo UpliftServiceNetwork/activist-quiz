@@ -82,6 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
         var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
         var result = activistTypes[topType];
 
+        console.log("Selected Type:", topType);
+        console.log("Result Name:", result.name);
+        console.log("Result Description:", result.description); 
+        
         resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p>`;
         personaImage.src = result.image;
         personaImage.style.display = "block";
