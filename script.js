@@ -70,6 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b);
         var result = activistTypes[topType];
 
+        console.log("Action Link Set To:", result.action);
+        
         resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p>`;
         personaImage.src = result.image;
         personaImage.style.display = "block";
