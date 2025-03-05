@@ -24,13 +24,14 @@
       quizFormPage3.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const formData = new FormData(quizFormPage2);
-        const question3Answer = formData.get('question2'); // e.g. "H", "I", etc.
+        const formData = new FormData(quizFormPage3);
+        const question3Answer = formData.get('question3'); // e.g. "O", "P", etc.
 
         // Save answer to localStorage
         localStorage.setItem('question3', question3Answer || '');
 
-        // Navigate to the final results page
+        // Navigate to the next page or final results
+        // Change "results.html" if you have a page4, etc.
         window.location.href = 'results.html';
       });
     });
