@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz - Page 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Quiz - Page 2</h1>
+  
+  <!-- PAGE 2 FORM -->
+  <form id="quiz-form-page2">
+    <p>2. What type of impact do you want to make?</p>
+    <label><input type="radio" name="question2" value="H"> Change laws and policies</label><br>
+    <label><input type="radio" name="question2" value="I"> Support marginalized communities</label><br>
+    <label><input type="radio" name="question2" value="J"> Raise awareness and spread information</label><br>
+    <label><input type="radio" name="question2" value="K"> Use digital tools to fight injustice</label><br>
+    <label><input type="radio" name="question2" value="L"> Organize and lead grassroots movements</label><br>
+    <label><input type="radio" name="question2" value="M"> Provide direct support to veterans and service members</label><br>
+    <label><input type="radio" name="question2" value="N"> Advocate through home-based activism</label><br>
+
+    <button type="submit">Next</button>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const quizFormPage2 = document.getElementById("quiz-form-page2");
+
+      quizFormPage2.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(quizFormPage2);
+        const question2Answer = formData.get("question2");
+
+        // Save answer to localStorage
+        localStorage.setItem("question2", question2Answer || "");
+
+        // Navigate to the final results page (or page3.html if you have a third page)
+        window.location.href = "results.html";
+      });
+    });
+  </script>
+</body>
+</html>
