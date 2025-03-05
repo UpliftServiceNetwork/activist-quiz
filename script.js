@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var activistTypes = {
         "firestarter": { 
+            letters: ["A", "D", "G", "J", "L"],
             name: "🔥 Frontline Firestarter", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Frontline_Firestarter.png",
-            action: "https://www.indivisible.org/",
             resources: [
                 {
-                    name: "**Take Action Now!**",
+                    name: "Indivisible"
                     link: "https://www.indivisible.org/",
                     description: "Research shows that people are more likely to make a difference when they act immediately. If you wait, life’s demands may push this aside, and your opportunity to contribute could be lost. [Start here](https://www.indivisible.org/)."
                 },
@@ -32,12 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         "guardian": { 
+            letters: ["B", "E", "I", "K", "M"],
             name: "📡 Digital Guardian", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Digital_Guardian.png",
-            action: "https://www.fightforthefuture.org/",
             resources: [
                 {
-                    name: "**Take Action Now!**",
+                    name: "Fight for the Future",
                     link: "https://www.fightforthefuture.org/",
                     description: "The best time to act is now. Take immediate action to protect digital rights. [Start here](https://www.fightforthefuture.org/)."
                 },
@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         "community_helper": { 
+            letters: ["C", "H", "J", "O", "R"],
             name: "🤲 Community Helper", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Community_Helper.png",
-            action: "https://www.volunteermatch.org/",
             resources: [
                 {
-                    name: "**Take Action Now!**",
+                    name: "VolunteerMatch",
                     link: "https://www.volunteermatch.org/",
                     description: "Volunteering locally starts with a single step. Find an opportunity near you today. [Start here](https://www.volunteermatch.org/)."
                 },
@@ -80,12 +80,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         "fundraiser": { 
+            letters: ["C", "E", "H", "K", "R"],
             name: "💰 Fundraising Champion", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Fundraising_Champion.png",
-            action: "https://secure.actblue.com",
             resources: [
                 {
-                    name: "**Take Action Now!**",
+                    name: "Act Blue",
                     link: "https://secure.actblue.com",
                     description: "Raising funds is the key to keeping movements alive. Start your campaign today. [Start here](https://secure.actblue.com)."
                 },
@@ -104,12 +104,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         "environmentalist": { 
+            letters: ["A", "G", "O", "J", "P"],
             name: "🌱 Earth Defender", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Earth_Defender.png",
-            action: "https://www.sierraclub.org/get-involved",
             resources: [
                 {
-                    name: "**Take Action Now!**",
+                    name: "Sierra Club",
                     link: "https://www.sierraclub.org/get-involved",
                     description: "The environment needs you today, not tomorrow. Take action for the planet. [Start here](https://www.sierraclub.org/get-involved)."
                 },
@@ -128,11 +128,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         "veterans_advocate": { 
+            letters: ["G", "M", "T", "Z"],
             name: "🎖️ Veterans Advocate", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Veterans_Advocate.png",
             resources: [
                 {
-                    name: "Take Action Now",
+                    name: "The Wounded Warrior Project",
                     link: "https://www.woundedwarriorproject.org/programs",
                     description: "Support programs that help veterans reintegrate, receive medical care, and access benefits."
                 },
@@ -151,11 +152,12 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         
 "voter_mobilizer": { 
+    letters: ["A", "E", "G", "K", "P"],
     name: "🗳️ Democracy Protector", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Democracy_Protector.png",
     resources: [
         {
-            name: "Take Action Now",
+            name: "When We All Vote",
             link: "https://www.whenweallvote.org/",
             description: "Ensure that everyone has access to voting and is informed about their rights."
         },
@@ -173,12 +175,12 @@ document.addEventListener("DOMContentLoaded", function () {
     description: "You defend democracy! By registering voters, fighting suppression, and encouraging civic engagement, you make sure every voice is heard."
 },
         "home_activist": { 
+            letters: ["F", "N", "R", "AA"],
             name: "🏡 Home-Based Activist", 
             image: "https://upliftservicenetwork.github.io/activist-quiz/images/Home_Activist.png",
-            action: "https://cc4democracy.com/",
             resources: [
                 { 
-                    name: "Take Action Now!", 
+                    name: "CC4D Card Campaign", 
                     link: "https://cc4democracy.com/", 
                     description: "Make an impact without leaving your home! Join the CC4D Card Campaign and encourage civic engagement through handwritten letters." 
                 },
@@ -197,12 +199,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
     
-    "labor_advocate": { 
+    "labor_advocate": {
+    letters: ["A", "G", "H", "J", "Q"],
     name: "⚒️ Workers' Rights Champion", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Labor_Advocate.png",
     resources: [
         {
-            name: "Take Action Now",
+            name: "AFL-CIO America's Unions",
             link: "https://aflcio.org/take-action",
             description: "Support workers' rights and advocate for fair wages and better working conditions."
         },
@@ -221,11 +224,12 @@ document.addEventListener("DOMContentLoaded", function () {
 },
 
 "healthcare_advocate": { 
+    letters: ["C", "H", "O", "J", "Q"],
     name: "🏥 Health Equity Fighter", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Health_Equity_Fighter.png",
     resources: [
         {
-            name: "Take Action Now",
+            name: "Families USA",
             link: "https://familiesusa.org/take-action/",
             description: "Join efforts to make healthcare more accessible and equitable for all."
         },
@@ -244,11 +248,12 @@ document.addEventListener("DOMContentLoaded", function () {
 },
 
 "logistics_coordinator": { 
+    letters: ["B", "F", "I", "K", "T"],
     name: "🚛 Logistics Coordinator", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Logistics_Coordinator.png",
     resources: [
         {
-            name: "Take Action Now",
+            name: "Mutual Aid Hub",
             link: "https://mutualaidhub.org/",
             description: "Support mutual aid efforts by organizing essential supplies and resources."
         },
@@ -267,11 +272,12 @@ document.addEventListener("DOMContentLoaded", function () {
 },
 
 "policy_influencer": { 
+    letters: ["A", "F", "G", "K", "Q"],
     name: "🏛️ Policy Influencer", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Policy_Influencer.png",
     resources: [
         {
-            name: "Take Action Now",
+            name: "Common Cause",
             link: "https://commoncause.org/take-action/",
             description: "Engage in policy advocacy and work toward systemic change."
         },
@@ -290,6 +296,7 @@ document.addEventListener("DOMContentLoaded", function () {
 },
 
 "remote_strategist": { 
+    letters: ["B", "F", "I", "K", "M"],
     name: "💻 Remote Strategist", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Remote_Strategist.png",
     resources: [
@@ -312,29 +319,8 @@ document.addEventListener("DOMContentLoaded", function () {
     description: "You may not be in the streets, but you are behind every powerful movement! Your strategic mind ensures activism is effective and well-organized."
 },
 
-"tech_supporter": { 
-    name: "🖥️ Tech Supporter", 
-    image: "https://upliftservicenetwork.github.io/activist-quiz/images/Tech_Supporter.png",
-    resources: [
-        {
-            name: "Take Action Now",
-            link: "https://www.codeforamerica.org/",
-            description: "Volunteer your tech skills to build innovative solutions for social good."
-        },
-        {
-            name: "Catchafire",
-            link: "https://www.catchafire.org/volunteer/",
-            description: "Matches skilled tech volunteers with nonprofits needing digital support."
-        },
-        {
-            name: "Mozilla Foundation",
-            link: "https://foundation.mozilla.org/",
-            description: "Advocates for internet privacy, security, and open-source technology."
-        }
-    ],
-    description: "You are the architect of digital activism! You ensure technology is used to empower people, protect privacy, and support grassroots movements."
-}
 "content_creator": { 
+    letters: ["B", "E", "N", "K", "S"],
     name: "🎥 Content Creator", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Content_Creator.png",
     resources: [
@@ -358,6 +344,7 @@ document.addEventListener("DOMContentLoaded", function () {
 },
 
 "legal_advocate": { 
+    letters: ["A", "F", "G", "J", "Q"],
     name: "⚖️ Legal Advocate", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Legal_Advocate.png",
     resources: [
@@ -381,11 +368,12 @@ document.addEventListener("DOMContentLoaded", function () {
 },
 
 "knowledge_spreader": { 
+    letters: ["C", "E", "H", "K", "W"] 
     name: "📚 Knowledge Spreader", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Knowledge_Spreader.png",
     resources: [
         {
-            name: "Take Action Now",
+            name: "Catch Fire",
             link: "https://www.catchafire.org/volunteer/",
             description: "Use your teaching skills to educate and empower others through nonprofit organizations."
         },
@@ -404,11 +392,12 @@ document.addEventListener("DOMContentLoaded", function () {
 },
 
 "tech_supporter": { 
+    letters: ["B", "D", "K", "M", "X"]
     name: "🖥️ Tech Supporter", 
     image: "https://upliftservicenetwork.github.io/activist-quiz/images/Tech_Supporter.png",
     resources: [
         {
-            name: "Take Action Now",
+            name: "Code For America",
             link: "https://www.codeforamerica.org/",
             description: "Volunteer your tech skills to build innovative solutions for social good."
         },
@@ -425,29 +414,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
     description: "You are the architect of digital activism! You ensure technology is used to empower people, protect privacy, and support grassroots movements."
 },
-"home_activist": { 
-            name: "🏡 Home-Based Activist", 
-            image: "https://upliftservicenetwork.github.io/activist-quiz/images/Home_Activist.png",
-            resources: [
-                {
-                    name: "Take Action Now",
-                    link: "https://cc4democracy.com/",
-                    description: "Engage in powerful activism from home by writing letters, making calls, and supporting key movements remotely."
-                },
-                {
-                    name: "Vote Forward",
-                    link: "https://votefwd.org/",
-                    description: "Write letters to encourage voter participation and protect democracy from home."
-                },
-                {
-                    name: "5 Calls",
-                    link: "https://5calls.org/",
-                    description: "Make impactful calls to legislators and representatives advocating for social justice."
-                }
-            ],
-            description: "You make an impact without ever leaving home! By writing letters, signing petitions, phone banking, and supporting digital advocacy, you play a crucial role in activism."
-        }
-    };
     
 quizForm.addEventListener("submit", function (e) {
         e.preventDefault();
