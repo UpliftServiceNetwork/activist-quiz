@@ -414,28 +414,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
     
-   quizForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        
-        var answerCounts = {};
-        Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
-        
-        var answers = new FormData(quizForm);
-        answers.forEach((value) => {
-            Object.keys(activistTypes).forEach(type => {
-                if (activistTypes[type].letters.includes(value)) {
-                    answerCounts[type]++;
-                }
-            });
+   if (quizForm) {
+        quizForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            
+            var answerCounts = {};
+            Object.keys(activistTypes).forEach(type => answerCounts[type] = 0);
+            
+            var answers = new FormData(quizForm);
+            for (let [key, value] of answers.entries()) {
+                Object.keys(activistTypes).forEach(type => {
+                    if (activistTypes[type].letters.includes(value)) {
+                        answerCounts[type]++;
+                    }
+                });
+            }
+            
+            var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b, "firestarter");
+            var result = activistTypes[topType];
+
+            resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p>`;
+            personaImage.src = result.image;
+            personaImage.style.display = "block";
+
+            resultContainer.style.display = "block";
         });
-        
-        var topType = Object.keys(answerCounts).reduce((a, b) => answerCounts[a] > answerCounts[b] ? a : b, "home_activist");
-        var result = activistTypes[topType];
-
-        resultText.innerHTML = `<h2>${result.name}</h2><p>${result.description}</p>`;
-        personaImage.src = result.image;
-        personaImage.style.display = "block";
-
-        resultContainer.style.display = "block";
-    });
+    } else {
+        console.error("Quiz form not found. Ensure the ID is correct.");
+    }
 });
