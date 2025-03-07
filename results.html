@@ -68,10 +68,10 @@
       issueFocusText.textContent = issueFocus.length > 0 ? issueFocus.join(", ") : "Various Issues";
 
       // ✅ Ensure issue focus images display correctly
-      issueFocusContainer.innerHTML = issueFocus
-        .slice(0, 3) // Limit to 3 images for better layout
-        .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">` : '')
-        .join("");
+issueFocusContainer.innerHTML = issueFocus
+  .slice(0, 3) // Show up to 3 images
+  .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">` : '')
+  .join("");
 
       // ✅ Show result container
       document.getElementById("result-container").style.display = "block";
