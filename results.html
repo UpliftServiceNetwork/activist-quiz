@@ -71,17 +71,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ✅ Set Issue Focus
-  if (issueFocus.length > 0) {
+ if (issueFocus.length > 0) {
     issueFocusText.textContent = issueFocus.join(", ");
 
     // Load up to 3 focus images
     focusImagesContainer.innerHTML = issueFocus
-      .slice(0, 3) // Show up to 3 images
-      .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">` : '')
-      .join("");
-  } else {
-    issueFocusText.textContent = "Various Issues"; // Default if none selected
-  }
+        .slice(0, 3) // Show up to 3 images
+        .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">` : '')
+        .join(""); 
+} else {
+    issueFocusText.textContent = "Various Issues"; 
+}
 
   // ✅ Set Commitment Level
   commitmentText.textContent = commitment;
