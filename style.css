@@ -21,11 +21,13 @@ body {
 }
 
 #persona-image {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 15px;
+  display: block;
+  margin: 10px auto; /* centers image horizontally */
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
 }
 
 #issue-focus-container {
@@ -83,45 +85,40 @@ button#copy-button:hover {
     background-color: #0056b3;
 }
 @media screen and (max-width: 600px) {
-  body {
-    font-size: 18px; /* increases base font size */
+  body, body p, body li, body button {
+    font-size: 18px !important; /* enforce larger font size for readability */
   }
 
-  h1 {
-    font-size: 28px; /* larger heading */
+  body h1 {
+    font-size: 28px !important; 
   }
 
-  h2 {
-    font-size: 24px;
+  body h2 {
+    font-size: 24px !important;
   }
 
-  h3 {
-    font-size: 22px;
+  body h3 {
+    font-size: 22px !important;
   }
 
-  p, li, button {
-    font-size: 18px; /* comfortably readable paragraphs and buttons */
+  #result-description,
+  #commitment-level,
+  #issue-focus-text {
+    font-size: 19px !important;
   }
 
-  #result-description {
-    font-size: 19px;
-  }
-
-  #commitment-level, #issue-focus-text {
-    font-size: 19px;
-  }
-
-  .container, #result-container {
-    width: 95%; /* optimizes container width for phone screens */
-    padding: 15px;
+  #result-container {
+    width: 95% !important;
+    padding: 15px !important;
   }
 
   .focus-icon {
-    width: 60px; /* smaller and proportional icons for mobile */
-    height: auto;
+    width: 60px !important;
+    height: auto !important;
   }
 
   button, #copy-button {
-    padding: 14px 10px; /* better touch targets */
+    padding: 14px 10px !important;
   }
+}
 }
