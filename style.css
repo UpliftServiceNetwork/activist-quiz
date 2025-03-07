@@ -31,15 +31,16 @@ body {
 #issue-focus-container {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* wraps images if more than 3 */
+    flex-wrap: wrap;
     gap: 10px;
     margin: 10px 0;
 }
 
 #issue-focus-container img.focus-icon {
-    width: 80px; /* Correct small size */
-    height: auto;
-    border-radius: 8px;
+    width: 80px !important;  /* Forces the size smaller */
+    height: auto !important;
+    max-height: 80px !important;
+    border-radius: 8px !important;
 }
 
 h1, h2, h3 {
