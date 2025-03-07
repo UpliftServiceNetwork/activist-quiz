@@ -2,40 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Quiz - Page 3</title>
+  <title>Quiz - Page 2</title>
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>Step 3: How Much Time Can You Commit?</h1>
-  <p>Select the option that best describes your availability.</p>
+  <h1>Step 2: What Issues Matter Most to You?</h1>
+  <p>Select the cause(s) that drive you. Choose up to three.</p>
 
-  <form id="quiz-form-page3">
-    <label><input type="radio" name="commitmentLevel" value="Full-time activism"> Full-time activism (daily, major involvement)</label><br>
-    <label><input type="radio" name="commitmentLevel" value="Weekly efforts"> Weekly efforts (regular involvement, meetings, events)</label><br>
-    <label><input type="radio" name="commitmentLevel" value="Occasional help"> Occasional help (as needed, supporting events)</label><br>
-    <label><input type="radio" name="commitmentLevel" value="Remote work only"> Remote work only (advocacy, digital action, research)</label><br>
-    <label><input type="radio" name="commitmentLevel" value="Funding and donations"> Funding and donations (financial or material support)</label><br>
-    <label><input type="radio" name="commitmentLevel" value="Supporting veterans and military families"> Supporting veterans and military families</label><br>
+  <form id="quiz-form-page2">
+    <label><input type="checkbox" name="activistFocus" value="Racial Justice"> Racial Justice & Equity</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Climate Action"> Climate & Environmental Justice</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Workers' Rights"> Workers' Rights & Economic Justice</label><br>
+    <label><input type="checkbox" name="activistFocus" value="LGBTQ+ Rights"> LGBTQ+ Rights & Inclusion</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Reproductive Rights"> Reproductive Freedom & Gender Equality</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Voting Rights"> Voting Rights & Democracy Protection</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Education Access"> Education & Youth Empowerment</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Healthcare Justice"> Healthcare Access & Disability Rights</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Immigrant Rights"> Immigrant & Refugee Support</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Criminal Justice Reform"> Criminal Justice & Prison Reform</label><br>
 
     <button type="submit">Next</button>
   </form>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const quizFormPage3 = document.getElementById("quiz-form-page3");
+      const quizFormPage2 = document.getElementById("quiz-form-page2");
 
-      quizFormPage3.addEventListener("submit", function (e) {
+      quizFormPage2.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const formData = new FormData(quizFormPage3);
-        const commitmentLevel = formData.get("commitmentLevel");
+        const selectedFocuses = [];
+        document.querySelectorAll('input[name="activistFocus"]:checked').forEach(checkbox => {
+          selectedFocuses.push(checkbox.value);
+        });
 
         // Save answer to localStorage
-        localStorage.setItem("commitmentLevel", commitmentLevel || "");
+        localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
 
         // Move to the next page
-        window.location.href = "page4.html";
+        window.location.href = "page3.html";
       });
     });
   </script>
