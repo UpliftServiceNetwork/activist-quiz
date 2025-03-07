@@ -64,27 +64,29 @@ document.addEventListener("DOMContentLoaded", function () {
     resultImage.src = activistTypes[activistType].image;
     resultImage.style.display = "block";
 
-    // Populate organizations
+    // Populate Organizations
     orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
       <li><a href="${org.link}" target="_blank">${org.name}</a></li>
     `).join("");
   }
 
-  // Set issue focus text
+  // ✅ Set Issue Focus
   if (issueFocus.length > 0) {
     issueFocusText.textContent = issueFocus.join(", ");
+
+    // Load up to 3 focus images
     focusImagesContainer.innerHTML = issueFocus
       .slice(0, 3) // Show up to 3 images
-      .map(focus => `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">`)
+      .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">` : '')
       .join("");
   } else {
-    issueFocusText.textContent = "Various Issues";
+    issueFocusText.textContent = "Various Issues"; // Default if none selected
   }
 
-  // Set commitment level
+  // ✅ Set Commitment Level
   commitmentText.textContent = commitment;
 
-  // Copy button functionality
+  // ✅ Copy Button Functionality
   copyButton.addEventListener("click", function () {
     const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
       activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
@@ -94,6 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Show result container
+  // ✅ Show Results Container
   document.getElementById("result-container").style.display = "block";
 });
