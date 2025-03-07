@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Quiz - Page 2</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 </head>
 <body>
-  <h1>Quiz - Page 2</h1>
-  
-  <!-- PAGE 2 FORM -->
+  <h1>Step 2: What Issues Matter Most to You?</h1>
+  <p>Select the cause(s) that drive you. Choose up to three.</p>
+
   <form id="quiz-form-page2">
-    <p>2. What type of impact do you want to make?</p>
-    <label><input type="radio" name="question2" value="H"> Change laws and policies</label><br>
-    <label><input type="radio" name="question2" value="I"> Support marginalized communities</label><br>
-    <label><input type="radio" name="question2" value="J"> Raise awareness and spread information</label><br>
-    <label><input type="radio" name="question2" value="K"> Use digital tools to fight injustice</label><br>
-    <label><input type="radio" name="question2" value="L"> Organize and lead grassroots movements</label><br>
-    <label><input type="radio" name="question2" value="M"> Provide direct support to veterans and service members</label><br>
-    <label><input type="radio" name="question2" value="N"> Advocate through home-based activism</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Racial Justice"> Racial Justice & Equity</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Climate Action"> Climate & Environmental Justice</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Workers' Rights"> Workers' Rights & Economic Justice</label><br>
+    <label><input type="checkbox" name="activistFocus" value="LGBTQ+ Rights"> LGBTQ+ Rights & Inclusion</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Reproductive Rights"> Reproductive Freedom & Gender Equality</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Voting Rights"> Voting Rights & Democracy Protection</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Education Access"> Education & Youth Empowerment</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Healthcare Justice"> Healthcare Access & Disability Rights</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Immigrant Rights"> Immigrant & Refugee Support</label><br>
+    <label><input type="checkbox" name="activistFocus" value="Criminal Justice Reform"> Criminal Justice & Prison Reform</label><br>
 
     <button type="submit">Next</button>
   </form>
@@ -31,13 +32,15 @@
       quizFormPage2.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const formData = new FormData(quizFormPage2);
-        const question2Answer = formData.get("question2");
+        const selectedFocuses = [];
+        document.querySelectorAll('input[name="activistFocus"]:checked').forEach(checkbox => {
+          selectedFocuses.push(checkbox.value);
+        });
 
         // Save answer to localStorage
-        localStorage.setItem("question2", question2Answer || "");
+        localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
 
-        // Navigate to Page 3
+        // Move to the next page
         window.location.href = "page3.html";
       });
     });
