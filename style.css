@@ -12,6 +12,17 @@ body {
     min-height: 100vh;
 }
 
+/* Main container for centering content */
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
 /* Quiz Form Styling */
 form {
     background: white;
@@ -25,11 +36,20 @@ form {
     flex-direction: column;
 }
 
-/* Centering Labels & Inputs */
-label {
-    display: block;
-    margin: 10px 0;
+/* Improve quiz question spacing */
+form p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Improve spacing and alignment for radio buttons */
+form label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 16px;
+    margin: 8px 0;
 }
 
 /* Button Styling */
@@ -37,7 +57,7 @@ button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
@@ -50,7 +70,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Result Container Styling */
+/* Results Page Styling */
 #result-container {
     margin-top: 20px;
     padding: 20px;
@@ -63,11 +83,26 @@ button:hover {
 }
 
 /* Image Styling */
-img {
+#persona-image {
+    display: block;
     max-width: 100%;
     height: auto;
+    max-height: 300px;
+    margin: 10px auto;
     border-radius: 10px;
-    margin-top: 10px;
+}
+
+/* Remove Bullets from Lists */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+/* Improve readability of list items */
+ul li {
+    margin: 5px 0;
 }
 
 /* Action Links */
@@ -88,27 +123,7 @@ a:hover {
     background: #218838;
 }
 
-/* Remove Bullets from Lists */
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-}
-
-/* Make list items more readable */
-ul li {
-    margin: 5px 0;
-}
-#persona-image {
-    display: block;  /* Ensures the image is visible */
-    max-width: 100%;  /* Prevents images from overflowing */
-    height: auto;  /* Maintains the correct aspect ratio */
-    max-height: 300px;  /* Limits how big the image gets */
-    margin: 10px auto;  /* Centers the image */
-    border-radius: 10px; /* Smooth edges for a clean look */
-}
-
+/* Make action link buttons look like actual buttons */
 #action-link {
     display: inline-block !important;
     padding: 10px 20px;
@@ -121,6 +136,37 @@ ul li {
     cursor: pointer !important;
     pointer-events: auto !important;
 }
+
 #action-link:hover {
     background-color: #0056b3;
+}
+
+/* Responsive Design for Mobile */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    form {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.3em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    #persona-image {
+        max-height: 250px;
+    }
 }
