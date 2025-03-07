@@ -13,13 +13,13 @@
   <div id="result-container">
     <h2 id="result-title"></h2>
     <p id="result-description"></p>
-    <img id="persona-image" src="" alt="Your Activist Persona" style="max-width: 100%; height: auto; display: block;">
+    <img id="persona-image" src="" alt="Your Activist Persona">
 
     <h3>Issue Focus</h3>
-    <p id="issue-focus">Loading...</p>
+    <div id="issue-focus-container"></div>
 
     <h3>Your Commitment Level</h3>
-    <p id="commitment-level">Loading...</p>
+    <p id="commitment-level"></p>
 
     <h3>Recommended Organizations</h3>
     <ul id="org-list"></ul>
@@ -29,56 +29,56 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // ✅ Retrieve stored quiz results
+      // Retrieve stored answers
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
+      const issueFocus = JSON.parse(localStorage.getItem("issueFocus")) || ["Various Issues"];
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
-      // ✅ Reference result elements
+      // Reference result elements
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
-      const issueFocusText = document.getElementById("issue-focus");
+      const issueFocusContainer = document.getElementById("issue-focus-container");
       const commitmentText = document.getElementById("commitment-level");
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
-      // ✅ Activist type data with **more inspiring** descriptions
+      // Activist type data
       const activistTypes = {
         "Frontline Mobilizer": {
-          description: "🔥 You are the firestarter! You bring the heat to movements, standing at the frontlines of protests, rallies, and direct action. Your passion fuels change, and when the world needs a voice, you make sure it's heard.",
-          image: "images/frontline_mobilizer.png",
+          description: "You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen. Your courage and passion inspire those around you to take action, proving that one person’s voice can lead a movement.",
+          image: "images/frontline_firestarter.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
             { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
           ]
         },
         "Community Caregiver": {
-          description: "🤲 You are the heart of the movement! You bring people together through direct aid, making sure no one is left behind. Whether it's mutual aid, food distribution, or crisis support, you make activism deeply personal.",
-          image: "images/community_caregiver.png",
+          description: "You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most. You turn compassion into action, ensuring that no one is left behind.",
+          image: "images/caregiver.png",
           organizations: [
             { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
             { name: "World Central Kitchen", link: "https://wck.org/" }
           ]
         },
         "Strategist & Organizer": {
-          description: "🧠 The movement needs a plan, and you’re the architect! You excel at coordinating protests, logistics, and campaign strategy. With you at the helm, grassroots movements turn into unstoppable forces for change.",
-          image: "images/strategist_organizer.png",
+          description: "You are the architect of change! Behind every powerful movement is a master planner—you. Your vision and leadership turn passion into progress, proving that real change isn’t just about action—it’s about strategy.",
+          image: "images/organizer.png",
           organizations: [
             { name: "Indivisible", link: "https://indivisible.org/" },
             { name: "MoveOn", link: "https://front.moveon.org/" }
           ]
         },
         "Educator & Storyteller": {
-          description: "📖 You are the voice of change! Through writing, speaking, media, and art, you shift perspectives and inspire action. Your power lies in storytelling—turning movements into narratives that cannot be ignored.",
-          image: "images/educator_storyteller.png",
+          description: "You are the voice that opens minds and moves hearts! Through your words, art, and storytelling, you shine a light on injustice and inspire action. You have the power to change perspectives, uplift communities, and fuel movements.",
+          image: "images/storyteller.png",
           organizations: [
             { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
             { name: "Southern Poverty Law Center", link: "https://www.splcenter.org/" }
           ]
         },
         "Digital Defender": {
-          description: "💻 The internet is your battleground! You fight for digital rights, privacy, and social media advocacy. Whether you're combating misinformation or mobilizing movements online, you’re the guardian of digital activism.",
+          description: "You are the protector of truth and freedom in the digital age! Whether you're fighting misinformation, exposing injustice, or using tech to organize, you make sure that voices are heard and movements stay strong.",
           image: "images/digital_defender.png",
           organizations: [
             { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
@@ -86,7 +86,7 @@
           ]
         },
         "Political Advocate": {
-          description: "🏛️ You believe change happens both inside and outside the system! Whether you're lobbying, fighting voter suppression, or working in policy, you make sure the laws of the land reflect justice and equity.",
+          description: "You are the changemaker within the system! You fight for justice through policy, voting rights, and legal action, turning advocacy into real, lasting laws. You ensure that the voices of the people are heard where it matters most—in the halls of power.",
           image: "images/political_advocate.png",
           organizations: [
             { name: "Fair Fight Action", link: "https://fairfight.com/" },
@@ -94,7 +94,7 @@
           ]
         },
         "Resource Builder": {
-          description: "💰 Movements need resources, and you make sure they have them! Whether you're fundraising, managing donations, or organizing material support, your efforts ensure activism doesn't just survive—it thrives.",
+          description: "You are the backbone of every movement! Whether it’s fundraising, gathering supplies, or providing financial support, you make sure that activism is sustainable. Without resources, movements can’t grow—but thanks to you, they thrive.",
           image: "images/resource_builder.png",
           organizations: [
             { name: "ActBlue", link: "https://secure.actblue.com/" },
@@ -103,20 +103,12 @@
         }
       };
 
-    // ✅ Set Activist Type Result
-if (activistTypes[activistType]) {
-    resultTitle.textContent = activistType;
-    resultDescription.textContent = activistTypes[activistType].description;
-    
-    // ✅ Directly assign image source
-    resultImage.src = activistTypes[activistType].image;
-    resultImage.style.display = "block";
-
-    // Populate organizations
-    orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
-      <li><a href="${org.link}" target="_blank">${org.name}</a></li>
-    `).join("");
-}
+      // Set result based on activist type
+      if (activistTypes[activistType]) {
+        resultTitle.textContent = activistType;
+        resultDescription.textContent = activistTypes[activistType].description;
+        resultImage.src = activistTypes[activistType].image;
+        resultImage.style.display = "block";
 
         // Populate organizations
         orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
@@ -124,13 +116,15 @@ if (activistTypes[activistType]) {
         `).join("");
       }
 
-      // ✅ Set Issue Focus Text (Text-Only for Now)
-      issueFocusText.textContent = issueFocus.length > 0 ? issueFocus.join(", ") : "Various Issues";
+      // Set issue focus and display smaller images
+      issueFocusContainer.innerHTML = issueFocus.map(focus => `
+        <img src="images/focus_${focus.toLowerCase().replace(/\s+/g, "_")}.png" alt="${focus}" class="focus-icon">
+      `).join("");
 
-      // ✅ Set Commitment Level
+      // Set commitment level
       commitmentText.textContent = commitment;
 
-      // ✅ Copy Button Functionality
+      // Copy button functionality
       copyButton.addEventListener("click", function () {
         const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
           activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
@@ -140,7 +134,7 @@ if (activistTypes[activistType]) {
         });
       });
 
-      // ✅ Show Result Container
+      // Show result container
       document.getElementById("result-container").style.display = "block";
     });
   </script>
