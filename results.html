@@ -13,7 +13,7 @@
   <div id="result-container">
     <h2 id="result-title"></h2>
     <p id="result-description"></p>
-    <<img id="persona-image" src="" alt="Your Activist Persona">
+    <img id="persona-image" src="" alt="Your Activist Persona">
     
     <h3>Issue Focus</h3>
     <p id="issue-focus"></p>
@@ -37,7 +37,7 @@
       // Reference result elements
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
-      const resultImage = document.getElementById("result-image");
+      const resultImage = document.getElementById("persona-image");
       const issueFocusText = document.getElementById("issue-focus");
       const commitmentText = document.getElementById("commitment-level");
       const orgList = document.getElementById("org-list");
@@ -47,7 +47,7 @@
       const activistTypes = {
         "Frontline Mobilizer": {
           description: "You take action on the ground—marching, protesting, and making change happen in real-time.",
-          image: "images/Frontline Firestarter.png",
+          image: "images/frontline_firestarter.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
             { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
