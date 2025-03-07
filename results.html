@@ -13,11 +13,10 @@
   <div id="result-container">
     <h2 id="result-title"></h2>
     <p id="result-description"></p>
-    <img id="persona-image" src="" alt="Your Activist Persona" style="max-width: 100%; height: auto; display: block;">
+    <img id="persona-image" src="" alt="Your Activist Persona" style="max-width: 100%; height: auto; display: none;">
 
     <h3>Issue Focus</h3>
     <p id="issue-focus">Loading...</p>
-    <div id="focus-images"></div> <!-- Area for future issue focus images -->
 
     <h3>Your Commitment Level</h3>
     <p id="commitment-level">Loading...</p>
@@ -44,10 +43,10 @@
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
-      // ✅ Activist type data with more **inspiring** descriptions
+      // ✅ Activist type data with **inspiring** descriptions
       const activistTypes = {
         "Frontline Mobilizer": {
-          description: "🔥 You are the firestarter! Protests, rallies, and direct action are your battlefield. You lead from the front, amplifying voices and turning collective passion into visible change. When injustice rises, you're the one making sure the world takes notice.",
+          description: "🔥 You are the firestarter! Protests, rallies, and direct action are your battlefield. You turn collective passion into visible change. When injustice rises, you're the one making sure the world takes notice.",
           image: "images/frontline_mobilizer.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
@@ -55,7 +54,7 @@
           ]
         },
         "Community Caregiver": {
-          description: "🤲 You are the heart of the movement! You bring people together through direct aid, making sure no one is left behind. Whether it's mutual aid, food distribution, or crisis support, you provide care where it's needed most. Your activism is built on love and solidarity.",
+          description: "🤲 You are the heart of the movement! You bring people together through direct aid, making sure no one is left behind. Your activism is built on love and solidarity.",
           image: "images/community_caregiver.png",
           organizations: [
             { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
@@ -63,7 +62,7 @@
           ]
         },
         "Strategist & Organizer": {
-          description: "🧠 The movement needs a plan, and you’re the architect! You coordinate protests, logistics, and campaign strategies, ensuring grassroots efforts grow into unstoppable forces. With your guidance, movements don’t just react—they win.",
+          description: "🧠 The movement needs a plan, and you’re the architect! You coordinate protests, logistics, and campaign strategies, ensuring grassroots efforts grow into unstoppable forces.",
           image: "images/strategist_organizer.png",
           organizations: [
             { name: "Indivisible", link: "https://indivisible.org/" },
@@ -71,7 +70,7 @@
           ]
         },
         "Educator & Storyteller": {
-          description: "📖 You are the voice of change! Through writing, speaking, media, and art, you shift perspectives and inspire action. Your power lies in storytelling—turning movements into narratives that cannot be ignored. Your words create waves that ripple into history.",
+          description: "📖 You are the voice of change! Through writing, speaking, media, and art, you shift perspectives and inspire action. Your words create waves that ripple into history.",
           image: "images/educator_storyteller.png",
           organizations: [
             { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
@@ -79,7 +78,7 @@
           ]
         },
         "Digital Defender": {
-          description: "💻 The internet is your battleground! You fight for digital rights, privacy, and social media advocacy. Whether you're combating misinformation, mobilizing movements online, or protecting activists, you’re the guardian of digital freedom.",
+          description: "💻 The internet is your battleground! You fight for digital rights, privacy, and social media advocacy. You’re the guardian of digital freedom.",
           image: "images/digital_defender.png",
           organizations: [
             { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
@@ -108,8 +107,11 @@
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
+
+        // ✅ Ensure the correct image is assigned
         resultImage.src = activistTypes[activistType].image;
-        resultImage.style.display = "block";
+        resultImage.alt = activistType + " Image";
+        resultImage.style.display = "block"; // Make sure it's visible
 
         // Populate organizations
         orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
