@@ -26,24 +26,25 @@
   </form>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const quizFormPage2 = document.getElementById("quiz-form-page2");
+document.addEventListener("DOMContentLoaded", function () {
+  const quizFormPage2 = document.getElementById("quiz-form-page2");
 
-      quizFormPage2.addEventListener("submit", function (e) {
-        e.preventDefault();
+  quizFormPage2.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        const selectedFocuses = [];
-        document.querySelectorAll('input[name="activistFocus"]:checked').forEach(checkbox => {
-          selectedFocuses.push(checkbox.value);
-        });
-
-        // Save answer to localStorage
-        localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
-
-        // Move to the next page
-        window.location.href = "page3.html";
-      });
+    const selectedFocuses = [];
+    document.querySelectorAll('input[name="activistFocus"]:checked').forEach(checkbox => {
+      selectedFocuses.push(checkbox.value);
     });
-  </script>
+
+    // ✅ Corrected key to match results page
+    localStorage.setItem("issueFocus", JSON.stringify(selectedFocuses));
+
+    // Move to the next page
+    window.location.href = "page3.html";
+  });
+});
+</script>
+
 </body>
 </html>
