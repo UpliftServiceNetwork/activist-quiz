@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Quiz - Page 4</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>Step 4: What Are Your Strengths?</h1>
-  <p>Select the skills you bring to activism. You may choose more than one.</p>
+
+  <h1>What issues are you most passionate about?</h1>
 
   <form id="quiz-form-page4">
-    <label><input type="checkbox" name="skills" value="Public speaking & outreach"> Public speaking & outreach</label><br>
-    <label><input type="checkbox" name="skills" value="Legal knowledge & advocacy"> Legal knowledge & advocacy</label><br>
-    <label><input type="checkbox" name="skills" value="Writing & storytelling"> Writing & storytelling</label><br>
-    <label><input type="checkbox" name="skills" value="Digital security & tech skills"> Digital security & tech skills</label><br>
-    <label><input type="checkbox" name="skills" value="Organizing & management"> Organizing & management</label><br>
-    <label><input type="checkbox" name="skills" value="Providing resources and direct aid"> Providing resources and direct aid</label><br>
-    <label><input type="checkbox" name="skills" value="Letter writing, phone banking, and home-based advocacy"> Letter writing, phone banking, and home-based advocacy</label><br>
+    <label><input type="checkbox" name="focus" value="Racial Justice"> Racial Justice</label><br>
+    <label><input type="checkbox" name="focus" value="Climate Action"> Climate Action</label><br>
+    <label><input type="checkbox" name="focus" value="Workers' Rights"> Workers' Rights</label><br>
+    <label><input type="checkbox" name="focus" value="Healthcare Access"> Healthcare Access</label><br>
+    <label><input type="checkbox" name="focus" value="LGBTQ+ Rights"> LGBTQ+ Rights</label><br>
+    <label><input type="checkbox" name="focus" value="Immigrant Rights"> Immigrant Rights</label><br>
+    <label><input type="checkbox" name="focus" value="Education Equity"> Education Equity</label><br>
+    <label><input type="checkbox" name="focus" value="Criminal Justice Reform"> Criminal Justice Reform</label><br>
+    <label><input type="checkbox" name="focus" value="Disability Rights"> Disability Rights</label><br>
+    <label><input type="checkbox" name="focus" value="Democracy & Voting"> Democracy & Voting</label><br>
 
-    <button type="submit">See Your Results</button>
+    <button type="submit">Next</button>
   </form>
 
   <script>
@@ -28,18 +31,20 @@
 
       quizFormPage4.addEventListener("submit", function (e) {
         e.preventDefault();
+        
+        const selectedFocusAreas = [];
+        document.querySelectorAll('input[name="focus"]:checked').forEach(input => {
+          selectedFocusAreas.push(input.value);
+        });
 
-        const formData = new FormData(quizFormPage4);
-        const skills = [];
-        formData.forEach((value) => skills.push(value));
+        // Save selected focus areas to localStorage
+        localStorage.setItem("focusAreas", JSON.stringify(selectedFocusAreas));
 
-        // Save selected skills to localStorage
-        localStorage.setItem("skills", JSON.stringify(skills));
-
-        // Move to results page
-        window.location.href = "results.html";
+        // Redirect to Page 5 (Commitment Level)
+        window.location.href = "page5.html";
       });
     });
   </script>
+
 </body>
 </html>
