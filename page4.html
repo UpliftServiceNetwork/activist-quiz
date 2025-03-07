@@ -1,56 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Quiz - Page 4</title>
-  <!-- Ensure the page is mobile friendly -->
+  <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Link to your external CSS -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Optional inline mobile-friendly styles (duplicate in style.css if you prefer) -->
-  <style>
-    body {
-      font-family: sans-serif;
-      font-size: 20px; /* Increase base font size for mobile */
-      margin: 5px;
-    }
-    h1 {
-      font-size: 1.4em; /* Larger heading on small screens */
-      margin-bottom: 0.5em;
-    }
-    form {
-      margin-top: 1em;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5em;
-      line-height: 1.4;
-    }
-    button {
-      margin-top: 1em;
-      padding: 0.75em 1.5em;
-      font-size: 1em;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
-  <h1>Quiz - Page 4</h1>
-  
-  <!-- PAGE 4 FORM -->
-  <form id="quiz-form-page4">
-    <p>4. What skills do you bring to activism?</p>
-    <label><input type="radio" name="question4" value="U"> Public speaking & outreach</label><br>
-    <label><input type="radio" name="question4" value="V"> Legal knowledge & advocacy</label><br>
-    <label><input type="radio" name="question4" value="W"> Writing & storytelling</label><br>
-    <label><input type="radio" name="question4" value="X"> Digital security & tech skills</label><br>
-    <label><input type="radio" name="question4" value="Y"> Organizing & management</label><br>
-    <label><input type="radio" name="question4" value="Z"> Providing resources and direct aid to veterans</label><br>
-    <label><input type="radio" name="question4" value="AA"> Letter writing, phone banking, and home-based advocacy</label><br>
+  <h1>Step 4: What Are Your Strengths?</h1>
+  <p>Select the skills you bring to activism. You may choose more than one.</p>
 
-    <button type="submit">Next</button>
+  <form id="quiz-form-page4">
+    <label><input type="checkbox" name="skills" value="Public speaking & outreach"> Public speaking & outreach</label><br>
+    <label><input type="checkbox" name="skills" value="Legal knowledge & advocacy"> Legal knowledge & advocacy</label><br>
+    <label><input type="checkbox" name="skills" value="Writing & storytelling"> Writing & storytelling</label><br>
+    <label><input type="checkbox" name="skills" value="Digital security & tech skills"> Digital security & tech skills</label><br>
+    <label><input type="checkbox" name="skills" value="Organizing & management"> Organizing & management</label><br>
+    <label><input type="checkbox" name="skills" value="Providing resources and direct aid"> Providing resources and direct aid</label><br>
+    <label><input type="checkbox" name="skills" value="Letter writing, phone banking, and home-based advocacy"> Letter writing, phone banking, and home-based advocacy</label><br>
+
+    <button type="submit">See Your Results</button>
   </form>
 
   <script>
@@ -61,13 +30,14 @@
         e.preventDefault();
 
         const formData = new FormData(quizFormPage4);
-        const question4Answer = formData.get("question4");
+        const skills = [];
+        formData.forEach((value) => skills.push(value));
 
-        // Save answer to localStorage
-        localStorage.setItem("question4", question4Answer || "");
+        // Save selected skills to localStorage
+        localStorage.setItem("skills", JSON.stringify(skills));
 
-        // Navigate to Page 5
-        window.location.href = "page5.html";
+        // Move to results page
+        window.location.href = "results.html";
       });
     });
   </script>
