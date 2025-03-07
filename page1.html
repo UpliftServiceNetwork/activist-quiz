@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Quiz - Page 1</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>Quiz - Page 1</h1>
-  
-  <!-- PAGE 1 FORM -->
+  <h1>Step 1: What’s Your Activist Strength?</h1>
+  <p>Choose the option that best describes how you prefer to engage with activism.</p>
+
   <form id="quiz-form-page1">
-    <p>1. How do you prefer to take action?</p>
-    <label><input type="radio" name="question1" value="A"> On the front lines (protests, direct action)</label><br>
-    <label><input type="radio" name="question1" value="B"> Behind the scenes (research, organizing)</label><br>
-    <label><input type="radio" name="question1" value="C"> Educating others (writing, teaching)</label><br>
-    <label><input type="radio" name="question1" value="D"> Using technology (social media, cybersecurity)</label><br>
-    <label><input type="radio" name="question1" value="E"> Logistics and planning (event coordination)</label><br>
-    <label><input type="radio" name="question1" value="F"> Advocacy from home (letter writing, remote work)</label><br>
-    <label><input type="radio" name="question1" value="G"> Supporting veterans and military families</label><br>
+    <label><input type="radio" name="activistType" value="Frontline Mobilizer"> I thrive in action—leading protests, strikes, and direct resistance.</label><br>
+    <label><input type="radio" name="activistType" value="Community Caregiver"> I focus on caring for people—providing aid, resources, and direct support.</label><br>
+    <label><input type="radio" name="activistType" value="Strategist & Organizer"> I’m a planner—coordinating events, campaigns, and logistics.</label><br>
+    <label><input type="radio" name="activistType" value="Educator & Storyteller"> I educate and inspire—spreading awareness through media, art, and public speaking.</label><br>
+    <label><input type="radio" name="activistType" value="Digital Defender"> I’m a digital warrior—using tech, cybersecurity, and online advocacy for change.</label><br>
+    <label><input type="radio" name="activistType" value="Political Advocate"> I work within the system—fighting for policy change, legal action, and voting rights.</label><br>
+    <label><input type="radio" name="activistType" value="Resource Builder"> I ensure movements are funded—raising money, gathering materials, and providing resources.</label><br>
 
     <button type="submit">Next</button>
   </form>
@@ -30,14 +29,13 @@
       quizFormPage1.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // Collect the user’s choice
         const formData = new FormData(quizFormPage1);
-        const question1Answer = formData.get("question1"); // e.g. "A", "B", etc.
+        const activistType = formData.get("activistType");
 
-        // Store the result in localStorage
-        localStorage.setItem("question1", question1Answer || "");
+        // Save answer to localStorage
+        localStorage.setItem("activistType", activistType || "");
 
-        // Navigate to the next page
+        // Move to the next page
         window.location.href = "page2.html";
       });
     });
