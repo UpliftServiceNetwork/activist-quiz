@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Results</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <h1>Your Activist Type</h1>
+
+  <div id="result-container">
+    <h2 id="result-title"></h2>
+    <p id="result-description"></p>
+    <img id="persona-image" src="" alt="Your Activist Persona">
+
+    <h3>Issue Focus</h3>
+    <div id="issue-focus-container"></div>  <!-- Focus images go here -->
+
+    <h3>Your Commitment Level</h3>
+    <p id="commitment-level"></p>
+
+    <h3>Recommended Organizations</h3>
+    <ul id="org-list"></ul>
+
+    <button id="copy-button">Copy Organizations</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Retrieve stored answers
+      const activistType = localStorage.getItem("activistType") || "Uncategorized";
+      const issueFocus = JSON.parse(localStorage.getItem("issueFocus")) || ["Various Issues"];
+      const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
+
+      // Reference result elements
+      const resultTitle = document.getElementById("result-title");
+      const resultDescription = document.getElementById("result-description");
+      const resultImage = document.getElementById("persona-image");
+      const issueFocusContainer = document.getElementById("issue-focus-container");
+      const commitmentText = document.getElementById("commitment-level");
+      const orgList = document.getElementById("org-list");
+      const copyButton = document.getElementById("copy-button");
+
+      // Activist type data with improved descriptions
+      const activistTypes = {
+        "Frontline Mobilizer": {
+          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
+          image: "images/frontline_firestarter.png",
+          organizations: [
+            { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
+            { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
+          ]
+        },
+        "Community Caregiver": {
+          description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
+          image: "images/caregiver.png",
+          organizations: [
+            { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
+            { name: "World Central Kitchen", link: "https://wck.org/" }
+          ]
+        },
+        "Strategist & Organizer": {
+          description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
+          image: "images/organizer.png",
+          organizations: [
+            { name: "Indivisible", link: "https://indivisible.org/" },
+            { name: "MoveOn", link: "https://front.moveon.org/" }
+          ]
+        },
+        "Educator & Storyteller": {
+          description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
+          image: "images/storyteller.png",
+          organizations: [
+            { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
+            { name: "Southern Poverty Law Center", link: "https://www.splcenter.org/" }
+          ]
+        },
+        "Digital Defender": {
+          description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
+          image: "images/digital_defender.png",
+          organizations: [
+            { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
+            { name: "Fight for the Future", link: "https://www.fightforthefuture.org/" }
+          ]
+        },
+        "Political Advocate": {
+          description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
+          image: "images/political_advocate.png",
+          organizations: [
+            { name: "Fair Fight Action", link: "https://fairfight.com/" },
+            { name: "ACLU", link: "https://www.aclu.org/" }
+          ]
+        },
+        "Resource Builder": {
+          description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
+          image: "images/resource_builder.png",
+          organizations: [
+            { name: "ActBlue", link: "https://secure.actblue.com/" },
+            { name: "Network for Good", link: "https://www.networkforgood.com/" }
+          ]
+        }
+      };
+
+      // Set result based on activist type
+      if (activistTypes[activistType]) {
+        resultTitle.textContent = activistType;
+        resultDescription.textContent = activistTypes[activistType].description;
+        resultImage.src = activistTypes[activistType].image;
+        resultImage.style.display = "block";
+
+        // Populate organizations
+        orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
+          <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+        `).join("");
+      }
+
+      // Set issue focus and display smaller images
+      issueFocusContainer.innerHTML = issueFocus.map(focus => `
+        <img src="images/focus_${focus.toLowerCase().replace(/\s+/g, "_")}.png" alt="${focus}" class="focus-icon">
+      `).join("");
+
+      // Set commitment level
+      commitmentText.textContent = commitment;
+
+      // Copy button functionality
+      copyButton.addEventListener("click", function () {
+        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
+          activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          alert("Copied to clipboard!");
+        });
+      });
+
+      // Show result container
+      document.getElementById("result-container").style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
