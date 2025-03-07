@@ -1,49 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Quiz - Page 4</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Quiz Results</title>
+  <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>Quiz - Page 4</h1>
-  <p>How much time can you commit?</p>
 
-  <!-- PAGE 4 FORM -->
-  <form id="quiz-form-page4">
-    <label><input type="radio" name="commitment" value="full_time"> Full-time activism</label><br>
-    <label><input type="radio" name="commitment" value="weekly"> Weekly efforts</label><br>
-    <label><input type="radio" name="commitment" value="monthly"> Monthly involvement</label><br>
-    <label><input type="radio" name="commitment" value="occasional"> Occasional help</label><br>
-    <label><input type="radio" name="commitment" value="remote"> Remote work only</label><br>
-    <label><input type="radio" name="commitment" value="funding"> Funding & donations</label><br>
+  <h1>Your Activist Type</h1>
+
+  <div id="result-container">
+    <h2 id="result-title"></h2>
+    <p id="result-description"></p>
+    <img id="result-image" src="" alt="Your Activist Type" style="display: none;">
     
-    <button type="submit">See Your Results</button>
-  </form>
+    <h3>Issue Focus</h3>
+    <p id="issue-focus"></p>
+
+    <h3>Your Commitment Level</h3>
+    <p id="commitment-level"></p>
+
+    <h3>Recommended Organizations</h3>
+    <ul id="org-list"></ul>
+
+    <button id="copy-button">Copy Organizations</button>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const quizFormPage4 = document.getElementById("quiz-form-page4");
+      // Retrieve stored answers
+      const activistType = localStorage.getItem("activistType") || "Uncategorized";
+      const issueFocus = localStorage.getItem("issueFocus") || "Various Issues";
+      const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
-      quizFormPage4.addEventListener("submit", function (e) {
-        e.preventDefault();
+      // Reference result elements
+      const resultTitle = document.getElementById("result-title");
+      const resultDescription = document.getElementById("result-description");
+      const resultImage = document.getElementById("result-image");
+      const issueFocusText = document.getElementById("issue-focus");
+      const commitmentText = document.getElementById("commitment-level");
+      const orgList = document.getElementById("org-list");
+      const copyButton = document.getElementById("copy-button");
 
-        const formData = new FormData(quizFormPage4);
-        const commitment = formData.get("commitment");
-
-        if (!commitment) {
-          alert("Please select a commitment level.");
-          return;
+      // Activist type data
+      const activistTypes = {
+        "Frontline Mobilizer": {
+          description: "You take action on the ground—marching, protesting, and making change happen in real-time.",
+          image: "images/frontline.png",
+          organizations: [
+            { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
+            { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
+          ]
+        },
+        "Community Caregiver": {
+          description: "You support your community through direct aid—helping those in need and fostering resilience.",
+          image: "images/caregiver.png",
+          organizations: [
+            { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
+            { name: "World Central Kitchen", link: "https://wck.org/" }
+          ]
+        },
+        "Strategist & Organizer": {
+          description: "You coordinate movements, plan logistics, and organize for lasting impact.",
+          image: "images/organizer.png",
+          organizations: [
+            { name: "Indivisible", link: "https://indivisible.org/" },
+            { name: "MoveOn", link: "https://front.moveon.org/" }
+          ]
+        },
+        "Educator & Storyteller": {
+          description: "You spread awareness, change minds, and inspire action through words, media, and art.",
+          image: "images/storyteller.png",
+          organizations: [
+            { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
+            { name: "Southern Poverty Law Center", link: "https://www.splcenter.org/" }
+          ]
+        },
+        "Digital Defender": {
+          description: "You use technology and online platforms to organize, advocate, and protect movements.",
+          image: "images/digital_defender.png",
+          organizations: [
+            { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
+            { name: "Fight for the Future", link: "https://www.fightforthefuture.org/" }
+          ]
+        },
+        "Political Advocate": {
+          description: "You work within political and legal systems to make systemic change happen.",
+          image: "images/political_advocate.png",
+          organizations: [
+            { name: "Fair Fight Action", link: "https://fairfight.com/" },
+            { name: "ACLU", link: "https://www.aclu.org/" }
+          ]
+        },
+        "Resource Builder": {
+          description: "You provide the funding, materials, and resources that movements need to thrive.",
+          image: "images/resource_builder.png",
+          organizations: [
+            { name: "ActBlue", link: "https://secure.actblue.com/" },
+            { name: "Network for Good", link: "https://www.networkforgood.com/" }
+          ]
         }
+      };
 
-        // Save answer
-        localStorage.setItem("commitment", commitment);
+      // Set result based on activist type
+      if (activistTypes[activistType]) {
+        resultTitle.textContent = activistType;
+        resultDescription.textContent = activistTypes[activistType].description;
+        resultImage.src = activistTypes[activistType].image;
+        resultImage.style.display = "block";
 
-        // Navigate to Results Page
-        window.location.href = "results.html";
+        // Populate organizations
+        orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
+          <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+        `).join("");
+      }
+
+      // Set issue focus and commitment
+      issueFocusText.textContent = issueFocus;
+      commitmentText.textContent = commitment;
+
+      // Copy button functionality
+      copyButton.addEventListener("click", function () {
+        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus}\nCommitment: ${commitment}\nOrganizations:\n` +
+          activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          alert("Copied to clipboard!");
+        });
       });
+
+      // Show result container
+      document.getElementById("result-container").style.display = "block";
     });
   </script>
+
 </body>
 </html>
