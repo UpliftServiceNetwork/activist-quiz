@@ -5,68 +5,38 @@
   <title>Quiz - Page 5</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    font-family: sans-serif;
-    font-size: 20px; /* Increase base font size for mobile */
-    margin: 5px;
-  }
-  h1 {
-    font-size: 1.4em; /* Slightly larger heading on small screens */
-    margin-bottom: 0.5em;
-  }
-  form, .result-container {
-    margin-top: 1em;
-  }
-  label {
-    display: block;
-    margin-bottom: 0.5em;
-    line-height: 1.4;
-  }
-  button {
-    margin-top: 1em;
-    padding: 0.75em 1.5em;
-    font-size: 1em; 
-    cursor: pointer;
-  }
-</style>
-
 </head>
 <body>
-  <h1>Quiz - Page 5</h1>
+
+  <h1>How much time can you commit to activism?</h1>
   
-  <!-- PAGE 5 FORM -->
   <form id="quiz-form-page5">
-    <p>5. Which causes are most important to you?</p>
-    <label><input type="radio" name="question5" value="AB"> Climate change & environmental justice</label><br>
-    <label><input type="radio" name="question5" value="AC"> Racial justice & civil rights</label><br>
-    <label><input type="radio" name="question5" value="AD"> LGBTQ+ rights</label><br>
-    <label><input type="radio" name="question5" value="AE"> Economic justice & labor rights</label><br>
-    <label><input type="radio" name="question5" value="AF"> Women's rights & reproductive justice</label><br>
-    <label><input type="radio" name="question5" value="AG"> Veterans' rights and military support</label><br>
-    <label><input type="radio" name="question5" value="AH"> Expanding remote activism efforts</label><br>
+    <label><input type="radio" name="commitment" value="Full-time activism"> Full-time activism (Leadership, organizing, daily involvement)</label><br>
+    <label><input type="radio" name="commitment" value="Weekly efforts"> Weekly efforts (Events, organizing, regular volunteering)</label><br>
+    <label><input type="radio" name="commitment" value="Occasional help"> Occasional help (When needed, action-based volunteering)</label><br>
+    <label><input type="radio" name="commitment" value="Remote work only"> Remote work only (Tech, advocacy, digital activism, fundraising)</label><br>
+    <label><input type="radio" name="commitment" value="Funding and donations"> Funding and donations (Financial support, resource-building)</label><br>
 
     <button type="submit">Next</button>
   </form>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Correct the ID reference
       const quizFormPage5 = document.getElementById("quiz-form-page5");
 
       quizFormPage5.addEventListener("submit", function (e) {
         e.preventDefault();
-
         const formData = new FormData(quizFormPage5);
-        const question5Answer = formData.get("question5");
+        const commitmentLevel = formData.get("commitment");
 
         // Save answer to localStorage
-        localStorage.setItem("question5", question5Answer || "");
+        localStorage.setItem("commitment", commitmentLevel || "");
 
-        // Navigate to the next page (adjust the file name if you have a page6.html)
-        window.location.href = "page6.html";
+        // Move to Results Page
+        window.location.href = "results.html";
       });
     });
   </script>
+
 </body>
 </html>
