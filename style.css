@@ -175,12 +175,20 @@ a:hover {
     border-radius: 10px; /* Keeps smooth edges */
 }
 /* Ensure issue focus images are properly sized */
-.focus-icon {
-    width: 80px; /* Smaller than the main persona image */
-    height: auto; /* Maintain aspect ratio */
-    margin: 5px;
-    display: inline-block;
-    border-radius: 5px;
+/* Issue Focus Images Styling */
+#focus-images {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
 }
+
+.focus-image {
+    width: 80px; /* Adjust for better layout */
+    height: auto;
+    max-height: 80px;
+    border-radius: 8px;
+}
+
     }
 }
