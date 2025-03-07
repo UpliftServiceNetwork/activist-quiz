@@ -1,110 +1,113 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+  font-size: 18px;
 }
 
 #result-container {
-    max-width: 400px;
-    width: 100%;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align: center;
+  max-width: 400px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
 #persona-image {
-  display: block;
-  margin: 10px auto; /* centers image horizontally */
+  display: block !important;
+  margin: 10px auto !important;
   max-width: 100%;
   height: auto;
   border-radius: 10px;
 }
 
-}
-
 #issue-focus-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
 }
 
 #issue-focus-container img.focus-icon {
-    width: 80px !important;  /* Forces the size smaller */
-    height: auto !important;
-    max-height: 80px !important;
-    border-radius: 8px !important;
+  width: 80px !important;
+  height: auto !important;
+  max-height: 80px !important;
+  border-radius: 8px !important;
 }
 
 h1, h2, h3 {
-    margin: 10px 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 12px; /* space before buttons and lists */
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 ul li {
-    margin: 5px 0;
+  margin: 8px 0;
 }
 
 ul li a {
-    display: block;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
+  display: block;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 ul li a:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 button#copy-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 15px;
-    border-radius: 5px;
-    cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
 }
 
 button#copy-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
+
+/* Responsive adjustments for mobile */
 @media screen and (max-width: 600px) {
-  body, body p, body li, body button {
-    font-size: 18px !important; /* enforce larger font size for readability */
-  }
-
-  body h1 {
-    font-size: 28px !important; 
-  }
-
-  body h2 {
-    font-size: 24px !important;
-  }
-
-  body h3 {
-    font-size: 22px !important;
-  }
-
-  #result-description,
-  #commitment-level,
-  #issue-focus-text {
-    font-size: 19px !important;
+  body {
+    padding: 10px;
+    font-size: 20px !important; /* Larger fonts for better mobile readability */
   }
 
   #result-container {
@@ -112,13 +115,37 @@ button#copy-button:hover {
     padding: 15px !important;
   }
 
+  h1 {
+    font-size: 30px !important;
+  }
+
+  h2 {
+    font-size: 26px !important;
+  }
+
+  h3 {
+    font-size: 24px !important;
+  }
+
+  #result-description,
+  #commitment-level,
+  #issue-focus-text,
+  #org-list li,
+  button,
+  #copy-button {
+    font-size: 19px !important;
+  }
+
+  #persona-image {
+    max-width: 90% !important;
+  }
+
   .focus-icon {
     width: 60px !important;
     height: auto !important;
   }
 
-  button, #copy-button {
-    padding: 14px 10px !important;
+  button#copy-button {
+    padding: 14px !important;
   }
-}
 }
