@@ -15,41 +15,38 @@
     <p id="result-description"></p>
     <img id="persona-image" src="" alt="Your Activist Persona">
 
-    <!-- Issue Focus Section (Newly Added) -->
     <h3>Issue Focus</h3>
-    <p id="issue-focus"></p>
-    <div id="focus-images"></div>
+    <p id="issue-focus">Loading...</p>
 
     <h3>Your Commitment Level</h3>
-    <p id="commitment-level"></p>
+    <p id="commitment-level">Loading...</p>
 
     <h3>Recommended Organizations</h3>
     <ul id="org-list"></ul>
 
     <button id="copy-button">Copy Organizations</button>
-</div>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored answers
+      // ✅ Retrieve stored quiz results
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
-      // Reference result elements
+      // ✅ Reference result elements
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
-      const focusImagesContainer = document.getElementById("focus-images");
       const issueFocusText = document.getElementById("issue-focus");
       const commitmentText = document.getElementById("commitment-level");
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
-      // Activist type data
+      // ✅ Activist type data with **more inspiring** descriptions
       const activistTypes = {
         "Frontline Mobilizer": {
-          description: "You take action on the ground—marching, protesting, and making change happen in real-time.",
+          description: "🔥 You are the firestarter! You bring the heat to movements, standing at the frontlines of protests, rallies, and direct action. Your passion fuels change, and when the world needs a voice, you make sure it's heard.",
           image: "images/frontline_mobilizer.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
@@ -57,7 +54,7 @@
           ]
         },
         "Community Caregiver": {
-          description: "You support your community through direct aid—helping those in need and fostering resilience.",
+          description: "🤲 You are the heart of the movement! You bring people together through direct aid, making sure no one is left behind. Whether it's mutual aid, food distribution, or crisis support, you make activism deeply personal.",
           image: "images/community_caregiver.png",
           organizations: [
             { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
@@ -65,7 +62,7 @@
           ]
         },
         "Strategist & Organizer": {
-          description: "You coordinate movements, plan logistics, and organize for lasting impact.",
+          description: "🧠 The movement needs a plan, and you’re the architect! You excel at coordinating protests, logistics, and campaign strategy. With you at the helm, grassroots movements turn into unstoppable forces for change.",
           image: "images/strategist_organizer.png",
           organizations: [
             { name: "Indivisible", link: "https://indivisible.org/" },
@@ -73,7 +70,7 @@
           ]
         },
         "Educator & Storyteller": {
-          description: "You spread awareness, change minds, and inspire action through words, media, and art.",
+          description: "📖 You are the voice of change! Through writing, speaking, media, and art, you shift perspectives and inspire action. Your power lies in storytelling—turning movements into narratives that cannot be ignored.",
           image: "images/educator_storyteller.png",
           organizations: [
             { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
@@ -81,7 +78,7 @@
           ]
         },
         "Digital Defender": {
-          description: "You use technology and online platforms to organize, advocate, and protect movements.",
+          description: "💻 The internet is your battleground! You fight for digital rights, privacy, and social media advocacy. Whether you're combating misinformation or mobilizing movements online, you’re the guardian of digital activism.",
           image: "images/digital_defender.png",
           organizations: [
             { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
@@ -89,7 +86,7 @@
           ]
         },
         "Political Advocate": {
-          description: "You work within political and legal systems to make systemic change happen.",
+          description: "🏛️ You believe change happens both inside and outside the system! Whether you're lobbying, fighting voter suppression, or working in policy, you make sure the laws of the land reflect justice and equity.",
           image: "images/political_advocate.png",
           organizations: [
             { name: "Fair Fight Action", link: "https://fairfight.com/" },
@@ -97,7 +94,7 @@
           ]
         },
         "Resource Builder": {
-          description: "You provide the funding, materials, and resources that movements need to thrive.",
+          description: "💰 Movements need resources, and you make sure they have them! Whether you're fundraising, managing donations, or organizing material support, your efforts ensure activism doesn't just survive—it thrives.",
           image: "images/resource_builder.png",
           organizations: [
             { name: "ActBlue", link: "https://secure.actblue.com/" },
@@ -106,67 +103,38 @@
         }
       };
 
-      // Issue focus images
-      const focusImages = {
-        "Racial Justice": "images/racial_justice.png",
-        "Climate Action": "images/climate_action.png",
-        "LGBTQ+ Rights": "images/lgbtq_rights.png",
-        "Workers' Rights": "images/workers_rights.png",
-        "Healthcare Reform": "images/healthcare_reform.png",
-        "Criminal Justice": "images/criminal_justice.png",
-        "Education Rights": "images/education_rights.png",
-        "Housing Rights": "images/housing_rights.png",
-        "Immigration Rights": "images/immigration_rights.png",
-        "Reproductive Rights": "images/reproductive_rights.png",
-        "Voting Rights": "images/voting_rights.png",
-        "Veteran Support": "images/veteran_support.png",
-        "Food Security": "images/food_security.png",
-        "Public Health": "images/public_health.png",
-        "Other": "images/other_focus.png"
-      };
+      // ✅ Set Activist Type Result
+      if (activistTypes[activistType]) {
+        resultTitle.textContent = activistType;
+        resultDescription.textContent = activistTypes[activistType].description;
+        resultImage.src = activistTypes[activistType].image;
+        resultImage.style.display = "block";
 
-  // ✅ Set Activist Type
-  if (activistTypes[activistType]) {
-    resultTitle.textContent = activistType;
-    resultDescription.textContent = activistTypes[activistType].description;
-    resultImage.src = activistTypes[activistType].image;
-    resultImage.style.display = "block";
+        // Populate organizations
+        orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
+          <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+        `).join("");
+      }
 
-    // Populate Organizations
-    orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
-      <li><a href="${org.link}" target="_blank">${org.name}</a></li>
-    `).join("");
-  }
+      // ✅ Set Issue Focus Text (Text-Only for Now)
+      issueFocusText.textContent = issueFocus.length > 0 ? issueFocus.join(", ") : "Various Issues";
 
-  // ✅ Set Issue Focus
- if (issueFocus.length > 0) {
-    issueFocusText.textContent = issueFocus.join(", ");
+      // ✅ Set Commitment Level
+      commitmentText.textContent = commitment;
 
-    // Load up to 3 focus images
-    focusImagesContainer.innerHTML = issueFocus
-        .slice(0, 3) // Show up to 3 images
-        .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">` : '')
-        .join(""); 
-} else {
-    issueFocusText.textContent = "Various Issues"; 
-}
+      // ✅ Copy Button Functionality
+      copyButton.addEventListener("click", function () {
+        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
+          activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
 
-  // ✅ Set Commitment Level
-  commitmentText.textContent = commitment;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          alert("Copied to clipboard!");
+        });
+      });
 
-  // ✅ Copy Button Functionality
-  copyButton.addEventListener("click", function () {
-    const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
-      activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
-
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      alert("Copied to clipboard!");
+      // ✅ Show Result Container
+      document.getElementById("result-container").style.display = "block";
     });
-  });
-
-  // ✅ Show Results Container
-  document.getElementById("result-container").style.display = "block";
-});
   </script>
 
 </body>
