@@ -16,6 +16,7 @@
     <img id="persona-image" src="" alt="Your Activist Persona">
 
     <h3>Issue Focus</h3>
+    <p id="issue-focus-text">Loading...</p> <!-- Ensure issue text is visible -->
     <div id="issue-focus-container"></div>  <!-- Focus images go here -->
 
     <h3>Your Commitment Level</h3>
@@ -31,17 +32,51 @@
     document.addEventListener("DOMContentLoaded", function () {
       // Retrieve stored answers
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("issueFocus")) || ["Various Issues"];
+      const issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
       // Reference result elements
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
+      const issueFocusText = document.getElementById("issue-focus-text");
       const issueFocusContainer = document.getElementById("issue-focus-container");
       const commitmentText = document.getElementById("commitment-level");
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
+
+      // Issue focus images (Ensure names match your actual files!)
+      const focusImages = {
+        "Racial Justice": "images/racial_justice.png",
+        "Climate Action": "images/climate_action.png",
+        "LGBTQ+ Rights": "images/lgbtq_rights.png",
+        "Workers' Rights": "images/workers_rights.png",
+        "Healthcare Reform": "images/healthcare_reform.png",
+        "Criminal Justice": "images/criminal_justice.png",
+        "Education Rights": "images/education_rights.png",
+        "Housing Rights": "images/housing_rights.png",
+        "Immigration Rights": "images/immigration_rights.png",
+        "Reproductive Rights": "images/reproductive_rights.png",
+        "Voting Rights": "images/voting_rights.png",
+        "Veteran Support": "images/veteran_support.png",
+        "Food Security": "images/food_security.png",
+        "Public Health": "images/public_health.png",
+        "Other": "images/other_focus.png"
+      };
+
+      // ✅ Ensure issue focus text is visible
+      issueFocusText.textContent = issueFocus.length > 0 ? issueFocus.join(", ") : "Various Issues";
+
+      // ✅ Ensure issue focus images display correctly
+      issueFocusContainer.innerHTML = issueFocus
+        .slice(0, 3) // Limit to 3 images for better layout
+        .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">` : '')
+        .join("");
+
+      // ✅ Show result container
+      document.getElementById("result-container").style.display = "block";
+    });
+  </script>
 
       // Activist type data with improved descriptions
       const activistTypes = {
