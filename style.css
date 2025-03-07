@@ -82,3 +82,46 @@ button#copy-button {
 button#copy-button:hover {
     background-color: #0056b3;
 }
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 18px; /* increases base font size */
+  }
+
+  h1 {
+    font-size: 28px; /* larger heading */
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  p, li, button {
+    font-size: 18px; /* comfortably readable paragraphs and buttons */
+  }
+
+  #result-description {
+    font-size: 19px;
+  }
+
+  #commitment-level, #issue-focus-text {
+    font-size: 19px;
+  }
+
+  .container, #result-container {
+    width: 95%; /* optimizes container width for phone screens */
+    padding: 15px;
+  }
+
+  .focus-icon {
+    width: 60px; /* smaller and proportional icons for mobile */
+    height: auto;
+  }
+
+  button, #copy-button {
+    padding: 14px 10px; /* better touch targets */
+  }
+}
