@@ -12,171 +12,28 @@ body {
     min-height: 100vh;
 }
 
-/* Main container for centering content */
-.container {
-    width: 100%;
-    max-width: 600px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Quiz Form Styling */
-form {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Improve quiz question spacing */
-form p {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-/* Improve spacing and alignment for radio buttons */
-form label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    margin: 8px 0;
-}
-
-/* Button Styling */
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 10px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Results Page Styling */
+/* Result Container Styling */
 #result-container {
     margin-top: 20px;
     padding: 20px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     max-width: 400px;
     width: 100%;
-    display: none;
 }
 
-/* Image Styling */
+/* Persona Image Styling */
 #persona-image {
-    display: block;
     max-width: 100%;
-    height: auto;
     max-height: 300px;
+    width: auto;
+    height: auto;
     margin: 10px auto;
     border-radius: 10px;
 }
 
-/* Remove Bullets from Lists */
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-}
-
-/* Improve readability of list items */
-ul li {
-    margin: 5px 0;
-}
-
-/* Action Links */
-a {
-    display: block;
-    margin-top: 10px;
-    text-decoration: none;
-    color: white;
-    background: #28a745;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
-    transition: background 0.3s ease-in-out;
-}
-
-a:hover {
-    background: #218838;
-}
-
-/* Make action link buttons look like actual buttons */
-#action-link {
-    display: inline-block !important;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white !important;
-    font-size: 1.2em;
-    text-decoration: none;
-    border-radius: 8px;
-    margin-top: 20px;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-}
-
-#action-link:hover {
-    background-color: #0056b3;
-}
-
-/* Responsive Design for Mobile */
-@media screen and (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-    
-    .container {
-        max-width: 90%;
-        padding: 15px;
-    }
-
-    form {
-        max-width: 100%;
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 1.3em;
-    }
-
-    button {
-        font-size: 1em;
-        padding: 10px;
-    }
-
-#persona-image {
-    display: block;
-    width: 80%;  /* Image will take up 80% of its container */
-    max-width: 250px;  /* Prevents the image from getting too big */
-    height: auto;  /* Maintains correct aspect ratio */
-    margin: 10px auto;  /* Centers the image */
-    border-radius: 10px; /* Keeps smooth edges */
-}
-/* Ensure issue focus images are properly sized */
-/* Issue Focus Images Styling */
-/* Corrected Issue Focus Images Styling */
+/* Issue Focus Images - THE CORRECT SELECTOR AND STYLE */
 #issue-focus-container {
     display: flex;
     justify-content: center;
@@ -186,11 +43,65 @@ a:hover {
 }
 
 #issue-focus-container .focus-icon {
-    width: 80px; /* Adjust size to be about 1/3 of activist persona image */
+    width: 80px; /* Approximately 1/3 the size of persona image */
     height: auto;
     border-radius: 8px;
 }
 
+/* Recommended Organizations */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
 
+ul li {
+    margin: 5px 0;
+}
+
+/* Organization Links */
+ul li a {
+    display: block;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    background-color: #218838;
+}
+
+/* Copy Button Styling */
+button#copy-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button#copy-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments for mobile */
+@media screen and (max-width: 600px) {
+    #result-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    #persona-image {
+        width: 80%;
+        max-width: 250px;
+    }
+
+    #issue-focus-container .focus-icon {
+        width: 60px;
     }
 }
