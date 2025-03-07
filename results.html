@@ -103,23 +103,20 @@
         }
       };
 
-      // ✅ Set Activist Type Result
-     if (activistTypes[activistType]) {
-        resultTitle.textContent = activistType;
-        resultDescription.textContent = activistTypes[activistType].description;
-        
-        // Check if image file exists before applying it
-        const imgPath = activistTypes[activistType].image;
-        fetch(imgPath)
-          .then(response => {
-            if (response.ok) {
-              resultImage.src = imgPath;
-              resultImage.style.display = "block";
-            } else {
-              console.error("Image not found:", imgPath);
-            }
-          })
-          .catch(() => console.error("Image loading error:", imgPath));
+    // ✅ Set Activist Type Result
+if (activistTypes[activistType]) {
+    resultTitle.textContent = activistType;
+    resultDescription.textContent = activistTypes[activistType].description;
+    
+    // ✅ Directly assign image source
+    resultImage.src = activistTypes[activistType].image;
+    resultImage.style.display = "block";
+
+    // Populate organizations
+    orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
+      <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+    `).join("");
+}
 
         // Populate organizations
         orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
