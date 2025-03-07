@@ -32,19 +32,17 @@ document.addEventListener("DOMContentLoaded", function () {
   quizFormPage2.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const selectedFocuses = [];
-    document.querySelectorAll('input[name="activistFocus"]:checked').forEach(checkbox => {
-      selectedFocuses.push(checkbox.value);
-    });
+    const selectedFocuses = Array.from(document.querySelectorAll('input[name="activistFocus"]:checked'))
+      .map(checkbox => checkbox.value);
 
-    // ✅ Corrected key to match results page
+    // ✅ CORRECTED KEY (matches your results.html)
     localStorage.setItem("issueFocus", JSON.stringify(selectedFocuses));
 
-    // Move to the next page
     window.location.href = "page3.html";
   });
 });
 </script>
+
 
 </body>
 </html>
