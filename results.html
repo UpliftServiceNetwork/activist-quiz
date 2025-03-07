@@ -13,7 +13,7 @@
   <div id="result-container">
     <h2 id="result-title"></h2>
     <p id="result-description"></p>
-    <img id="persona-image" src="" alt="Your Activist Persona">
+    <img id="persona-image" src="" alt="Your Activist Persona" style="max-width: 100%; height: auto; display: block;">
 
     <h3>Issue Focus</h3>
     <p id="issue-focus">Loading...</p>
@@ -104,11 +104,22 @@
       };
 
       // ✅ Set Activist Type Result
-      if (activistTypes[activistType]) {
+     if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
-        resultImage.src = activistTypes[activistType].image;
-        resultImage.style.display = "block";
+        
+        // Check if image file exists before applying it
+        const imgPath = activistTypes[activistType].image;
+        fetch(imgPath)
+          .then(response => {
+            if (response.ok) {
+              resultImage.src = imgPath;
+              resultImage.style.display = "block";
+            } else {
+              console.error("Image not found:", imgPath);
+            }
+          })
+          .catch(() => console.error("Image loading error:", imgPath));
 
         // Populate organizations
         orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
