@@ -115,22 +115,21 @@ document.addEventListener("DOMContentLoaded", function () {
     "Voting Rights": "images/voting_rights.png"
   };
 
-  // Set Activist Type Correctly
   if (activistTypes[activistType]) {
     resultTitle.textContent = activistType;
     resultDescription.textContent = activistTypes[activistType].description;
     resultImage.src = activistTypes[activistType].image;
+    resultImage.style.display = "block";
     orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
       <li><a href="${org.link}" target="_blank">${org.name}</a></li>
     `).join("");
   }
 
-  // Set issue focuses (correctly matches page2.html names)
   if (issueFocus.length > 0) {
     issueFocusText.textContent = issueFocus.join(", ");
-    issueFocusContainer.innerHTML = issueFocus.slice(0, 3).map(focus => 
-      `<img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">`
-    ).join("");
+    issueFocusContainer.innerHTML = issueFocus.slice(0,3).map(focus => `
+      <img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">
+    `).join("");
   } else {
     issueFocusText.textContent = "Various Issues";
   }
