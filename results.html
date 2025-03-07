@@ -29,6 +29,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      console.log("Script loaded!"); // Debugging step
+
       // ✅ Retrieve stored answers
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
@@ -43,10 +45,12 @@
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
-      // ✅ Activist type data with **inspiring** descriptions
+      console.log("Retrieved Activist Type:", activistType); // Debugging step
+
+      // ✅ Activist type data
       const activistTypes = {
         "Frontline Mobilizer": {
-          description: "🔥 You are the firestarter! Protests, rallies, and direct action are your battlefield. You turn collective passion into visible change. When injustice rises, you're the one making sure the world takes notice.",
+          description: "🔥 You are the firestarter! Protests, rallies, and direct action are your battlefield. You turn collective passion into visible change.",
           image: "images/frontline_mobilizer.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
@@ -54,7 +58,7 @@
           ]
         },
         "Community Caregiver": {
-          description: "🤲 You are the heart of the movement! You bring people together through direct aid, making sure no one is left behind. Your activism is built on love and solidarity.",
+          description: "🤲 You are the heart of the movement! You bring people together through direct aid, making sure no one is left behind.",
           image: "images/community_caregiver.png",
           organizations: [
             { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
@@ -62,7 +66,7 @@
           ]
         },
         "Strategist & Organizer": {
-          description: "🧠 The movement needs a plan, and you’re the architect! You coordinate protests, logistics, and campaign strategies, ensuring grassroots efforts grow into unstoppable forces.",
+          description: "🧠 The movement needs a plan, and you’re the architect! You coordinate protests, logistics, and campaign strategies.",
           image: "images/strategist_organizer.png",
           organizations: [
             { name: "Indivisible", link: "https://indivisible.org/" },
@@ -70,7 +74,7 @@
           ]
         },
         "Educator & Storyteller": {
-          description: "📖 You are the voice of change! Through writing, speaking, media, and art, you shift perspectives and inspire action. Your words create waves that ripple into history.",
+          description: "📖 You are the voice of change! Through writing, speaking, media, and art, you shift perspectives and inspire action.",
           image: "images/educator_storyteller.png",
           organizations: [
             { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
@@ -78,7 +82,7 @@
           ]
         },
         "Digital Defender": {
-          description: "💻 The internet is your battleground! You fight for digital rights, privacy, and social media advocacy. You’re the guardian of digital freedom.",
+          description: "💻 The internet is your battleground! You fight for digital rights, privacy, and social media advocacy.",
           image: "images/digital_defender.png",
           organizations: [
             { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
@@ -86,7 +90,7 @@
           ]
         },
         "Political Advocate": {
-          description: "🏛️ You believe change happens both inside and outside the system! Whether you're lobbying, fighting voter suppression, or working in policy, you make sure the laws of the land reflect justice and equity.",
+          description: "🏛️ You believe change happens inside and outside the system! You work to ensure laws reflect justice and equity.",
           image: "images/political_advocate.png",
           organizations: [
             { name: "Fair Fight Action", link: "https://fairfight.com/" },
@@ -94,7 +98,7 @@
           ]
         },
         "Resource Builder": {
-          description: "💰 Movements need resources, and you make sure they have them! Whether you're fundraising, managing donations, or organizing material support, your efforts ensure activism doesn't just survive—it thrives.",
+          description: "💰 Movements need resources, and you make sure they have them! You help fund and sustain social justice efforts.",
           image: "images/resource_builder.png",
           organizations: [
             { name: "ActBlue", link: "https://secure.actblue.com/" },
@@ -105,18 +109,24 @@
 
       // ✅ Set Activist Type Result
       if (activistTypes[activistType]) {
+        console.log("Setting result for:", activistType); // Debugging step
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
-
+        
         // ✅ Ensure the correct image is assigned
-        resultImage.src = activistTypes[activistType].image;
-        resultImage.alt = activistType + " Image";
-        resultImage.style.display = "block"; // Make sure it's visible
+        const imgPath = activistTypes[activistType].image;
+        resultImage.src = imgPath;
+        resultImage.alt = `${activistType} Image`;
+        resultImage.style.display = "block"; // Ensure it's visible
 
-        // Populate organizations
+        console.log("Image should be loaded from:", imgPath); // Debugging step
+
+        // ✅ Populate organizations
         orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
           <li><a href="${org.link}" target="_blank">${org.name}</a></li>
         `).join("");
+      } else {
+        console.warn("No activist type found in data!");
       }
 
       // ✅ Set Issue Focus Text
