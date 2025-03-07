@@ -13,10 +13,10 @@
   <div id="result-container" style="display:none;">
     <h2 id="result-title"></h2>
     <p id="result-description"></p>
-    <img id="persona-image" src="" alt="Your Activist Persona" style="max-width:100%; height:auto;">
+    <img id="persona-image" src="" alt="Your Activist Persona">
 
     <h3>Issue Focus</h3>
-    <p id="issue-focus-text"></p>
+    <p id="issue-focus-text"></p>  
     <div id="issue-focus-container"></div>
 
     <h3>Your Commitment Level</h3>
@@ -30,10 +30,12 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Retrieve stored answers
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
+      // Reference result elements
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
@@ -43,6 +45,7 @@
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
+      // Activist types with correct image paths and descriptions
       const activistTypes = {
         "Frontline Mobilizer": {
           description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
@@ -80,7 +83,7 @@
           description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
           image: "images/digital_defender.png",
           organizations: [
-            { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
+            { name: "EFF", link: "https://www.eff.org/" },
             { name: "Fight for the Future", link: "https://www.fightforthefuture.org/" }
           ]
         },
@@ -102,44 +105,52 @@
         }
       };
 
+      // Focus images with corrected filenames
       const focusImages = {
-        "Racial Justice": "racial_justice.png",
-        "Climate Action": "climate_action.png",
-        "LGBTQ+ Rights": "lgbtq_rights.png",
-        "Workers' Rights": "workers_rights.png",
-        "Healthcare Reform": "healthcare_reform.png",
-        "Criminal Justice Reform": "criminal_justice.png",
-        "Education Access": "education_rights.png",
-        "Immigrant Rights": "immigration_rights.png",
-        "Reproductive Rights": "reproductive_rights.png",
-        "Voting Rights": "voting_rights.png"
+        "Racial Justice": "images/racial_justice.png",
+        "Climate Action": "images/climate_action.png",
+        "LGBTQ+ Rights": "images/lgbtq_rights.png",
+        "Workers' Rights": "images/workers_rights.png",
+        "Healthcare Reform": "images/healthcare_reform.png",
+        "Criminal Justice Reform": "images/criminal_justice.png",
+        "Education Access": "images/education_rights.png",
+        "Immigrant Rights": "images/immigration_rights.png",
+        "Reproductive Rights": "images/reproductive_rights.png",
+        "Voting Rights": "images/voting_rights.png"
       };
 
+      // Set Activist Type
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
         resultImage.src = activistTypes[activistType].image;
-
-        orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
-          <li><a href="${org.link}" target="_blank">${org.name}</a></li>
-        `).join("");
+        resultImage.alt = activistType;
       } else {
         resultTitle.textContent = "Activist Type Not Found";
         resultDescription.textContent = "No description available.";
         resultImage.style.display = "none";
       }
 
-      if (issueFocus.length > 0) {
-        issueFocusText.textContent = issueFocus.join(", ");
-        issueFocusContainer.innerHTML = issueFocus.slice(0, 3).map(focus => `
-          <img src="images/${focusImages[focus]}" class="focus-icon" alt="${focus}">
-        `).join("");
-      } else {
-        issueFocusText.textContent = "Various Issues";
-      }
+      // Set Issue Focus Text & Images
+      issueFocusText.textContent = issueFocus.join(", ") || "Various Issues";
 
+      issueFocusContainer.innerHTML = issueFocus
+        .slice(0, 3)
+        .map(focus => {
+          const imgSrc = focusImages[focus];
+          return imgSrc ? `<img src="${imgSrc}" class="focus-icon" alt="${focus}">` : '';
+        })
+        .join("");
+
+      // Set commitment level
       commitmentText.textContent = commitment;
 
+      // Recommended Organizations
+      orgList.innerHTML = activistTypes[activistType]?.organizations.map(org => `
+        <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+      `).join("");
+
+      // Copy button functionality
       copyButton.addEventListener("click", function () {
         const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
           activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
@@ -149,8 +160,10 @@
         });
       });
 
+      // Display results
       document.getElementById("result-container").style.display = "block";
     });
   </script>
 
 </body>
+</html>
