@@ -14,62 +14,62 @@ document.addEventListener("DOMContentLoaded", function () {
   const copyButton = document.getElementById("copy-button");
 
   const activistTypes = {
-    "Frontline Mobilizer": {
-      description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
-      image: "images/frontline_firestarter.png",
-      organizations: [
-        { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
-        { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
-      ]
-    },
-    "Community Caregiver": {
-      description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
-      image: "images/caregiver.png",
-      organizations: [
-        { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
-        { name: "World Central Kitchen", link: "https://wck.org/" }
-      ]
-    },
-    "Strategist & Organizer": {
-      description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
-      image: "images/organizer.png",
-      organizations: [
-        { name: "Indivisible", link: "https://indivisible.org/" },
-        { name: "MoveOn", link: "https://front.moveon.org/" }
-      ]
-    },
-    "Educator & Storyteller": {
-      description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
-      image: "images/storyteller.png",
-      organizations: [
-        { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
-        { name: "Southern Poverty Law Center", link: "https://www.splcenter.org/" }
-      ]
-    },
-    "Digital Defender": {
-      description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
-      image: "images/digital_defender.png",
-      organizations: [
-        { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
-        { name: "Fight for the Future", link: "https://www.fightforthefuture.org/" }
-      ]
-    },
-    "Political Advocate": {
-      description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
-      image: "images/political_advocate.png",
-      organizations: [
-        { name: "Fair Fight Action", link: "https://fairfight.com/" },
-        { name: "ACLU", link: "https://www.aclu.org/" }
-      ]
-    },
-    "Resource Builder": {
-      description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
-      image: "images/resource_builder.png",
-      organizations: [
-        { name: "ActBlue", link: "https://secure.actblue.com/" },
-        { name: "Network for Good", link: "https://www.networkforgood.com/" }
-      ]
-    }
+        "Frontline Mobilizer": {
+          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
+          image: "images/frontline_firestarter.png",
+          organizations: [
+            { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
+            { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
+          ]
+        },
+        "Community Caregiver": {
+          description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
+          image: "images/caregiver.png",
+          organizations: [
+            { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
+            { name: "World Central Kitchen", link: "https://wck.org/" }
+          ]
+        },
+        "Strategist & Organizer": {
+          description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
+          image: "images/organizer.png",
+          organizations: [
+            { name: "Indivisible", link: "https://indivisible.org/" },
+            { name: "MoveOn", link: "https://front.moveon.org/" }
+          ]
+        },
+        "Educator & Storyteller": {
+          description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
+          image: "images/storyteller.png",
+          organizations: [
+            { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
+            { name: "Southern Poverty Law Center", link: "https://www.splcenter.org/" }
+          ]
+        },
+        "Digital Defender": {
+          description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
+          image: "images/digital_defender.png",
+          organizations: [
+            { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
+            { name: "Fight for the Future", link: "https://www.fightforthefuture.org/" }
+          ]
+        },
+        "Political Advocate": {
+          description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
+          image: "images/political_advocate.png",
+          organizations: [
+            { name: "Fair Fight Action", link: "https://fairfight.com/" },
+            { name: "ACLU", link: "https://www.aclu.org/" }
+          ]
+        },
+        "Resource Builder": {
+          description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
+          image: "images/resource_builder.png",
+          organizations: [
+            { name: "ActBlue", link: "https://secure.actblue.com/" },
+            { name: "Network for Good", link: "https://www.networkforgood.com/" }
+          ]
+        }
   };
 
   const focusImages = {
