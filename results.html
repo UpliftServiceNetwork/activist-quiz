@@ -13,13 +13,14 @@
   <div id="result-container">
     <h2 id="result-title"></h2>
     <p id="result-description"></p>
-    <img id="persona-image" src="" alt="Your Activist Persona" style="max-width: 100%; height: auto; display: none;">
-
+    <img id="persona-image" src="" alt="Your Activist Persona">
+    
     <h3>Issue Focus</h3>
-    <p id="issue-focus">Loading...</p>
+    <div id="focus-images"></div> <!-- This is where smaller images go -->
+    <p id="issue-focus"></p>
 
     <h3>Your Commitment Level</h3>
-    <p id="commitment-level">Loading...</p>
+    <p id="commitment-level"></p>
 
     <h3>Recommended Organizations</h3>
     <ul id="org-list"></ul>
@@ -29,28 +30,25 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      console.log("Script loaded!"); // Debugging step
-
-      // ✅ Retrieve stored answers
+      // Retrieve stored answers
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
-      // ✅ Reference result elements
+      // Reference result elements
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
+      const focusImagesContainer = document.getElementById("focus-images");
       const issueFocusText = document.getElementById("issue-focus");
       const commitmentText = document.getElementById("commitment-level");
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
-      console.log("Retrieved Activist Type:", activistType); // Debugging step
-
-      // ✅ Activist type data
+      // Activist type data
       const activistTypes = {
         "Frontline Mobilizer": {
-          description: "🔥 You are the firestarter! Protests, rallies, and direct action are your battlefield. You turn collective passion into visible change.",
+          description: "You take action on the ground—marching, protesting, and making change happen in real-time.",
           image: "images/frontline_mobilizer.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
@@ -58,7 +56,7 @@
           ]
         },
         "Community Caregiver": {
-          description: "🤲 You are the heart of the movement! You bring people together through direct aid, making sure no one is left behind.",
+          description: "You support your community through direct aid—helping those in need and fostering resilience.",
           image: "images/community_caregiver.png",
           organizations: [
             { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
@@ -66,7 +64,7 @@
           ]
         },
         "Strategist & Organizer": {
-          description: "🧠 The movement needs a plan, and you’re the architect! You coordinate protests, logistics, and campaign strategies.",
+          description: "You coordinate movements, plan logistics, and organize for lasting impact.",
           image: "images/strategist_organizer.png",
           organizations: [
             { name: "Indivisible", link: "https://indivisible.org/" },
@@ -74,7 +72,7 @@
           ]
         },
         "Educator & Storyteller": {
-          description: "📖 You are the voice of change! Through writing, speaking, media, and art, you shift perspectives and inspire action.",
+          description: "You spread awareness, change minds, and inspire action through words, media, and art.",
           image: "images/educator_storyteller.png",
           organizations: [
             { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
@@ -82,7 +80,7 @@
           ]
         },
         "Digital Defender": {
-          description: "💻 The internet is your battleground! You fight for digital rights, privacy, and social media advocacy.",
+          description: "You use technology and online platforms to organize, advocate, and protect movements.",
           image: "images/digital_defender.png",
           organizations: [
             { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
@@ -90,7 +88,7 @@
           ]
         },
         "Political Advocate": {
-          description: "🏛️ You believe change happens inside and outside the system! You work to ensure laws reflect justice and equity.",
+          description: "You work within political and legal systems to make systemic change happen.",
           image: "images/political_advocate.png",
           organizations: [
             { name: "Fair Fight Action", link: "https://fairfight.com/" },
@@ -98,7 +96,7 @@
           ]
         },
         "Resource Builder": {
-          description: "💰 Movements need resources, and you make sure they have them! You help fund and sustain social justice efforts.",
+          description: "You provide the funding, materials, and resources that movements need to thrive.",
           image: "images/resource_builder.png",
           organizations: [
             { name: "ActBlue", link: "https://secure.actblue.com/" },
@@ -107,35 +105,49 @@
         }
       };
 
-      // ✅ Set Activist Type Result
+      // Issue focus images
+      const focusImages = {
+        "Racial Justice": "images/racial_justice.png",
+        "Climate Action": "images/climate_action.png",
+        "LGBTQ+ Rights": "images/lgbtq_rights.png",
+        "Workers' Rights": "images/workers_rights.png",
+        "Healthcare Reform": "images/healthcare_reform.png",
+        "Criminal Justice": "images/criminal_justice.png",
+        "Education Rights": "images/education_rights.png",
+        "Housing Rights": "images/housing_rights.png",
+        "Immigration Rights": "images/immigration_rights.png",
+        "Reproductive Rights": "images/reproductive_rights.png",
+        "Voting Rights": "images/voting_rights.png",
+        "Veteran Support": "images/veteran_support.png",
+        "Food Security": "images/food_security.png",
+        "Public Health": "images/public_health.png",
+        "Other": "images/other_focus.png"
+      };
+
+      // Set activist type results
       if (activistTypes[activistType]) {
-        console.log("Setting result for:", activistType); // Debugging step
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
-        
-        // ✅ Ensure the correct image is assigned
-        const imgPath = activistTypes[activistType].image;
-        resultImage.src = imgPath;
-        resultImage.alt = `${activistType} Image`;
-        resultImage.style.display = "block"; // Ensure it's visible
+        resultImage.src = activistTypes[activistType].image;
+        resultImage.style.display = "block";
 
-        console.log("Image should be loaded from:", imgPath); // Debugging step
-
-        // ✅ Populate organizations
+        // Populate organizations
         orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
           <li><a href="${org.link}" target="_blank">${org.name}</a></li>
         `).join("");
-      } else {
-        console.warn("No activist type found in data!");
       }
 
-      // ✅ Set Issue Focus Text
-      issueFocusText.textContent = issueFocus.length > 0 ? issueFocus.join(", ") : "Various Issues";
+      // Set issue focus images & text
+      issueFocusText.textContent = issueFocus.join(", ");
+      focusImagesContainer.innerHTML = issueFocus
+        .slice(0, 3) // Show up to 3 images
+        .map(focus => `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">`)
+        .join("");
 
-      // ✅ Set Commitment Level
+      // Set commitment level
       commitmentText.textContent = commitment;
 
-      // ✅ Copy Button Functionality
+      // Copy button functionality
       copyButton.addEventListener("click", function () {
         const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
           activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
@@ -145,7 +157,7 @@
         });
       });
 
-      // ✅ Show Result Container
+      // Show result container
       document.getElementById("result-container").style.display = "block";
     });
   </script>
