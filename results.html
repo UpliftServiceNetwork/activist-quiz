@@ -16,8 +16,8 @@
     <img id="persona-image" src="" alt="Your Activist Persona">
 
     <h3>Issue Focus</h3>
-    <p id="issue-focus-text">Loading...</p>
-    <div id="issue-focus-container"></div>
+    <p id="issue-focus-text">Loading...</p>  <!-- Text fallback -->
+    <div id="issue-focus-container"></div>  <!-- Focus images go here -->
 
     <h3>Your Commitment Level</h3>
     <p id="commitment-level"></p>
@@ -32,7 +32,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       // ✅ Retrieve stored answers
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("issueFocus")) || ["Various Issues"];
+      let issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
       // ✅ Reference result elements
@@ -45,7 +45,7 @@
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
-      // Activist type data with improved descriptions
+      // ✅ Activist type data
       const activistTypes = {
         "Frontline Mobilizer": {
           description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
@@ -105,7 +105,7 @@
         }
       };
 
-       // ✅ Issue focus images
+      // ✅ Issue focus images
       const focusImages = {
         "Racial Justice": "images/racial_justice.png",
         "Climate Action": "images/climate_action.png",
@@ -137,13 +137,17 @@
         `).join("");
       }
 
-      // ✅ Set Issue Focus Text & Images
-      issueFocusText.textContent = issueFocus.length > 0 ? issueFocus.join(", ") : "Various Issues";
-      
-      issueFocusContainer.innerHTML = issueFocus
-        .slice(0, 3) // Show up to 3 images
-        .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">` : '')
-        .join("");
+      // ✅ Fix issue focus display
+      if (issueFocus.length > 0 && issueFocus[0] !== "Various Issues") {
+        issueFocusText.textContent = issueFocus.join(", ");
+
+        issueFocusContainer.innerHTML = issueFocus
+          .slice(0, 3) // Show up to 3 images
+          .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">` : '')
+          .join("");
+      } else {
+        issueFocusText.textContent = "Various Issues";
+      }
 
       // ✅ Set Commitment Level
       commitmentText.textContent = commitment;
