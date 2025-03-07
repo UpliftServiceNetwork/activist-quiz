@@ -5,6 +5,15 @@
   <title>Quiz Results</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Style for passion images */
+    .focus-icon {
+      width: 33%; /* Each issue image is about 1/3 the size of the main persona image */
+      max-height: 100px; /* Prevents massive images */
+      object-fit: contain;
+      margin: 5px;
+    }
+  </style>
 </head>
 <body>
 
@@ -14,10 +23,9 @@
     <h2 id="result-title"></h2>
     <p id="result-description"></p>
     <img id="persona-image" src="" alt="Your Activist Persona">
-    
+
     <h3>Issue Focus</h3>
-    <div id="focus-images"></div> <!-- This is where smaller images go -->
-    <p id="issue-focus"></p>
+    <div id="issue-focus-container"></div>
 
     <h3>Your Commitment Level</h3>
     <p id="commitment-level"></p>
@@ -32,55 +40,54 @@
     document.addEventListener("DOMContentLoaded", function () {
       // Retrieve stored answers
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
+      const issueFocus = JSON.parse(localStorage.getItem("issueFocus")) || ["Various Issues"];
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
       // Reference result elements
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
-      const focusImagesContainer = document.getElementById("focus-images");
-      const issueFocusText = document.getElementById("issue-focus");
+      const issueFocusContainer = document.getElementById("issue-focus-container");
       const commitmentText = document.getElementById("commitment-level");
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
-      // Activist type data
+      // Activist type data with improved descriptions
       const activistTypes = {
         "Frontline Mobilizer": {
-          description: "You take action on the ground—marching, protesting, and making change happen in real-time.",
-          image: "images/frontline_mobilizer.png",
+          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen. Your courage and passion inspire those around you to take action, proving that one person’s voice can lead a movement.",
+          image: "images/frontline_firestarter.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
             { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
           ]
         },
         "Community Caregiver": {
-          description: "You support your community through direct aid—helping those in need and fostering resilience.",
-          image: "images/community_caregiver.png",
+          description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most. You turn compassion into action, ensuring that no one is left behind.",
+          image: "images/caregiver.png",
           organizations: [
             { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
             { name: "World Central Kitchen", link: "https://wck.org/" }
           ]
         },
         "Strategist & Organizer": {
-          description: "You coordinate movements, plan logistics, and organize for lasting impact.",
-          image: "images/strategist_organizer.png",
+          description: "📊 You are the architect of change! Behind every powerful movement is a master planner—you. Your vision and leadership turn passion into progress, proving that real change isn’t just about action—it’s about strategy.",
+          image: "images/organizer.png",
           organizations: [
             { name: "Indivisible", link: "https://indivisible.org/" },
             { name: "MoveOn", link: "https://front.moveon.org/" }
           ]
         },
         "Educator & Storyteller": {
-          description: "You spread awareness, change minds, and inspire action through words, media, and art.",
-          image: "images/educator_storyteller.png",
+          description: "📢 You are the voice that opens minds and moves hearts! Through your words, art, and storytelling, you shine a light on injustice and inspire action. You have the power to change perspectives, uplift communities, and fuel movements.",
+          image: "images/storyteller.png",
           organizations: [
             { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
             { name: "Southern Poverty Law Center", link: "https://www.splcenter.org/" }
           ]
         },
         "Digital Defender": {
-          description: "You use technology and online platforms to organize, advocate, and protect movements.",
+          description: "💻 You are the protector of truth and freedom in the digital age! Whether you're fighting misinformation, exposing injustice, or using tech to organize, you make sure that voices are heard and movements stay strong.",
           image: "images/digital_defender.png",
           organizations: [
             { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
@@ -88,7 +95,7 @@
           ]
         },
         "Political Advocate": {
-          description: "You work within political and legal systems to make systemic change happen.",
+          description: "🏛️ You are the changemaker within the system! You fight for justice through policy, voting rights, and legal action, turning advocacy into real, lasting laws. You ensure that the voices of the people are heard where it matters most—in the halls of power.",
           image: "images/political_advocate.png",
           organizations: [
             { name: "Fair Fight Action", link: "https://fairfight.com/" },
@@ -96,7 +103,7 @@
           ]
         },
         "Resource Builder": {
-          description: "You provide the funding, materials, and resources that movements need to thrive.",
+          description: "💰 You are the backbone of every movement! Whether it’s fundraising, gathering supplies, or providing financial support, you make sure that activism is sustainable. Without resources, movements can’t grow—but thanks to you, they thrive.",
           image: "images/resource_builder.png",
           organizations: [
             { name: "ActBlue", link: "https://secure.actblue.com/" },
@@ -105,26 +112,7 @@
         }
       };
 
-      // Issue focus images
-      const focusImages = {
-        "Racial Justice": "images/racial_justice.png",
-        "Climate Action": "images/climate_action.png",
-        "LGBTQ+ Rights": "images/lgbtq_rights.png",
-        "Workers' Rights": "images/workers_rights.png",
-        "Healthcare Reform": "images/healthcare_reform.png",
-        "Criminal Justice": "images/criminal_justice.png",
-        "Education Rights": "images/education_rights.png",
-        "Housing Rights": "images/housing_rights.png",
-        "Immigration Rights": "images/immigration_rights.png",
-        "Reproductive Rights": "images/reproductive_rights.png",
-        "Voting Rights": "images/voting_rights.png",
-        "Veteran Support": "images/veteran_support.png",
-        "Food Security": "images/food_security.png",
-        "Public Health": "images/public_health.png",
-        "Other": "images/other_focus.png"
-      };
-
-      // Set activist type results
+      // Set result based on activist type
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
@@ -137,12 +125,10 @@
         `).join("");
       }
 
-      // Set issue focus images & text
-      issueFocusText.textContent = issueFocus.join(", ");
-      focusImagesContainer.innerHTML = issueFocus
-        .slice(0, 3) // Show up to 3 images
-        .map(focus => `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">`)
-        .join("");
+      // Set issue focus and display smaller images
+      issueFocusContainer.innerHTML = issueFocus.map(focus => `
+        <img src="images/focus_${focus.toLowerCase().replace(/\s+/g, "_")}.png" alt="${focus}" class="focus-icon">
+      `).join("");
 
       // Set commitment level
       commitmentText.textContent = commitment;
