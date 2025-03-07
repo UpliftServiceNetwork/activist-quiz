@@ -14,10 +14,11 @@
     <h2 id="result-title"></h2>
     <p id="result-description"></p>
     <img id="persona-image" src="" alt="Your Activist Persona">
-    
+
+    <!-- Issue Focus Section (Newly Added) -->
     <h3>Issue Focus</h3>
-    <div id="focus-images"></div> <!-- This is where smaller images go -->
     <p id="issue-focus"></p>
+    <div id="focus-images"></div>
 
     <h3>Your Commitment Level</h3>
     <p id="commitment-level"></p>
@@ -26,7 +27,7 @@
     <ul id="org-list"></ul>
 
     <button id="copy-button">Copy Organizations</button>
-  </div>
+</div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -124,42 +125,48 @@
         "Other": "images/other_focus.png"
       };
 
-      // Set activist type results
-      if (activistTypes[activistType]) {
-        resultTitle.textContent = activistType;
-        resultDescription.textContent = activistTypes[activistType].description;
-        resultImage.src = activistTypes[activistType].image;
-        resultImage.style.display = "block";
+  // ✅ Set Activist Type
+  if (activistTypes[activistType]) {
+    resultTitle.textContent = activistType;
+    resultDescription.textContent = activistTypes[activistType].description;
+    resultImage.src = activistTypes[activistType].image;
+    resultImage.style.display = "block";
 
-        // Populate organizations
-        orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
-          <li><a href="${org.link}" target="_blank">${org.name}</a></li>
-        `).join("");
-      }
+    // Populate Organizations
+    orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
+      <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+    `).join("");
+  }
 
-      // Set issue focus images & text
-      issueFocusText.textContent = issueFocus.join(", ");
-      focusImagesContainer.innerHTML = issueFocus
+  // ✅ Set Issue Focus
+ if (issueFocus.length > 0) {
+    issueFocusText.textContent = issueFocus.join(", ");
+
+    // Load up to 3 focus images
+    focusImagesContainer.innerHTML = issueFocus
         .slice(0, 3) // Show up to 3 images
-        .map(focus => `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">`)
-        .join("");
+        .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-image" alt="${focus}">` : '')
+        .join(""); 
+} else {
+    issueFocusText.textContent = "Various Issues"; 
+}
 
-      // Set commitment level
-      commitmentText.textContent = commitment;
+  // ✅ Set Commitment Level
+  commitmentText.textContent = commitment;
 
-      // Copy button functionality
-      copyButton.addEventListener("click", function () {
-        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
-          activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
+  // ✅ Copy Button Functionality
+  copyButton.addEventListener("click", function () {
+    const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
+      activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
 
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          alert("Copied to clipboard!");
-        });
-      });
-
-      // Show result container
-      document.getElementById("result-container").style.display = "block";
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      alert("Copied to clipboard!");
     });
+  });
+
+  // ✅ Show Results Container
+  document.getElementById("result-container").style.display = "block";
+});
   </script>
 
 </body>
