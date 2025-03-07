@@ -1,4 +1,34 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Results</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <h1>Your Activist Type</h1>
+
+  <div id="result-container" style="display:none;">
+    <h2 id="result-title"></h2>
+    <p id="result-description"></p>
+    <img id="persona-image" src="" alt="Your Activist Persona">
+
+    <h3>Issue Focus</h3>
+    <p id="issue-focus-text"></p>  
+    <div id="issue-focus-container"></div>
+
+    <h3>Your Commitment Level</h3>
+    <p id="commitment-level"></p>
+
+    <h3>Recommended Organizations</h3>
+    <ul id="org-list"></ul>
+
+    <button id="copy-button">Copy Organizations</button>
+  </div>
+
+  <script>
 document.addEventListener("DOMContentLoaded", function () {
   const activistType = localStorage.getItem("activistType") || "Uncategorized";
   const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
@@ -117,3 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("result-container").style.display = "block";
 });
 </script>
+
+</body>
+</html>
