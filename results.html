@@ -16,8 +16,8 @@
     <img id="persona-image" src="" alt="Your Activist Persona">
 
     <h3>Issue Focus</h3>
-    <p id="issue-focus-text">Loading...</p>  <!-- Text fallback -->
-    <div id="issue-focus-container"></div>  <!-- Focus images go here -->
+    <p id="issue-focus-text"></p>
+    <div id="issue-focus-container"></div>
 
     <h3>Your Commitment Level</h3>
     <p id="commitment-level"></p>
@@ -30,12 +30,13 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // ✅ Retrieve stored answers
+
+      // Retrieve stored answers
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      let issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
+      const issueFocus = JSON.parse(localStorage.getItem("issueFocus") || "[]");
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
-      // ✅ Reference result elements
+      // Reference elements
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
@@ -45,7 +46,7 @@
       const orgList = document.getElementById("org-list");
       const copyButton = document.getElementById("copy-button");
 
-      // ✅ Activist type data
+      // Activist type data
       const activistTypes = {
         "Frontline Mobilizer": {
           description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
@@ -105,7 +106,7 @@
         }
       };
 
-      // ✅ Issue focus images
+      // Issue focus images (exact keys from quiz data)
       const focusImages = {
         "Racial Justice": "images/racial_justice.png",
         "Climate Action": "images/climate_action.png",
@@ -124,45 +125,42 @@
         "Other": "images/other_focus.png"
       };
 
-      // ✅ Set Activist Type
+      // Set activist type data
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
         resultImage.src = activistTypes[activistType].image;
-        resultImage.style.display = "block";
 
-        // Populate organizations
-        orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
-          <li><a href="${org.link}" target="_blank">${org.name}</a></li>
-        `).join("");
+        // Populate recommended organizations
+        orgList.innerHTML = activistTypes[activistType].organizations.map(org =>
+          `<li><a href="${org.link}" target="_blank">${org.name}</a></li>`
+        ).join("");
       }
 
-      // ✅ Fix issue focus display
-      if (issueFocus.length > 0 && issueFocus[0] !== "Various Issues") {
+      // Correctly display issue focuses (text and images)
+      if (issueFocus.length > 0) {
         issueFocusText.textContent = issueFocus.join(", ");
 
-        issueFocusContainer.innerHTML = issueFocus
-          .slice(0, 3) // Show up to 3 images
-          .map(focus => focusImages[focus] ? `<img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">` : '')
-          .join("");
+        issueFocusContainer.innerHTML = issueFocus.slice(0, 3)
+          .map(focus => {
+            const imgSrc = focusImages[focus];
+            return imgSrc ? `<img src="${imgSrc}" class="focus-icon" alt="${focus}">` : '';
+          }).join("");
       } else {
         issueFocusText.textContent = "Various Issues";
       }
 
-      // ✅ Set Commitment Level
+      // Set commitment level
       commitmentText.textContent = commitment;
 
-      // ✅ Copy Button Functionality
-      copyButton.addEventListener("click", function () {
-        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
-          activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
+      // Copy button functionality
+      copyButton.onclick = () => {
+        navigator.clipboard.writeText(
+          `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
+          activistTypes[activistType].organizations.map(o => `${o.name} - ${o.link}`).join("\n")
+        ).then(() => alert("Copied to clipboard!"));
+      };
 
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          alert("Copied to clipboard!");
-        });
-      });
-
-      // ✅ Show Result Container
       document.getElementById("result-container").style.display = "block";
     });
   </script>
