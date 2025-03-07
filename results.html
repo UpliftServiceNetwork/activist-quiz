@@ -5,15 +5,6 @@
   <title>Quiz Results</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* Style for passion images */
-    .focus-icon {
-      width: 33%; /* Each issue image is about 1/3 the size of the main persona image */
-      max-height: 100px; /* Prevents massive images */
-      object-fit: contain;
-      margin: 5px;
-    }
-  </style>
 </head>
 <body>
 
@@ -25,7 +16,7 @@
     <img id="persona-image" src="" alt="Your Activist Persona">
 
     <h3>Issue Focus</h3>
-    <div id="issue-focus-container"></div>
+    <div id="issue-focus-container"></div>  <!-- Focus images go here -->
 
     <h3>Your Commitment Level</h3>
     <p id="commitment-level"></p>
@@ -55,7 +46,7 @@
       // Activist type data with improved descriptions
       const activistTypes = {
         "Frontline Mobilizer": {
-          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen. Your courage and passion inspire those around you to take action, proving that one person’s voice can lead a movement.",
+          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
           image: "images/frontline_firestarter.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
@@ -63,7 +54,7 @@
           ]
         },
         "Community Caregiver": {
-          description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most. You turn compassion into action, ensuring that no one is left behind.",
+          description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
           image: "images/caregiver.png",
           organizations: [
             { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
@@ -71,7 +62,7 @@
           ]
         },
         "Strategist & Organizer": {
-          description: "📊 You are the architect of change! Behind every powerful movement is a master planner—you. Your vision and leadership turn passion into progress, proving that real change isn’t just about action—it’s about strategy.",
+          description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
           image: "images/organizer.png",
           organizations: [
             { name: "Indivisible", link: "https://indivisible.org/" },
@@ -79,7 +70,7 @@
           ]
         },
         "Educator & Storyteller": {
-          description: "📢 You are the voice that opens minds and moves hearts! Through your words, art, and storytelling, you shine a light on injustice and inspire action. You have the power to change perspectives, uplift communities, and fuel movements.",
+          description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
           image: "images/storyteller.png",
           organizations: [
             { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
@@ -87,7 +78,7 @@
           ]
         },
         "Digital Defender": {
-          description: "💻 You are the protector of truth and freedom in the digital age! Whether you're fighting misinformation, exposing injustice, or using tech to organize, you make sure that voices are heard and movements stay strong.",
+          description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
           image: "images/digital_defender.png",
           organizations: [
             { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
@@ -95,7 +86,7 @@
           ]
         },
         "Political Advocate": {
-          description: "🏛️ You are the changemaker within the system! You fight for justice through policy, voting rights, and legal action, turning advocacy into real, lasting laws. You ensure that the voices of the people are heard where it matters most—in the halls of power.",
+          description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
           image: "images/political_advocate.png",
           organizations: [
             { name: "Fair Fight Action", link: "https://fairfight.com/" },
@@ -103,7 +94,7 @@
           ]
         },
         "Resource Builder": {
-          description: "💰 You are the backbone of every movement! Whether it’s fundraising, gathering supplies, or providing financial support, you make sure that activism is sustainable. Without resources, movements can’t grow—but thanks to you, they thrive.",
+          description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
           image: "images/resource_builder.png",
           organizations: [
             { name: "ActBlue", link: "https://secure.actblue.com/" },
@@ -150,3 +141,4 @@
 
 </body>
 </html>
+
