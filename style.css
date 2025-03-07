@@ -166,7 +166,15 @@ a:hover {
         padding: 10px;
     }
 
-    #persona-image {
-        max-height: 250px;
+/* Ensure images in results page are properly sized */
+#persona-image {
+    display: block;  
+    max-width: 100%;  /* Prevents images from exceeding container */
+    height: auto;  /* Maintains aspect ratio */
+    max-height: 250px;  /* Limits height to avoid oversized images */
+    margin: 10px auto;  /* Centers the image */
+    border-radius: 10px; /* Smooth edges for a clean look */
+}
+
     }
 }
