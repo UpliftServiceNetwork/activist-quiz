@@ -34,9 +34,6 @@
       <p id="issue-focus-text"></p>  
       <div id="issue-focus-container"></div>
 
-      <h3>Your Commitment Level</h3>
-      <p id="commitment-level"></p>
-
       <h3>Recommended Organizations</h3>
       <div class="button-group">
         <a href="#" id="org1" class="result-btn green">Organization 1</a>
@@ -60,7 +57,6 @@
       // Retrieve stored values
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
-      const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
       // DOM element references
       const resultTitle = document.getElementById("result-title");
@@ -68,7 +64,6 @@
       const resultImage = document.getElementById("persona-image");
       const issueFocusText = document.getElementById("issue-focus-text");
       const issueFocusContainer = document.getElementById("issue-focus-container");
-      const commitmentText = document.getElementById("commitment-level");
       const org1 = document.getElementById("org1");
       const org2 = document.getElementById("org2");
       const copyButton = document.getElementById("copy-button");
@@ -193,9 +188,6 @@
       } else {
         issueFocusText.textContent = "Various Issues";
       }
-
-      // Display commitment level
-      commitmentText.textContent = commitment;
 
       // Copy organizations functionality
       copyButton.addEventListener("click", function () {
