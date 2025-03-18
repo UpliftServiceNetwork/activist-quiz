@@ -13,9 +13,9 @@ body {
   text-align: center;
 }
 
-/* --- QUIZ FORM STYLING (Fixes Centered Answers) --- */
+/* --- QUIZ FORM STYLING --- */
 form {
-  text-align: left; /* ✅ Fixes alignment of quiz answers */
+  text-align: left;
   max-width: 500px;
   width: 100%;
   background: white;
@@ -28,13 +28,13 @@ form {
 form label {
   display: block;
   margin: 5px 0;
-  text-align: left; /* ✅ Ensure answers are left-aligned */
+  text-align: left;
 }
 
 /* --- NEXT BUTTON FIX --- */
 form button {
   display: block;
-  width: 100%; /* ✅ Makes the 'Next' button full-width */
+  width: 100%;
   padding: 12px;
   font-size: 18px;
   background-color: #007BFF;
@@ -78,7 +78,7 @@ form button:hover {
   text-align: center;
 }
 
-/* ✅ Recommended organizations are now green buttons */
+/* ✅ Recommended organizations now appear as green buttons */
 .result-btn {
   display: inline-block;
   width: 250px;
