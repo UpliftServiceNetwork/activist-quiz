@@ -19,8 +19,18 @@
     <p id="issue-focus-text"></p>  
     <div id="issue-focus-container"></div>
 
+    <h3>Your Commitment Level</h3>
+    <p id="commitment-level"></p>
+
+    <h3>Recommended Organizations</h3>
+    <ul id="org-list"></ul> <!-- ✅ FIXED: This was missing! -->
+
     <h3>Take Action</h3>
-    <ul class="result-buttons green-group" id="recommended-orgs"></ul>
+
+    <ul class="result-buttons green-group">
+        <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 1</a></li>
+        <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 2</a></li>
+    </ul>
 
     <ul class="result-buttons blue-group">
         <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 1</a></li>
@@ -34,21 +44,32 @@
 document.addEventListener("DOMContentLoaded", function () {
   const activistType = localStorage.getItem("activistType") || "Uncategorized";
   const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
+  const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
   const resultTitle = document.getElementById("result-title");
   const resultDescription = document.getElementById("result-description");
   const resultImage = document.getElementById("persona-image");
   const issueFocusText = document.getElementById("issue-focus-text");
   const issueFocusContainer = document.getElementById("issue-focus-container");
-  const recommendedOrgs = document.getElementById("recommended-orgs");
+  const commitmentText = document.getElementById("commitment-level");
+  const orgList = document.getElementById("org-list");
+  const copyButton = document.getElementById("copy-button");
 
   const activistTypes = {
     "Frontline Mobilizer": {
-      description: "🔥 You take action immediately when injustice strikes!",
+      description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
       image: "images/frontline_firestarter.png",
       organizations: [
         { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
         { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
+      ]
+    },
+    "Community Caregiver": {
+      description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
+      image: "images/caregiver.png",
+      organizations: [
+        { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
+        { name: "World Central Kitchen", link: "https://wck.org/" }
       ]
     }
   };
@@ -59,10 +80,20 @@ document.addEventListener("DOMContentLoaded", function () {
     resultImage.src = activistTypes[activistType].image;
     resultImage.style.display = "block";
 
-    recommendedOrgs.innerHTML = activistTypes[activistType].organizations.map(org => `
-      <li><a href="${org.link}" class="result-btn green">${org.name}</a></li>
-    `).join("");
+    if (orgList) {
+      orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
+        <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+      `).join("");
+    }
   }
+
+  issueFocusText.textContent = issueFocus.length > 0 ? issueFocus.join(", ") : "Various Issues";
+  commitmentText.textContent = commitment;
+
+  copyButton.addEventListener("click", function () {
+    const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}`;
+    navigator.clipboard.writeText(textToCopy).then(() => alert("Copied to clipboard!"));
+  });
 
   document.getElementById("result-container").style.display = "block";
 });
