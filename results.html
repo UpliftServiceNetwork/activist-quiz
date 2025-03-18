@@ -15,23 +15,10 @@
     <p id="result-description"></p>
     <img id="persona-image" src="" alt="Your Activist Persona">
 
-    <h3>Issue Focus</h3>
-    <p id="issue-focus-text"></p>  
-    <div id="issue-focus-container"></div>
-
-    <h3>Your Commitment Level</h3>
-    <p id="commitment-level"></p>
-
     <h3>Recommended Organizations</h3>
-    <ul id="org-list"></ul> <!-- 🔥 FIXED: Now this exists! -->
+    <ul class="result-buttons green-group" id="recommended-orgs"></ul>
 
     <h3>Take Action</h3>
-
-    <ul class="result-buttons green-group">
-        <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 1</a></li>
-        <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 2</a></li>
-    </ul>
-
     <ul class="result-buttons blue-group">
         <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 1</a></li>
         <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 2</a></li>
@@ -43,123 +30,33 @@
   <script>
 document.addEventListener("DOMContentLoaded", function () {
   const activistType = localStorage.getItem("activistType") || "Uncategorized";
-  const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
-  const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
-
-  const resultTitle = document.getElementById("result-title");
-  const resultDescription = document.getElementById("result-description");
-  const resultImage = document.getElementById("persona-image");
-  const issueFocusText = document.getElementById("issue-focus-text");
-  const issueFocusContainer = document.getElementById("issue-focus-container");
-  const commitmentText = document.getElementById("commitment-level");
-  const orgList = document.getElementById("org-list");
+  const recommendedOrgs = document.getElementById("recommended-orgs");
   const copyButton = document.getElementById("copy-button");
 
   const activistTypes = {
     "Frontline Mobilizer": {
-      description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
+      description: "🔥 You take direct action for change!",
       image: "images/frontline_firestarter.png",
       organizations: [
         { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
         { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
       ]
-    },
-    "Community Caregiver": {
-      description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
-      image: "images/caregiver.png",
-      organizations: [
-        { name: "Mutual Aid Network", link: "https://www.mutualaidhub.org/" },
-        { name: "World Central Kitchen", link: "https://wck.org/" }
-      ]
-    },
-    "Strategist & Organizer": {
-      description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
-      image: "images/organizer.png",
-      organizations: [
-        { name: "Indivisible", link: "https://indivisible.org/" },
-        { name: "MoveOn", link: "https://front.moveon.org/" }
-      ]
-    },
-    "Educator & Storyteller": {
-      description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
-      image: "images/storyteller.png",
-      organizations: [
-        { name: "The Trevor Project", link: "https://www.thetrevorproject.org/" },
-        { name: "Southern Poverty Law Center", link: "https://www.splcenter.org/" }
-      ]
-    },
-    "Digital Defender": {
-      description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
-      image: "images/digital_defender.png",
-      organizations: [
-        { name: "EFF (Electronic Frontier Foundation)", link: "https://www.eff.org/" },
-        { name: "Fight for the Future", link: "https://www.fightforthefuture.org/" }
-      ]
-    },
-    "Political Advocate": {
-      description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
-      image: "images/political_advocate.png",
-      organizations: [
-        { name: "Fair Fight Action", link: "https://fairfight.com/" },
-        { name: "ACLU", link: "https://www.aclu.org/" }
-      ]
-    },
-    "Resource Builder": {
-      description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
-      image: "images/resource_builder.png",
-      organizations: [
-        { name: "ActBlue", link: "https://secure.actblue.com/" },
-        { name: "Network for Good", link: "https://www.networkforgood.com/" }
-      ]
     }
   };
 
-  const focusImages = {
-    "Racial Justice": "images/racial_justice.png",
-    "Climate Action": "images/climate_action.png",
-    "Workers' Rights": "images/workers_rights.png",
-    "LGBTQ+ Rights": "images/lgbtq_rights.png",
-    "Healthcare Reform": "images/healthcare_reform.png",
-    "Criminal Justice": "images/criminal_justice.png",
-    "Education Rights": "images/education_rights.png",
-    "Housing Rights": "images/housing_rights.png",
-    "Immigration Rights": "images/immigration_rights.png",
-    "Reproductive Rights": "images/reproductive_rights.png",
-    "Voting Rights": "images/voting_rights.png",
-    "Veteran Support": "images/veteran_support.png",
-    "Food Security": "images/food_security.png",
-    "Public Health": "images/public_health.png",
-    "Other": "images/other_focus.png"
-  };
-
   if (activistTypes[activistType]) {
-    resultTitle.textContent = activistType;
-    resultDescription.textContent = activistTypes[activistType].description;
-    resultImage.src = activistTypes[activistType].image;
-    resultImage.style.display = "block";
-    
-    orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
-      <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+    document.getElementById("result-title").textContent = activistType;
+    document.getElementById("result-description").textContent = activistTypes[activistType].description;
+    document.getElementById("persona-image").src = activistTypes[activistType].image;
+    document.getElementById("persona-image").style.display = "block";
+
+    recommendedOrgs.innerHTML = activistTypes[activistType].organizations.map(org => `
+      <li><a href="${org.link}" class="result-btn green">${org.name}</a></li>
     `).join("");
   }
-
-  if (issueFocus.length > 0) {
-    issueFocusText.textContent = issueFocus.join(", ");
-    issueFocusContainer.innerHTML = issueFocus.slice(0,3).map(focus => `
-      <img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">
-    `).join("");
-  } else {
-    issueFocusText.textContent = "Various Issues";
-  }
-
-  commitmentText.textContent = commitment;
 
   copyButton.addEventListener("click", function () {
-    const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
-      activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      alert("Copied to clipboard!");
-    });
+    navigator.clipboard.writeText(activistType).then(() => alert("Copied!"));
   });
 
   document.getElementById("result-container").style.display = "block";
