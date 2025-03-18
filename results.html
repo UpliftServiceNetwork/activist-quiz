@@ -6,13 +6,18 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Additional styles for centering button groups */
+    /* Center the button groups and add spacing between buttons */
     .button-group {
       text-align: center;
       margin: 10px 0;
     }
     .button-group a {
-      margin: 5px;
+      margin: 5px; /* Adds a small gap between buttons */
+      display: inline-block;
+    }
+    /* Remove inner box shadow from the result container */
+    #result-container {
+      box-shadow: none;
     }
   </style>
 </head>
@@ -52,12 +57,12 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve data from localStorage
+      // Retrieve stored values
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
       const commitment = localStorage.getItem("commitment") || "Flexible Commitment";
 
-      // DOM elements
+      // DOM element references
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
@@ -128,7 +133,7 @@
         }
       };
 
-      // Define images for issue focus (with fallback)
+      // Define images for issue focus
       const focusImages = {
         "Racial Justice": "images/racial_justice.png",
         "Climate Action": "images/climate_action.png",
@@ -147,7 +152,7 @@
         "Other": "images/other_focus.png"
       };
 
-      // Update the page based on the selected activist type
+      // Update activist type info
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
@@ -180,7 +185,7 @@
       // Render issue focus
       if (issueFocus.length > 0) {
         issueFocusText.textContent = issueFocus.join(", ");
-        // Limit to 3 icons if more than 3 issues were selected
+        // Limit icons to 3
         issueFocusContainer.innerHTML = issueFocus.slice(0, 3).map(focus => {
           const src = focusImages[focus] || "images/default_focus.png";
           return `<img src="${src}" class="focus-icon" alt="${focus}" title="${focus}">`;
@@ -201,7 +206,7 @@
         });
       });
 
-      // Show the results container
+      // Show results container
       document.getElementById("result-container").style.display = "block";
     });
   </script>
