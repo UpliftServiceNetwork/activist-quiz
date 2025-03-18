@@ -15,6 +15,10 @@
     <p id="result-description"></p>
     <img id="persona-image" src="" alt="Your Activist Persona">
 
+    <h3>Issue Focus</h3>
+    <p id="issue-focus-text"></p>  
+    <div id="issue-focus-container"></div>
+
     <h3>Recommended Organizations</h3>
     <ul class="result-buttons green-group" id="recommended-orgs"></ul>
 
@@ -30,8 +34,12 @@
   <script>
 document.addEventListener("DOMContentLoaded", function () {
   const activistType = localStorage.getItem("activistType") || "Uncategorized";
+  const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
+  const resultTitle = document.getElementById("result-title");
+  const resultDescription = document.getElementById("result-description");
+  const resultImage = document.getElementById("persona-image");
+  const issueFocusContainer = document.getElementById("issue-focus-container");
   const recommendedOrgs = document.getElementById("recommended-orgs");
-  const copyButton = document.getElementById("copy-button");
 
   const activistTypes = {
     "Frontline Mobilizer": {
@@ -44,20 +52,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+  const focusImages = {
+    "Racial Justice": "images/racial_justice.png",
+    "Climate Action": "images/climate_action.png",
+    "Workers' Rights": "images/workers_rights.png",
+    "LGBTQ+ Rights": "images/lgbtq_rights.png"
+  };
+
   if (activistTypes[activistType]) {
-    document.getElementById("result-title").textContent = activistType;
-    document.getElementById("result-description").textContent = activistTypes[activistType].description;
-    document.getElementById("persona-image").src = activistTypes[activistType].image;
-    document.getElementById("persona-image").style.display = "block";
+    resultTitle.textContent = activistType;
+    resultDescription.textContent = activistTypes[activistType].description;
+    resultImage.src = activistTypes[activistType].image;
+    resultImage.style.display = "block";
 
     recommendedOrgs.innerHTML = activistTypes[activistType].organizations.map(org => `
       <li><a href="${org.link}" class="result-btn green">${org.name}</a></li>
     `).join("");
   }
 
-  copyButton.addEventListener("click", function () {
-    navigator.clipboard.writeText(activistType).then(() => alert("Copied!"));
-  });
+  if (issueFocus.length > 0) {
+    issueFocusContainer.innerHTML = issueFocus.slice(0,3).map(focus => `
+      <img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">
+    `).join("");
+  }
 
   document.getElementById("result-container").style.display = "block";
 });
