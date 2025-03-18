@@ -1,6 +1,3 @@
-/* ==============================
-   General Page Styling
-   ============================== */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -12,62 +9,156 @@ body {
   padding: 20px;
   margin: 0;
   font-size: 18px;
+}
+
+#result-container {
+  max-width: 400px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
 }
 
-/* ==============================
-   Main Content Box
-   ============================== */
-.container {
-  text-align: center;
-  max-width: 600px;
-  width: 100%;
-  background: white;
-  padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+#persona-image {
+  display: block !important;
+  margin: 10px auto !important;
+  max-width: 100%;
+  height: auto;
   border-radius: 10px;
 }
 
-/* ==============================
-   Lead-In Image (First Page)
-   ============================== */
-.lead-image {
-  width: 100%;           
-  max-width: 400px;     
-  height: auto;          
-  border-radius: 10px;   
-  margin-bottom: 20px;  
-  display: block;        
+#issue-focus-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
 }
 
-/* ==============================
-   Quiz Form (All Pages)
-   ============================== */
-form {
-  max-width: 600px;
-  width: 100%;
-  background: white;
-  padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+#issue-focus-container img.focus-icon {
+  width: 80px !important;
+  height: auto !important;
+  max-height: 80px !important;
+  border-radius: 8px !important;
 }
 
-/* Space between questions and button */
-form p {
-  margin-bottom: 20px;
+h1, h2, h3 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.2;
 }
 
-/* Space between answer choices */
-form label {
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 22px;
+  margin-bottom: 12px; /* space before buttons and lists */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin: 8px 0;
+}
+
+ul li a {
   display: block;
-  margin: 12px 0;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-/* ==============================
-   Buttons
-   ============================== */
-button {
+ul li a:hover {
+  background-color: #218838;
+}
+
+button#copy-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
+
+button#copy-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments for mobile */
+@media screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+    font-size: 20px !important; /* Larger fonts for better mobile readability */
+  }
+
+  #result-container {
+    width: 95% !important;
+    padding: 15px !important;
+  }
+
+  h1 {
+    font-size: 30px !important;
+  }
+
+  h2 {
+    font-size: 26px !important;
+  }
+
+  h3 {
+    font-size: 24px !important;
+  }
+
+  #result-description,
+  #commitment-level,
+  #issue-focus-text,
+  #org-list li,
+  button,
+  #copy-button {
+    font-size: 19px !important;
+  }
+
+  #persona-image {
+    max-width: 90% !important;
+  }
+
+  .focus-icon {
+    width: 60px !important;
+    height: auto !important;
+  }
+
+  button#copy-button {
+    padding: 14px !important;
+  }
+  .start-quiz-btn {
   background-color: #007BFF;
   color: white;
   font-size: 18px;
   padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.start-quiz-btn:hover {
+  background-color: #0056b3;
+}
+}
