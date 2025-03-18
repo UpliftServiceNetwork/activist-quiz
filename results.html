@@ -34,17 +34,25 @@
       <p id="issue-focus-text"></p>  
       <div id="issue-focus-container"></div>
 
-      <h3>Recommended Organizations</h3>
+      <!-- New Title for Quick Actions -->
+      <h3>Quick Activist Actions</h3>
       <div class="button-group">
-        <a href="#" id="org1" class="result-btn green">Organization 1</a>
-        <a href="#" id="org2" class="result-btn green">Organization 2</a>
+        <a href="#" id="org1" class="result-btn green">Action 1</a>
+        <a href="#" id="org2" class="result-btn green">Action 2</a>
       </div>
 
-      <h3>Take Action</h3>
+      <!-- New Title for Deeper Engagement -->
+      <h3>Deeper Engagement</h3>
       <div class="button-group">
-        <a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 1</a>
-        <a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 2</a>
+        <a href="https://your-blue-action-link.com" class="result-btn blue">Get Matched</a>
+        <a href="https://your-blue-action-link.com" class="result-btn blue">Learn More</a>
       </div>
+
+      <!-- Optional: Uncomment below for a newsletter link if needed -->
+      <!-- <h3>Stay Informed</h3>
+      <div class="button-group">
+        <a href="https://your-newsletter-link.com" class="result-btn">Subscribe to Our Newsletter</a>
+      </div> -->
 
       <button id="copy-button">Copy Organizations</button>
     </div>
@@ -54,7 +62,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored values (removed commitment)
+      // Retrieve stored values (commitment removed)
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
 
@@ -189,7 +197,7 @@
         issueFocusText.textContent = "Various Issues";
       }
 
-      // Update copy functionality (commitment removed)
+      // Copy organizations functionality (commitment removed)
       copyButton.addEventListener("click", function () {
         const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nOrganizations:\n` +
           activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
