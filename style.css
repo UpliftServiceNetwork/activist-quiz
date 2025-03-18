@@ -16,7 +16,7 @@ body {
 }
 
 /* ==============================
-   Main Content Box
+   Main Container for Content
    ============================== */
 .container {
   text-align: center;
@@ -54,13 +54,160 @@ form {
 
 /* Space between questions and button */
 form p {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 /* Space between answer choices */
 form label {
   display: block;
-  margin: 12px 0;
+  margin: 8px 0;
+}
+
+/* ==============================
+   Buttons
+   ============================== */
+button {
+  background-color: #007BFF;
+  color: white;
+  font-size: 18px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* ==============================
+   Quiz Result Styling
+   ============================== */
+#result-container {
+  max-width: 400px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+#persona-image {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin: 8px 0;
+}
+
+ul li a {
+  display: block;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+ul li a:hover {
+  background-color: #218838;
+}
+
+/* ==============================
+   Responsive Design for Mobile
+   ============================== */
+@media screen and (max-width: 600px) {
+  .container, form {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .lead-image {
+    max-width: 90%;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+/* ==============================
+   General Page Styling
+   ============================== */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* ==============================
+   Main Container for Content
+   ============================== */
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* ==============================
+   Lead-In Image (First Page)
+   ============================== */
+.lead-image {
+  width: 100%;           
+  max-width: 400px;     
+  height: auto;          
+  border-radius: 10px;   
+  margin-bottom: 20px;  
+  display: block;        
+}
+
+/* ==============================
+   Quiz Form (All Pages)
+   ============================== */
+form {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Space between questions and button */
+form p {
+  margin-bottom: 15px;
+}
+
+/* Space between answer choices */
+form label {
+  display: block;
+  margin: 8px 0;
 }
 
 /* ==============================
