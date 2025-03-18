@@ -1,3 +1,4 @@
+/* General Page Styling */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -9,42 +10,60 @@ body {
   padding: 20px;
   margin: 0;
   font-size: 18px;
-}
-
-#result-container {
-  max-width: 400px;
-  width: 100%;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
 }
 
-#persona-image {
-  display: block !important;
-  margin: 10px auto !important;
-  max-width: 100%;
+/* FIX FOR INDEX PAGE - IMAGE SIZE */
+.lead-image {
+  width: 100%;
+  max-width: 500px; /* Adjusted for desktop */
   height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Center container for index page */
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
-#issue-focus-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 15px 0;
+/* Start Quiz Button */
+.start-quiz-btn {
+  background-color: #007BFF;
+  color: white;
+  font-size: 20px;
+  padding: 15px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Ensures space below */
 }
 
-#issue-focus-container img.focus-icon {
-  width: 80px !important;
-  height: auto !important;
-  max-height: 80px !important;
-  border-radius: 8px !important;
+.start-quiz-btn:hover {
+  background-color: #0056b3;
 }
 
+/* FIX QUIZ QUESTIONS & ANSWERS SPACING */
+form {
+  text-align: left;
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Align Questions */
 h1, h2, h3 {
+  text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;
   line-height: 1.2;
@@ -60,105 +79,110 @@ h2 {
 
 h3 {
   font-size: 22px;
-  margin-bottom: 12px; /* space before buttons and lists */
+  margin-bottom: 12px; /* space before buttons */
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  margin: 8px 0;
-}
-
-ul li a {
+/* FIX ANSWER CHOICES */
+label {
   display: block;
-  padding: 10px;
-  background-color: #28a745;
+  margin: 5px 0; /* Adjust spacing */
+  font-size: 18px;
+  text-align: left; /* Left align answers */
+}
+
+/* Ensure Answers Are Aligned Below Question */
+input[type="radio"] {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Space before Next button */
+button[type="submit"] {
+  margin-top: 20px;
+  background-color: #007bff;
   color: white;
+  border: none;
+  padding: 12px;
   border-radius: 5px;
-  text-decoration: none;
+  cursor: pointer;
+  font-size: 18px;
   transition: background-color 0.3s ease;
+  width: auto;
+  display: block;
+  text-align: center;
 }
 
-ul li a:hover {
-  background-color: #218838;
+button[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
+/* RESULTS PAGE FIX */
+#result-container {
+  max-width: 500px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* FIX IMAGE SIZE IN RESULTS (LOGOS & AVATARS) */
+#persona-image {
+  display: block;
+  margin: 10px auto;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* FIX ORGANIZATION LOGOS */
+#issue-focus-container img.focus-icon {
+  width: 80px !important;
+  height: auto !important;
+  max-height: 80px !important;
+  border-radius: 8px !important;
+  margin: 5px;
+}
+
+/* COPY BUTTON FIX */
 button#copy-button {
   background-color: #007bff;
   color: white;
   border: none;
   padding: 12px;
-  margin-top: 15px;
+  margin-top: 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   font-size: 18px;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: auto;
+  margin: 0 auto;
 }
 
 button#copy-button:hover {
   background-color: #0056b3;
 }
 
-/* Responsive adjustments for mobile */
+/* RESPONSIVE FIXES */
 @media screen and (max-width: 600px) {
-  body {
-    padding: 10px;
-    font-size: 20px !important; /* Larger fonts for better mobile readability */
+  .container {
+    width: 90%;
+    padding: 15px;
   }
 
-  #result-container {
-    width: 95% !important;
-    padding: 15px !important;
+  .lead-image {
+    max-width: 90%;
   }
 
-  h1 {
-    font-size: 30px !important;
+  form {
+    width: 90%;
   }
 
-  h2 {
-    font-size: 26px !important;
+  button {
+    font-size: 18px;
+    padding: 12px 24px;
   }
-
-  h3 {
-    font-size: 24px !important;
-  }
-
-  #result-description,
-  #commitment-level,
-  #issue-focus-text,
-  #org-list li,
-  button,
-  #copy-button {
-    font-size: 19px !important;
-  }
-
-  #persona-image {
-    max-width: 90% !important;
-  }
-
-  .focus-icon {
-    width: 60px !important;
-    height: auto !important;
-  }
-
-  button#copy-button {
-    padding: 14px !important;
-  }
-  .start-quiz-btn {
-  background-color: #007BFF;
-  color: white;
-  font-size: 18px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.start-quiz-btn:hover {
-  background-color: #0056b3;
-}
 }
