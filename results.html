@@ -6,16 +6,16 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Center the button groups and add spacing between buttons */
+    /* Additional rules that can be moved to style.css */
     .button-group {
       text-align: center;
       margin: 10px 0;
     }
     .button-group a {
-      margin: 5px; /* Adds a small gap between buttons */
+      margin: 5px; /* Small gap between buttons */
       display: inline-block;
     }
-    /* Remove inner box shadow from the result container */
+    /* Remove inner box shadow from the results container */
     #result-container {
       box-shadow: none;
     }
@@ -54,7 +54,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored values
+      // Retrieve stored values (removed commitment)
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
 
@@ -189,9 +189,9 @@
         issueFocusText.textContent = "Various Issues";
       }
 
-      // Copy organizations functionality
+      // Update copy functionality (commitment removed)
       copyButton.addEventListener("click", function () {
-        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nCommitment: ${commitment}\nOrganizations:\n` +
+        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nOrganizations:\n` +
           activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
         navigator.clipboard.writeText(textToCopy).then(() => {
           alert("Copied to clipboard!");
