@@ -1,4 +1,4 @@
-/* General Page Styling */
+/* --- GENERAL PAGE STYLES --- */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -13,16 +13,7 @@ body {
   text-align: center;
 }
 
-/* FIX FOR INDEX PAGE - IMAGE SIZE */
-.lead-image {
-  width: 100%;
-  max-width: 500px; /* Adjusted for desktop */
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-/* Center container for index page */
+/* --- CONTAINER STYLES --- */
 .container {
   text-align: center;
   max-width: 600px;
@@ -31,9 +22,19 @@ body {
   padding: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  position: relative;
 }
 
-/* Start Quiz Button */
+/* --- INTRO PAGE IMAGE (LEAD-IN) --- */
+.lead-image {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* --- START QUIZ BUTTON --- */
 .start-quiz-btn {
   background-color: #007BFF;
   color: white;
@@ -43,80 +44,55 @@ body {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  margin-top: 20px; /* Ensures space below */
+  display: inline-block;
+  margin-top: 20px;
 }
 
 .start-quiz-btn:hover {
   background-color: #0056b3;
 }
 
-/* FIX QUIZ QUESTIONS & ANSWERS SPACING */
+/* --- QUIZ QUESTIONS & ANSWERS --- */
 form {
   text-align: left;
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
   background: white;
   padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Align Questions */
-h1, h2, h3 {
-  text-align: center;
-  margin-top: 15px;
+/* Fixes spacing between questions and answers */
+form p {
   margin-bottom: 15px;
-  line-height: 1.2;
 }
 
-h1 {
-  font-size: 32px;
-}
-
-h2 {
-  font-size: 26px;
-}
-
-h3 {
-  font-size: 22px;
-  margin-bottom: 12px; /* space before buttons */
-}
-
-/* FIX ANSWER CHOICES */
-label {
+/* Ensures answers are aligned under the question */
+form label {
   display: block;
-  margin: 5px 0; /* Adjust spacing */
-  font-size: 18px;
-  text-align: left; /* Left align answers */
+  margin: 5px 0;
 }
 
-/* Ensure Answers Are Aligned Below Question */
-input[type="radio"] {
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-/* Space before Next button */
-button[type="submit"] {
+/* Fixes spacing between the last answer and the submit button */
+form button {
   margin-top: 20px;
-  background-color: #007bff;
+  display: block;
+  padding: 12px;
+  font-size: 18px;
+  background-color: #007BFF;
   color: white;
   border: none;
-  padding: 12px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 18px;
   transition: background-color 0.3s ease;
-  width: auto;
-  display: block;
-  text-align: center;
 }
 
-button[type="submit"]:hover {
+form button:hover {
   background-color: #0056b3;
 }
 
-/* RESULTS PAGE FIX */
+/* --- RESULTS PAGE FIXES --- */
 #result-container {
   max-width: 500px;
   width: 100%;
@@ -128,7 +104,7 @@ button[type="submit"]:hover {
   margin-top: 20px;
 }
 
-/* FIX IMAGE SIZE IN RESULTS (LOGOS & AVATARS) */
+/* Fix Image Size in Results (Logos & Avatars) */
 #persona-image {
   display: block;
   margin: 10px auto;
@@ -137,7 +113,7 @@ button[type="submit"]:hover {
   border-radius: 10px;
 }
 
-/* FIX ORGANIZATION LOGOS */
+/* Fix Organization Logos */
 #issue-focus-container img.focus-icon {
   width: 80px !important;
   height: auto !important;
@@ -146,7 +122,24 @@ button[type="submit"]:hover {
   margin: 5px;
 }
 
-/* COPY BUTTON FIX */
+/* Fix for Result Page Buttons */
+ul li a {
+  display: inline-block;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+  margin: 10px 5px;
+}
+
+ul li a:hover {
+  background-color: #218838;
+}
+
+/* Copy Button Fix */
 button#copy-button {
   background-color: #007bff;
   color: white;
@@ -166,8 +159,13 @@ button#copy-button:hover {
   background-color: #0056b3;
 }
 
-/* RESPONSIVE FIXES */
+/* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
 @media screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+    font-size: 20px !important; /* Larger fonts for better mobile readability */
+  }
+
   .container {
     width: 90%;
     padding: 15px;
@@ -177,12 +175,33 @@ button#copy-button:hover {
     max-width: 90%;
   }
 
-  form {
-    width: 90%;
+  #result-container {
+    width: 95% !important;
+    padding: 15px !important;
   }
 
-  button {
-    font-size: 18px;
-    padding: 12px 24px;
+  h1 {
+    font-size: 30px !important;
+  }
+
+  h2 {
+    font-size: 26px !important;
+  }
+
+  h3 {
+    font-size: 24px !important;
+  }
+
+  #persona-image {
+    max-width: 90% !important;
+  }
+
+  .focus-icon {
+    width: 60px !important;
+    height: auto !important;
+  }
+
+  button#copy-button {
+    padding: 14px !important;
   }
 }
