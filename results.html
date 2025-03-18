@@ -24,7 +24,7 @@
 
     <h3>Take Action</h3>
 
-    <!-- ✅ Green buttons dynamically show recommended organizations -->
+    <!-- ✅ Recommended organizations as green buttons -->
     <ul class="result-buttons green-group" id="recommended-orgs"></ul>
 
     <!-- ✅ Blue buttons remain static action links -->
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     resultImage.src = activistTypes[activistType].image;
     resultImage.style.display = "block";
 
-    // ✅ Populate recommended organizations as green buttons
+    // ✅ Recommended organizations as green buttons
     recommendedOrgs.innerHTML = activistTypes[activistType].organizations.map(org => `
       <li><a href="${org.link}" target="_blank" class="result-btn green">${org.name}</a></li>
     `).join("");
