@@ -32,12 +32,12 @@ body {
    Lead-In Image (First Page)
    ============================== */
 .lead-image {
-  width: 100%;          
-  max-width: 450px;     
-  height: auto;         
-  border-radius: 10px;  
+  width: 100%;           
+  max-width: 400px;     
+  height: auto;          
+  border-radius: 10px;   
   margin-bottom: 20px;  
-  display: block;       
+  display: block;        
 }
 
 /* ==============================
@@ -50,10 +50,9 @@ form {
   padding: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin-bottom: 30px; /* Space after form */
 }
 
-/* Space between questions */
+/* Space between questions and button */
 form p {
   margin-bottom: 20px;
 }
@@ -62,11 +61,6 @@ form p {
 form label {
   display: block;
   margin: 12px 0;
-}
-
-/* Space before the button */
-form button {
-  margin-top: 20px;
 }
 
 /* ==============================
@@ -81,7 +75,7 @@ button {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  margin-top: 30px; /* Extra space before buttons */
+  margin-top: 20px;
 }
 
 button:hover {
