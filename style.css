@@ -161,4 +161,56 @@ button#copy-button:hover {
 .start-quiz-btn:hover {
   background-color: #0056b3;
 }
+/* Center the container */
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
+
+/* Make sure the lead-in image displays correctly */
+.lead-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Style the Start Quiz button */
+.start-quiz-btn {
+  background-color: #007BFF;
+  color: white;
+  font-size: 20px;
+  padding: 15px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.start-quiz-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive design for mobile */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .lead-image {
+    max-width: 90%;
+  }
+
+  .start-quiz-btn {
+    font-size: 18px;
+    padding: 12px 24px;
+  }
+}
+
