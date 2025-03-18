@@ -198,7 +198,7 @@ button#copy-button:hover {
   .container {
     width: 98%;  /* Change this value as needed */
     padding: 15px;
-    text-align: left;   }
+      }
   /* other responsive rules... */
 }
 
