@@ -1,5 +1,5 @@
 /* ==============================
-   General Page Styles
+   General Page Styling
    ============================== */
 body {
   font-family: Arial, sans-serif;
@@ -16,94 +16,57 @@ body {
 }
 
 /* ==============================
-   Container Styling
+   Main Container for Content
    ============================== */
 .container {
   text-align: center;
   max-width: 600px;
-  width: 90%;
+  width: 100%;
   background: white;
   padding: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  position: relative;
 }
 
 /* ==============================
-   Headings & Text
-   ============================== */
-h1 {
-  font-size: 32px;
-  margin-bottom: 15px;
-}
-
-h2 {
-  font-size: 26px;
-  margin-bottom: 15px;
-}
-
-h3 {
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-
-/* ==============================
-   First Page Image Fix
+   Lead-In Image (First Page)
    ============================== */
 .lead-image {
-  width: 90%;  /* Limits width but keeps responsiveness */
-  max-width: 350px; /* Prevents it from getting too big */
-  height: auto;
-  border-radius: 10px;
-  margin: 20px auto; /* Keeps spacing consistent */
-  display: block;
+  width: 100%;           /* Fully responsive */
+  max-width: 400px;      /* Prevents it from getting too large */
+  height: auto;          /* Maintains aspect ratio */
+  border-radius: 10px;   /* Soft rounded corners */
+  margin: 20px auto;     /* Space between image and text */
+  display: block;        /* Ensures it centers properly */
 }
 
 /* ==============================
-   Start Quiz Button Styling
-   ============================== */
-.start-quiz-btn {
-  background-color: #007BFF;
-  color: white;
-  font-size: 20px;
-  padding: 15px 30px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  display: inline-block;
-  margin-top: 20px; /* Ensures space after the image */
-}
-
-.start-quiz-btn:hover {
-  background-color: #0056b3;
-}
-
-/* ==============================
-   Form Styling (Quiz Pages)
+   Quiz Styling (All Pages)
    ============================== */
 form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
   max-width: 600px;
-}
-
-/* Adds spacing between questions */
-form label {
-  margin-bottom: 15px; /* More spacing between answer choices */
-  text-align: left;
   width: 100%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-/* Ensures space between last question and button */
-form label:last-of-type {
-  margin-bottom: 40px; /* More space before the button */
+/* Space between questions and button */
+form p {
+  margin-bottom: 15px; /* Space after question */
 }
 
-/* Style for submit buttons */
-form button {
+/* Space between answer choices */
+form label {
+  display: block;
+  margin: 8px 0;
+}
+
+/* ==============================
+   Buttons
+   ============================== */
+button {
   background-color: #007BFF;
   color: white;
   font-size: 18px;
@@ -112,44 +75,29 @@ form button {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  margin-top: 20px; /* Ensures space between last question and button */
+  display: inline-block;
 }
 
-form button:hover {
+button:hover {
   background-color: #0056b3;
 }
 
 /* ==============================
-   Responsive Adjustments (Mobile)
+   Responsive Design for Mobile
    ============================== */
 @media screen and (max-width: 600px) {
-  .container {
+  .container, form {
     width: 90%;
     padding: 15px;
   }
 
   .lead-image {
-    max-width: 300px; /* Shrinks image further on small screens */
+    max-width: 90%;
   }
 
-  h1 {
-    font-size: 28px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-
-  .start-quiz-btn {
-    font-size: 18px;
-    padding: 12px 24px;
-  }
-
-  form label:last-of-type {
-    margin-bottom: 50px; /* Even more spacing for mobile */
-  }
-
-  form button {
-    font-size: 18px;
-    padding: 12px 24px;
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
   }
 }
