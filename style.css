@@ -1,51 +1,140 @@
-/* --- CONTAINER STYLES --- */
-.container {
+/* --- GENERAL PAGE STYLES --- */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+  font-size: 18px;
   text-align: center;
-  max-width: 600px;
+}
+
+/* --- QUIZ PAGE 2: FIXED ANSWER SPACING --- */
+form {
+  text-align: left;
+  max-width: 500px;
   width: 100%;
   background: white;
   padding: 20px;
+  border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: auto;
 }
 
-/* --- LEAD IMAGE (fix size issue) --- */
-.lead-image {
-  width: 100%;
-  max-width: 450px;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 20px;
+form label {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 3px 0; /* 🔥 Reduced spacing between answers */
+  text-align: left;
 }
 
-/* --- SUBTITLE STYLING --- */
-.subtitle {
+form button {
+  display: block;
+  width: 100%;
+  padding: 12px;
   font-size: 18px;
-  color: #555;
-  margin-bottom: 10px;
-}
-
-/* --- START QUIZ BUTTON (Matches other buttons) --- */
-.start-quiz-btn {
   background-color: #007BFF;
   color: white;
-  font-size: 20px;
-  padding: 15px 30px;
   border: none;
-  cursor: pointer;
   border-radius: 5px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 20px;
-  display: block;
-  width: 250px; /* Ensures consistent button size */
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.start-quiz-btn:hover {
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* --- RESULTS PAGE STYLES --- */
+#result-container {
+  max-width: 500px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-top: 20px;
+}
+
+#persona-image {
+  display: block;
+  margin: 10px auto;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* 🔥 Issue Focus Icons (NOW DISPLAYING CORRECTLY) */
+#issue-focus-container img.focus-icon {
+  width: 80px;
+  height: auto;
+  max-height: 80px;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+/* --- BUTTON GROUPING --- */
+.result-buttons {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.result-btn {
+  display: inline-block;
+  width: 250px;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+/* ✅ Green Buttons (Recommended Orgs) */
+.result-btn.green {
+  background-color: #28a745;
+  color: white;
+}
+
+.result-btn.green:hover {
+  background-color: #218838;
+}
+
+/* ✅ Blue Buttons (Static Actions) */
+.result-btn.blue {
+  background-color: #007BFF;
+  color: white;
+}
+
+.result-btn.blue:hover {
+  background-color: #0056b3;
+}
+
+/* --- COPY BUTTON --- */
+button#copy-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: auto;
+  margin: 0 auto;
+}
+
+button#copy-button:hover {
   background-color: #0056b3;
 }
