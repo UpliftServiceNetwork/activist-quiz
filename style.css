@@ -131,19 +131,22 @@ form button:hover {
 .result-buttons {
   list-style: none;
   padding: 0;
-  margin: 10px 0; /* Adjusted spacing */
+  margin: 10px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px; /* Consistent spacing between buttons */
+  gap: 10px; /* Controls spacing between buttons */
 }
 
-/* --- BUTTON STYLES --- */
-.result-btn {
-  display: block;
+.result-buttons li {
   width: 100%;
-  max-width: 250px; /* Keeps buttons consistent */
-  padding: 12px 24px;
+  text-align: center;
+}
+
+.result-btn {
+  display: inline-block;
+  width: 250px; /* Ensures all buttons are the same width */
+  padding: 12px;
   font-size: 18px;
   border-radius: 5px;
   text-decoration: none;
@@ -151,7 +154,7 @@ form button:hover {
   transition: background-color 0.3s ease;
 }
 
-/* Green buttons */
+/* Green Buttons */
 .result-btn.green {
   background-color: #28a745;
   color: white;
@@ -161,7 +164,7 @@ form button:hover {
   background-color: #218838;
 }
 
-/* Blue buttons */
+/* Blue Buttons */
 .result-btn.blue {
   background-color: #007BFF;
   color: white;
