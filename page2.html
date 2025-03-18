@@ -39,9 +39,8 @@
         e.preventDefault();
         const selectedFocuses = Array.from(document.querySelectorAll('input[name="activistFocus"]:checked'))
           .map(cb => cb.value);
-        // Save array of selected focuses to localStorage
         localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
-        // Move to the results page (page3 renamed to results.html)
+        // Directly move to the results page
         window.location.href = "results.html";
       });
     });
