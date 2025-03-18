@@ -48,14 +48,14 @@ h3 {
 }
 
 /* ==============================
-   First Page Image Adjustments
+   First Page Image Fix
    ============================== */
 .lead-image {
-  width: 100%;
-  max-width: 400px;  /* Reduced size */
+  width: 90%;  /* Limits width but keeps responsiveness */
+  max-width: 350px; /* Prevents it from getting too big */
   height: auto;
   border-radius: 10px;
-  margin: 0 auto 20px auto; /* Keeps spacing under image */
+  margin: 20px auto; /* Keeps spacing consistent */
   display: block;
 }
 
