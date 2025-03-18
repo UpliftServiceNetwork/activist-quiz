@@ -340,22 +340,24 @@ form button:hover {
   margin: 5px;
 }
 
-/* Fix for Result Page Buttons */
-ul li a {
-  display: inline-block;
-  padding: 12px;
-  background-color: #28a745;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  font-size: 18px;
-  margin: 10px 5px;
+/* Remove bullets from results page buttons */
+.result-buttons {
+  list-style: none; /* Removes default bullet points */
+  padding: 0; /* Removes padding */
+  margin: 20px 0; /* Ensures spacing is consistent */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
-ul li a:hover {
-  background-color: #218838;
+/* Remove default styling from buttons inside list */
+.result-buttons li {
+  list-style: none; /* Ensures no bullets */
+  padding: 0;
+  margin: 0;
 }
+
 
 /* Copy Button Fix */
 button#copy-button {
