@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (issueFocus.length > 0) {
-    issueFocusContainer.innerHTML = issueFocus.slice(0,3).map(focus => `
+    issueFocusContainer.innerHTML = issueFocus.map(focus => `
       <img src="${focusImages[focus]}" class="focus-icon" alt="${focus}">
     `).join("");
   }
