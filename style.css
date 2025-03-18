@@ -138,3 +138,45 @@ button#copy-button {
 button#copy-button:hover {
   background-color: #0056b3;
 }
+/* --- Index Page Styling for Bold Text --- */
+.index-container h1 {
+  font-size: 42px;
+  font-weight: 900; /* Extra bold */
+  color: #222; /* Darker text */
+  text-align: center;
+  line-height: 1.2;
+}
+
+.index-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+}
+
+.index-container p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+  text-align: center;
+}
+
+/* Make the 'Start Quiz' button bold & consistent */
+.index-container .start-quiz-btn {
+  font-size: 22px;
+  font-weight: 700;
+  background-color: #007BFF;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.index-container .start-quiz-btn:hover {
+  background-color: #0056b3;
+}
+
+
