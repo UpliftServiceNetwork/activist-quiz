@@ -16,7 +16,7 @@ body {
 }
 
 /* ==============================
-   Main Container
+   Main Content Box
    ============================== */
 .container {
   text-align: center;
@@ -29,19 +29,19 @@ body {
 }
 
 /* ==============================
-   First Page Image
+   Lead-In Image (First Page)
    ============================== */
 .lead-image {
-  width: 100%;
-  max-width: 450px;
-  height: auto;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  display: block;
+  width: 100%;          
+  max-width: 450px;     
+  height: auto;         
+  border-radius: 10px;  
+  margin-bottom: 20px;  
+  display: block;       
 }
 
 /* ==============================
-   Quiz Form Styling
+   Quiz Form (All Pages)
    ============================== */
 form {
   max-width: 600px;
@@ -50,7 +50,7 @@ form {
   padding: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 30px; /* Space after form */
 }
 
 /* Space between questions */
@@ -81,7 +81,7 @@ button {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  margin-top: 30px;
+  margin-top: 30px; /* Extra space before buttons */
 }
 
 button:hover {
@@ -89,7 +89,52 @@ button:hover {
 }
 
 /* ==============================
-   Responsive Fixes
+   Quiz Result Styling
+   ============================== */
+#result-container {
+  max-width: 400px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+#persona-image {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  margin: 8px 0;
+}
+
+ul li a {
+  display: block;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+ul li a:hover {
+  background-color: #218838;
+}
+
+/* ==============================
+   Responsive Design for Mobile
    ============================== */
 @media screen and (max-width: 600px) {
   .container, form {
