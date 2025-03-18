@@ -195,8 +195,13 @@ button#copy-button:hover {
 
 /* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
 @media screen and (max-width: 600px) {
-  body {
-    padding: 10px;
+  .container {
+    width: 98%;  /* Change this value as needed */
+    padding: 15px;
+  }
+  /* other responsive rules... */
+}
+
     font-size: 20px;
   }
 
