@@ -7,96 +7,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <div class="container">
-    <h1>Your Activist Type</h1>
+<div class="container">
+  <h1>Your Activist Type</h1>
+  <div id="result-container" style="display:none;">
+    <h2 id="result-title"></h2>
+    <p id="result-description"></p>
+    <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
 
-    <div id="result-container" style="display:none;">
-      <h2 id="result-title"></h2>
-      <p id="result-description"></p>
-      <img id="persona-image" src="" alt="Your Activist Persona">
+    <h3>Issue Focus</h3>
+    <div id="issue-focus-container"></div>
 
-      <h3>Issue Focus</h3>
-      <p id="issue-focus-text"></p>
-      <div id="issue-focus-container"></div>
-
-      <h3>Recommended Organizations</h3>
-      <ul class="result-buttons green-group" id="recommended-orgs"></ul>
-
-      <h3>Take Action</h3>
-      <ul class="result-buttons blue-group">
-        <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 1</a></li>
-        <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 2</a></li>
-      </ul>
-
-      <button id="copy-button">Copy Organizations</button>
+    <h3>Recommended Organizations</h3>
+    <div class="button-group">
+      <a href="#" class="result-btn green" id="org1">Organization 1</a>
+      <a href="#" class="result-btn green" id="org2">Organization 2</a>
     </div>
 
-    <p class="subtitle">Discover your unique activist style!</p>
+    <h3>Take Action</h3>
+    <div class="button-group">
+      <a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 1</a>
+      <a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 2</a>
+    </div>
+
+    <button id="copy-button">Copy Organizations</button>
   </div>
+  <p class="subtitle">Discover your unique activist style!</p>
+</div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
-      const resultTitle = document.getElementById("result-title");
-      const resultDescription = document.getElementById("result-description");
-      const resultImage = document.getElementById("persona-image");
-      const issueFocusContainer = document.getElementById("issue-focus-container");
-      const recommendedOrgs = document.getElementById("recommended-orgs");
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Retrieve quiz data from localStorage
+  const activistType = localStorage.getItem("activistType") || "Uncategorized";
+  const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
 
-      // Define activist types and corresponding info
-      const activistTypes = {
-        "Frontline Mobilizer": {
-          description: "🔥 You take direct action for change!",
-          image: "images/frontline_firestarter.png",
-          organizations: [
-            { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
-            { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
-          ]
-        },
-        "Community Caregiver": {
-          description: "🤝 You care for others by providing essential support and resources.",
-          image: "images/community_caregiver.png",
-          organizations: [
-            { name: "Mutual Aid Network", link: "https://mutualaiddemos.org/" }
-          ]
-        },
-        // Add additional activist types as needed...
-      };
+  const resultTitle = document.getElementById("result-title");
+  const resultDescription = document.getElementById("result-description");
+  const resultImage = document.getElementById("persona-image");
+  const issueFocusContainer = document.getElementById("issue-focus-container");
+  const org1 = document.getElementById("org1");
+  const org2 = document.getElementById("org2");
 
-      // Define images for issue focus
-      const focusImages = {
-        "Racial Justice": "images/racial_justice.png",
-        "Climate Action": "images/climate_action.png",
-        "Workers' Rights": "images/workers_rights.png",
-        "LGBTQ+ Rights": "images/lgbtq_rights.png",
-        // Add other focus images here if available...
-      };
+  // Define activist types with details
+  const activistTypes = {
+    "Frontline Mobilizer": {
+      description: "🔥 You take direct action for change!",
+      image: "images/frontline_firestarter.png",
+      organizations: [
+        { name: "Black Lives Matter", link: "https://blacklivesmatter.com/" },
+        { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/" }
+      ]
+    },
+    "Community Caregiver": {
+      description: "🤝 You care for others by providing essential support and resources.",
+      image: "images/community_caregiver.png",
+      organizations: [
+        { name: "Mutual Aid Network", link: "https://mutualaiddemos.org/" },
+        { name: "Community Support", link: "https://communitysupport.org/" }
+      ]
+    }
+    // Add additional activist types as needed
+  };
 
-      if (activistTypes[activistType]) {
-        resultTitle.textContent = activistType;
-        resultDescription.textContent = activistTypes[activistType].description;
-        resultImage.src = activistTypes[activistType].image;
-        resultImage.style.display = "block";
+  // Define images for each issue focus with a fallback
+  const focusImages = {
+    "Racial Justice": "images/racial_justice.png",
+    "Climate Action": "images/climate_action.png",
+    "Workers' Rights": "images/workers_rights.png",
+    "LGBTQ+ Rights": "images/lgbtq_rights.png",
+    "Healthcare Reform": "images/healthcare_reform.png",
+    "Criminal Justice": "images/criminal_justice.png",
+    "Education Rights": "images/education_rights.png",
+    "Housing Rights": "images/housing_rights.png",
+    "Immigration Rights": "images/immigration_rights.png",
+    "Reproductive Rights": "images/reproductive_rights.png",
+    "Voting Rights": "images/voting_rights.png",
+    "Veteran Support": "images/veteran_support.png",
+    "Food Security": "images/food_security.png",
+    "Public Health": "images/public_health.png",
+    "Other": "images/other.png"
+  };
 
-        recommendedOrgs.innerHTML = activistTypes[activistType].organizations.map(org => `
-          <li><a href="${org.link}" class="result-btn green">${org.name}</a></li>
-        `).join("");
-      } else {
-        resultTitle.textContent = "Uncategorized";
-        resultDescription.textContent = "We couldn't match your activist style. Please try again.";
-        resultImage.style.display = "none";
-      }
+  // Update the results based on the selected activist type
+  if (activistTypes[activistType]) {
+    resultTitle.textContent = activistType;
+    resultDescription.textContent = activistTypes[activistType].description;
+    resultImage.src = activistTypes[activistType].image;
+    resultImage.style.display = "block";
 
-      if (issueFocus.length > 0) {
-        issueFocusContainer.innerHTML = issueFocus.map(focus => {
-          const focusImg = focusImages[focus] ? focusImages[focus] : "images/default_focus.png";
-          return `<img src="${focusImg}" class="focus-icon" alt="${focus}" title="${focus}">`;
-        }).join("");
-      }
+    // Set the recommended organization buttons to green with correct data
+    const orgs = activistTypes[activistType].organizations;
+    if (orgs && orgs.length >= 2) {
+      org1.textContent = orgs[0].name;
+      org1.href = orgs[0].link;
+      org2.textContent = orgs[1].name;
+      org2.href = orgs[1].link;
+    } else {
+      org1.textContent = "No Org Available";
+      org1.href = "#";
+      org2.textContent = "No Org Available";
+      org2.href = "#";
+    }
+  } else {
+    resultTitle.textContent = "Uncategorized";
+    resultDescription.textContent = "We couldn't match your activist style. Please try again.";
+    resultImage.style.display = "none";
+    org1.textContent = "No Org Available";
+    org1.href = "#";
+    org2.textContent = "No Org Available";
+    org2.href = "#";
+  }
 
-      document.getElementById("result-container").style.display = "block";
+  // Render the selected issue focus images
+  issueFocusContainer.innerHTML = "";
+  if (issueFocus.length > 0) {
+    issueFocus.forEach(function(focus) {
+      const imgSrc = focusImages[focus] || "images/default_focus.png";
+      const img = document.createElement("img");
+      img.src = imgSrc;
+      img.alt = focus;
+      img.title = focus;
+      img.classList.add("focus-icon");
+      issueFocusContainer.appendChild(img);
     });
-  </script>
+  }
+
+  // Display the result container once everything is set up
+  document.getElementById("result-container").style.display = "block";
+});
+</script>
 </body>
 </html>
