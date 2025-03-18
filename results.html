@@ -22,22 +22,22 @@
     <h3>Your Commitment Level</h3>
     <p id="commitment-level"></p>
 
-<h3>Take Action</h3>
+    <h3>Recommended Organizations</h3>
+    <ul id="org-list"></ul> <!-- 🔥 FIXED: Now this exists! -->
 
-<ul class="result-buttons green-group">
-    <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 1</a></li>
-    <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 2</a></li>
-</ul>
+    <h3>Take Action</h3>
 
-<ul class="result-buttons blue-group">
-    <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 1</a></li>
-    <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 2</a></li>
-</ul>
+    <ul class="result-buttons green-group">
+        <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 1</a></li>
+        <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 2</a></li>
+    </ul>
 
-<button id="copy-button">Copy Organizations</button>
+    <ul class="result-buttons blue-group">
+        <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 1</a></li>
+        <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 2</a></li>
+    </ul>
 
-
-
+    <button id="copy-button">Copy Organizations</button>
   </div>
 
   <script>
@@ -114,40 +114,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-const focusImages = {
-  "Racial Justice": "images/racial_justice.png",
-  "Climate Action": "images/climate_action.png",
-  "Workers' Rights": "images/workers_rights.png",
-  "LGBTQ+ Rights": "images/lgbtq_rights.png",
-  "Healthcare Reform": "images/healthcare_reform.png",
-  "Criminal Justice": "images/criminal_justice.png",
-  "Education Rights": "images/education_rights.png",
-  "Housing Rights": "images/housing_rights.png",
-  "Immigration Rights": "images/immigration_rights.png",
-  "Reproductive Rights": "images/reproductive_rights.png",
-  "Voting Rights": "images/voting_rights.png",
-  "Veteran Support": "images/veteran_support.png",
-  "Food Security": "images/food_security.png",
-  "Public Health": "images/public_health.png",
-  "Other": "images/other_focus.png"
-};
-if (activistTypes[activistType]) {
-    resultTitle.textContent = activistType;
-    resultDescription.textContent = activistTypes[activistType].description;
-    resultImage.src = activistTypes[activistType].image;
-    resultImage.style.display = "block";
+  const focusImages = {
+    "Racial Justice": "images/racial_justice.png",
+    "Climate Action": "images/climate_action.png",
+    "Workers' Rights": "images/workers_rights.png",
+    "LGBTQ+ Rights": "images/lgbtq_rights.png",
+    "Healthcare Reform": "images/healthcare_reform.png",
+    "Criminal Justice": "images/criminal_justice.png",
+    "Education Rights": "images/education_rights.png",
+    "Housing Rights": "images/housing_rights.png",
+    "Immigration Rights": "images/immigration_rights.png",
+    "Reproductive Rights": "images/reproductive_rights.png",
+    "Voting Rights": "images/voting_rights.png",
+    "Veteran Support": "images/veteran_support.png",
+    "Food Security": "images/food_security.png",
+    "Public Health": "images/public_health.png",
+    "Other": "images/other_focus.png"
+  };
 
-    if (orgList) { // <- ADD THIS CHECK
-        orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
-            <li><a href="${org.link}" target="_blank">${org.name}</a></li>
-        `).join("");
-    }
-}
   if (activistTypes[activistType]) {
     resultTitle.textContent = activistType;
     resultDescription.textContent = activistTypes[activistType].description;
     resultImage.src = activistTypes[activistType].image;
     resultImage.style.display = "block";
+    
     orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
       <li><a href="${org.link}" target="_blank">${org.name}</a></li>
     `).join("");
