@@ -7,35 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <h1>What’s Your Activist Strength?</h1>
-  <p>Choose the option that best describes how you prefer to engage with activism.</p>
+  <div class="container">
+    <h1>What’s Your Activist Strength?</h1>
+    <p>Choose the option that best describes how you prefer to engage with activism.</p>
+    <form id="quiz-form-page1">
+      <label><input type="radio" name="activistType" value="Frontline Mobilizer"> I thrive in action—participating in and leading protests, strikes, and direct resistance.</label><br>
+      <label><input type="radio" name="activistType" value="Community Caregiver"> I focus on caring for people—providing aid, resources, and direct support.</label><br>
+      <label><input type="radio" name="activistType" value="Strategist & Organizer"> I’m a planner—coordinating events, campaigns, and logistics.</label><br>
+      <label><input type="radio" name="activistType" value="Educator & Storyteller"> I educate and inspire—spreading awareness through media, art, and public speaking.</label><br>
+      <label><input type="radio" name="activistType" value="Digital Defender"> I’m a digital warrior—using tech, cybersecurity, and online advocacy for change.</label><br>
+      <label><input type="radio" name="activistType" value="Political Advocate"> I work within the system—fighting for policy change, legal action, and voting rights.</label><br>
+      <label><input type="radio" name="activistType" value="Resource Builder"> I ensure movements are funded—raising money, gathering materials, and providing resources.</label><br>
 
-  <form id="quiz-form-page1">
-    <label><input type="radio" name="activistType" value="Frontline Mobilizer"> I thrive in action—participating in and leading protests, strikes, and direct resistance.</label><br>
-    <label><input type="radio" name="activistType" value="Community Caregiver"> I focus on caring for people—providing aid, resources, and direct support.</label><br>
-    <label><input type="radio" name="activistType" value="Strategist & Organizer"> I’m a planner—coordinating events, campaigns, and logistics.</label><br>
-    <label><input type="radio" name="activistType" value="Educator & Storyteller"> I educate and inspire—spreading awareness through media, art, and public speaking.</label><br>
-    <label><input type="radio" name="activistType" value="Digital Defender"> I’m a digital warrior—using tech, cybersecurity, and online advocacy for change.</label><br>
-    <label><input type="radio" name="activistType" value="Political Advocate"> I work within the system—fighting for policy change, legal action, and voting rights.</label><br>
-    <label><input type="radio" name="activistType" value="Resource Builder"> I ensure movements are funded—raising money, gathering materials, and providing resources.</label><br>
-
-    <button type="submit">Next</button>
-  </form>
+      <button type="submit">Next</button>
+    </form>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const quizFormPage1 = document.getElementById("quiz-form-page1");
-
       quizFormPage1.addEventListener("submit", function (e) {
         e.preventDefault();
-
         const formData = new FormData(quizFormPage1);
         const activistType = formData.get("activistType");
-
-        // Save answer to localStorage
+        // Save answer to localStorage (default to empty string if nothing is selected)
         localStorage.setItem("activistType", activistType || "");
-
-        // Move to the next page
+        // Move to page 2
         window.location.href = "page2.html";
       });
     });
