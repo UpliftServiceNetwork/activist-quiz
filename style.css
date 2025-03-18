@@ -340,24 +340,53 @@ form button:hover {
   margin: 5px;
 }
 
-/* Remove bullets from results page buttons */
+/* Remove bullets from Recommended Organizations */
+#org-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Remove bullets from result buttons */
 .result-buttons {
-  list-style: none; /* Removes default bullet points */
-  padding: 0; /* Removes padding */
-  margin: 20px 0; /* Ensures spacing is consistent */
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-/* Remove default styling from buttons inside list */
-.result-buttons li {
-  list-style: none; /* Ensures no bullets */
-  padding: 0;
-  margin: 0;
+/* Style for the action buttons */
+.result-btn {
+  display: inline-block;
+  background-color: #007BFF;
+  color: white;
+  font-size: 18px;
+  padding: 12px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
+.result-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Copy Organizations button styling */
+button#copy-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px;
+}
 
 /* Copy Button Fix */
 button#copy-button {
