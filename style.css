@@ -24,6 +24,12 @@ body {
   border-radius: 10px;
 }
 
+/* Center any direct child inside the container */
+.container > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* --- INTRO PAGE IMAGE --- */
 .lead-image {
   width: 100%;
@@ -58,6 +64,8 @@ form {
   background: white;
   padding: 20px;
   border-radius: 10px;
+  /* Removed box-shadow from the form to avoid nested shadows */
+  margin: 0 auto;
 }
 
 form p {
@@ -66,7 +74,7 @@ form p {
 
 form label {
   display: block;
-  margin: 2px 0;
+  margin: 2px 0;  /* Reduced spacing between options */
 }
 
 form button {
