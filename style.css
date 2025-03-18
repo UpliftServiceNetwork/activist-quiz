@@ -228,4 +228,8 @@ body {
     font-size: 18px;
     padding: 12px 24px;
   }
+  #quiz-form-page1 button {
+  margin-top: 20px; /* Adjust this value for more or less space */
+}
+
 }
