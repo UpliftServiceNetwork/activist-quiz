@@ -101,7 +101,8 @@ form button:hover {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Removed inner box shadow */
+  box-shadow: none;
   text-align: center;
   margin-top: 20px;
 }
@@ -122,6 +123,17 @@ form button:hover {
   margin: 5px;
 }
 
+/* --- Button Grouping --- */
+.button-group {
+  text-align: center;
+  margin: 10px 0;
+}
+.button-group a {
+  display: inline-block;
+  margin: 5px; /* Tiny gap between buttons */
+}
+
+/* --- Existing Results Button Styles --- */
 .result-buttons {
   list-style: none;
   padding: 0;
