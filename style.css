@@ -1,107 +1,80 @@
-/* General Page Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
-  margin: 0;
-  font-size: 18px;
-}
-
-/* CONTAINER for Centering Everything */
-.container {
-  text-align: center;
-  max-width: 600px;
-  width: 100%;
-  background: white;
-  padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-/* Lead Image - Bigger on Desktop, Properly Sized on Mobile */
-.lead-image {
-  width: 100%;
-  max-width: 500px; /* Desktop size */
-  height: auto;
-  display: block;
-  margin: 20px auto;
-  border-radius: 10px;
-}
-
-@media screen and (max-width: 600px) {
-  .lead-image {
-    max-width: 90%; /* Bigger on mobile */
-  }
-}
-
-/* QUIZ FORM STYLING */
-form {
-  text-align: left; /* Ensures proper alignment */
+/* RESULTS PAGE CONTAINER */
+#result-container {
   max-width: 500px;
   width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-top: 20px; /* Adds space above results */
 }
 
-/* QUESTION STYLING */
-form p {
+/* FIX IMAGE SIZE IN RESULTS */
+#persona-image {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* FIX RESULT TEXT */
+#result-text {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 15px; /* Space between question & answers */
+  margin-top: 15px;
+  line-height: 1.4;
 }
 
-/* ANSWERS STYLING */
-label {
-  display: block;
-  font-size: 18px;
-  padding: 3px 0; /* Reduce spacing */
-}
-
-/* FIXED Alignment on Quiz Page 2 & 3 */
-#quiz-form-page2 label,
-#quiz-form-page3 label {
-  display: block;
-  text-align: left;
-  margin-left: 5px; /* Prevents answers from shifting too far right */
-}
-
-/* BUTTONS */
-button {
-  background-color: #007BFF;
+/* FIX BUTTON SIZE & ALIGNMENT */
+button#copy-button {
+  background-color: #007bff;
   color: white;
-  font-size: 18px;
-  padding: 12px 24px;
   border: none;
-  cursor: pointer;
+  padding: 12px;
+  margin-top: 20px;
   border-radius: 5px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
-  display: block; /* Ensures proper visibility */
-  margin-top: 20px; /* Space after answers */
+  font-size: 18px;
+  width: auto;
+  display: inline-block; /* Ensures correct alignment */
 }
 
-button:hover {
+button#copy-button:hover {
   background-color: #0056b3;
 }
 
-/* FIX COPY BUTTON */
-button#copy-button {
-  font-size: 18px;
-  padding: 12px;
-  margin-top: 20px;
-  width: auto;
+/* FIX LINKS IN RESULTS LIST */
+ul li a {
+  display: block;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
 }
 
-/* RESPONSIVE FIXES */
+ul li a:hover {
+  background-color: #218838;
+}
+
+/* RESPONSIVE FIX FOR RESULTS PAGE */
 @media screen and (max-width: 600px) {
-  form {
+  #result-container {
     width: 95%;
+    padding: 15px;
   }
 
-  .start-quiz-btn {
+  #result-text {
     font-size: 18px;
-    padding: 12px 24px;
+  }
+
+  button#copy-button {
+    font-size: 16px;
+    padding: 10px;
   }
 }
