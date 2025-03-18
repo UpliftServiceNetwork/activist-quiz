@@ -150,13 +150,11 @@ form button:hover {
   text-align: center;
   transition: background-color 0.3s ease;
 }
-
 /* Green buttons */
 .result-btn.green {
   background-color: #28a745;
   color: white;
 }
-
 .result-btn.green:hover {
   background-color: #218838;
 }
@@ -166,7 +164,6 @@ form button:hover {
   background-color: #007BFF;
   color: white;
 }
-
 .result-btn.blue:hover {
   background-color: #0056b3;
 }
