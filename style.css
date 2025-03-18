@@ -10,11 +10,23 @@
   margin-top: 20px; /* Adds space above results */
 }
 
-/* FIX IMAGE SIZE IN RESULTS */
+/* RESULTS PAGE CONTAINER */
+#result-container {
+  max-width: 500px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-top: 20px; /* Adds space above results */
+}
+
+/* FIX IMAGE SIZE IN RESULTS (LOGOS & AVATARS) */
 #persona-image {
   display: block;
   margin: 10px auto;
-  max-width: 100%;
+  max-width: 250px; /* Resets image size */
   height: auto;
   border-radius: 10px;
 }
@@ -25,6 +37,15 @@
   font-weight: bold;
   margin-top: 15px;
   line-height: 1.4;
+}
+
+/* FIX ORGANIZATION LOGOS */
+#issue-focus-container img.focus-icon {
+  width: 80px !important;
+  height: auto !important;
+  max-height: 80px !important;
+  border-radius: 8px !important;
+  margin: 5px; /* Keeps spacing uniform */
 }
 
 /* FIX BUTTON SIZE & ALIGNMENT */
@@ -69,8 +90,17 @@ ul li a:hover {
     padding: 15px;
   }
 
+  #persona-image {
+    max-width: 200px; /* Slightly smaller for mobile */
+  }
+
   #result-text {
     font-size: 18px;
+  }
+
+  #issue-focus-container img.focus-icon {
+    width: 60px !important;
+    max-height: 60px !important;
   }
 
   button#copy-button {
