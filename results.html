@@ -131,7 +131,18 @@ const focusImages = {
   "Public Health": "images/public_health.png",
   "Other": "images/other_focus.png"
 };
+if (activistTypes[activistType]) {
+    resultTitle.textContent = activistType;
+    resultDescription.textContent = activistTypes[activistType].description;
+    resultImage.src = activistTypes[activistType].image;
+    resultImage.style.display = "block";
 
+    if (orgList) { // <- ADD THIS CHECK
+        orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
+            <li><a href="${org.link}" target="_blank">${org.name}</a></li>
+        `).join("");
+    }
+}
   if (activistTypes[activistType]) {
     resultTitle.textContent = activistType;
     resultDescription.textContent = activistTypes[activistType].description;
