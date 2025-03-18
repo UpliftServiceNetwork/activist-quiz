@@ -22,16 +22,12 @@
     <h3>Your Commitment Level</h3>
     <p id="commitment-level"></p>
 
-    <h3>Recommended Organizations</h3>
-    <ul id="org-list"></ul> <!-- ✅ FIXED: This was missing! -->
-
     <h3>Take Action</h3>
 
-    <ul class="result-buttons green-group">
-        <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 1</a></li>
-        <li><a href="https://your-green-action-link.com" class="result-btn green">Green Action 2</a></li>
-    </ul>
+    <!-- ✅ Green buttons dynamically show recommended organizations -->
+    <ul class="result-buttons green-group" id="recommended-orgs"></ul>
 
+    <!-- ✅ Blue buttons remain static action links -->
     <ul class="result-buttons blue-group">
         <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 1</a></li>
         <li><a href="https://your-blue-action-link.com" class="result-btn blue">Blue Action 2</a></li>
@@ -52,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const issueFocusText = document.getElementById("issue-focus-text");
   const issueFocusContainer = document.getElementById("issue-focus-container");
   const commitmentText = document.getElementById("commitment-level");
-  const orgList = document.getElementById("org-list");
+  const recommendedOrgs = document.getElementById("recommended-orgs");
   const copyButton = document.getElementById("copy-button");
 
   const activistTypes = {
@@ -80,11 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
     resultImage.src = activistTypes[activistType].image;
     resultImage.style.display = "block";
 
-    if (orgList) {
-      orgList.innerHTML = activistTypes[activistType].organizations.map(org => `
-        <li><a href="${org.link}" target="_blank">${org.name}</a></li>
-      `).join("");
-    }
+    // ✅ Populate recommended organizations as green buttons
+    recommendedOrgs.innerHTML = activistTypes[activistType].organizations.map(org => `
+      <li><a href="${org.link}" target="_blank" class="result-btn green">${org.name}</a></li>
+    `).join("");
   }
 
   issueFocusText.textContent = issueFocus.length > 0 ? issueFocus.join(", ") : "Various Issues";
