@@ -117,6 +117,11 @@ form button:hover {
   text-align: center; /* Ensure headings and subtitle are centered */
 }
 
+/* Set heading colors (applies to all devices) */
+h1, h2, h3 {
+  color: #4169E1;
+}
+
 #persona-image {
   display: block;
   margin: 10px auto;
@@ -208,15 +213,12 @@ button#copy-button:hover {
   /* Ensure padding is included in the element’s width */
   *, *:before, *:after {
     box-sizing: border-box;
-    h1, h2, h3 {
-  color: #4169E1;
-}  }
+  }
 
   .container {
     width: 98%;          /* Nearly full width */
     padding: 15px 5%;    /* 15px top/bottom, 5% left/right */
     margin: 0 auto;
-    /* Optionally, text-align left for body copy if desired */
   }
 
   /* Make inner containers fit the outer container */
