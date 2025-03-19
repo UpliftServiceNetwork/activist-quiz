@@ -194,71 +194,52 @@ button#copy-button:hover {
 }
 
 @media screen and (max-width: 600px) {
-  /* Ensure all elements use border-box sizing */
+  /* Ensure padding is included in the element’s width */
   *, *:before, *:after {
     box-sizing: border-box;
   }
-
+  
   .container {
-    width: 98%;         /* Almost full width */
-    padding: 10px;      /* Reduced padding */
-    margin: 0 auto;     /* Center horizontally */
+    width: 98%;
+    padding: 10px 5%; /* 10px top/bottom, 5% left/right */
+    margin: 0 auto;
+    /* Optional: text-align: left; if desired */
   }
   
-  /* If you have nested containers (like forms inside .container) */
-  form {
-    width: 100%;        /* Make form fill container width */
-    padding: 10px;      /* Less padding on mobile */
-    margin: 0;          /* Remove extra margins */
+  /* Make inner containers (like form or #result-container) fit the outer container */
+  form,
+  #result-container {
+    width: 100%;
+    padding: 10px; /* reduce padding as needed */
+    margin: 0 auto;
   }
   
-  /* Optionally adjust text alignment if needed */
-  .container, form {
-    text-align: left;   /* If you want the text aligned left on mobile */
-  }
-}
-
-  /* other responsive rules... */
-}
-
-    font-size: 20px;
-  }
-
-  .container {
-    width: 90%;
-    padding: 15px;
-  }
-
   .lead-image {
     max-width: 90%;
   }
-
-  #result-container {
-    width: 95%;
-    padding: 15px;
-  }
-
+  
+  /* Adjust headings and images if needed */
   h1 {
     font-size: 30px;
   }
-
+  
   h2 {
     font-size: 26px;
   }
-
+  
   h3 {
     font-size: 24px;
   }
-
+  
   #persona-image {
     max-width: 90%;
   }
-
+  
   .focus-icon {
     width: 60px;
     height: auto;
   }
-
+  
   button#copy-button {
     padding: 14px;
   }
