@@ -255,4 +255,8 @@ button#copy-button:hover {
   button#copy-button {
     padding: 14px;
   }
+  h1, h2, h3 {
+  color: #4169E1;
+}
+
 }
