@@ -10,17 +10,21 @@
   <div class="container">
     <!-- Page Title -->
     <h1>Your Activist Type</h1>
-    
+
     <!-- Result Container -->
     <div id="result-container" style="display:none;">
       <h2 id="result-title"></h2>
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
-      
+
       <!-- Issue Focus Section -->
       <h3>Issue Focus</h3>
-      <p id="issue-focus-text"></p>  
+      <p id="issue-focus-text"></p>
       <div id="issue-focus-container"></div>
+      
+      <!-- Instead of a separate "Volunteer Opportunities" heading,
+           we add the volunteer buttons directly below the issue focus -->
+      <div id="volunteer-container" class="button-group"></div>
       
       <!-- Quick Activist Actions -->
       <h3>Quick Activist Actions</h3>
@@ -35,10 +39,6 @@
         <a href="https://your-blue-action-link.com" class="result-btn blue">Get Matched</a>
         <a href="https://your-blue-action-link.com" class="result-btn blue">Learn More</a>
       </div>
-      
-      <!-- Volunteer Opportunity Buttons (15 Focus Areas) -->
-      <h3>Volunteer Opportunities</h3>
-      <div id="volunteer-container" class="button-group"></div>
       
       <button id="copy-button">Copy Organizations</button>
     </div>
@@ -56,153 +56,6 @@
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
-      const issueFocusText = document.getElementById("issue-focus-text");
-      const issueFocusContainer = document.getElementById("issue-focus-container");
-      const org1 = document.getElementById("org1");
-      const org2 = document.getElementById("org2");
-      const copyButton = document.getElementById("copy-button");
-      const volunteerContainer = document.getElementById("volunteer-container");
-    
-      // Define activist types with details and organizations (for quick and deeper actions)
-      const activistTypes = {
-        "Frontline Mobilizer": {
-          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
-          image: "images/frontline_firestarter.png",
-          organizations: [
-            { name: "Black Lives Matter", link: "https://blacklivesmatter.com/take-action/" },
-            { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/take-action/" }
-          ]
-        },
-        "Community Caregiver": {
-          description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
-          image: "images/caregiver.png",
-          organizations: [
-            { name: "Start a Mutual Aid Circle", link: "https://www.mutualaidhub.org/resources" },
-            { name: "Feed SE Michigan", link: "https://www.gcfb.org/give-time/volunteer-opportunities/" }
-          ]
-        },
-        "Strategist & Organizer": {
-          description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
-          image: "images/organizer.png",
-          organizations: [
-            { name: "Indivisible", link: "https://indivisible.org/" },
-            { name: "MoveOn", link: "https://front.moveon.org/volunteer-with-moveon/" }
-          ]
-        },
-        "Educator & Storyteller": {
-          description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
-          image: "images/storyteller.png",
-          organizations: [
-            { name: "Record a Story", link: "https://storycorps.org/participate/" },
-            { name: "Uplift a Child", link: "https://storypirateschangemakers.org/story-love" }
-          ]
-        },
-        "Digital Defender": {
-          description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
-          image: "images/digital_defender.png",
-          organizations: [
-            { name: "EFF (Electronic Frontier Foundation)", link: "https://act.eff.org/" },
-            { name: "High Tech Volunteer Ops", link: "https://www.democracylab.org/projects" }
-          ]
-        },
-        "Political Advocate": {
-          description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
-          image: "images/political_advocate.png",
-          organizations: [
-            { name: "Protect Immigrants", link: "https://unitedwedream.org/here-to-stay-network/" },
-            { name: "ACLU Action", link: "https://www.aclu.org/action" }
-          ]
-        },
-        "Resource Builder": {
-          description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
-          image: "images/resource_builder.png",
-          organizations: [
-            { name: "World Central Kitchen", link: "https://wck.org/fundraise" },
-            { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
-          ]
-        }
-      };
-    
-      // Define fixed mapping for each focus area (15 total)
-      const focusMapping = [
-        { name: "Racial Justice", image: "images/racial_justice.png", link: "https://blacklivesmatter.com" },
-        { name: "Climate Action", image: "images/climate_action.png", link: "https://www.climatejustice.org" },
-        { name: "Workers' Rights", image: "images/workers_rights.png", link: "https://www.workersrights.org" },
-        { name: "LGBTQ+ Rights", image: "images/lgbtq_rights.png", link: "https://www.glaad.org" },
-        { name: "Healthcare Reform", image: "images/healthcare_reform.png", link: "https://www.healthcarereform.org" },
-        { name: "Criminal Justice", image: "images/criminal_justice.png", link: "https://www.criminaljusticereform.org" },
-        { name: "Education Rights", image: "images/education_rights.png", link: "https://www.educationrights.org" },
-        { name: "Housing Rights", image: "images/housing_rights.png", link: "https://www.housingrights.org" },
-        { name: "Immigration Rights", image: "images/immigration_rights.png", link: "https://www.immigrationrights.org" },
-        { name: "Reproductive Rights", image: "images/reproductive_rights.png", link: "https://www.reproductiverights.org" },
-        { name: "Voting Rights", image: "images/voting_rights.png", link: "https://www.votingrights.org" },
-        { name: "Veteran Support", image: "images/veteran_support.png", link: "https://www.veteransupport.org" },
-        { name: "Food Security", image: "images/food_security.png", link: "https://www.foodsecurity.org" },
-        { name: "Public Health", image: "images/public_health.png", link: "https://www.publichealth.org" },
-        { name: "Other", image: "images/other_focus.png", link: "https://www.example.org/other" }
-      ];
-    
-      // Update activist type info if available
-      if (activistTypes[activistType]) {
-        resultTitle.textContent = activistType;
-        resultDescription.textContent = activistTypes[activistType].description;
-        resultImage.src = activistTypes[activistType].image;
-        resultImage.style.display = "block";
-    
-        // Update recommended organizations as green buttons
-        const orgs = activistTypes[activistType].organizations;
-        if (orgs && orgs.length >= 2) {
-          org1.textContent = orgs[0].name;
-          org1.href = orgs[0].link;
-          org2.textContent = orgs[1].name;
-          org2.href = orgs[1].link;
-        } else {
-          org1.textContent = "No Org Available";
-          org1.href = "#";
-          org2.textContent = "No Org Available";
-          org2.href = "#";
-        }
-      } else {
-        resultTitle.textContent = "Uncategorized";
-        resultDescription.textContent = "We couldn't match your activist style. Please try again.";
-        resultImage.style.display = "none";
-        org1.textContent = "No Org Available";
-        org1.href = "#";
-        org2.textContent = "No Org Available";
-        org2.href = "#";
-      }
-    
-      // Render issue focus (non-clickable images, as originally set)
-      if (issueFocus.length > 0) {
-        issueFocusText.textContent = issueFocus.join(", ");
-        issueFocusContainer.innerHTML = issueFocus.slice(0, 3).map(focus => {
-          const src = focusMapping.find(item => item.name === focus)?.image || "images/default_focus.png";
-          return `<img src="${src}" class="focus-icon" alt="${focus}" title="${focus}">`;
-        }).join("");
-      } else {
-        issueFocusText.textContent = "Various Issues";
-      }
-    
-      // Render volunteer buttons (15 focus areas) in the volunteer container
-      volunteerContainer.innerHTML = focusMapping.map(item => `
-        <a href="${item.link}" class="volunteer-button" title="${item.name}" target="_blank">
-          <img src="${item.image}" alt="${item.name}">
-          <p>${item.name}</p>
-        </a>
-      `).join("");
-    
-      // Copy organizations functionality (commitment removed)
-      copyButton.addEventListener("click", function () {
-        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nOrganizations:\n` +
-          (activistTypes[activistType] ? activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n") : "None");
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          alert("Copied to clipboard!");
-        });
-      });
-    
-      // Show results container
-      document.getElementById("result-container").style.display = "block";
-    });
-  </script>
-</body>
-</html>
+      const issueFocusText = document.getElementById("issue-focus-tex
+
+                                                     
