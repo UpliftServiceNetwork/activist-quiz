@@ -121,7 +121,9 @@ form button:hover {
 h1, h2, h3 {
   color: #4169E1;
 }
-
+.container h1 {
+  margin-bottom: 10px; /* Adjust this value as needed */
+}
 #persona-image {
   display: block;
   margin: 10px auto;
