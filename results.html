@@ -43,9 +43,12 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored values from previous pages
-      const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
+      // Retrieve stored values, or use fallback defaults for testing
+      const storedType = localStorage.getItem("activistType");
+      const storedFocus = localStorage.getItem("activistFocus");
+      const activistType = storedType ? storedType : "Uncategorized";
+      // Use a fallback default focus if none is set (e.g., "Education Rights")
+      const issueFocus = storedFocus ? JSON.parse(storedFocus) : ["Education Rights"];
     
       // DOM element references
       const resultTitle = document.getElementById("result-title");
@@ -56,7 +59,7 @@
       const org1 = document.getElementById("org1");
       const org2 = document.getElementById("org2");
     
-      // Define activist types for quick/deeper actions (as before)
+      // Define activist types with details and organizations (for quick/deeper actions)
       const activistTypes = {
         "Frontline Mobilizer": {
           description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
@@ -102,108 +105,4 @@
           description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
           image: "images/political_advocate.png",
           organizations: [
-            { name: "Protect Immigrants", link: "https://unitedwedream.org/here-to-stay-network/" },
-            { name: "ACLU Action", link: "https://www.aclu.org/action" }
-          ]
-        },
-        "Resource Builder": {
-          description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
-          image: "images/resource_builder.png",
-          organizations: [
-            { name: "World Central Kitchen", link: "https://wck.org/fundraise" },
-            { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
-          ]
-        }
-      };
-    
-      // Fixed mapping for focus areas (15 total)
-      const focusMapping = [
-        { name: "Racial Justice", image: "images/racial_justice.png", link: "https://blacklivesmatter.com" },
-        { name: "Climate Action", image: "images/climate_action.png", link: "https://www.climatejustice.org" },
-        { name: "Workers' Rights", image: "images/workers_rights.png", link: "https://www.workersrights.org" },
-        { name: "LGBTQ+ Rights", image: "images/lgbtq_rights.png", link: "https://www.glaad.org" },
-        { name: "Healthcare Reform", image: "images/healthcare_reform.png", link: "https://www.healthcarereform.org" },
-        { name: "Criminal Justice", image: "images/criminal_justice.png", link: "https://www.criminaljusticereform.org" },
-        { name: "Education Rights", image: "images/education_rights.png", link: "https://www.educationrights.org" },
-        { name: "Housing Rights", image: "images/housing_rights.png", link: "https://www.housingrights.org" },
-        { name: "Immigration Rights", image: "images/immigration_rights.png", link: "https://www.immigrationrights.org" },
-        { name: "Reproductive Rights", image: "images/reproductive_rights.png", link: "https://www.reproductiverights.org" },
-        { name: "Voting Rights", image: "images/voting_rights.png", link: "https://www.votingrights.org" },
-        { name: "Veteran Support", image: "images/veteran_support.png", link: "https://www.veteransupport.org" },
-        { name: "Food Security", image: "images/food_security.png", link: "https://www.foodsecurity.org" },
-        { name: "Public Health", image: "images/public_health.png", link: "https://www.publichealth.org" },
-        { name: "Other", image: "images/other_focus.png", link: "https://www.example.org/other" }
-      ];
-    
-      // Update activist type info (for quick and deeper action buttons)
-      if (activistTypes[activistType]) {
-        resultTitle.textContent = activistType;
-        resultDescription.textContent = activistTypes[activistType].description;
-        resultImage.src = activistTypes[activistType].image;
-        resultImage.style.display = "block";
-    
-        // Update recommended organizations as green buttons
-        const orgs = activistTypes[activistType].organizations;
-        if (orgs && orgs.length >= 2) {
-          org1.textContent = orgs[0].name;
-          org1.href = orgs[0].link;
-          org2.textContent = orgs[1].name;
-          org2.href = orgs[1].link;
-        } else {
-          org1.textContent = "No Org Available";
-          org1.href = "#";
-          org2.textContent = "No Org Available";
-          org2.href = "#";
-        }
-      } else {
-        resultTitle.textContent = "Uncategorized";
-        resultDescription.textContent = "We couldn't match your activist style. Please try again.";
-        resultImage.style.display = "none";
-        org1.textContent = "No Org Available";
-        org1.href = "#";
-        org2.textContent = "No Org Available";
-        org2.href = "#";
-      }
-    
-      // Render volunteer buttons only for selected focus areas (case-insensitive)
-      volunteerContainer.innerHTML = issueFocus.map(focus => {
-        const item = focusMapping.find(i => i.name.toLowerCase() === focus.toLowerCase());
-        return item ? `
-          <a href="${item.link}" class="volunteer-button" title="${item.name}" target="_blank">
-            <img src="${item.image}" alt="${item.name}">
-            <p>${item.name}</p>
-          </a>
-        ` : "";
-      }).join("");
-    
-      // Render issue focus icons (if needed, e.g., to show up to 3 focus icons)
-      // Uncomment the following if you want to show non-clickable focus icons as well:
-      /*
-      if (issueFocus.length > 0) {
-        const focusIconsHTML = issueFocus.slice(0, 3).map(focus => {
-          const item = focusMapping.find(i => i.name.toLowerCase() === focus.toLowerCase());
-          const src = item ? item.image : "images/default_focus.png";
-          return `<img src="${src}" class="focus-icon" alt="${focus}" title="${focus}">`;
-        }).join("");
-        // Optionally, append focusIconsHTML to another container
-        // document.getElementById("issue-focus-container").innerHTML = focusIconsHTML;
-      } else {
-        document.getElementById("issue-focus-text").textContent = "Various Issues";
-      }
-      */
-    
-      // Copy organizations functionality
-      copyButton.addEventListener("click", function () {
-        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nOrganizations:\n` +
-          (activistTypes[activistType] ? activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n") : "None");
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          alert("Copied to clipboard!");
-        });
-      });
-    
-      // Show results container
-      document.getElementById("result-container").style.display = "block";
-    });
-  </script>
-</body>
-</html>
+            { name: "Protect Immigrants", link: "https://unitedwedream.org/here-to-stay-network/" }
