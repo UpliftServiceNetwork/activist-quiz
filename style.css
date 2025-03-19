@@ -208,7 +208,9 @@ button#copy-button:hover {
   /* Ensure padding is included in the element’s width */
   *, *:before, *:after {
     box-sizing: border-box;
-  }
+    h1, h2, h3 {
+  color: #4169E1;
+}  }
 
   .container {
     width: 98%;          /* Nearly full width */
@@ -255,8 +257,4 @@ button#copy-button:hover {
   button#copy-button {
     padding: 14px;
   }
-  h1, h2, h3 {
-  color: #4169E1;
-}
-
 }
