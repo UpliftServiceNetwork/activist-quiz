@@ -22,6 +22,7 @@ body {
   padding: 20px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  margin: 0 auto;
 }
 
 /* Center any direct child inside the container */
@@ -32,9 +33,9 @@ body {
 
 /* --- INTRO PAGE IMAGE --- */
 .lead-image {
-  display: block;         /* ensure block-level */
-  margin: 0 auto 20px auto; /* center image and add bottom margin */
-  max-width: 500px;        /* a bit larger than before */
+  display: block;
+  margin: 0 auto 20px auto;
+  max-width: 500px;
   height: auto;
   border-radius: 10px;
 }
@@ -64,7 +65,6 @@ form {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  /* Removed box-shadow from the form to avoid nested shadows */
   margin: 0 auto;
 }
 
@@ -75,9 +75,9 @@ form p {
 /* Adjust label indentation so that when text wraps, it doesn't start under the bullet/input */
 form label {
   display: block;
-  margin: 2px 0;      /* reduced spacing */
-  padding-left: 30px; /* add left padding */
-  text-indent: -30px; /* negative indent so first line lines up with the input */
+  margin: 2px 0;
+  padding-left: 30px;
+  text-indent: -30px;
 }
 
 form button {
@@ -96,35 +96,7 @@ form button {
 form button:hover {
   background-color: #0056b3;
 }
-.volunteer-button {
-  display: inline-block;
-  text-decoration: none;
-  color: inherit;
-  margin: 5px;
-  padding: 5px;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  transition: border-color 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
-}
 
-.volunteer-button img {
-  display: block;
-  max-width: 80px;
-  margin: 0 auto;
-}
-
-.volunteer-button p {
-  margin: 5px 0 0;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.volunteer-button:hover {
-  border-color: #007BFF;
-  transform: scale(1.05);
-}
 /* --- RESULTS PAGE STYLES --- */
 #result-container {
   max-width: 500px;
@@ -132,26 +104,28 @@ form button:hover {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  /* Removed inner box shadow */
   box-shadow: none;
   text-align: center;
   margin-top: 20px;
 }
 
+/* Center headings and subtitle */
 #result-container h1,
 #result-container h2,
 #result-container h3,
 .container .subtitle {
-  text-align: center; /* Ensure headings and subtitle are centered */
+  text-align: center;
 }
 
-/* Set heading colors (applies to all devices) */
+/* Set heading colors */
 h1, h2, h3 {
   color: #4169E1;
 }
+
 .container h1 {
-  margin-bottom: 5px; /* Adjust this value as needed */
+  margin-bottom: 5px;
 }
+
 #persona-image {
   display: block;
   margin: 10px auto;
@@ -175,20 +149,10 @@ h1, h2, h3 {
 }
 .button-group a {
   display: inline-block;
-  margin: 5px; /* Tiny gap between buttons */
+  margin: 5px;
 }
 
 /* --- Existing Results Button Styles --- */
-.result-buttons {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
 .result-btn {
   display: block;
   width: 100%;
@@ -238,27 +202,56 @@ button#copy-button:hover {
   background-color: #0056b3;
 }
 
+/* --- VOLUNTEER BUTTON GROUP (15 Focus Areas) --- */
+.volunteer-button {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.volunteer-button img {
+  display: block;
+  max-width: 80px;
+  margin: 0 auto;
+}
+
+.volunteer-button p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.volunteer-button:hover {
+  border-color: #007BFF;
+  transform: scale(1.05);
+}
+
 /* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
 @media screen and (max-width: 600px) {
-  /* Ensure padding is included in the element’s width */
   *, *:before, *:after {
     box-sizing: border-box;
   }
-
+  
   .container {
-    width: 98%;          /* Nearly full width */
-    padding: 15px 5%;    /* 15px top/bottom, 5% left/right */
+    width: 98%;
+    padding: 15px 5%;
     margin: 0 auto;
   }
-
-  /* Make inner containers fit the outer container */
+  
   form,
   #result-container {
     width: 100%;
-    padding: 10px; /* Reduced padding */
+    padding: 10px;
     margin: 0 auto;
   }
-
+  
   .lead-image {
     max-width: 90%;
     display: block;
