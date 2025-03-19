@@ -193,12 +193,31 @@ button#copy-button:hover {
   background-color: #0056b3;
 }
 
-/* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
 @media screen and (max-width: 600px) {
+  /* Ensure all elements use border-box sizing */
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
   .container {
-    width: 98%;  /* Change this value as needed */
-    padding: 15px;
-      }
+    width: 98%;         /* Almost full width */
+    padding: 10px;      /* Reduced padding */
+    margin: 0 auto;     /* Center horizontally */
+  }
+  
+  /* If you have nested containers (like forms inside .container) */
+  form {
+    width: 100%;        /* Make form fill container width */
+    padding: 10px;      /* Less padding on mobile */
+    margin: 0;          /* Remove extra margins */
+  }
+  
+  /* Optionally adjust text alignment if needed */
+  .container, form {
+    text-align: left;   /* If you want the text aligned left on mobile */
+  }
+}
+
   /* other responsive rules... */
 }
 
