@@ -76,8 +76,8 @@ form p {
 form label {
   display: block;
   margin: 2px 0;      /* reduced spacing */
-  padding-left: 20px; /* add left padding */
-  text-indent: -20px; /* negative indent so first line lines up with the input */
+  padding-left: 30px; /* add left padding */
+  text-indent: -30px; /* negative indent so first line lines up with the input */
 }
 
 form button {
