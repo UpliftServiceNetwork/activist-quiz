@@ -32,11 +32,11 @@ body {
 
 /* --- INTRO PAGE IMAGE --- */
 .lead-image {
-  width: 100%;
-  max-width: 450px;
+  display: block;         /* ensure block-level */
+  margin: 0 auto 20px auto; /* center image and add bottom margin */
+  max-width: 500px;        /* a bit larger than before */
   height: auto;
   border-radius: 10px;
-  margin-bottom: 20px;
 }
 
 /* --- START QUIZ BUTTON --- */
@@ -72,9 +72,12 @@ form p {
   margin-bottom: 15px;
 }
 
+/* Adjust label indentation so that when text wraps, it doesn't start under the bullet/input */
 form label {
   display: block;
-  margin: 2px 0;  /* Reduced spacing between options */
+  margin: 2px 0;      /* reduced spacing */
+  padding-left: 20px; /* add left padding */
+  text-indent: -20px; /* negative indent so first line lines up with the input */
 }
 
 form button {
@@ -105,6 +108,13 @@ form button:hover {
   box-shadow: none;
   text-align: center;
   margin-top: 20px;
+}
+
+#result-container h1,
+#result-container h2,
+#result-container h3,
+.container .subtitle {
+  text-align: center; /* Ensure headings and subtitle are centered */
 }
 
 #persona-image {
@@ -193,32 +203,34 @@ button#copy-button:hover {
   background-color: #0056b3;
 }
 
+/* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
 @media screen and (max-width: 600px) {
   /* Ensure padding is included in the element’s width */
   *, *:before, *:after {
     box-sizing: border-box;
   }
-  
+
   .container {
-    width: 98%;
-    padding: 10px 5%; /* 10px top/bottom, 5% left/right */
+    width: 98%;          /* Nearly full width */
+    padding: 15px 5%;    /* 15px top/bottom, 5% left/right */
     margin: 0 auto;
-    /* Optional: text-align: left; if desired */
+    /* Optionally, text-align left for body copy if desired */
   }
-  
-  /* Make inner containers (like form or #result-container) fit the outer container */
+
+  /* Make inner containers fit the outer container */
   form,
   #result-container {
     width: 100%;
-    padding: 10px; /* reduce padding as needed */
+    padding: 10px; /* Reduced padding */
     margin: 0 auto;
   }
-  
+
   .lead-image {
     max-width: 90%;
+    display: block;
+    margin: 0 auto 20px auto;
   }
   
-  /* Adjust headings and images if needed */
   h1 {
     font-size: 30px;
   }
