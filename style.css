@@ -96,7 +96,35 @@ form button {
 form button:hover {
   background-color: #0056b3;
 }
+.volunteer-button {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  margin: 5px;
+  padding: 5px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
 
+.volunteer-button img {
+  display: block;
+  max-width: 80px;
+  margin: 0 auto;
+}
+
+.volunteer-button p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.volunteer-button:hover {
+  border-color: #007BFF;
+  transform: scale(1.05);
+}
 /* --- RESULTS PAGE STYLES --- */
 #result-container {
   max-width: 500px;
