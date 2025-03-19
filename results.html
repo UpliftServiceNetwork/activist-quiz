@@ -136,24 +136,35 @@
         }
       };
 
-      // Define images for issue focus
-      const focusImages = {
-        "Racial Justice": "images/racial_justice.png",
-        "Climate Action": "images/climate_action.png",
-        "Workers' Rights": "images/workers_rights.png",
-        "LGBTQ+ Rights": "images/lgbtq_rights.png",
-        "Healthcare Reform": "images/healthcare_reform.png",
-        "Criminal Justice": "images/criminal_justice.png",
-        "Education Rights": "images/education_rights.png",
-        "Housing Rights": "images/housing_rights.png",
-        "Immigration Rights": "images/immigration_rights.png",
-        "Reproductive Rights": "images/reproductive_rights.png",
-        "Voting Rights": "images/voting_rights.png",
-        "Veteran Support": "images/veteran_support.png",
-        "Food Security": "images/food_security.png",
-        "Public Health": "images/public_health.png",
-        "Other": "images/other_focus.png"
-      };
+     // Define an array with each focus area, its image, and its fixed link
+const volunteerOpportunities = [
+  { name: "Racial Justice", image: "images/racial_justice.png", link: "https://blacklivesmatter.com" },
+  { name: "Climate Action", image: "images/climate_action.png", link: "https://www.climatejustice.org" },
+  { name: "Workers' Rights", image: "images/workers_rights.png", link: "https://www.workersrights.org" },
+  { name: "LGBTQ+ Rights", image: "images/lgbtq_rights.png", link: "https://www.glaad.org" },
+  { name: "Healthcare Reform", image: "images/healthcare_reform.png", link: "https://www.healthcarereform.org" },
+  { name: "Criminal Justice", image: "images/criminal_justice.png", link: "https://www.criminaljusticereform.org" },
+  { name: "Education Rights", image: "images/education_rights.png", link: "https://www.educationrights.org" },
+  { name: "Housing Rights", image: "images/housing_rights.png", link: "https://www.housingrights.org" },
+  { name: "Immigration Rights", image: "images/immigration_rights.png", link: "https://www.immigrationrights.org" },
+  { name: "Reproductive Rights", image: "images/reproductive_rights.png", link: "https://www.reproductiverights.org" },
+  { name: "Voting Rights", image: "images/voting_rights.png", link: "https://www.votingrights.org" },
+  { name: "Veteran Support", image: "images/veteran_support.png", link: "https://www.veteransupport.org" },
+  { name: "Food Security", image: "images/food_security.png", link: "https://www.foodsecurity.org" },
+  { name: "Public Health", image: "images/public_health.png", link: "https://www.publichealth.org" },
+  { name: "Other", image: "images/other_focus.png", link: "https://www.example.org/other" }
+];
+
+// Assuming your volunteer container is already present with the id "volunteer-container"
+const volunteerContainer = document.getElementById("volunteer-container");
+
+volunteerContainer.innerHTML = volunteerOpportunities.map(opportunity => `
+  <a href="${opportunity.link}" class="volunteer-button" title="${opportunity.name}" target="_blank">
+    <img src="${opportunity.image}" alt="${opportunity.name}">
+    <p>${opportunity.name}</p>
+  </a>
+`).join("");
+
 
       // Update activist type info
       if (activistTypes[activistType]) {
