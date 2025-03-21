@@ -32,6 +32,13 @@ body {
 }
 
 /* --- INTRO PAGE IMAGE --- */
+.intro,
+.subtitle {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .lead-image {
   display: block;
   margin: 0 auto 20px auto;
