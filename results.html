@@ -59,18 +59,16 @@
       });
 
       quizFormPage2.addEventListener("submit", function (e) {
-        e.preventDefault();
-        // Collect all selected focuses
-        const selectedFocuses = Array.from(checkboxes)
-          .filter(cb => cb.checked)
-          .map(cb => cb.value);
+  e.preventDefault();
+  // Collect all selected focuses
+  const selectedFocuses = Array.from(checkboxes)
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
+  localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
+  console.log("Redirecting to results.html"); // Debug log
+  window.location.href = "results.html";
+});
 
-        // Store in localStorage
-        localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
-
-        // Go to results page
-        window.location.href = "results.html";
-      });
     });
   </script>
 </body>
