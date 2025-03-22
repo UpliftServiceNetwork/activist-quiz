@@ -8,8 +8,8 @@
 </head>
 <body>
   <div class="container">
-    <h1>What Issues Matter Most to You?</h1>
-    <p>Select the cause(s) that drive you.</p>
+    <h1>Which Issues Are You Most Passionate About?</h1>
+    <p>(Select up to 3.)</p>
 
     <form id="quiz-form-page2">
       <label><input type="checkbox" name="activistFocus" value="Racial Justice"> Racial Justice & Equity</label><br>
@@ -35,12 +35,40 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const quizFormPage2 = document.getElementById("quiz-form-page2");
+      const checkboxes = document.querySelectorAll('input[name="activistFocus"]');
+
+      // Listen for changes on any checkbox
+      checkboxes.forEach(cb => {
+        cb.addEventListener("change", function() {
+          // Count how many are checked
+          const checkedCount = Array.from(checkboxes).filter(ch => ch.checked).length;
+          // If 3 are checked, disable the rest
+          if (checkedCount >= 3) {
+            checkboxes.forEach(ch => {
+              if (!ch.checked) {
+                ch.disabled = true;
+              }
+            });
+          } else {
+            // Otherwise, enable all
+            checkboxes.forEach(ch => {
+              ch.disabled = false;
+            });
+          }
+        });
+      });
+
       quizFormPage2.addEventListener("submit", function (e) {
         e.preventDefault();
-        const selectedFocuses = Array.from(document.querySelectorAll('input[name="activistFocus"]:checked'))
+        // Collect all selected focuses
+        const selectedFocuses = Array.from(checkboxes)
+          .filter(cb => cb.checked)
           .map(cb => cb.value);
+
+        // Store in localStorage
         localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
-        // Directly move to the results page
+
+        // Go to results page
         window.location.href = "results.html";
       });
     });
