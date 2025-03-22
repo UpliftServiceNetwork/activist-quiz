@@ -37,38 +37,24 @@
       const quizFormPage2 = document.getElementById("quiz-form-page2");
       const checkboxes = document.querySelectorAll('input[name="activistFocus"]');
 
-      // Listen for changes on any checkbox
+      // Limit selection to 3 checkboxes
       checkboxes.forEach(cb => {
         cb.addEventListener("change", function() {
-          // Count how many are checked
           const checkedCount = Array.from(checkboxes).filter(ch => ch.checked).length;
-          // If 3 are checked, disable the rest
           if (checkedCount >= 3) {
-            checkboxes.forEach(ch => {
-              if (!ch.checked) {
-                ch.disabled = true;
-              }
-            });
+            checkboxes.forEach(ch => { if (!ch.checked) ch.disabled = true; });
           } else {
-            // Otherwise, enable all
-            checkboxes.forEach(ch => {
-              ch.disabled = false;
-            });
+            checkboxes.forEach(ch => ch.disabled = false);
           }
         });
       });
 
       quizFormPage2.addEventListener("submit", function (e) {
         e.preventDefault();
-        // Collect all selected focuses
         const selectedFocuses = Array.from(checkboxes)
           .filter(cb => cb.checked)
           .map(cb => cb.value);
-
-        // Store in localStorage
         localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
-
-        // Go to results page
         window.location.href = "results.html";
       });
     });
