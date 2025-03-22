@@ -6,19 +6,17 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Additional inline CSS to reduce title spacing */
+    /* Additional inline CSS to adjust title spacing and volunteer button hover text */
     .container h1 {
-      margin-top: 10px; /* Less top margin */
-      margin-bottom: 5px; /* Slightly tighter spacing */
+      margin-top: 10px;
+      margin-bottom: 5px;
     }
-    /* Make it more obvious that volunteer buttons are clickable */
     .volunteer-button {
-      cursor: pointer; /* Show pointer cursor on hover */
+      cursor: pointer;
       position: relative;
     }
-    /* Optional: a subtle overlay or text on hover to clarify it's a button */
     .volunteer-button:hover::after {
-      content: "Click to learn more";
+      content: "Click to explore";
       position: absolute;
       bottom: -1.5em;
       left: 50%;
@@ -26,7 +24,6 @@
       font-size: 12px;
       color: #007BFF;
     }
-    /* Some spacing for the explanation text under headings */
     .info-text {
       max-width: 550px;
       margin: 0 auto 15px auto;
@@ -38,55 +35,51 @@
 </head>
 <body>
   <div class="container">
-    <!-- Reduced top margin for the title -->
     <h1>Your Activist Type</h1>
-
     <div id="result-container" style="display:none;">
       <h2 id="result-title"></h2>
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
-
-      <!-- Issue Focus Actions -->
+      
+      <!-- Issue Focus Actions Section -->
       <h3>Issue Focus Actions</h3>
       <p class="info-text">
-        Below are organizations that match the issues you care about. Each icon is a clickable button 
-        leading to ways you can get involved and support your chosen causes.
+        These icons represent organizations and volunteer opportunities aligned with the issues you care about.
       </p>
       <div id="volunteer-container" class="button-group"></div>
-
-      <!-- Quick Activist Actions -->
+      
+      <!-- Quick Activist Actions Section -->
       <h3>Quick Activist Actions</h3>
       <p class="info-text">
-        These immediate actions are tailored to how you prefer to engage, based on your Page 1 response. 
-        Click to see how you can dive right in!
+        These immediate actions are based on your response from Page 1. Click to see how you can dive right in!
       </p>
       <div class="button-group">
         <a href="#" id="org1" class="result-btn green">Action 1</a>
         <a href="#" id="org2" class="result-btn green">Action 2</a>
       </div>
-
-      <!-- Deeper Engagement -->
+      
+      <!-- Deeper Engagement Section -->
       <h3>Deeper Engagement</h3>
       <p class="info-text">
-        Looking for long-term impact? These steps connect you to more involved roles and ongoing 
-        commitments, so you can truly make a lasting difference.
+        For those seeking long-term impact, these steps connect you to more involved roles and ongoing commitments.
       </p>
       <div class="button-group">
         <a href="https://your-blue-action-link.com" class="result-btn blue">Get Matched</a>
         <a href="https://your-blue-action-link.com" class="result-btn blue">Learn More</a>
       </div>
-
+      
       <button id="copy-button">Copy Organizations</button>
     </div>
-
     <p class="subtitle">Discover your unique activist style!</p>
   </div>
-
+  
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored values from localStorage
-      const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
+      // Retrieve stored values (with fallback defaults for testing)
+      const storedType = localStorage.getItem("activistType");
+      const storedFocus = localStorage.getItem("activistFocus");
+      const activistType = storedType ? storedType : "Uncategorized";
+      const issueFocus = storedFocus ? JSON.parse(storedFocus) : ["Education Rights"];
 
       // DOM references
       const resultTitle = document.getElementById("result-title");
@@ -96,7 +89,7 @@
       const volunteerContainer = document.getElementById("volunteer-container");
       const org1 = document.getElementById("org1");
       const org2 = document.getElementById("org2");
-
+      
       // Activist types (for quick & deeper actions)
       const activistTypes = {
         "Frontline Mobilizer": {
@@ -157,7 +150,7 @@
         }
       };
 
-      // Mapping for the 15 focus areas
+      // Fixed mapping for all focus areas (15 total)
       const focusMapping = [
         { name: "Racial Justice", image: "images/racial_justice.png", link: "https://blacklivesmatter.com" },
         { name: "Climate Action", image: "images/climate_action.png", link: "https://www.climatejustice.org" },
@@ -176,7 +169,7 @@
         { name: "Other", image: "images/other_focus.png", link: "https://www.example.org/other" }
       ];
 
-      // Update Activist Type Info
+      // Update activist type info if available
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
@@ -206,8 +199,7 @@
         org2.href = "#";
       }
 
-      // Render volunteer buttons (only for the user's selected focus areas)
-      const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
+      // Render volunteer buttons only for the user's selected focus areas
       volunteerContainer.innerHTML = issueFocus.map(focus => {
         const item = focusMapping.find(i => i.name.toLowerCase() === focus.toLowerCase());
         return item ? `
@@ -226,8 +218,8 @@
           alert("Copied to clipboard!");
         });
       });
-
-      // Show results container
+    
+      // Finally, display the results container
       document.getElementById("result-container").style.display = "block";
     });
   </script>
