@@ -68,8 +68,23 @@
         <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue">Learn More</a>
       </div>
       
-      <button id="copy-button">Copy Organizations</button>
+  <!-- Share My Results Button -->
+<button id="share-button">Share My Results</button>
+
+<!-- Share Modal (hidden by default) -->
+<div id="share-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-modal" class="close">&times;</span>
+    <h3>Share Your Results</h3>
+    <p id="share-text">Your Activist Type: ...</p>
+    <div class="social-links">
+      <a id="facebook-share" href="#" target="_blank">Facebook</a>
+      <a id="twitter-share" href="#" target="_blank">Twitter</a>
+      <a id="linkedin-share" href="#" target="_blank">LinkedIn</a>
     </div>
+  </div>
+</div>
+
     <p class="subtitle">Discover your unique activist style!</p>
   </div>
   
@@ -209,14 +224,6 @@
           </a>
         ` : "";
       }).join("");
-
-      // Copy organizations functionality
-      copyButton.addEventListener("click", function () {
-        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nOrganizations:\n` +
-          (activistTypes[activistType] ? activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n") : "None");
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          alert("Copied to clipboard!");
-        });
       });
     
       // Finally, display the results container
