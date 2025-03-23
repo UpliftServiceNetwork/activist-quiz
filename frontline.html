@@ -15,7 +15,7 @@
 
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Inline styling for the result page */
+    /* Inline styling (if needed) */
     .result-container {
       text-align: center;
       padding: 20px;
@@ -23,7 +23,6 @@
     .result-container img {
       max-width: 100%;
       height: auto;
-      cursor: pointer; /* Allows users to click the image */
     }
     .quiz-link {
       margin-top: 30px;
@@ -41,26 +40,28 @@
   </style>
 </head>
 <body>
-  <div class="container result-container" id="frontline-result">
-    <h1>I am a Frontline Mobilizer. I am the spark that ignites change!</h1>
-    <img src="images/frontline_firestarter.png" alt="Frontline Mobilizer Persona" id="result-image">
-    <p>Click on the picture to find your activist type and to take action today.</p>
-    <a class="quiz-link" href="https://UpliftServiceNetwork.github.io/activist-quiz/index.html">Take the Quiz</a>
+  <div class="container result-container">
+    <h1>You Are a Frontline Mobilizer!</h1>
+    <p>🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and leading the charge for change.</p>
+    <img src="images/frontline_firestarter.png" alt="Frontline Mobilizer Persona" />
+    
+    <!-- Share Button (optional, for immediate sharing) -->
+    <a id="facebookShareButton" href="javascript:void(0)" class="result-btn green">Share on Facebook</a>
+    
+    <!-- Link to Take the Quiz -->
+    <a class="quiz-link" href="index.html">Take the Quiz</a>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check if localStorage has the correct result type
-      const storedType = localStorage.getItem('activistType');
-      if (storedType !== 'Frontline Mobilizer') {
-        // Redirect to the quiz index page if not a matching result
-        window.location.href = 'index.html';
-      }
-      
-      // Make the image clickable to redirect to the quiz index page
-      document.getElementById('result-image').addEventListener('click', function() {
-        window.location.href = 'index.html';
-      });
+    // Example share button functionality
+    document.getElementById("facebookShareButton").addEventListener("click", function() {
+      // This page URL will be shared
+      var url = window.location.href;
+      var shareText = "I'm a Frontline Mobilizer! Discover your activist type and change the world!";
+      var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" 
+                        + encodeURIComponent(url) 
+                        + "&quote=" + encodeURIComponent(shareText);
+      window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
     });
   </script>
 </body>
