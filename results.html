@@ -154,4 +154,91 @@
           ]
         },
         "Resource Builder": {
-          description: "💰 You provide the
+          description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
+          image: "images/resource_builder.png",
+          organizations: [
+            { name: "World Central Kitchen", link: "https://wck.org/fundraise" },
+            { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
+          ]
+        }
+      };
+
+      // If there's a matching type, display it
+      if (activistTypes[activistType]) {
+        resultTitle.textContent = activistType;
+        resultDescription.textContent = activistTypes[activistType].description;
+        resultImage.src = activistTypes[activistType].image;
+        resultImage.style.display = "block";
+
+        // Populate quick actions (if needed)
+        const org1 = document.getElementById("org1");
+        const org2 = document.getElementById("org2");
+        const orgs = activistTypes[activistType].organizations;
+        if (orgs && orgs.length >= 2) {
+          org1.textContent = orgs[0].name;
+          org1.href = orgs[0].link;
+          org2.textContent = orgs[1].name;
+          org2.href = orgs[1].link;
+        }
+      } else {
+        resultTitle.textContent = "Uncategorized";
+        resultDescription.textContent = "We couldn't match your activist style. Please try again.";
+      }
+
+      // Reveal the results container
+      resultContainer.style.display = "block";
+
+      // --- SHARE MODAL / SOCIAL LINKS ---
+      const shareButton = document.getElementById("share-button");
+      const modal = document.getElementById("share-modal");
+      const closeModal = document.getElementById("close-modal");
+      const shareTextElement = document.getElementById("share-text");
+
+      const facebookShare = document.getElementById("facebook-share");
+      const twitterShare = document.getElementById("twitter-share");
+      const blueskyShare = document.getElementById("bluesky-share");
+
+      // Use the index page as the link to share
+      const indexPageUrl = "https://UpliftServiceNetwork.github.io/activist-quiz/index.html";
+
+      // Build share text as one complete template literal
+      const shareText = `Activist Type: ${activistType}
+${activistTypes[activistType] ? activistTypes[activistType].description : ""}
+You will change the world.
+Take the quiz here: ${indexPageUrl}`;
+
+      // Put the share text in the modal
+      shareTextElement.textContent = shareText;
+
+      // Encode text for share URLs
+      const textEncoded = encodeURIComponent(shareText);
+
+      // 1) Facebook share
+      facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(indexPageUrl)}&quote=${textEncoded}`;
+
+      // 2) Twitter share
+      twitterShare.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(indexPageUrl)}&text=${textEncoded}`;
+
+      // 3) BlueSky share (experimental)
+      blueskyShare.href = `https://bsky.app/compose?text=${textEncoded}`;
+
+      // Open modal
+      shareButton.addEventListener("click", function () {
+        modal.style.display = "block";
+      });
+
+      // Close modal
+      closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
