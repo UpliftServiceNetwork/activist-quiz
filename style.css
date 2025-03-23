@@ -188,7 +188,7 @@ h1, h2, h3 {
   background-color: #0056b3;
 }
 
-/* Copy button (if used) */
+/* --- OPTIONAL: Copy Button (if used) --- */
 button#copy-button {
   background-color: #007bff;
   color: white;
@@ -236,6 +236,35 @@ button#copy-button:hover {
 .volunteer-button:hover {
   border-color: #007BFF;
   transform: scale(1.05);
+}
+
+/* --- SHARE BUTTON (MAKE IT STAND OUT) --- */
+#share-button {
+  background-color: #28a745; /* Green, or choose #007BFF for blue */
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;         /* Matches other .result-btn style */
+  width: 100%;            /* Matches the max-width approach */
+  max-width: 250px;       /* Same as .result-btn */
+  margin: 15px auto 10px auto;
+}
+#share-button:hover {
+  background-color: #218838;
+}
+
+/* --- OPTIONAL: "You will change the world" message styling --- */
+#change-world-message {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FF5733; /* Vibrant color to stand out */
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 /* --- MODAL (SHARE MY RESULTS) --- */
