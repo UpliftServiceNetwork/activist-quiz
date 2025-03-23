@@ -199,10 +199,12 @@
       const blueskyShare = document.getElementById("bluesky-share");
 
       // Use the index page as the link to share
-      const indexPageUrl = window.location.origin + "/index.html";
+      const indexPageUrl = "https://UpliftServiceNetwork.github.io/activist-quiz/index.html";
 
       // Build share text (no "Issue Focus")
-      const shareText = `Activist Type: ${activistType}
+      const quizLink = "https://UpliftServiceNetwork.github.io/activist-quiz/index.html";
+      const shareText = `Take the quiz here: ${quizLink}`;
+
 ${activistTypes[activistType] ? activistTypes[activistType].description : ""}
 You will change the world.
 Take the quiz here: ${indexPageUrl}`;
