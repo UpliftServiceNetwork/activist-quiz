@@ -6,26 +6,13 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Additional inline CSS for extra spacing adjustments if needed */
-    .volunteer-button {
-      cursor: pointer;
-      position: relative;
-    }
-    .volunteer-button:hover::after {
-      content: "Click to explore";
-      position: absolute;
-      bottom: -1.5em;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      color: #007BFF;
-    }
-    /* Optional: Styles for the action confirmation message (if not defined in external stylesheet) */
-    #action-confirmation {
-      font-size: 18px;
-      font-weight: bold;
-      color: #28a745;
-      margin-top: 10px;
+    /* Additional inline CSS for any extra spacing adjustments if needed */
+    .info-text {
+      max-width: 550px;
+      margin: 0 auto 15px auto;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.4;
     }
   </style>
 </head>
@@ -37,46 +24,31 @@
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
 
-      <!-- Inspirational message -->
+      <!-- Inspirational Message -->
       <p class="info-text" id="inspirational-message">You will change the world.</p>
-
-      <!-- Issue Focus Actions Section -->
-      <h3>Issue Focus Actions</h3>
-      <p class="info-text">
-        These icons represent organizations and volunteer opportunities aligned with the issues you care about.
-      </p>
-      <div id="volunteer-container" class="button-group"></div>
 
       <!-- Quick Activist Actions Section -->
       <h3>Quick Activist Actions</h3>
       <p class="info-text">
-        These immediate actions are based on your response from Page 1. Click to see how you can dive right in!
+        These immediate actions are based on your quiz responses. Click an action to open it in a new window.
       </p>
       <div class="button-group">
-        <a href="#" id="org1" class="result-btn green">Action 1</a>
-        <a href="#" id="org2" class="result-btn green">Action 2</a>
+        <a href="#" id="org1" class="result-btn green" target="_blank">Action 1</a>
+        <a href="#" id="org2" class="result-btn green" target="_blank">Action 2</a>
       </div>
 
       <!-- Deeper Engagement Section -->
       <h3>Deeper Engagement</h3>
       <p class="info-text">
-        For those seeking long-term impact, these steps connect you to more involved roles and ongoing commitments.
+        For long-term impact, explore these more involved opportunities.
       </p>
       <div class="button-group">
-        <a href="https://upliftservicenetwork.com/activist-matching/" class="result-btn blue">Get Matched</a>
-        <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue">Learn More</a>
+        <a href="https://upliftservicenetwork.com/activist-matching/" class="result-btn blue" target="_blank">Get Matched</a>
+        <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
       </div>
 
       <!-- Share My Results Button -->
       <button id="share-button">Share My Results</button>
-
-      <!-- Action Confirmation Section -->
-      <h3>Show Your Action</h3>
-      <p class="info-text">
-        Let us know that you took action by clicking the button below. Your actions can inspire others!
-      </p>
-      <button id="action-button" class="result-btn blue">I Took Action</button>
-      <p id="action-confirmation" style="display:none;">Thank you for taking action! Together, we change the world.</p>
 
       <p class="subtitle">Discover your unique activist style!</p>
     </div>
@@ -98,21 +70,16 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored values (with fallback defaults for testing)
+      // Retrieve stored values (fallback to defaults for testing)
       const storedType = localStorage.getItem("activistType");
-      const storedFocus = localStorage.getItem("activistFocus");
       const activistType = storedType ? storedType : "Uncategorized";
-      const issueFocus = storedFocus ? JSON.parse(storedFocus) : ["Education Rights"];
 
       // DOM references
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
-      const volunteerContainer = document.getElementById("volunteer-container");
-      const org1 = document.getElementById("org1");
-      const org2 = document.getElementById("org2");
 
-      // Activist types (for quick & deeper actions)
+      // Activist types data (title, description, image, and action links)
       const activistTypes = {
         "Frontline Mobilizer": {
           description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
@@ -172,73 +139,40 @@
         }
       }; // End activistTypes
 
-      // Define fixed mapping for each focus area (15 total)
-      const focusMapping = [
-        { name: "Racial Justice", image: "images/racial_justice.png", link: "https://naacp.org/take-action" },
-        { name: "Climate Action", image: "images/climate_action.png", link: "https://www.sierraclub.org/volunteer" },
-        { name: "Workers' Rights", image: "images/workers_rights.png", link: "https://www.jwj.org/take-action" },
-        { name: "LGBTQ+ Rights", image: "images/lgbtq_rights.png", link: "https://www.hrc.org/get-involved/volunteer" },
-        { name: "Healthcare Reform", image: "images/healthcare_reform.png", link: "https://www.pih.org/get-involved" },
-        { name: "Criminal Justice", image: "images/criminal_justice.png", link: "https://www.sentencingproject.org/advocacy/get-involved/" },
-        { name: "Education Rights", image: "images/education_rights.png", link: "https://www.communitiesinschools.org/ways-to-get-involved/" },
-        { name: "Housing Rights", image: "images/housing_rights.png", link: "https://nlihc.org/take-action" },
-        { name: "Immigration Rights", image: "images/immigration_rights.png", link: "https://unitedwedream.org/here-to-stay-network/" },
-        { name: "Reproductive Rights", image: "images/reproductive_rights.png", link: "https://reproductivefreedomforall.org/take-action/" },
-        { name: "Voting Rights", image: "images/voting_rights.png", link: "https://www.lwv.org/local-leagues/find-local-league?field_zip_code_value=" },
-        { name: "Veteran Support", image: "images/veteran_support.png", link: "https://www.woundedwarriorproject.org/give-back" },
-        { name: "Food Security", image: "images/food_security.png", link: "https://www.feedingamerica.org/find-your-local-foodbank" },
-        { name: "Public Health", image: "images/public_health.png", link: "https://www.redcross.org/volunteer/become-a-volunteer.html?srsltid=AfmBOoo5KnuxtwPyfcslFT0z-7QTPmCsxp7LGqQuXaRb-DLm404m8" },
-        { name: "Other", image: "images/other_focus.png", link: "https://www.volunteermatch.org" }
-      ];
-
-      // Update activist type info if available
+      // Update the page with the selected activist type's details
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
         resultImage.src = activistTypes[activistType].image;
         resultImage.style.display = "block";
 
-        // Update recommended organizations as green buttons
+        // Update quick action buttons (set to open in new window)
         const orgs = activistTypes[activistType].organizations;
         if (orgs && orgs.length >= 2) {
-          org1.textContent = orgs[0].name;
-          org1.href = orgs[0].link;
-          org2.textContent = orgs[1].name;
-          org2.href = orgs[1].link;
+          document.getElementById("org1").textContent = orgs[0].name;
+          document.getElementById("org1").href = orgs[0].link;
+          document.getElementById("org2").textContent = orgs[1].name;
+          document.getElementById("org2").href = orgs[1].link;
         } else {
-          org1.textContent = "No Org Available";
-          org1.href = "#";
-          org2.textContent = "No Org Available";
-          org2.href = "#";
+          document.getElementById("org1").textContent = "No Org Available";
+          document.getElementById("org1").href = "#";
+          document.getElementById("org2").textContent = "No Org Available";
+          document.getElementById("org2").href = "#";
         }
       } else {
         resultTitle.textContent = "Uncategorized";
         resultDescription.textContent = "We couldn't match your activist style. Please try again.";
         resultImage.style.display = "none";
-        org1.textContent = "No Org Available";
-        org1.href = "#";
-        org2.textContent = "No Org Available";
-        org2.href = "#";
       }
-
-      // Render volunteer buttons for the user's selected focus areas
-      volunteerContainer.innerHTML = issueFocus.map(focus => {
-        const item = focusMapping.find(i => i.name.toLowerCase() === focus.toLowerCase());
-        return item ? `
-          <a href="${item.link}" class="volunteer-button" title="${item.name}" target="_blank">
-            <img src="${item.image}" alt="${item.name}">
-            <p>${item.name}</p>
-          </a>
-        ` : "";
-      }).join("");
 
       // Display the results container
       document.getElementById("result-container").style.display = "block";
 
       // --- Share Modal Setup ---
-      const quizLink = window.location.origin + "/index.html"; // Adjust this link as needed
+      // Define the quiz link; adjust as needed for your site
+      const quizLink = window.location.origin + "/index.html";
       const shareText = `Activist Type: ${activistType}
-Issue Focus: ${issueFocus.join(", ")}
+${activistTypes[activistType] ? activistTypes[activistType].description : ""}
 You will change the world.
 Take the quiz here: ${quizLink}`;
       const shareButton = document.getElementById("share-button");
@@ -268,15 +202,6 @@ Take the quiz here: ${quizLink}`;
         if (event.target == modal) {
           modal.style.display = "none";
         }
-      });
-
-      // --- Action Confirmation Setup ---
-      const actionButton = document.getElementById("action-button");
-      const actionConfirmation = document.getElementById("action-confirmation");
-      actionButton.addEventListener("click", function () {
-        actionConfirmation.style.display = "block";
-        actionButton.disabled = true;
-        actionButton.textContent = "Action Recorded";
       });
     });
   </script>
