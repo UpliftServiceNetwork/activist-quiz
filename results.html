@@ -163,6 +163,53 @@
             { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
           ]
         }
+        document.addEventListener("DOMContentLoaded", function () {
+  // Retrieve your results data (this example uses stored values)
+  const storedType = localStorage.getItem("activistType") || "Uncategorized";
+  const storedFocus = localStorage.getItem("activistFocus") || '["Education Rights"]';
+  const activistType = storedType;
+  const issueFocus = JSON.parse(storedFocus);
+  
+  // Prepare share text (customize as needed)
+  const shareText = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}`;
+  
+  // Set up the Share Modal elements
+  const shareButton = document.getElementById("share-button");
+  const modal = document.getElementById("share-modal");
+  const closeModal = document.getElementById("close-modal");
+  const shareTextElement = document.getElementById("share-text");
+  const facebookShare = document.getElementById("facebook-share");
+  const twitterShare = document.getElementById("twitter-share");
+  const linkedinShare = document.getElementById("linkedin-share");
+  
+  // Set the share text in the modal
+  shareTextElement.textContent = shareText;
+  
+  // Construct share URLs (you can adjust parameters as needed)
+  const pageUrl = encodeURIComponent(window.location.href);
+  const textEncoded = encodeURIComponent(shareText);
+  
+  facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}&quote=${textEncoded}`;
+  twitterShare.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${textEncoded}`;
+  linkedinShare.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=My%20Activist%20Quiz%20Results&summary=${textEncoded}`;
+  
+  // Open the modal when share button is clicked
+  shareButton.addEventListener("click", function () {
+    modal.style.display = "block";
+  });
+  
+  // Close the modal when the 'X' is clicked
+  closeModal.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+  
+  // Close the modal if the user clicks outside the modal content
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+});
       };
 
       // Define fixed mapping for each focus area (15 total)
