@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Additional inline CSS for any extra spacing adjustments if needed */
+    /* Extra inline CSS if desired */
     .info-text {
       max-width: 550px;
       margin: 0 auto 15px auto;
@@ -14,12 +14,29 @@
       color: #333;
       line-height: 1.4;
     }
+    /* Improved Modal Styling */
+    .modal-content {
+      max-width: 500px; 
+      padding: 30px;
+      position: relative; 
+    }
+    .modal-content h2 {
+      margin-top: 0;
+    }
+    .share-text-container {
+      margin: 20px 0;
+      font-size: 18px;
+      line-height: 1.4;
+      color: #333;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Your Activist Type</h1>
+    
     <div id="result-container" style="display:none;">
+      <!-- Title and Description -->
       <h2 id="result-title"></h2>
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
@@ -53,16 +70,22 @@
       <p class="subtitle">Discover your unique activist style!</p>
     </div>
 
-    <!-- Share Modal (hidden by default) -->
+    <!-- Share Modal -->
     <div id="share-modal" class="modal">
       <div class="modal-content">
         <span id="close-modal" class="close">&times;</span>
-        <h3>Share Your Results</h3>
-        <p id="share-text">Your Activist Type: ...</p>
+        <h2>Share Your Results</h2>
+        
+        <!-- Main share text container -->
+        <div class="share-text-container">
+          <p id="share-text"></p>
+        </div>
+
+        <!-- Social share links -->
         <div class="social-links">
           <a id="facebook-share" href="#" target="_blank">Facebook</a>
           <a id="twitter-share" href="#" target="_blank">Twitter</a>
-          <a id="linkedin-share" href="#" target="_blank">LinkedIn</a>
+          <a id="bluesky-share" href="#" target="_blank">BlueSky</a>
         </div>
       </div>
     </div>
@@ -70,16 +93,17 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored values (fallback to defaults for testing)
+      // Retrieve stored type
       const storedType = localStorage.getItem("activistType");
       const activistType = storedType ? storedType : "Uncategorized";
 
       // DOM references
+      const resultContainer = document.getElementById("result-container");
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
 
-      // Activist types data (title, description, image, and action links)
+      // Data for each activist type
       const activistTypes = {
         "Frontline Mobilizer": {
           description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
@@ -137,69 +161,82 @@
             { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
           ]
         }
-      }; // End activistTypes
+      };
 
-      // Update the page with the selected activist type's details
+      // If there's a matching type, display it
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
         resultImage.src = activistTypes[activistType].image;
         resultImage.style.display = "block";
 
-        // Update quick action buttons (set to open in new window)
+        // Populate quick actions (if needed)
+        const org1 = document.getElementById("org1");
+        const org2 = document.getElementById("org2");
         const orgs = activistTypes[activistType].organizations;
         if (orgs && orgs.length >= 2) {
-          document.getElementById("org1").textContent = orgs[0].name;
-          document.getElementById("org1").href = orgs[0].link;
-          document.getElementById("org2").textContent = orgs[1].name;
-          document.getElementById("org2").href = orgs[1].link;
-        } else {
-          document.getElementById("org1").textContent = "No Org Available";
-          document.getElementById("org1").href = "#";
-          document.getElementById("org2").textContent = "No Org Available";
-          document.getElementById("org2").href = "#";
+          org1.textContent = orgs[0].name;
+          org1.href = orgs[0].link;
+          org2.textContent = orgs[1].name;
+          org2.href = orgs[1].link;
         }
       } else {
         resultTitle.textContent = "Uncategorized";
         resultDescription.textContent = "We couldn't match your activist style. Please try again.";
-        resultImage.style.display = "none";
       }
 
-      // Display the results container
-      document.getElementById("result-container").style.display = "block";
+      // Reveal the results container
+      resultContainer.style.display = "block";
 
-      // --- Share Modal Setup ---
-      // Define the quiz link; adjust as needed for your site
-      const quizLink = window.location.origin + "/index.html";
-      const shareText = `Activist Type: ${activistType}
-${activistTypes[activistType] ? activistTypes[activistType].description : ""}
-You will change the world.
-Take the quiz here: ${quizLink}`;
+      // --- SHARE MODAL / SOCIAL LINKS ---
       const shareButton = document.getElementById("share-button");
       const modal = document.getElementById("share-modal");
       const closeModal = document.getElementById("close-modal");
       const shareTextElement = document.getElementById("share-text");
+
       const facebookShare = document.getElementById("facebook-share");
       const twitterShare = document.getElementById("twitter-share");
-      const linkedinShare = document.getElementById("linkedin-share");
+      const blueskyShare = document.getElementById("bluesky-share");
 
+      // Use the index page as the link to share
+      const indexPageUrl = window.location.origin + "/index.html";
+
+      // Build share text (no "Issue Focus")
+      const shareText = `Activist Type: ${activistType}
+${activistTypes[activistType] ? activistTypes[activistType].description : ""}
+You will change the world.
+Take the quiz here: ${indexPageUrl}`;
+
+      // Put the share text in the modal
       shareTextElement.textContent = shareText;
-      const pageUrl = encodeURIComponent(window.location.href);
-      const textEncoded = encodeURIComponent(shareText);
-      facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}&quote=${textEncoded}`;
-      twitterShare.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${textEncoded}`;
-      linkedinShare.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=My%20Activist%20Quiz%20Results&summary=${textEncoded}`;
 
+      // Encode text for share URLs
+      const textEncoded = encodeURIComponent(shareText);
+
+      // 1) Facebook share
+      // "quote" is used if Facebook allows it; it may be ignored by their policies.
+      facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(indexPageUrl)}&quote=${textEncoded}`;
+
+      // 2) Twitter share
+      // "text" param sets the tweet text, "url" param is the link.
+      twitterShare.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(indexPageUrl)}&text=${textEncoded}`;
+
+      // 3) BlueSky share (experimental, may not work as expected)
+      // There's no official share link for BlueSky yet.
+      blueskyShare.href = `https://bsky.app/compose?text=${textEncoded}`;
+
+      // Open modal
       shareButton.addEventListener("click", function () {
         modal.style.display = "block";
       });
 
+      // Close modal
       closeModal.addEventListener("click", function () {
         modal.style.display = "none";
       });
 
       window.addEventListener("click", function (event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
           modal.style.display = "none";
         }
       });
