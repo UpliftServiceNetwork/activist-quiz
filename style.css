@@ -31,7 +31,7 @@ body {
   margin-right: auto;
 }
 
-/* --- INTRO TEXT & SUBTITLE --- */
+/* --- INTRO PAGE IMAGE --- */
 .intro,
 .subtitle {
   max-width: 500px;
@@ -39,7 +39,6 @@ body {
   margin-right: auto;
 }
 
-/* --- LEAD IMAGE (Index Page) --- */
 .lead-image {
   display: block;
   margin: 0 auto 20px auto;
@@ -60,11 +59,12 @@ body {
   transition: background-color 0.3s ease;
   margin-top: 20px;
 }
+
 .start-quiz-btn:hover {
   background-color: #0056b3;
 }
 
-/* --- QUIZ QUESTIONS & ANSWERS (page1.html, page2.html) --- */
+/* --- QUIZ QUESTIONS & ANSWERS --- */
 form {
   text-align: left;
   max-width: 500px;
@@ -79,7 +79,7 @@ form p {
   margin-bottom: 15px;
 }
 
-/* Indent the label so wrapped text aligns nicely */
+/* Adjust label indentation so that when text wraps, it doesn't start under the bullet/input */
 form label {
   display: block;
   margin: 2px 0;
@@ -99,6 +99,7 @@ form button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 form button:hover {
   background-color: #0056b3;
 }
@@ -115,7 +116,7 @@ form button:hover {
   margin-top: 20px;
 }
 
-/* Center headings and subtitle on results page */
+/* Center headings and subtitle */
 #result-container h1,
 #result-container h2,
 #result-container h3,
@@ -127,11 +128,11 @@ form button:hover {
 h1, h2, h3 {
   color: #4169E1;
 }
+
 .container h1 {
   margin-bottom: 5px;
 }
 
-/* Persona image in results */
 #persona-image {
   display: block;
   margin: 10px auto;
@@ -140,7 +141,6 @@ h1, h2, h3 {
   border-radius: 10px;
 }
 
-/* Focus area icons */
 #issue-focus-container img.focus-icon {
   width: 80px !important;
   height: auto !important;
@@ -159,7 +159,7 @@ h1, h2, h3 {
   margin: 5px;
 }
 
-/* --- Result Buttons (Actions, Orgs, etc.) --- */
+/* --- Existing Results Button Styles --- */
 .result-btn {
   display: block;
   width: 100%;
@@ -176,6 +176,7 @@ h1, h2, h3 {
   background-color: #28a745;
   color: white;
 }
+
 .result-btn.green:hover {
   background-color: #218838;
 }
@@ -184,11 +185,11 @@ h1, h2, h3 {
   background-color: #007BFF;
   color: white;
 }
+
 .result-btn.blue:hover {
   background-color: #0056b3;
 }
 
-/* --- OPTIONAL: Copy Button (if used) --- */
 button#copy-button {
   background-color: #007bff;
   color: white;
@@ -203,11 +204,12 @@ button#copy-button {
   width: auto;
   margin: 0 auto;
 }
+
 button#copy-button:hover {
   background-color: #0056b3;
 }
 
-/* --- VOLUNTEER BUTTONS (Issue Focus) --- */
+/* --- VOLUNTEER BUTTON GROUP (15 Focus Areas) --- */
 .volunteer-button {
   display: inline-block;
   text-decoration: none;
@@ -236,106 +238,6 @@ button#copy-button:hover {
 .volunteer-button:hover {
   border-color: #007BFF;
   transform: scale(1.05);
-}
-
-/* --- SHARE BUTTON (MAKE IT STAND OUT) --- */
-#share-button {
-  background-color: #28a745; /* Green, or choose #007BFF for blue */
-  color: #fff;
-  padding: 12px 24px;
-  font-size: 18px;
-  border-radius: 5px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: block;         /* Matches other .result-btn style */
-  width: 100%;            /* Matches the max-width approach */
-  max-width: 250px;       /* Same as .result-btn */
-  margin: 15px auto 10px auto;
-}
-#share-button:hover {
-  background-color: #218838;
-}
-
-/* --- OPTIONAL: "You will change the world" message styling --- */
-#change-world-message {
-  font-size: 20px;
-  font-weight: bold;
-  color: #FF5733; /* Vibrant color to stand out */
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-/* Ensure “Take the Quiz” is full‑width and visible on phones */
-@media screen and (max-width: 600px) {
-  .result-container img { max-height: 40vh; }
-  .result-container h1 { font-size: 24px; }
-  .result-container p { font-size: 16px; }
-}
- {
-  .quiz-link {
-    display: block;
-    width: 100%;
-    font-size: 20px;
-    padding: 16px;
-    margin: 20px auto 0 auto;
-    box-sizing: border-box;
-  }
-
-  /* Give extra bottom padding so it never disappears off the viewport */
-  .result-container {
-    padding-bottom: 80px;
-  }
-}
-
-/* --- MODAL (SHARE MY RESULTS) --- */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5); /* Black with opacity */
-}
-
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto; /* 10% from top and centered */
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 400px;
-  text-align: center;
-}
-
-/* Close Button (the 'X') */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close:hover,
-.close:focus {
-  color: #000;
-}
-
-/* Social Links in Modal */
-.social-links a {
-  display: inline-block;
-  margin: 10px;
-  padding: 8px 15px;
-  background-color: #007BFF;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-.social-links a:hover {
-  background-color: #0056b3;
 }
 
 /* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
@@ -387,4 +289,56 @@ button#copy-button:hover {
   button#copy-button {
     padding: 14px;
   }
+  /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5); /* Black with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto; /* 10% from top and centered */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+}
+
+/* Social Links */
+.social-links a {
+  display: inline-block;
+  margin: 10px;
+  padding: 8px 15px;
+  background-color: #007BFF;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: #0056b3;
+}
 }
