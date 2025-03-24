@@ -2,16 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Frontline Mobilizer</title>
-  <meta property="og:title" content="I am a Frontline Mobilizer — the spark that ignites change!" />
-  <meta property="og:description" content="Click here to take action today and discover your own activist style!" />
-  <meta property="og:image" content="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_result.png" />
-  <meta property="og:url" content="https://UpliftServiceNetwork.github.io/activist-quiz/frontline-share.html" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <title>Frontline Mobilizer Results</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="result-container">
+    <h1>I am a Frontline Mobilizer — the spark that ignites change!</h1>
+    <p>🔥 You step up—marching, protesting, and leading the charge for change.</p>
+    <img src="images/frontline_result.png" alt="Frontline Mobilizer Persona" onclick="location.href='index.html'">
+    <p>Click the image or button below to take the quiz yourself!</p>
+    <a class="quiz-link" href="index.html">Take the Quiz</a>
+  </div>
+
   <script>
-    window.location.replace('https://UpliftServiceNetwork.github.io/activist-quiz/index.html');
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('activistType') !== 'Frontline Mobilizer') {
+        window.location.replace('index.html');
+      }
+    });
   </script>
 </body>
 </html>
