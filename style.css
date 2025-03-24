@@ -268,6 +268,11 @@ button#copy-button:hover {
 }
 /* Ensure “Take the Quiz” is full‑width and visible on phones */
 @media screen and (max-width: 600px) {
+  .result-container img { max-height: 40vh; }
+  .result-container h1 { font-size: 24px; }
+  .result-container p { font-size: 16px; }
+}
+ {
   .quiz-link {
     display: block;
     width: 100%;
