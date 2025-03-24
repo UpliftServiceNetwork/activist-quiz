@@ -266,6 +266,22 @@ button#copy-button:hover {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+/* Ensure “Take the Quiz” is full‑width and visible on phones */
+@media screen and (max-width: 600px) {
+  .quiz-link {
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    padding: 16px;
+    margin: 20px auto 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* Give extra bottom padding so it never disappears off the viewport */
+  .result-container {
+    padding-bottom: 80px;
+  }
+}
 
 /* --- MODAL (SHARE MY RESULTS) --- */
 .modal {
