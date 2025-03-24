@@ -1,4 +1,4 @@
-ult<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -15,17 +15,19 @@ ult<!DOCTYPE html>
 
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Inline styling (if needed) */
-    .result-container {
+    body {
+      font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
     }
+
     .result-container img {
       max-width: 100%;
       height: auto;
     }
-    .quiz-link {
-      margin-top: 30px;
+
+    .quiz-link, .uplift-btn, .result-btn {
+      margin-top: 20px;
       display: inline-block;
       background-color: #007BFF;
       color: #fff;
@@ -34,27 +36,57 @@ ult<!DOCTYPE html>
       border-radius: 5px;
       transition: background-color 0.3s ease;
     }
-    .quiz-link:hover {
+
+    .quiz-link:hover, .uplift-btn:hover {
       background-color: #0056b3;
+    }
+
+    .thank-you {
+      color: #007BFF;
+      font-weight: bold;
+      font-size: 22px;
+      margin-top: 30px;
+    }
+
+    .subtext {
+      font-size: 16px;
+      color: #333;
+      margin-top: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
-  <div class="container result-container">
+  <div class="result-container">
     <img src="images/frontline_result.png" alt="Frontline Mobilizer Persona" />
-    
-    <!-- Share Button (optional, for immediate sharing) -->
+
+    <!-- Thank You Message -->
+    <p class="thank-you">Thank you for taking the quiz!</p>
+    <p class="subtext">
+      Feel free to take it again to get matched to quick actions. We encourage you to share with friends. 
+      If you would like to be connected to <strong>UpliftServiceNetwork.com</strong>, we would love to take your match to the next level.
+    </p>
+
+    <!-- Uplift Website Button -->
+    <a class="uplift-btn" href="https://upliftservicenetwork.com" target="_blank">Visit UpliftServiceNetwork</a>
+
+    <!-- Share Button -->
     <a id="facebookShareButton" href="javascript:void(0)" class="result-btn green">Share on Facebook</a>
 
+    <!-- Take Quiz Again -->
+    <a class="quiz-link" href="index.html">Take the Quiz Again</a>
+  </div>
+
   <script>
-    // Example share button functionality
-    document.getElementById("facebookShareButton").addEventListener("click", function() {
-      // This page URL will be shared
+    document.getElementById("facebookShareButton").addEventListener("click", function () {
       var url = window.location.href;
       var shareText = "I'm a Frontline Mobilizer! Discover your activist type and change the world!";
-      var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" 
-                        + encodeURIComponent(url) 
-                        + "&quote=" + encodeURIComponent(shareText);
+      var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u="
+                      + encodeURIComponent(url)
+                      + "&quote=" + encodeURIComponent(shareText);
       window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
     });
   </script>
