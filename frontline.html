@@ -4,18 +4,19 @@
   <meta charset="UTF-8" />
   <title>Frontline Mobilizer Results</title>
 
-  <!-- Open Graph Meta Tags -->
+  <!-- Open Graph Meta Tags (Facebook reads these) -->
   <meta property="og:title" content="I'm a Frontline Mobilizer!" />
   <meta property="og:description" content="🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and leading the charge for change." />
   <meta property="og:image" content="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_firestarter.png" />
   <meta property="og:url" content="https://UpliftServiceNetwork.github.io/activist-quiz/frontline.html" />
+  <!-- (Optional) Tweak the image size if needed -->
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
 
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Inline styling (if needed) */
+    /* Basic styling */
     .result-container {
       text-align: center;
       padding: 20px;
@@ -40,29 +41,27 @@
   </style>
 </head>
 <body>
-  <div class="container result-container">
+  <div class="container result-container" id="frontline-result">
     <h1>You Are a Frontline Mobilizer!</h1>
     <p>🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and leading the charge for change.</p>
     <img src="images/frontline_firestarter.png" alt="Frontline Mobilizer Persona" />
-    
-    <!-- Share Button (optional, for immediate sharing) -->
-    <a id="facebookShareButton" href="javascript:void(0)" class="result-btn green">Share on Facebook</a>
-    
-    <!-- Link to Take the Quiz -->
+
+    <!-- "Take the Quiz" button always visible -->
     <a class="quiz-link" href="index.html">Take the Quiz</a>
   </div>
 
   <script>
-    // Example share button functionality
-    document.getElementById("facebookShareButton").addEventListener("click", function() {
-      // This page URL will be shared
-      var url = window.location.href;
-      var shareText = "I'm a Frontline Mobilizer! Discover your activist type and change the world!";
-      var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" 
-                        + encodeURIComponent(url) 
-                        + "&quote=" + encodeURIComponent(shareText);
-      window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
-    });
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. Check if the user actually got "Frontline Mobilizer"
+    //    from localStorage. If NOT, redirect them to the index.
+    const storedType = localStorage.getItem('activistType');
+    if (storedType !== 'Frontline Mobilizer') {
+      // This means a brand-new visitor or someone who doesn't have
+      // "Frontline Mobilizer" in localStorage clicked the link on FB.
+      // Redirect them to the quiz start (index.html).
+      window.location.href = 'index.html';
+    }
+  });
   </script>
 </body>
 </html>
