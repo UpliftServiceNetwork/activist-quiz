@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Frontline Mobilizer Results</title>
+
+  <!-- Open Graph preview tags (Facebook will read these) -->
+  <meta property="og:title" content="I am a Frontline Mobilizer — the spark that ignites change!" />
+  <meta property="og:description" content="Click here to take action today and discover your own activist style!" />
+  <meta property="og:image" content="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_result.png" />
+  <meta property="og:url" content="https://UpliftServiceNetwork.github.io/activist-quiz/frontline.html?share=1" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,11 +23,19 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('activistType') !== 'Frontline Mobilizer') {
-        window.location.replace('index.html');
-      }
-    });
+    const urlParams = new URLSearchParams(window.location.search);
+    const shareMode = urlParams.has('share');
+    const isCorrectType = localStorage.getItem('activistType') === 'Frontline Mobilizer';
+
+    // Redirect if NOT share‑mode AND NOT correct result
+    if (!shareMode && !isCorrectType) {
+      window.location.replace('index.html');
+    }
+
+    // If share‑mode, redirect everyone straight back to quiz
+    if (shareMode) {
+      window.location.replace('index.html');
+    }
   </script>
 </body>
 </html>
