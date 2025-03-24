@@ -25,15 +25,17 @@
   <div class="result-container" id="frontline-result">
     <h1>I am a Frontline Mobilizer — the spark that ignites change!</h1>
     <p>🔥 You step up—marching, protesting, and leading the charge for change.</p>
-    <img src="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_result.png" alt="Frontline Mobilizer Persona" onclick="location.href='index.html'">
+    <img src="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_result.png"
+         alt="Frontline Mobilizer Persona"
+         onclick="location.href='/activist-quiz/index.html'">
     <p>Click the image or the button below to take the quiz yourself!</p>
-    <a class="quiz-link" href="index.html">Take the Quiz</a>
+    <a class="quiz-link" href="/activist-quiz/index.html">Take the Quiz</a>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       if (localStorage.getItem('activistType') !== 'Frontline Mobilizer') {
-        window.location.replace('index.html');
+        window.location.replace('/activist-quiz/index.html');
       }
     });
   </script>
