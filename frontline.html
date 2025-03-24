@@ -4,40 +4,19 @@
   <meta charset="UTF-8">
   <title>Frontline Mobilizer Results</title>
 
-  <!-- Open Graph Meta Tags -->
+  <!-- Open Graph Meta Tags (for Facebook preview) -->
   <meta property="og:title" content="I am a Frontline Mobilizer — the spark that ignites change!" />
   <meta property="og:description" content="Click here to take action today and discover your own activist style!" />
-  <meta property="og:image" content="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_firestarter_result.png" />
-  <meta property="og:url" content="https://UpliftServiceNetwork.github.io/activist-quiz/frontline.html" />
+  <meta property="og:image" content="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_result.png" />
+  <meta property="og:url" content="https://UpliftServiceNetwork.github.io/activist-quiz/frontline-share.html" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:40px; text-align:center; }
-    .result-container img { max-width:100%; height:auto; cursor:pointer; }
-    .quiz-link { margin-top:20px; display:inline-block; padding:12px 24px; background:#007BFF; color:#fff; text-decoration:none; border-radius:5px; }
-    .quiz-link:hover { background:#0056b3; }
-  </style>
 </head>
 <body>
-  <div class="result-container" id="frontline-result">
-    <h1>I am a Frontline Mobilizer — the spark that ignites change!</h1>
-    <p>🔥 You step up — marching, protesting, and leading the charge for change.</p>
-    <img src="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_firestarter_result.png"
-         alt="Frontline Mobilizer Persona"
-         onclick="location.href='https://UpliftServiceNetwork.github.io/activist-quiz/index.html'">
-    <p>Click the image or the button below to take the quiz yourself!</p>
-    <a class="quiz-link" href="https://UpliftServiceNetwork.github.io/activist-quiz/index.html">Take the Quiz</a>
-  </div>
-
+  <!-- Immediately redirect any visitor to the quiz index -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('activistType') !== 'Frontline Mobilizer') {
-        window.location.replace('https://UpliftServiceNetwork.github.io/activist-quiz/index.html');
-      }
-    });
+    window.location.replace('https://UpliftServiceNetwork.github.io/activist-quiz/index.html');
   </script>
 </body>
 </html>
