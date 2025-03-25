@@ -5,7 +5,7 @@
   <title>Frontline Mobilizer Results</title>
 
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Take Action in a that is meaningful to you! Take the quiz!" />
+  <meta property="og:title" content="Take the quiz! Take action in a way that is meaningful to you!" />
   <meta property="og:image" content="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_result.png" />
   <meta property="og:url" content="https://UpliftServiceNetwork.github.io/activist-quiz/frontline.html" />
   <meta property="og:image:width" content="1200" />
@@ -55,13 +55,14 @@
       max-width: 550px;
       margin-left: auto;
       margin-right: auto;
+      text-align: left;
     }
 
     .action-buttons {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
       margin-top: 30px;
     }
 
@@ -123,6 +124,7 @@
     <div class="action-buttons">
       <a class="result-btn blue" href="https://upliftservicenetwork.com" target="_blank">Visit UpliftServiceNetwork</a>
       <a class="result-btn green" id="facebookShareButton" href="javascript:void(0)">Share on Facebook</a>
+      <a class="result-btn green" id="blueskyShareButton" href="javascript:void(0)">Share on BlueSky</a>
       <a class="result-btn blue" href="index.html">Take the Quiz Again</a>
     </div>
   </div>
@@ -134,7 +136,13 @@
       const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
       window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
     });
+
+    document.getElementById("blueskyShareButton").addEventListener("click", function () {
+      const url = window.location.href;
+      const shareText = `I'm a Frontline Mobilizer! Discover your activist type and change the world! ${url}`;
+      const blueskyUrl = `https://bsky.app/compose?text=${encodeURIComponent(shareText)}`;
+      window.open(blueskyUrl, "bluesky-share-dialog", "width=626,height=436");
+    });
   </script>
 </body>
 </html>
-
