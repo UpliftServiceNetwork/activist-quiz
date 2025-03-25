@@ -7,8 +7,8 @@
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="TAKE THE QUIZ! Find activism opportunities that fit for you!" />
   <meta property="og:description" content="🔥" />
-  <meta property="og:image" content="https://UpliftServiceNetwork.github.io/activist-quiz/images/frontline_result.png" />
-  <meta property="og:url" content="https://UpliftServiceNetwork.github.io/activist-quiz/index.html" />
+  <meta property="og:image" content="https://upliftservicenetwork.github.io/activist-quiz/images/frontline_result.png" />
+  <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/index.html" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -130,20 +130,20 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById("facebookShareButton").addEventListener("click", function () {
-      const url = window.location.href;
-      const shareText = "I'm a Frontline Mobilizer! Discover your activist type and change the world!";
-      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
-      window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
-    });
+<script>
+  const quizURL = "https://upliftservicenetwork.github.io/activist-quiz/index.html";
+  const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
 
-    document.getElementById("blueskyShareButton").addEventListener("click", function () {
-      const url = window.location.href;
-      const shareText = `I'm a Frontline Mobilizer! Discover your activist type and change the world! ${url}`;
-      const blueskyUrl = `https://bsky.app/compose?text=${encodeURIComponent(shareText)}`;
-      window.open(blueskyUrl, "bluesky-share-dialog", "width=626,height=436");
-    });
-  </script>
+  document.getElementById("facebookShareButton").addEventListener("click", function () {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(quizURL)}&quote=${encodeURIComponent(shareText)}`;
+    window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
+  });
+
+  document.getElementById("blueskyShareButton").addEventListener("click", function () {
+    const blueskyUrl = `https://bsky.app/compose?text=${encodeURIComponent(`${shareText} ${quizURL}`)}`;
+    window.open(blueskyUrl, "bluesky-share-dialog", "width=626,height=436");
+  });
+</script>
+
 </body>
 </html>
