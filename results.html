@@ -64,8 +64,8 @@
         <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
       </div>
 
-      <!-- Share My Results Button -->
-      <button id="share-button">Share My Results</button>
+<!-- Updated Share My Results Button -->
+<a id="share-button" class="result-btn green" href="#">Share My Results</a>
 
       <p class="subtitle">Discover your unique activist style!</p>
     </div>
@@ -92,10 +92,31 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored type
-      const storedType = localStorage.getItem("activistType");
-      const activistType = storedType ? storedType : "Uncategorized";
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Retrieve the stored activist type from localStorage
+    const storedType = localStorage.getItem("activistType");
+    const activistType = storedType ? storedType : "Uncategorized";
+
+    // Mapping from each activist type to its dedicated page
+    const typeToPageMapping = {
+      "Frontline Mobilizer": "frontline.html",
+      "Community Caregiver": "community.html",
+      "Strategist & Organizer": "organizer.html",
+      "Educator & Storyteller": "storyteller.html",
+      "Digital Defender": "defender.html",
+      "Political Advocate": "advocate.html",
+      "Resource Builder": "builder.html"
+    };
+
+    // Determine the URL to link to based on the activist type (default to index.html if no match)
+    const activistPageUrl = typeToPageMapping[activistType] || "index.html";
+
+    // Update the share button's href attribute so it directs to the correct page
+    const shareButton = document.getElementById("share-button");
+    shareButton.href = activistPageUrl;
+  };
+
 
       // DOM references
       const resultContainer = document.getElementById("result-container");
