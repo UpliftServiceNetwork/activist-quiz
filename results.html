@@ -19,11 +19,6 @@
     #result-container {
       box-shadow: none;
     }
-    /* Center the new Share My Results button */
-    .share-button-container {
-      text-align: center;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
@@ -39,34 +34,35 @@
       <p id="issue-focus-text"></p>  
       <div id="issue-focus-container"></div>
 
-      <!-- Quick Activist Actions -->
+      <!-- New Title for Quick Actions -->
       <h3>Quick Activist Actions</h3>
       <div class="button-group">
         <a href="#" id="org1" class="result-btn green">Action 1</a>
         <a href="#" id="org2" class="result-btn green">Action 2</a>
       </div>
 
-      <!-- Deeper Engagement -->
+      <!-- New Title for Deeper Engagement -->
       <h3>Deeper Engagement</h3>
       <div class="button-group">
-        <a href="https://upliftservicenetwork.com/activist-matching/" class="result-btn blue" target="_blank">Get Matched</a>
-        <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
+        <a href="https://your-blue-action-link.com" class="result-btn blue">Get Matched</a>
+        <a href="https://your-blue-action-link.com" class="result-btn blue">Learn More</a>
       </div>
 
-      <!-- Copy Organizations -->
+      <!-- Optional: Uncomment below for a newsletter link if needed -->
+      <!-- <h3>Stay Informed</h3>
+      <div class="button-group">
+        <a href="https://your-newsletter-link.com" class="result-btn">Subscribe to Our Newsletter</a>
+      </div> -->
+
       <button id="copy-button">Copy Organizations</button>
-
-      <!-- Share My Results button at the bottom, green & centered -->
-      <div class="share-button-container">
-        <button id="share-button" class="result-btn green">Share My Results</button>
-      </div>
     </div>
-    <!-- Removed <p class="subtitle">Discover your unique activist style!</p> -->
+
+    <p class="subtitle">Discover your unique activist style!</p>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored values
+      // Retrieve stored values (commitment removed)
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
 
@@ -79,7 +75,6 @@
       const org1 = document.getElementById("org1");
       const org2 = document.getElementById("org2");
       const copyButton = document.getElementById("copy-button");
-      const shareButton = document.getElementById("share-button");
 
       // Define activist types with details and organizations
       const activistTypes = {
@@ -120,7 +115,7 @@
           image: "images/digital_defender.png",
           organizations: [
             { name: "EFF (Electronic Frontier Foundation)", link: "https://act.eff.org/" },
-            { name: "High Tech Volunteer Ops", link: "https://www.democracylab.org/projects" }
+            { name: "High Tech Volunteer Ops", link: "https://https://www.democracylab.org/projects" }
           ]
         },
         "Political Advocate": {
@@ -135,7 +130,7 @@
           description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
           image: "images/resource_builder.png",
           organizations: [
-            { name: "World Central Kitchen", link: "https://wck.org/fundraise" },
+            { name: "World Central Kitchen", link: "https://https://wck.org/fundraise" },
             { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
           ]
         }
@@ -167,7 +162,7 @@
         resultImage.src = activistTypes[activistType].image;
         resultImage.style.display = "block";
 
-        // Update recommended organizations
+        // Update recommended organizations as green buttons
         const orgs = activistTypes[activistType].organizations;
         if (orgs && orgs.length >= 2) {
           org1.textContent = orgs[0].name;
@@ -190,7 +185,7 @@
         org2.href = "#";
       }
 
-      // Render issue focus icons
+      // Render issue focus
       if (issueFocus.length > 0) {
         issueFocusText.textContent = issueFocus.join(", ");
         // Limit icons to 3
@@ -202,7 +197,7 @@
         issueFocusText.textContent = "Various Issues";
       }
 
-      // Copy organizations functionality
+      // Copy organizations functionality (commitment removed)
       copyButton.addEventListener("click", function () {
         const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nOrganizations:\n` +
           activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
@@ -213,13 +208,271 @@
 
       // Show results container
       document.getElementById("result-container").style.display = "block";
-
-      // Currently, the "Share My Results" button does nothing.
-      // Add an event listener if you want it to share or link somewhere, e.g.:
-      // shareButton.addEventListener("click", () => {
-      //   window.open("https://www.facebook.com/sharer/sharer.php?u=...");
-      // });
     });
   </script>
 </body>
 </html>
+
+/* --- GENERAL PAGE STYLES --- */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* --- CONTAINER STYLES --- */
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Center any direct child inside the container */
+.container > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- INTRO PAGE IMAGE --- */
+.lead-image {
+  display: block;         /* ensure block-level */
+  margin: 0 auto 20px auto; /* center image and add bottom margin */
+  max-width: 500px;        /* a bit larger than before */
+  height: auto;
+  border-radius: 10px;
+}
+
+/* --- START QUIZ BUTTON --- */
+.start-quiz-btn {
+  background-color: #007BFF;
+  color: white;
+  font-size: 20px;
+  padding: 15px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.start-quiz-btn:hover {
+  background-color: #0056b3;
+}
+
+/* --- QUIZ QUESTIONS & ANSWERS --- */
+form {
+  text-align: left;
+  max-width: 500px;
+  width: 100%;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  /* Removed box-shadow from the form to avoid nested shadows */
+  margin: 0 auto;
+}
+
+form p {
+  margin-bottom: 15px;
+}
+
+/* Adjust label indentation so that when text wraps, it doesn't start under the bullet/input */
+form label {
+  display: block;
+  margin: 2px 0;      /* reduced spacing */
+  padding-left: 30px; /* add left padding */
+  text-indent: -30px; /* negative indent so first line lines up with the input */
+}
+
+form button {
+  margin-top: 20px;
+  display: block;
+  padding: 12px;
+  font-size: 18px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* --- RESULTS PAGE STYLES --- */
+#result-container {
+  max-width: 500px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  /* Removed inner box shadow */
+  box-shadow: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#result-container h1,
+#result-container h2,
+#result-container h3,
+.container .subtitle {
+  text-align: center; /* Ensure headings and subtitle are centered */
+}
+
+/* Set heading colors (applies to all devices) */
+h1, h2, h3 {
+  color: #4169E1;
+}
+.container h1 {
+  margin-bottom: 5px; /* Adjust this value as needed */
+}
+#persona-image {
+  display: block;
+  margin: 10px auto;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+}
+
+#issue-focus-container img.focus-icon {
+  width: 80px !important;
+  height: auto !important;
+  max-height: 80px !important;
+  border-radius: 8px !important;
+  margin: 5px;
+}
+
+/* --- Button Grouping --- */
+.button-group {
+  text-align: center;
+  margin: 10px 0;
+}
+.button-group a {
+  display: inline-block;
+  margin: 5px; /* Tiny gap between buttons */
+}
+
+/* --- Existing Results Button Styles --- */
+.result-buttons {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.result-btn {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.result-btn.green {
+  background-color: #28a745;
+  color: white;
+}
+
+.result-btn.green:hover {
+  background-color: #218838;
+}
+
+.result-btn.blue {
+  background-color: #007BFF;
+  color: white;
+}
+
+.result-btn.blue:hover {
+  background-color: #0056b3;
+}
+
+button#copy-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: auto;
+  margin: 0 auto;
+}
+
+button#copy-button:hover {
+  background-color: #0056b3;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
+@media screen and (max-width: 600px) {
+  /* Ensure padding is included in the element’s width */
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  .container {
+    width: 98%;          /* Nearly full width */
+    padding: 15px 5%;    /* 15px top/bottom, 5% left/right */
+    margin: 0 auto;
+  }
+
+  /* Make inner containers fit the outer container */
+  form,
+  #result-container {
+    width: 100%;
+    padding: 10px; /* Reduced padding */
+    margin: 0 auto;
+  }
+
+  .lead-image {
+    max-width: 90%;
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+  
+  h1 {
+    font-size: 30px;
+  }
+  
+  h2 {
+    font-size: 26px;
+  }
+  
+  h3 {
+    font-size: 24px;
+  }
+  
+  #persona-image {
+    max-width: 90%;
+  }
+  
+  .focus-icon {
+    width: 60px;
+    height: auto;
+  }
+  
+  button#copy-button {
+    padding: 14px;
+  }
