@@ -5,32 +5,58 @@
   <title>Quiz Results</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Example of styling for the focus items */
+    .focus-item {
+      display: inline-block;
+      text-align: center;
+      margin: 5px;
+    }
+    .focus-link {
+      display: inline-block;
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+    .focus-link:hover {
+      transform: scale(1.05);
+      border: 2px solid #007BFF;
+    }
+    .focus-icon {
+      width: 80px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .focus-label {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <!-- Top Heading -->
     <h1>Your Activist Type</h1>
-    
+
+    <!-- The container for our dynamic results -->
     <div id="result-container" style="display:none;">
-      <!-- Activist Type & Description -->
+      <!-- 1) Title, Description, Image -->
       <h2 id="result-title"></h2>
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
 
-      <!-- Issue Focus Actions -->
+      <!-- 2) Issue Focus Actions -->
       <h3>Issue Focus Actions</h3>
       <p>These icons represent organizations and volunteer opportunities that align with your cause.</p>
       <div id="issue-focus-container"></div>
 
-      <!-- Quick Activist Actions -->
+      <!-- 3) Quick Activist Actions -->
       <h3>Quick Activist Actions</h3>
       <p>These immediate actions are based on your quiz responses from Page 1. Click them to see how you can start right in!</p>
       <div class="button-group">
-        <a href="#" id="org1" class="result-btn green">Action 1</a>
-        <a href="#" id="org2" class="result-btn green">Action 2</a>
+        <a href="#" id="org1" class="result-btn green" target="_blank">Action 1</a>
+        <a href="#" id="org2" class="result-btn green" target="_blank">Action 2</a>
       </div>
 
-      <!-- Deeper Engagement -->
+      <!-- 4) Deeper Engagement -->
       <h3>Deeper Engagement</h3>
       <p>For those seeking long-term impact, these steps connect you more deeply to your local and national movement.</p>
       <div class="button-group">
@@ -38,7 +64,7 @@
         <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
       </div>
 
-      <!-- Share My Results (Green Button at Bottom) -->
+      <!-- 5) Share My Results (Green Button at Bottom) -->
       <div style="text-align: center; margin-top: 20px;">
         <button id="share-button" class="result-btn green">Share My Results</button>
       </div>
@@ -46,43 +72,59 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // 1) Retrieve quiz data from localStorage
+    document.addEventListener("DOMContentLoaded", function () {
+      // Retrieve stored values
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
 
-      // 2) DOM references
+      // DOM references
       const resultContainer = document.getElementById("result-container");
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
       const org1 = document.getElementById("org1");
       const org2 = document.getElementById("org2");
+      const issueFocusContainer = document.getElementById("issue-focus-container");
       const shareButton = document.getElementById("share-button");
 
-      // 3) Activist Types (with your data)
+      // Example activist types
       const activistTypes = {
         "Frontline Mobilizer": {
-          description: "🔥 You are the spark that ignites change! ...",
+          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
           image: "images/frontline_firestarter.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/take-action/" },
             { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/take-action/" }
           ]
         },
-        // ... other types ...
+        // ... Fill out for the other 6 types ...
       };
 
-      // 4) Display the user’s chosen type
+      // Example focusMapping with name, image, link
+      const focusMapping = [
+        {
+          name: "Racial Justice",
+          image: "images/racial_justice.png",
+          link: "https://naacp.org/take-action"
+        },
+        {
+          name: "Climate Action",
+          image: "images/climate_action.png",
+          link: "https://www.sierraclub.org/volunteer"
+        },
+        // ... Fill out the rest ...
+      ];
+
+      // 1) Update the user’s Activist Type
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
         resultImage.src = activistTypes[activistType].image;
         resultImage.style.display = "block";
 
-        // Populate the quick-action green buttons
-        const orgs = activistTypes[activistType].organizations || [];
-        if (orgs.length >= 2) {
+        // Quick Activist Actions
+        const orgs = activistTypes[activistType].organizations;
+        if (orgs && orgs.length >= 2) {
           org1.textContent = orgs[0].name;
           org1.href = orgs[0].link;
           org2.textContent = orgs[1].name;
@@ -93,21 +135,31 @@
         resultDescription.textContent = "We couldn't match your activist style. Please try again.";
       }
 
-      // 5) Issue Focus
-      // Use your existing code to render clickable icons, e.g.:
-      const issueFocusContainer = document.getElementById("issue-focus-container");
-      // If you have focusMapping, do something like:
-      /*
-      const focusHTML = issueFocus.map(...).join("");
+      // 2) Render Issue Focus icons with text
+      // Limit to 3 icons if desired
+      const limitedFocus = issueFocus.slice(0, 3);
+      let focusHTML = "";
+      limitedFocus.forEach(focusName => {
+        const match = focusMapping.find(item => item.name === focusName);
+        if (match) {
+          focusHTML += `
+            <div class="focus-item">
+              <a href="${match.link}" target="_blank" class="focus-link">
+                <img src="${match.image}" class="focus-icon" alt="${match.name}" title="${match.name}">
+              </a>
+              <p class="focus-label">${match.name}</p>
+            </div>
+          `;
+        }
+      });
       issueFocusContainer.innerHTML = focusHTML;
-      */
 
-      // 6) Reveal the results
+      // 3) Reveal results
       resultContainer.style.display = "block";
 
-      // 7) "Share My Results" button does nothing by default:
+      // 4) “Share My Results” button
       shareButton.addEventListener("click", function() {
-        alert("Share button clicked! Implement your share logic here.");
+        alert("You clicked 'Share My Results'! Add your share logic here.");
       });
     });
   </script>
