@@ -1,11 +1,5 @@
 /* === INDEX & QUIZ PAGE STYLES === */
-.lead-image {
-  display: block;
-  margin: 0 auto 20px auto;
-  width: 100%;         /* makes the image fluid */
-  max-width: 500px;    /* ensures it never grows wider than 500px */
-  height: auto;
-  border-radius: 10px;
+
 }
 /* Intro & Subtitle Text for Index Page */
 .intro {
@@ -21,14 +15,27 @@
   color: #666;
   text-align: center;
 }
+@media screen and (max-width: 600px) {
+  body {
+    display: block;            /* disable flex centering on mobile */
+    padding: 10px;             /* small whitespace around content */
+  }
 
-/* Lead Image for Index Page */
-.lead-image {
-  display: block;
-  max-width: 500px;
-  margin: 20px auto;
-  border-radius: 10px;
-  height: auto;
+  .container {
+    width: 100%;               /* fill the viewport */
+    max-width: 100%;           /* remove desktop max-width */
+    padding: 10px;             /* consistent gutter */
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .lead-image {
+    width: 100%;               /* scale to container width */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+  }
 }
 
 /* Start Quiz Button (Index Page) */
