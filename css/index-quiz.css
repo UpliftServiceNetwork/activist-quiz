@@ -74,5 +74,25 @@ form {
 
 form p {
   margin-bottom: 15px;
-  font-size:
+  font-size: 18px;
+}
 
+/* === PAGE 1 SPECIFIC STYLES === */
+.container h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+#quiz-form-page1 p {
+  margin-bottom: 8px;
+}
+
+#quiz-form-page1 label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 6px 0;
+}
+
+/* --- END OF PAGE 1 STYLES --- */
