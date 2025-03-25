@@ -24,6 +24,9 @@
       text-align: center;
       margin-top: 20px;
     }
+    .share-button-container button {
+      margin: 0 auto;
+    }
     /* Focus item styles */
     .focus-item {
       display: inline-block;
@@ -55,12 +58,14 @@
     <h1>Your Activist Type</h1>
 
     <div id="result-container" style="display:none;">
+      <!-- Activist Type & Description -->
       <h2 id="result-title"></h2>
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
 
+      <!-- Issue Focus Actions -->
       <h3>Issue Focus</h3>
-      <p id="issue-focus-text"></p>  
+      <p id="issue-focus-text">Click the icons below to explore volunteer opportunities and organizations related to these issues.</p>  
       <div id="issue-focus-container"></div>
 
       <!-- Quick Activist Actions -->
@@ -94,7 +99,7 @@
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
 
-      // DOM references
+      // DOM element references
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
