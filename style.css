@@ -102,14 +102,16 @@ body {
 /* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
 @media screen and (max-width: 600px) {
   .main-container {
-    width: 90%;
-    padding: 10px;
+    width: 100%;
+    padding: 10px;  /* This creates a small white space around the content */
+    box-sizing: border-box;
   }
   
   .result-container,
   .text-container {
-    max-width: 90%;
+    max-width: 100%;
     padding: 0 10px;
+    box-sizing: border-box;
   }
   
   .thank-you {
