@@ -24,7 +24,7 @@
       text-align: center;
       margin-top: 20px;
     }
-    /* Focus items (if used) */
+    /* Focus item styles */
     .focus-item {
       display: inline-block;
       text-align: center;
@@ -229,15 +229,6 @@
       } else {
         issueFocusText.textContent = "Various Issues";
       }
-
-      // Copy organizations functionality
-      copyButton.addEventListener("click", function () {
-        const textToCopy = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}\nOrganizations:\n` +
-          activistTypes[activistType].organizations.map(org => `${org.name} - ${org.link}`).join("\n");
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          alert("Copied to clipboard!");
-        });
-      });
 
       // Show results container
       document.getElementById("result-container").style.display = "block";
