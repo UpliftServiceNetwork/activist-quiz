@@ -1,5 +1,12 @@
 /* === INDEX & QUIZ PAGE STYLES === */
-
+.lead-image {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 100%;         /* makes the image fluid */
+  max-width: 500px;    /* ensures it never grows wider than 500px */
+  height: auto;
+  border-radius: 10px;
+}
 /* Intro & Subtitle Text for Index Page */
 .intro {
   font-size: 18px;
