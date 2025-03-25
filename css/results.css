@@ -354,4 +354,16 @@ button#copy-button:hover {
   font-weight: 600;
   color: #333;
 }
+/* Always show a blue border around focus links on desktop & mobile */
+.focus-link {
+  border: 2px solid #007BFF;
+  border-radius: 8px;
+  padding: 8px;
+  transition: border-color 0.2s ease;
+}
+
+/* Hover turns it green */
+.focus-link:hover {
+  border-color: #28a745;
+}
 }
