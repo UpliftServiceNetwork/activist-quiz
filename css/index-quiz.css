@@ -97,13 +97,13 @@ form p {
 /* Tighten spacing on both quiz pages */
 #quiz-form-page1 label,
 #quiz-form-page2 label {
-  margin: 4px 0;
-  line-height: 1.4;
+  margin: 4px 0;      /* only 4px above & below each option */
+  font-weight: 500;   /* a bit bolder without increasing font size */
 }
 
 #quiz-form-page1 p,
 #quiz-form-page2 p {
-  margin-bottom: 8px;
+  margin-bottom: 8px; /* less gap between the question text and first option */
 }
 
 /* --- END OF PAGE 1 STYLES --- */
