@@ -428,6 +428,11 @@ button#copy-button:hover {
     margin: 10px auto 30px auto;
     text-align: left;
   }
+  .subtext-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
   .quiz-link,
   .uplift-btn,
@@ -435,7 +440,7 @@ button#copy-button:hover {
     display: block;
     width: 100%;
     max-width: 300px;
-    margin: 10px auto;
+    margin: 14px auto;
     padding: 14px 20px;
     font-size: 18px;
     text-align: center;
