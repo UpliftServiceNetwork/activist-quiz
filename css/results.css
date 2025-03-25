@@ -366,7 +366,7 @@ button#copy-button:hover {
 .focus-link:hover {
   border-color: #28a745;
 }
-  /* === RESULT ICON BUTTONS === */
+/* === FIX ISSUE FOCUS BUTTONS ON DESKTOP === */
 #issue-focus-container {
   display: flex;
   flex-wrap: wrap;
@@ -375,11 +375,12 @@ button#copy-button:hover {
 }
 
 .focus-item {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .focus-link {
-  display: inline-block;
   border: 2px solid #007BFF;
   border-radius: 8px;
   padding: 8px;
@@ -396,7 +397,6 @@ button#copy-button:hover {
 }
 
 .focus-label {
-  display: block;
   margin-top: 6px;
   font-size: 14px;
   font-weight: 600;
