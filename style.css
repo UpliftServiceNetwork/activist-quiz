@@ -295,6 +295,19 @@ button#copy-button:hover {
   button#copy-button {
     padding: 14px;
   }
+  
+  /* Constrain the result image on small screens */
+  .result-container img {
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  /* Adjust text container on mobile */
+  .text-container {
+    max-width: 90%;
+    padding: 0 10px;
+  }
 }
 
 /* === SHARE PAGE STYLES === */
