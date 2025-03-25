@@ -385,115 +385,114 @@ button#copy-button:hover {
   color: #333;
 }
 /* === SHARE PAGE STYLES === */
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 10px;
-    margin: 0;
-    background-color: #f4f4f4;
-    font-size: 18px;
-  }
+body {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  margin: 0;
+  background-color: #f4f4f4;
+  font-size: 18px;
+}
 
-  .result-container {
-    max-width: 100%;
-    width: 95%;
-    margin: 20px auto;
-    background-color: white;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
+.result-container {
+  max-width: 100%;
+  width: 95%;
+  margin: 20px auto;
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
 
-  .result-container img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
+.result-container img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
 
-  .thank-you {
-    color: #007BFF;
-    font-weight: bold;
-    font-size: 24px;
-    margin-top: 10px;
-  }
+.thank-you {
+  color: #007BFF;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 10px;
+}
 
-  .subtext {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 10px auto 30px auto;
-    text-align: left;
-  }
-  .subtext-wrapper {
+.subtext {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 10px auto 30px auto;
+  text-align: left;
+}
+
+.subtext-wrapper {
   max-width: 500px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
+.quiz-link,
+.uplift-btn,
+.result-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 14px auto;
+  padding: 14px 20px;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.uplift-btn {
+  background-color: #007BFF;
+  color: white;
+}
+
+.uplift-btn:hover {
+  background-color: #0056b3;
+}
+
+.result-btn.green {
+  background-color: #28a745;
+  color: white;
+}
+
+.result-btn.green:hover {
+  background-color: #218838;
+}
+
+.quiz-link {
+  background-color: #6c757d;
+  color: white;
+}
+
+.quiz-link:hover {
+  background-color: #5a6268;
+}
+
+@media screen and (max-width: 600px) {
+  .thank-you {
+    font-size: 20px;
+  }
+  .subtext {
+    font-size: 16px;
+    padding: 0 10px;
+  }
   .quiz-link,
   .uplift-btn,
   .result-btn {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 14px auto;
-    padding: 14px 20px;
-    font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-    box-sizing: border-box;
+    font-size: 16px;
+    padding: 12px 16px;
   }
+}
 
-  .uplift-btn {
-    background-color: #007BFF;
-    color: white;
-  }
-
-  .uplift-btn:hover {
-    background-color: #0056b3;
-  }
-
-  .result-btn.green {
-    background-color: #28a745;
-    color: white;
-  }
-
-  .result-btn.green:hover {
-    background-color: #218838;
-  }
-
-  .quiz-link {
-    background-color: #6c757d;
-    color: white;
-  }
-
-  .quiz-link:hover {
-    background-color: #5a6268;
-  }
-
-  @media screen and (max-width: 600px) {
-    .thank-you {
-      font-size: 20px;
-    }
-
-    .subtext {
-      font-size: 16px;
-      padding: 0 10px;
-    }
-
-    .quiz-link,
-    .uplift-btn,
-    .result-btn {
-      font-size: 16px;
-      padding: 12px 16px;
-    }
-  }
 </style>
 
   
