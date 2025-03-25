@@ -1,15 +1,41 @@
 /* --- BASE STYLES (Base.css) --- */
 
-/* Reset and base typography */
+/* === GLOBAL TYPOGRAPHY (base.css) === */
+
+/* Base font for all body text */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-weight: 400;
+  color: #333;
+}
+
+/* Headings — same bold blue style everywhere */
+h1, h2, h3 {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  color: #4169E1;
+  margin: 1em 0 0.5em;
+}
+
+/* Specific sizes (adjust as needed) */
+h1 { font-size: 32px; }
+h2 { font-size: 24px; }
+h3 { font-size: 20px; }
+
+/* Paragraphs */
+p {
   font-size: 18px;
   line-height: 1.6;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-  box-sizing: border-box;
+  margin-bottom: 1em;
+}
+
+/* Buttons — bold, same size */
+.result-btn,
+button,
+.start-quiz-btn {
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 /* --- CONTAINER STYLES --- */
