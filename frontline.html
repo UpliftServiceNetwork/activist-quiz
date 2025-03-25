@@ -8,9 +8,9 @@
   <meta property="og:title" content="TAKE THE QUIZ! Find activism opportunities that fit for you!" />
   <meta property="og:description" content="🔥Find activism opportunities that fit for you!" />
   <meta property="og:type" content="website" />
-  <!-- Replace YOUR_FACEBOOK_APP_ID with your actual Facebook App ID or remove if not used -->
-  <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
-  <meta property="og:image" content="https://upliftservicenetwork.github.io/activist-quiz/images/frontline_result.png?" />
+  <!-- Remove fb:app_id if you don't need Facebook-specific functionality -->
+  <!-- <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" /> -->
+  <meta property="og:image" content="https://upliftservicenetwork.github.io/activist-quiz/images/frontline_result.png" />
   <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/frontline.html" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -20,28 +20,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="result-container">
-  <a href="frontline-share.html">
-    <img src="images/frontline_result.png?v=3" alt="Frontline Mobilizer Persona" />
-  </a>
+  <div class="result-container">
+    <!-- If you don't want the image to be clickable on the frontline page, remove the anchor below -->
+    <a href="frontline-share.html">
+      <img src="images/frontline_result.png?v=3" alt="Frontline Mobilizer Persona" style="cursor: pointer;" />
+    </a>
 
-  <!-- Text Container -->
-  <div class="text-container">
-    <p class="thank-you">Thank you for taking the quiz!</p>
-    <p class="subtext">
-      Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
-      If you'd like to connect to <strong>UpliftServiceNetwork.com</strong>, we’d love to take your match to the next level.
-    </p>
-  </div>
+    <div class="text-container">
+      <p class="thank-you">Thank you for taking the quiz!</p>
+      <p class="subtext">
+        Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
+        If you'd like to connect to <strong>UpliftServiceNetwork.com</strong>, we’d love to take your match to the next level.
+      </p>
+    </div>
 
-  <!-- Button Group -->
-  <div class="action-buttons">
-    <a class="result-btn blue" href="https://upliftservicenetwork.com" target="_blank">Visit UpliftServiceNetwork</a>
-    <a class="result-btn green" id="facebookShareButton" href="javascript:void(0)">Share on Facebook</a>
-    <a class="result-btn green" id="blueskyShareButton" href="javascript:void(0)">Share on BlueSky</a>
-    <a class="result-btn blue" href="index.html">Take the Quiz Again</a>
+    <div class="action-buttons">
+      <a class="result-btn blue" href="https://upliftservicenetwork.com" target="_blank">Visit UpliftServiceNetwork</a>
+      <a class="result-btn green" id="facebookShareButton" href="javascript:void(0)">Share on Facebook</a>
+      <a class="result-btn green" id="blueskyShareButton" href="javascript:void(0)">Share on BlueSky</a>
+      <a class="result-btn blue" href="index.html">Take the Quiz Again</a>
+    </div>
   </div>
-</div>
 
   <script>
     const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/frontline-share.html";
