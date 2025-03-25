@@ -6,7 +6,24 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Extra inline CSS if desired */
+    /* Additional inline CSS to adjust title spacing and volunteer button hover text */
+    .container h1 {
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+    .volunteer-button {
+      cursor: pointer;
+      position: relative;
+    }
+    .volunteer-button:hover::after {
+      content: "Click to explore";
+      position: absolute;
+      bottom: -1.5em;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: #007BFF;
+    }
     .info-text {
       max-width: 550px;
       margin: 0 auto 15px auto;
@@ -14,230 +31,237 @@
       color: #333;
       line-height: 1.4;
     }
-    /* Improved Modal Styling */
-    .modal-content {
-      max-width: 500px; 
-      padding: 30px;
-      position: relative; 
-    }
-    .modal-content h2 {
-      margin-top: 0;
-    }
-    .share-text-container {
-      margin: 20px 0;
-      font-size: 18px;
-      line-height: 1.4;
-      color: #333;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Your Activist Type</h1>
-    
     <div id="result-container" style="display:none;">
-      <!-- Title and Description -->
       <h2 id="result-title"></h2>
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
-
-      <!-- Inspirational Message -->
-      <p class="info-text" id="inspirational-message">You will change the world.</p>
-
+      
+      <!-- Issue Focus Actions Section -->
+      <h3>Issue Focus Actions</h3>
+      <p class="info-text">
+        These icons represent organizations and volunteer opportunities aligned with the issues you care about.
+      </p>
+      <div id="volunteer-container" class="button-group"></div>
+      
       <!-- Quick Activist Actions Section -->
       <h3>Quick Activist Actions</h3>
       <p class="info-text">
-        These immediate actions are based on your quiz responses. Click an action to open it in a new window.
+        These immediate actions are based on your response from Page 1. Click to see how you can dive right in!
       </p>
       <div class="button-group">
-        <a href="#" id="org1" class="result-btn green" target="_blank">Action 1</a>
-        <a href="#" id="org2" class="result-btn green" target="_blank">Action 2</a>
+        <a href="#" id="org1" class="result-btn green">Action 1</a>
+        <a href="#" id="org2" class="result-btn green">Action 2</a>
       </div>
-
+      
       <!-- Deeper Engagement Section -->
       <h3>Deeper Engagement</h3>
       <p class="info-text">
-        For long-term impact, explore these more involved opportunities.
+        For those seeking long-term impact, these steps connect you to more involved roles and ongoing commitments.
       </p>
       <div class="button-group">
-        <a href="https://upliftservicenetwork.com/activist-matching/" class="result-btn blue" target="_blank">Get Matched</a>
-        <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
+        <a href="https://upliftservicenetwork.com/activist-matching/" class="result-btn blue">Get Matched</a>
+        <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue">Learn More</a>
       </div>
+      
+  <!-- Share My Results Button -->
+<button id="share-button">Share My Results</button>
 
-      <!-- Share My Results Button -->
-      <button id="share-button">Share My Results</button>
-
-      <p class="subtitle">Discover your unique activist style!</p>
-    </div>
-
-    <!-- Share Modal -->
-    <div id="share-modal" class="modal">
-      <div class="modal-content">
-        <span id="close-modal" class="close">&times;</span>
-        <h2>Share Your Results</h2>
-        
-        <!-- Main share text container -->
-        <div class="share-text-container">
-          <p id="share-text"></p>
-        </div>
-
-        <!-- Social share links -->
-        <div class="social-links">
-          <a id="facebook-share" href="#" target="_blank">Facebook</a>
-          <a id="twitter-share" href="#" target="_blank">Twitter</a>
-          <a id="bluesky-share" href="#" target="_blank">BlueSky</a>
-        </div>
-      </div>
+<!-- Share Modal (hidden by default) -->
+<div id="share-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-modal" class="close">&times;</span>
+    <h3>Share Your Results</h3>
+    <p id="share-text">Your Activist Type: ...</p>
+    <div class="social-links">
+      <a id="facebook-share" href="#" target="_blank">Facebook</a>
+      <a id="twitter-share" href="#" target="_blank">Twitter</a>
+      <a id="linkedin-share" href="#" target="_blank">LinkedIn</a>
     </div>
   </div>
+</div>
 
+    <p class="subtitle">Discover your unique activist style!</p>
+  </div>
+  
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored type
-      const storedType = localStorage.getItem("activistType");
-      const activistType = storedType ? storedType : "Uncategorized";
+document.addEventListener("DOMContentLoaded", function () {
+  // Retrieve stored values (with fallback defaults for testing)
+  const storedType = localStorage.getItem("activistType");
+  const storedFocus = localStorage.getItem("activistFocus");
+  const activistType = storedType ? storedType : "Uncategorized";
+  const issueFocus = storedFocus ? JSON.parse(storedFocus) : ["Education Rights"];
 
-      // DOM references
-      const resultContainer = document.getElementById("result-container");
-      const resultTitle = document.getElementById("result-title");
-      const resultDescription = document.getElementById("result-description");
-      const resultImage = document.getElementById("persona-image");
+  // DOM references
+  const resultTitle = document.getElementById("result-title");
+  const resultDescription = document.getElementById("result-description");
+  const resultImage = document.getElementById("persona-image");
+  const volunteerContainer = document.getElementById("volunteer-container");
+  const org1 = document.getElementById("org1");
+  const org2 = document.getElementById("org2");
 
-      // Data for each activist type
-      const activistTypes = {
-        "Frontline Mobilizer": {
-          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change, you embody it.",
-          image: "images/frontline_firestarter.png",
-          organizations: [
-            { name: "Black Lives Matter", link: "https://blacklivesmatter.com/take-action/" },
-            { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/take-action/" }
-          ]
-        },
-        "Community Caregiver": {
-          description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
-          image: "images/caregiver.png",
-          organizations: [
-            { name: "Start a Mutual Aid Circle", link: "https://www.mutualaidhub.org/resources" },
-            { name: "Help End Homelessness", link: "https://endhomelessness.org/action" }
-          ]
-        },
-        "Strategist & Organizer": {
-          description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
-          image: "images/organizer.png",
-          organizations: [
-            { name: "Indivisible", link: "https://indivisible.org/" },
-            { name: "MoveOn", link: "https://front.moveon.org/volunteer-with-moveon/" }
-          ]
-        },
-        "Educator & Storyteller": {
-          description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
-          image: "images/storyteller.png",
-          organizations: [
-            { name: "Record a Story", link: "https://storycorps.org/participate/" },
-            { name: "Uplift a Child", link: "https://storypirateschangemakers.org/story-love" }
-          ]
-        },
-        "Digital Defender": {
-          description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
-          image: "images/digital_defender.png",
-          organizations: [
-            { name: "EFF (Electronic Frontier Foundation)", link: "https://act.eff.org/" },
-            { name: "High Tech Volunteer Ops", link: "https://www.democracylab.org/projects" }
-          ]
-        },
-        "Political Advocate": {
-          description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
-          image: "images/political_advocate.png",
-          organizations: [
-            { name: "Protect Immigrants", link: "https://unitedwedream.org/here-to-stay-network/" },
-            { name: "ACLU Action", link: "https://www.aclu.org/action" }
-          ]
-        },
-        "Resource Builder": {
-          description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
-          image: "images/resource_builder.png",
-          organizations: [
-            { name: "World Central Kitchen", link: "https://wck.org/fundraise" },
-            { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
-          ]
-        }
-      };
+  // Activist types (for quick & deeper actions)
+  const activistTypes = {
+    "Frontline Mobilizer": {
+      description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change; you make it happen.",
+      image: "images/frontline_firestarter.png",
+      organizations: [
+        { name: "Black Lives Matter", link: "https://blacklivesmatter.com/take-action/" },
+        { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/take-action/" }
+      ]
+    },
+    "Community Caregiver": {
+      description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
+      image: "images/caregiver.png",
+      organizations: [
+        { name: "Start a Mutual Aid Circle", link: "https://www.mutualaidhub.org/resources" },
+        { name: "Help End Homelessness", link: "https://endhomelessness.org/action" }
+      ]
+    },
+    "Strategist & Organizer": {
+      description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
+      image: "images/organizer.png",
+      organizations: [
+        { name: "Indivisible", link: "https://indivisible.org/" },
+        { name: "MoveOn", link: "https://front.moveon.org/volunteer-with-moveon/" }
+      ]
+    },
+    "Educator & Storyteller": {
+      description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
+      image: "images/storyteller.png",
+      organizations: [
+        { name: "Record a Story", link: "https://storycorps.org/participate/" },
+        { name: "Uplift a Child", link: "https://storypirateschangemakers.org/story-love" }
+      ]
+    },
+    "Digital Defender": {
+      description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
+      image: "images/digital_defender.png",
+      organizations: [
+        { name: "EFF (Electronic Frontier Foundation)", link: "https://act.eff.org/" },
+        { name: "High Tech Volunteer Ops", link: "https://www.democracylab.org/projects" }
+      ]
+    },
+    "Political Advocate": {
+      description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
+      image: "images/political_advocate.png",
+      organizations: [
+        { name: "Protect Immigrants", link: "https://unitedwedream.org/here-to-stay-network/" },
+        { name: "ACLU Action", link: "https://www.aclu.org/action" }
+      ]
+    },
+    "Resource Builder": {
+      description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
+      image: "images/resource_builder.png",
+      organizations: [
+        { name: "World Central Kitchen", link: "https://wck.org/fundraise" },
+        { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
+      ]
+    }
+  }; // Close activistTypes
 
-      // If there's a matching type, display it
-      if (activistTypes[activistType]) {
-        resultTitle.textContent = activistType;
-        resultDescription.textContent = activistTypes[activistType].description;
-        resultImage.src = activistTypes[activistType].image;
-        resultImage.style.display = "block";
+  // Define fixed mapping for each focus area (15 total)
+  const focusMapping = [
+    { name: "Racial Justice", image: "images/racial_justice.png", link: "https://naacp.org/take-action" },
+    { name: "Climate Action", image: "images/climate_action.png", link: "https://www.sierraclub.org/volunteer" },
+    { name: "Workers' Rights", image: "images/workers_rights.png", link: "https://www.jwj.org/take-action" },
+    { name: "LGBTQ+ Rights", image: "images/lgbtq_rights.png", link: "https://www.hrc.org/get-involved/volunteer" },
+    { name: "Healthcare Reform", image: "images/healthcare_reform.png", link: "https://www.pih.org/get-involved" },
+    { name: "Criminal Justice", image: "images/criminal_justice.png", link: "https://www.sentencingproject.org/advocacy/get-involved/" },
+    { name: "Education Rights", image: "images/education_rights.png", link: "https://www.communitiesinschools.org/ways-to-get-involved/" },
+    { name: "Housing Rights", image: "images/housing_rights.png", link: "https://nlihc.org/take-action" },
+    { name: "Immigration Rights", image: "images/immigration_rights.png", link: "https://unitedwedream.org/here-to-stay-network/" },
+    { name: "Reproductive Rights", image: "images/reproductive_rights.png", link: "https://reproductivefreedomforall.org/take-action/" },
+    { name: "Voting Rights", image: "images/voting_rights.png", link: "https://www.lwv.org/local-leagues/find-local-league?field_zip_code_value=" },
+    { name: "Veteran Support", image: "images/veteran_support.png", link: "https://www.woundedwarriorproject.org/give-back" },
+    { name: "Food Security", image: "images/food_security.png", link: "https://www.feedingamerica.org/find-your-local-foodbank" },
+    { name: "Public Health", image: "images/public_health.png", link: "https://www.redcross.org/volunteer/become-a-volunteer.html?srsltid=AfmBOoo5KnuxtwPyfcslFT0z-7QTPmCsxp7LGqQuXaRb-DLm404m8" },
+    { name: "Other", image: "images/other_focus.png", link: "https://www.volunteermatch.org" }
+  ];
 
-        // Populate quick actions (if needed)
-        const org1 = document.getElementById("org1");
-        const org2 = document.getElementById("org2");
-        const orgs = activistTypes[activistType].organizations;
-        if (orgs && orgs.length >= 2) {
-          org1.textContent = orgs[0].name;
-          org1.href = orgs[0].link;
-          org2.textContent = orgs[1].name;
-          org2.href = orgs[1].link;
-        }
-      } else {
-        resultTitle.textContent = "Uncategorized";
-        resultDescription.textContent = "We couldn't match your activist style. Please try again.";
-      }
+  // Update activist type info if available
+  if (activistTypes[activistType]) {
+    resultTitle.textContent = activistType;
+    resultDescription.textContent = activistTypes[activistType].description;
+    resultImage.src = activistTypes[activistType].image;
+    resultImage.style.display = "block";
 
-      // Reveal the results container
-      resultContainer.style.display = "block";
+    // Update recommended organizations as green buttons
+    const orgs = activistTypes[activistType].organizations;
+    if (orgs && orgs.length >= 2) {
+      org1.textContent = orgs[0].name;
+      org1.href = orgs[0].link;
+      org2.textContent = orgs[1].name;
+      org2.href = orgs[1].link;
+    } else {
+      org1.textContent = "No Org Available";
+      org1.href = "#";
+      org2.textContent = "No Org Available";
+      org2.href = "#";
+    }
+  } else {
+    resultTitle.textContent = "Uncategorized";
+    resultDescription.textContent = "We couldn't match your activist style. Please try again.";
+    resultImage.style.display = "none";
+    org1.textContent = "No Org Available";
+    org1.href = "#";
+    org2.textContent = "No Org Available";
+    org2.href = "#";
+  }
 
-      // --- SHARE MODAL / SOCIAL LINKS ---
-      const shareButton = document.getElementById("share-button");
-      const modal = document.getElementById("share-modal");
-      const closeModal = document.getElementById("close-modal");
-      const shareTextElement = document.getElementById("share-text");
+  // Render volunteer buttons only for the user's selected focus areas
+  volunteerContainer.innerHTML = issueFocus.map(focus => {
+    const item = focusMapping.find(i => i.name.toLowerCase() === focus.toLowerCase());
+    return item ? `
+      <a href="${item.link}" class="volunteer-button" title="${item.name}" target="_blank">
+        <img src="${item.image}" alt="${item.name}">
+        <p>${item.name}</p>
+      </a>
+    ` : "";
+  }).join("");
 
-      const facebookShare = document.getElementById("facebook-share");
-      const twitterShare = document.getElementById("twitter-share");
-      const blueskyShare = document.getElementById("bluesky-share");
+  // Display the results container
+  document.getElementById("result-container").style.display = "block";
 
-      // Use the index page as the link to share
-      const indexPageUrl = "https://UpliftServiceNetwork.github.io/activist-quiz/index.html";
+  // --- Share Modal Setup ---
+  const shareText = `Activist Type: ${activistType}\nIssue Focus: ${issueFocus.join(", ")}`;
+  const shareButton = document.getElementById("share-button");
+  const modal = document.getElementById("share-modal");
+  const closeModal = document.getElementById("close-modal");
+  const shareTextElement = document.getElementById("share-text");
+  const facebookShare = document.getElementById("facebook-share");
+  const twitterShare = document.getElementById("twitter-share");
+  const linkedinShare = document.getElementById("linkedin-share");
 
-      // Build share text as one complete template literal
-      const shareText = `Activist Type: ${activistType}
-${activistTypes[activistType] ? activistTypes[activistType].description : ""}
-You will change the world.
-Take the quiz here: ${indexPageUrl}`;
+  shareTextElement.textContent = shareText;
 
-      // Put the share text in the modal
-      shareTextElement.textContent = shareText;
+  // Construct share URLs (adjust parameters as needed)
+  const pageUrl = encodeURIComponent(window.location.href);
+  const textEncoded = encodeURIComponent(shareText);
 
-      // Encode text for share URLs
-      const textEncoded = encodeURIComponent(shareText);
+  facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}&quote=${textEncoded}`;
+  twitterShare.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${textEncoded}`;
+  linkedinShare.href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=My%20Activist%20Quiz%20Results&summary=${textEncoded}`;
 
-      // 1) Facebook share
-      facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(indexPageUrl)}&quote=${textEncoded}`;
+  // Open the modal when share button is clicked
+  shareButton.addEventListener("click", function () {
+    modal.style.display = "block";
+  });
 
-      // 2) Twitter share
-      twitterShare.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(indexPageUrl)}&text=${textEncoded}`;
-
-      // 3) BlueSky share (experimental)
-      blueskyShare.href = `https://bsky.app/compose?text=${textEncoded}`;
-
-      // Open modal
-      shareButton.addEventListener("click", function () {
-        modal.style.display = "block";
-      });
-
-      // Close modal
-      closeModal.addEventListener("click", function () {
-        modal.style.display = "none";
-      });
-
-      window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    });
-  </script>
+  // Close the modal when the 'X' is clicked or when clicking outside the modal content
+  closeModal.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+  window.addEventListener("click", function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  });
+});
+</script>
 </body>
 </html>
