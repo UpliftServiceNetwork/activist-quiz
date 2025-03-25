@@ -94,5 +94,16 @@ form p {
   font-weight: 500;
   margin: 6px 0;
 }
+/* Tighten spacing on both quiz pages */
+#quiz-form-page1 label,
+#quiz-form-page2 label {
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+#quiz-form-page1 p,
+#quiz-form-page2 p {
+  margin-bottom: 8px;
+}
 
 /* --- END OF PAGE 1 STYLES --- */
