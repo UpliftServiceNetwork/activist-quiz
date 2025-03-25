@@ -128,7 +128,7 @@
 <body>
   <div class="result-container">
     <a href="frontline-share.html">
-      <img src="images/frontline_result.png" alt="Frontline Mobilizer Persona" style="cursor: pointer;" />
+      <img src="images/frontline_result.png?v=3" alt="Frontline Mobilizer Persona" style="cursor: pointer;" />
     </a>
 
     <p class="thank-you">Thank you for taking the quiz!</p>
@@ -145,21 +145,19 @@
     </div>
   </div>
 
-<script>
-  const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/frontline-share.html";
-  const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
+  <script>
+    const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/frontline-share.html";
+    const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
 
-  document.getElementById("facebookShareButton").addEventListener("click", function () {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`;
-    window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
-  });
+    document.getElementById("facebookShareButton").addEventListener("click", function () {
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`;
+      window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
+    });
 
-  document.getElementById("blueskyShareButton").addEventListener("click", function () {
-    const blueskyUrl = `https://bsky.app/compose?text=${encodeURIComponent(`${shareText} ${shareURL}`)}`;
-    window.open(blueskyUrl, "bluesky-share-dialog", "width=626,height=436");
-  });
-</script>
-
-
+    document.getElementById("blueskyShareButton").addEventListener("click", function () {
+      const blueskyUrl = `https://bsky.app/compose?text=${encodeURIComponent(`${shareText} ${shareURL}`)}`;
+      window.open(blueskyUrl, "bluesky-share-dialog", "width=626,height=436");
+    });
+  </script>
 </body>
 </html>
