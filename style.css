@@ -356,5 +356,27 @@ button#copy-button:hover {
 .result-btn.green:hover {
   background-color: #218838;
 }
-
+.focus-item {
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+}
+.focus-link {
+  display: inline-block;
+  transition: transform 0.2s ease, border 0.2s ease;
+}
+.focus-link:hover {
+  transform: scale(1.05);
+  border: 2px solid #007BFF;
+}
+.focus-icon {
+  width: 80px;
+  height: auto;
+  border-radius: 8px;
+}
+.focus-label {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #333;
+}
 }
