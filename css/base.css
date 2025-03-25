@@ -184,5 +184,23 @@ form button:hover {
     font-size: 16px;
     padding: 12px 16px;
   }
+  /* === GLOBAL MOBILE BOLDENING === */
+@media screen and (max-width: 600px) {
+  /* Heaviest weight for all headings */
+  h1, h2, h3 {
+    font-weight: 900;
+  }
+
+  /* Heaviest weight for buttons */
+  .result-btn,
+  .start-quiz-btn,
+  button {
+    font-weight: 900;
+  }
+
+  /* Semi‑bold for body text */
+  p, label {
+    font-weight: 600;
+  }
 }
 
