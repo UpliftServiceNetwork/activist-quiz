@@ -366,4 +366,41 @@ button#copy-button:hover {
 .focus-link:hover {
   border-color: #28a745;
 }
+  /* === RESULT ICON BUTTONS === */
+#issue-focus-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.focus-item {
+  text-align: center;
+}
+
+.focus-link {
+  display: inline-block;
+  border: 2px solid #007BFF;
+  border-radius: 8px;
+  padding: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.focus-link:hover {
+  border-color: #28a745;
+}
+
+.focus-icon {
+  width: 80px;
+  height: auto;
+}
+
+.focus-label {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
 }
