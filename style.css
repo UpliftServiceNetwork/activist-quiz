@@ -1,4 +1,4 @@
-GENERAL PAGE STYLES --- */
+/* --- GENERAL PAGE STYLES --- */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -170,6 +170,7 @@ h1, h2, h3 {
   text-decoration: none;
   text-align: center;
   transition: background-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .result-btn.green {
@@ -294,207 +295,105 @@ button#copy-button:hover {
   button#copy-button {
     padding: 14px;
   }
+
   /* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5); /* Black with opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto; /* 10% from top and centered */
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 400px;
-  text-align: center;
-}
-
-/* Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-}
-
-/* Social Links */
-.social-links a {
-  display: inline-block;
-  margin: 10px;
-  padding: 8px 15px;
-  background-color: #007BFF;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.social-links a:hover {
-  background-color: #0056b3;
-}
-  .result-btn.green {
-  background-color: #28a745;
-  color: white;
-  font-size: 20px;
-  padding: 15px 30px;
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-
-.result-btn.green:hover {
-  background-color: #218838;
-}
-.focus-item {
-  display: inline-block;
-  text-align: center;
-  margin: 5px;
-}
-.focus-link {
-  display: inline-block;
-  transition: transform 0.2s ease, border 0.2s ease;
-}
-.focus-link:hover {
-  transform: scale(1.05);
-  border: 2px solid #007BFF;
-}
-.focus-icon {
-  width: 80px;
-  height: auto;
-  border-radius: 8px;
-}
-.focus-label {
-  margin-top: 5px;
-  font-size: 14px;
-  color: #333;
-}
-/* === SHARE PAGE STYLES === */
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 10px;
-    margin: 0;
-    background-color: #f4f4f4;
-    font-size: 18px;
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Black with opacity */
   }
 
-  .result-container {
-    max-width: 100%;
-    width: 95%;
-    margin: 20px auto;
-    background-color: white;
-    padding: 24px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  /* Modal Content */
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto; /* 10% from top and centered */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
     text-align: center;
   }
 
-  .result-container img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-
-  .thank-you {
-    color: #007BFF;
+  /* Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
-    font-size: 24px;
-    margin-top: 10px;
+    cursor: pointer;
   }
 
-  .subtext {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 10px auto 30px auto;
-    text-align: left;
-  }
-  .subtext-wrapper {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-  .quiz-link,
-  .uplift-btn,
-  .result-btn {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 14px auto;
-    padding: 14px 20px;
-    font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-    box-sizing: border-box;
+  .close:hover,
+  .close:focus {
+    color: #000;
   }
 
-  .uplift-btn {
+  /* Social Links */
+  .social-links a {
+    display: inline-block;
+    margin: 10px;
+    padding: 8px 15px;
     background-color: #007BFF;
-    color: white;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
   }
 
-  .uplift-btn:hover {
+  .social-links a:hover {
     background-color: #0056b3;
   }
 
   .result-btn.green {
     background-color: #28a745;
     color: white;
+    font-size: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
   }
 
   .result-btn.green:hover {
     background-color: #218838;
   }
 
-  .quiz-link {
-    background-color: #6c757d;
-    color: white;
+  .focus-item {
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
   }
 
-  .quiz-link:hover {
-    background-color: #5a6268;
+  .focus-link {
+    display: inline-block;
+    transition: transform 0.2s ease, border 0.2s ease;
   }
 
-  @media screen and (max-width: 600px) {
-    .thank-you {
-      font-size: 20px;
-    }
-
-    .subtext {
-      font-size: 16px;
-      padding: 0 10px;
-    }
-
-    .quiz-link,
-    .uplift-btn,
-    .result-btn {
-      font-size: 16px;
-      padding: 12px 16px;
-    }
+  .focus-link:hover {
+    transform: scale(1.05);
+    border: 2px solid #007BFF;
   }
-</style>
 
-  
+  .focus-icon {
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .focus-label {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+  }
 }
+
+/* === SHARE PAGE STYLES (Optional) === */
+/* If you have a dedicated share page with body.share-page, add additional rules here if needed. */
+
