@@ -133,18 +133,24 @@
   </div>
 
 <script>
-  const quizURL = "https://upliftservicenetwork.github.io/activist-quiz/index.html";
+  const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/frontline-share.html";
   const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
 
-  document.getElementById("facebookShareButton").addEventListener("click", function () {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(quizURL)}&quote=${encodeURIComponent(shareText)}`;
-    window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
+document.getElementById("facebookShareButton").addEventListener("click", function () {
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`;
+  window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
+});
+
   });
 
-  document.getElementById("blueskyShareButton").addEventListener("click", function () {
-    const blueskyUrl = `https://bsky.app/compose?text=${encodeURIComponent(`${shareText} ${quizURL}`)}`;
-    window.open(blueskyUrl, "bluesky-share-dialog", "width=626,height=436");
-  });
+const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/frontline-share.html";
+const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
+
+document.getElementById("blueskyShareButton").addEventListener("click", function () {
+  const blueskyUrl = `https://bsky.app/compose?text=${encodeURIComponent(`${shareText} ${shareURL}`)}`;
+  window.open(blueskyUrl, "bluesky-share-dialog", "width=626,height=436");
+});
+
 </script>
 
 </body>
