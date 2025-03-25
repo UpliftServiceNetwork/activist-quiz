@@ -341,4 +341,20 @@ button#copy-button:hover {
 .social-links a:hover {
   background-color: #0056b3;
 }
+  .result-btn.green {
+  background-color: #28a745;
+  color: white;
+  font-size: 20px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.result-btn.green:hover {
+  background-color: #218838;
+}
+
 }
