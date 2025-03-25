@@ -241,4 +241,44 @@ button#copy-button:hover {
   font-weight: 700;
   font-size: 18px;
 }
+  /* === RESULT PAGE ICON LINKS === */
+#issue-focus-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.focus-item {
+  text-align: center;
+}
+
+.focus-link {
+  display: block;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.focus-link:hover {
+  border-color: #007BFF; /* blue on hover */
+}
+
+.result-btn.green + .focus-link:hover,
+.focus-link.green-hover:hover {
+  border-color: #28a745; /* green on hover for green-themed icons */
+}
+
+.focus-icon {
+  width: 80px;
+  height: auto;
+  display: block;
+}
+
+.focus-label {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #333;
+}
 }
