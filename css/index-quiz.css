@@ -15,6 +15,17 @@
   color: #666;
   text-align: center;
 }
+/* === DESKTOP FIX: constrain lead image === */
+@media screen and (min-width: 601px) {
+  .lead-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+  }
+}
+
 /* --- MOBILE FIX: INDEX & QUIZ PAGES --- */
 @media screen and (max-width: 600px) {
   body {
