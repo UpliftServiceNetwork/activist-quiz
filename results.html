@@ -6,11 +6,7 @@
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Center the container */
-    .container {
-      text-align: center;
-    }
-    /* Constrain the text width for nicer reading */
+    /* Extra inline CSS if desired */
     .info-text {
       max-width: 550px;
       margin: 0 auto 15px auto;
@@ -18,213 +14,228 @@
       color: #333;
       line-height: 1.4;
     }
-    /* Style the persona image */
-    #persona-image {
-      max-width: 300px;
-      border-radius: 10px;
-      margin: 15px auto;
-      display: block;
+    /* Improved Modal Styling */
+    .modal-content {
+      max-width: 500px; 
+      padding: 30px;
+      position: relative; 
     }
-    /* Style for the focus icons container */
-    .volunteer-button {
-      display: inline-block;
-      text-decoration: none;
-      color: #000;
-      margin: 10px;
-      padding: 5px;
-      border: 2px solid transparent;
-      border-radius: 8px;
-      transition: border-color 0.3s ease, transform 0.3s ease;
-      cursor: pointer;
-      width: 110px; /* adjust as needed */
-      text-align: center;
-      vertical-align: top; /* so multiple icons line up nicely */
+    .modal-content h2 {
+      margin-top: 0;
     }
-    .volunteer-button:hover {
-      border-color: #007BFF;
-      transform: scale(1.05);
-    }
-    .focus-icon {
-      width: 80px;
-      height: auto;
-      border-radius: 8px;
-      display: block;
-      margin: 0 auto;
-    }
-    /* Explanation text under each focus icon */
-    .focus-explanation {
-      font-size: 14px;
+    .share-text-container {
+      margin: 20px 0;
+      font-size: 18px;
+      line-height: 1.4;
       color: #333;
-      margin: 5px 0 0;
-    }
-    /* Center the "Copy Organizations" button */
-    #copy-button {
-      margin: 20px auto;
-      display: block;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Your Activist Type</h1>
-
+    
     <div id="result-container" style="display:none;">
       <!-- Title and Description -->
       <h2 id="result-title"></h2>
-      <p id="result-description" class="info-text"></p>
-      <img id="persona-image" src="" alt="Your Activist Persona" />
+      <p id="result-description"></p>
+      <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
 
-      <!-- Issue Focus Actions -->
-      <h3>Issue Focus Actions</h3>
-      <div id="issue-focus-container" class="button-group">
-        <!-- Focus icons + explanations get appended here via JS -->
-      </div>
+      <!-- Inspirational Message -->
+      <p class="info-text" id="inspirational-message">You will change the world.</p>
 
-      <!-- Quick Activist Actions -->
+      <!-- Quick Activist Actions Section -->
       <h3>Quick Activist Actions</h3>
+      <p class="info-text">
+        These immediate actions are based on your quiz responses. Click an action to open it in a new window.
+      </p>
       <div class="button-group">
         <a href="#" id="org1" class="result-btn green" target="_blank">Action 1</a>
         <a href="#" id="org2" class="result-btn green" target="_blank">Action 2</a>
       </div>
 
-      <!-- Deeper Engagement -->
+      <!-- Deeper Engagement Section -->
       <h3>Deeper Engagement</h3>
+      <p class="info-text">
+        For long-term impact, explore these more involved opportunities.
+      </p>
       <div class="button-group">
         <a href="https://upliftservicenetwork.com/activist-matching/" class="result-btn blue" target="_blank">Get Matched</a>
         <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
       </div>
 
-      <!-- Copy Organizations Button -->
-      <button id="copy-button" class="result-btn green">Copy Organizations</button>
+      <!-- Share My Results Button -->
+      <button id="share-button">Share My Results</button>
+
+      <p class="subtitle">Discover your unique activist style!</p>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="share-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <h2>Share Your Results</h2>
+        
+        <!-- Main share text container -->
+        <div class="share-text-container">
+          <p id="share-text"></p>
+        </div>
+
+        <!-- Social share links -->
+        <div class="social-links">
+          <a id="facebook-share" href="#" target="_blank">Facebook</a>
+          <a id="twitter-share" href="#" target="_blank">Twitter</a>
+          <a id="bluesky-share" href="#" target="_blank">BlueSky</a>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // 1) Retrieve the user's type & focuses from localStorage
-      const storedType = localStorage.getItem("activistType") || "Uncategorized";
-      const selectedFocuses = JSON.parse(localStorage.getItem("activistFocus")) || [];
+      // Retrieve stored type
+      const storedType = localStorage.getItem("activistType");
+      const activistType = storedType ? storedType : "Uncategorized";
 
-      // 2) Grab references to the DOM
+      // DOM references
       const resultContainer = document.getElementById("result-container");
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
-      const focusContainer = document.getElementById("issue-focus-container");
-      const copyButton = document.getElementById("copy-button");
 
-      // 3) Define your Activist Types (with 2 Quick-Action orgs each)
+      // Data for each activist type
       const activistTypes = {
-        "Resource Builder": {
-          emoji: "💰",
-          description: "You provide the funding, materials, and resources that movements need to thrive.",
-          image: "images/resource_builder.png",
-          organizations: [
-            { name: "World Central Kitchen", link: "https://wck.org/fundraise" },
-            { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
-          ]
-        },
         "Frontline Mobilizer": {
-          emoji: "🔥",
-          description: "You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines.",
+          description: "🔥 You are the spark that ignites change! When injustice strikes, you step up—marching, protesting, and standing boldly on the front lines. You don’t just demand change, you embody it.",
           image: "images/frontline_firestarter.png",
           organizations: [
             { name: "Black Lives Matter", link: "https://blacklivesmatter.com/take-action/" },
             { name: "Sunrise Movement", link: "https://www.sunrisemovement.org/take-action/" }
           ]
         },
-        // ... fill in for other 5 types as well ...
+        "Community Caregiver": {
+          description: "💙 You are the heart of the movement! Whether it’s feeding the hungry, providing shelter, or offering support, you bring direct care to those who need it most.",
+          image: "images/caregiver.png",
+          organizations: [
+            { name: "Start a Mutual Aid Circle", link: "https://www.mutualaidhub.org/resources" },
+            { name: "Help End Homelessness", link: "https://endhomelessness.org/action" }
+          ]
+        },
+        "Strategist & Organizer": {
+          description: "📊 You are the architect of change! Your vision and leadership turn passion into progress.",
+          image: "images/organizer.png",
+          organizations: [
+            { name: "Indivisible", link: "https://indivisible.org/" },
+            { name: "MoveOn", link: "https://front.moveon.org/volunteer-with-moveon/" }
+          ]
+        },
+        "Educator & Storyteller": {
+          description: "📢 You are the voice that opens minds and moves hearts! Your storytelling and education fuel movements.",
+          image: "images/storyteller.png",
+          organizations: [
+            { name: "Record a Story", link: "https://storycorps.org/participate/" },
+            { name: "Uplift a Child", link: "https://storypirateschangemakers.org/story-love" }
+          ]
+        },
+        "Digital Defender": {
+          description: "💻 You use technology and online platforms to organize, advocate, and protect movements.",
+          image: "images/digital_defender.png",
+          organizations: [
+            { name: "EFF (Electronic Frontier Foundation)", link: "https://act.eff.org/" },
+            { name: "High Tech Volunteer Ops", link: "https://www.democracylab.org/projects" }
+          ]
+        },
+        "Political Advocate": {
+          description: "🏛️ You fight for justice through policy, voting rights, and legal action, making systemic change happen.",
+          image: "images/political_advocate.png",
+          organizations: [
+            { name: "Protect Immigrants", link: "https://unitedwedream.org/here-to-stay-network/" },
+            { name: "ACLU Action", link: "https://www.aclu.org/action" }
+          ]
+        },
+        "Resource Builder": {
+          description: "💰 You provide the funding, materials, and resources that movements need to thrive.",
+          image: "images/resource_builder.png",
+          organizations: [
+            { name: "World Central Kitchen", link: "https://wck.org/fundraise" },
+            { name: "Trevor Project Fundraiser", link: "https://www.thetrevorproject.org/fundraise/" }
+          ]
+        }
       };
 
-      // 4) Define the 15 focus areas, each with a short "explanation"
-      const focusMapping = [
-        {
-          name: "Healthcare Reform",
-          image: "images/healthcare_reform.png",
-          link: "https://www.pih.org/get-involved",
-          explanation: "Expanding access to quality, affordable healthcare."
-        },
-        {
-          name: "Criminal Justice",
-          image: "images/criminal_justice.png",
-          link: "https://www.sentencingproject.org/advocacy/get-involved/",
-          explanation: "Addressing mass incarceration and promoting restorative justice."
-        },
-        {
-          name: "Education Rights",
-          image: "images/education_rights.png",
-          link: "https://www.communitiesinschools.org/ways-to-get-involved/",
-          explanation: "Ensuring every child has access to equitable education."
-        },
-        // ... and so on for all 15 ...
-      ];
+      // If there's a matching type, display it
+      if (activistTypes[activistType]) {
+        resultTitle.textContent = activistType;
+        resultDescription.textContent = activistTypes[activistType].description;
+        resultImage.src = activistTypes[activistType].image;
+        resultImage.style.display = "block";
 
-      // 5) Display the user’s Activist Type
-      if (activistTypes[storedType]) {
-        // Show "emoji + type" as the heading
-        const typeData = activistTypes[storedType];
-        resultTitle.textContent = `${typeData.emoji} ${storedType}`;
-        resultDescription.textContent = typeData.description;
-        resultImage.src = typeData.image;
-
-        // Populate the two Quick Activist Actions
-        const [org1, org2] = typeData.organizations;
-        document.getElementById("org1").textContent = org1.name;
-        document.getElementById("org1").href = org1.link;
-        document.getElementById("org2").textContent = org2.name;
-        document.getElementById("org2").href = org2.link;
+        // Populate quick actions (if needed)
+        const org1 = document.getElementById("org1");
+        const org2 = document.getElementById("org2");
+        const orgs = activistTypes[activistType].organizations;
+        if (orgs && orgs.length >= 2) {
+          org1.textContent = orgs[0].name;
+          org1.href = orgs[0].link;
+          org2.textContent = orgs[1].name;
+          org2.href = orgs[1].link;
+        }
       } else {
-        // No match
-        resultTitle.textContent = storedType;
+        resultTitle.textContent = "Uncategorized";
         resultDescription.textContent = "We couldn't match your activist style. Please try again.";
-        resultImage.style.display = "none";
       }
 
-      // 6) Show the user’s chosen focuses (Issue Focus Actions)
-      selectedFocuses.forEach(focusName => {
-        const match = focusMapping.find(f => f.name === focusName);
-        if (match) {
-          // Create a clickable icon with explanation beneath
-          const volunteerLink = document.createElement("a");
-          volunteerLink.href = match.link;
-          volunteerLink.target = "_blank";
-          volunteerLink.classList.add("volunteer-button");
-
-          volunteerLink.innerHTML = `
-            <img src="${match.image}" alt="${match.name}" class="focus-icon"/>
-            <p><strong>${match.name}</strong></p>
-            <p class="focus-explanation">${match.explanation}</p>
-          `;
-
-          focusContainer.appendChild(volunteerLink);
-        }
-      });
-
-      // 7) Reveal the container
+      // Reveal the results container
       resultContainer.style.display = "block";
 
-      // 8) "Copy Organizations" button
-      copyButton.addEventListener("click", function () {
-        let copyText = "";
+      // --- SHARE MODAL / SOCIAL LINKS ---
+      const shareButton = document.getElementById("share-button");
+      const modal = document.getElementById("share-modal");
+      const closeModal = document.getElementById("close-modal");
+      const shareTextElement = document.getElementById("share-text");
 
-        // Copy the two quick-action orgs
-        if (activistTypes[storedType] && activistTypes[storedType].organizations) {
-          activistTypes[storedType].organizations.forEach(org => {
-            copyText += `${org.name}: ${org.link}\n`;
-          });
+      const facebookShare = document.getElementById("facebook-share");
+      const twitterShare = document.getElementById("twitter-share");
+      const blueskyShare = document.getElementById("bluesky-share");
+
+      // Use the index page as the link to share
+      const indexPageUrl = "https://UpliftServiceNetwork.github.io/activist-quiz/index.html";
+
+      // Build share text as one complete template literal
+      const shareText = `Activist Type: ${activistType}
+${activistTypes[activistType] ? activistTypes[activistType].description : ""}
+You will change the world.
+Take the quiz here: ${indexPageUrl}`;
+
+      // Put the share text in the modal
+      shareTextElement.textContent = shareText;
+
+      // Encode text for share URLs
+      const textEncoded = encodeURIComponent(shareText);
+
+      // 1) Facebook share
+      facebookShare.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(indexPageUrl)}&quote=${textEncoded}`;
+
+      // 2) Twitter share
+      twitterShare.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(indexPageUrl)}&text=${textEncoded}`;
+
+      // 3) BlueSky share (experimental)
+      blueskyShare.href = `https://bsky.app/compose?text=${textEncoded}`;
+
+      // Open modal
+      shareButton.addEventListener("click", function () {
+        modal.style.display = "block";
+      });
+
+      // Close modal
+      closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
         }
-        // Copy each selected focus link
-        selectedFocuses.forEach(focusName => {
-          const match = focusMapping.find(f => f.name === focusName);
-          if (match) {
-            copyText += `${match.name}: ${match.link}\n`;
-          }
-        });
-
-        // Write to clipboard
-        navigator.clipboard.writeText(copyText)
-          .then(() => alert("Organizations copied to clipboard!"))
-          .catch(() => alert("Failed to copy organizations."));
       });
     });
   </script>
