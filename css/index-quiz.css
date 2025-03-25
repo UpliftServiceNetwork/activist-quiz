@@ -15,27 +15,29 @@
   color: #666;
   text-align: center;
 }
+/* --- MOBILE FIX: INDEX & QUIZ PAGES --- */
 @media screen and (max-width: 600px) {
   body {
-    display: block;            /* disable flex centering on mobile */
-    padding: 10px;             /* small whitespace around content */
+    display: block;
+    padding: 10px;
   }
 
   .container {
-    width: 100%;               /* fill the viewport */
-    max-width: 100%;           /* remove desktop max-width */
-    padding: 10px;             /* consistent gutter */
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
     margin: 0 auto;
     box-sizing: border-box;
   }
 
   .lead-image {
-    width: 100%;               /* scale to container width */
+    width: 100%;
     max-width: 100%;
     height: auto;
     display: block;
     margin: 0 auto 20px;
   }
+
 }
 
 /* Start Quiz Button (Index Page) */
