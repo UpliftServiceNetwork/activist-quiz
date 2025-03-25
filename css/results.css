@@ -367,40 +367,7 @@ button#copy-button:hover {
   border-color: #28a745;
 }
 /* === FIX ISSUE FOCUS BUTTONS ON DESKTOP === */
-#issue-focus-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-}
 
-.focus-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.focus-link {
-  border: 2px solid #007BFF;
-  border-radius: 8px;
-  padding: 8px;
-  transition: border-color 0.2s ease;
-}
-
-.focus-link:hover {
-  border-color: #28a745;
-}
-
-.focus-icon {
-  width: 80px;
-  height: auto;
-}
-
-.focus-label {
-  margin-top: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #333;
 }
 #issue-focus-container {
   display: flex;
