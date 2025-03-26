@@ -136,17 +136,15 @@ button#copy-button:hover {
   gap: 16px;
 }
 
-/* Each icon + label container */
 .focus-item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* The clickable box around each icon/label */
 .focus-link {
   display: flex;
-  flex-direction: column; /* label under icon */
+  flex-direction: column; /* stack icon above label */
   align-items: center;    /* center horizontally */
   border: 2px solid #007BFF;
   border-radius: 8px;
@@ -155,25 +153,23 @@ button#copy-button:hover {
   text-decoration: none;
 }
 
-/* Hover turns border green */
 .focus-link:hover {
-  border-color: #28a745;
+  border-color: #28a745; /* green on hover */
 }
 
-/* Icon styling */
 .focus-icon {
   width: 80px;
   height: auto;
-  border-radius: 8px;
 }
 
-/* Label under the icon */
 .focus-label {
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 14px;
   font-weight: 600;
   color: #333;
+  text-align: center;
 }
+
 
 /* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
 @media screen and (max-width: 600px) {
