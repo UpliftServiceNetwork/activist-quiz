@@ -14,40 +14,37 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Link to your CSS files -->
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/other.css" />
+  <!-- Your CSS files -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/other.css">
 </head>
 <body>
   <div class="page-container">
-
-    <!-- Centered Heading -->
+    
     <h1 class="thank-you">Thank You for Taking the Quiz!</h1>
 
-    <!-- Subtext Container (left-aligned text) -->
-    <div class="subtext-container">
-      <p>
-        Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
-        If you'd like to connect to <strong>The Uplift Service Network</strong>, we’d love to take your match to the next level.
-      </p>
-    </div>
+    <p>
+      Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
+      If you'd like to connect to <strong>The Uplift Service Network</strong>, we’d love to take your match to the next level.
+    </p>
 
     <!-- Image (non-clickable on this page) -->
     <img src="images/frontline_result.png?v=3" alt="Frontline Mobilizer Persona" />
 
-    <!-- Buttons Container -->
-    <div class="action-buttons">
-      <!-- Shortened text on the button -->
+    <!-- Buttons: 2 columns on larger screens, stacked on mobile -->
+    <div class="button-grid">
+      <!-- Column 1 (Blue Buttons) -->
       <a class="button blue" href="https://upliftservicenetwork.com" target="_blank">Uplift Service Network</a>
+      <a class="button blue" href="index.html">Take the Quiz Again</a>
+
+      <!-- Column 2 (Green Buttons) -->
       <a class="button green" id="facebookShareButton" href="javascript:void(0)">Share on Facebook</a>
       <a class="button green" id="blueskyShareButton" href="javascript:void(0)">Share on BlueSky</a>
-      <a class="button blue" href="index.html">Take the Quiz Again</a>
     </div>
 
   </div> <!-- end .page-container -->
 
-  <!-- Social Sharing Scripts -->
+  <!-- Scripts for social sharing -->
   <script>
     const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/frontline-share.html";
     const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
