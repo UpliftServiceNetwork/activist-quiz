@@ -1,65 +1,64 @@
 /************************************************
-  other.css (For Frontline or Other Persona Pages)
+  other.css (Used by frontline.html, etc.)
 ************************************************/
 
-/* 1) Container Override: Left-Align Text */
+/* 1) Container for each "persona" page 
+   - We do NOT override text-align here, so the title (h1) and paragraphs
+     remain centered by default from base.css.
+*/
 .frontline-container {
-  text-align: left;  /* override any default center from base.css */
+  /* text-align: center; <-- Already inherited from base.css, no override needed */
 }
 
-/* 2) Headings in the Container (optional, if you want h1 left-aligned too) */
-.frontline-container h1 {
-  text-align: left;        /* left-align the h1 instead of center */
-  margin-top: 0.5em;       /* adjust spacing if you like */
-}
-
-/* 3) Subtext Box (center the box, but left-align the text within it) */
+/* 2) Keep your subtext box if you want a special area for paragraphs
+   - Currently, it will follow the base.css alignment (center).
+   - If you change your mind and want left-justified text, 
+     add `text-align: left;` below. */
 .subtext-box {
   max-width: 600px;
-  margin: 0 auto 20px;     /* center horizontally, add bottom spacing */
-  text-align: left;        /* ensures paragraphs are left-aligned */
+  margin: 0 auto 20px;     /* center the box on the page */
+  /* text-align: left;    <-- only UN-comment if you decide to left-align text */
 }
-
 .subtext-box p {
-  font-size: 18px;         /* or keep your base.css size, if you prefer */
+  font-size: 18px;         /* override base if you want slightly smaller or bigger */
   margin-bottom: 15px;
 }
 
-/* 4) Responsive Image: no overflow */
+/* 3) Make sure images scale responsively without overflowing */
 .frontline-container img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 20px auto;       /* center the image horizontally */
-  border-radius: 10px;     /* optional corner rounding */
+  margin: 20px auto;  /* center horizontally */
+  border-radius: 10px;
 }
 
-/* 5) Two-Column Button Layout */
+/* 4) Two-column button layout (green share buttons first, blue second) */
 .two-column-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns on larger screens */
+  grid-template-columns: 1fr 1fr; /* 2 columns for wider screens */
   gap: 10px;
   margin-top: 20px;
 }
 
+/* Ensure each button looks good. 
+   (The colors .result-btn.green / .result-btn.blue come from base.css) */
 .two-column-buttons a {
-  /* If needed, ensure consistent sizing or override base button styles */
   display: inline-block;
-  font-size: 18px;  /* or match your base.css */
+  font-size: 18px;
   text-align: center;
-  color: #fff;      /* text color for the button */
+  color: #fff;
   border-radius: 5px;
   padding: 14px 24px;
   transition: background-color 0.3s ease;
 }
 
-/* 6) Mobile Stacking */
+/* 5) Stack buttons on mobile screens */
 @media screen and (max-width: 600px) {
   .two-column-buttons {
-    grid-template-columns: 1fr; /* stack in a single column */
+    grid-template-columns: 1fr; /* single column (stacked) */
   }
-
   .two-column-buttons a {
-    width: 100%;        /* make each button full width */
+    width: 100%; /* each button spans full width */
   }
 }
