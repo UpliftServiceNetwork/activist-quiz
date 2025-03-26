@@ -1,126 +1,52 @@
-/* Resets / Base rules (optional) */
+/***************************************************
+  FRONTLINE-SPECIFIC OVERRIDES
+  (Loaded after base.css)
+****************************************************/
 
-/* --- PAGE WRAPPER --- */
-body {
-  margin: 0;
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  font-size: 18px;
-  background-color: #f4f4f4;
-  box-sizing: border-box;
+/* 1) Ensure container is left-aligned where needed,
+      but remain centered overall via base.css. 
+      The base .container sets text-align: center, 
+      so we override with .frontline-container. */
+.frontline-container {
+  text-align: left;  /* Force text to be left-aligned inside the container */
 }
 
-/* Make all elements, pseudo-elements use border-box */
-*, *::before, *::after {
-  box-sizing: inherit;
+/* 2) Subtext Box:
+   - center the box itself with margin: 0 auto
+   - keep text left-justified inside
+*/
+.subtext-box {
+  max-width: 600px;
+  margin: 0 auto 20px auto; /* center horizontally, add spacing on bottom */
+  text-align: left;
 }
 
-/* --- MAIN PAGE CONTAINER --- */
-.page-container {
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;            /* center horizontally */
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  text-align: center;        /* center the heading, image, etc. */
-}
-
-/* --- HEADING --- */
-.thank-you {
-  color: #4169E1;
-  font-size: 32px;
-  margin-bottom: 15px;
-}
-
-/* --- SUBTEXT CONTAINER --- */
-.subtext-container {
-  text-align: left;          /* left-justify the text inside */
-  margin-bottom: 20px;
-}
-
-.subtext-container p {
-  color: #333;
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-
-/* --- IMAGE --- */
-.page-container img {
+/* 3) Frontline Image: 
+   - optional styling if you want a specific width or margin.
+   - by default, base.css might set images to display: block and margin auto.
+*/
+.frontline-image {
+  display: block;
+  margin: 20px auto;  /* center the image horizontally */
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
-  display: block;
-  margin: 0 auto 20px;
 }
 
-/* --- ACTION BUTTONS --- */
-.action-buttons {
+/* 4) Two-Column Buttons:
+   - Using CSS grid to create 2 columns on larger screens
+   - Revert to single column on mobile via media query
+*/
+.two-column-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns for wide screens */
+  gap: 10px;                      /* space between items */
   margin-top: 20px;
-  display: flex;             /* use flexbox */
-  flex-wrap: wrap;           /* allow wrapping on smaller screens */
-  justify-content: center;   /* center the buttons in the container */
-  gap: 10px;                 /* spacing between buttons */
 }
 
-/* --- BUTTON STYLES --- */
-.button {
-  display: inline-block;
-  padding: 14px 24px;
-  font-size: 18px;
-  border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
-  transition: background-color 0.3s ease;
-  color: #fff;
-  min-width: 220px;          /* ensure consistent button width on desktops */
-}
-
-/* Variation: Blue Button */
-.button.blue {
-  background-color: #007BFF;
-}
-.button.blue:hover {
-  background-color: #0056b3;
-}
-
-/* Variation: Green Button */
-.button.green {
-  background-color: #28a745;
-}
-.button.green:hover {
-  background-color: #218838;
-}
-
-/* --- RESPONSIVE ADJUSTMENTS --- */
+/* 5) Responsive: stack buttons on narrow screens */
 @media screen and (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-
-  .page-container {
-    padding: 15px;
-  }
-
-  .thank-you {
-    font-size: 28px;
-  }
-
-  .subtext-container p {
-    font-size: 16px;
-  }
-
-  /* Stack buttons vertically on mobile */
-  .action-buttons {
-    flex-direction: column;  
-    align-items: stretch;    /* make each button span the container width */
-  }
-
-  .button {
-    min-width: auto;        /* let them resize to full width on mobile */
-    width: 100%;
-    margin-bottom: 10px;
+  .two-column-buttons {
+    grid-template-columns: 1fr; /* single column on mobile */
   }
 }
+
