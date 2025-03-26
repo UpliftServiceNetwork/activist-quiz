@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/results.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     /* Additional inline rules (optional; these can be moved to results.css) */
     .button-group {
@@ -40,41 +41,41 @@
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
 
       <!-- Issue Focus Actions -->
-     <!-- Issue Focus Actions -->
-<h3>Issue Focus</h3>
-<p>Based on your priorities, these causes need your voice. Tap an issue to explore how you can get involved.</p>
+      <h3>Issue Focus</h3>
+      <p>Based on your priorities, these causes need your voice. Tap an issue to explore how you can get involved.</p>
 
-<!-- Add this new paragraph so issueFocusText isn't null -->
-<p id="issue-focus-text" style="font-weight:600; margin:10px 0;"></p>
+      <!-- Add this new paragraph so issueFocusText isn't null -->
+      <p id="issue-focus-text" style="font-weight:600; margin:10px 0;"></p>
 
-<!-- Issue Focus Container for the user-selected icons -->
-<div id="issue-focus-container"></div>
+      <!-- Issue Focus Container for the user-selected icons -->
+      <div id="issue-focus-container"></div>
 
-<!-- Quick Activist Actions -->
-<h3>Quick Activist Actions</h3>
-<p>These quick actions are tailored to your strengths. Click below to jump in and start making an impact!</p>
-<div class="button-group">
-  <a href="#" id="org1" class="result-btn green" target="_blank">Action 1</a>
-  <a href="#" id="org2" class="result-btn green" target="_blank">Action 2</a>
-</div>
+      <!-- Quick Activist Actions -->
+      <h3>Quick Activist Actions</h3>
+      <p>These quick actions are tailored to your strengths. Click below to jump in and start making an impact!</p>
+      <div class="button-group">
+        <a href="#" id="org1" class="result-btn green" target="_blank">Action 1</a>
+        <a href="#" id="org2" class="result-btn green" target="_blank">Action 2</a>
+      </div>
 
-<!-- Deeper Engagement -->
-<h3>Deeper Engagement</h3>
-<p>For those seeking long-term impact, these steps connect you more deeply to your local and national movement.</p>
-<div class="button-group">
-  <a href="https://upliftservicenetwork.com/activist-matching/" class="result-btn blue" target="_blank">Get Matched</a>
-  <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
-</div>
+      <!-- Deeper Engagement -->
+      <h3>Deeper Engagement</h3>
+      <p>For those seeking long-term impact, these steps connect you more deeply to your local and national movement.</p>
+      <div class="button-group">
+        <a href="https://upliftservicenetwork.com/activist-matching/" class="result-btn blue" target="_blank">Get Matched</a>
+        <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
+      </div>
 
-<!-- Share My Results Button -->
-<div class="share-button-container">
-  <button id="share-button" class="result-btn green">Share My Results</button>
-</div>
+      <!-- Share My Results Button -->
+      <div class="share-button-container">
+        <button id="share-button" class="result-btn green">Share My Results</button>
+      </div>
 
+      <p class="subtitle">Discover your unique activist style!</p>
+    </div> <!-- /#result-container -->
+  </div> <!-- /.container -->
 
-    <p class="subtitle">Discover your unique activist style!</p>
-  </div>
-
+  <!-- The script that handles localStorage answers & dynamic icons -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Retrieve stored values from localStorage
@@ -153,24 +154,24 @@
 
       // Define fixed mapping for each focus area (15 total)
       const focusMapping = [
-        { name: "Racial Justice", image: "images/racial_justice.png", link: "https://naacp.org/take-action" },
-        { name: "Climate Action", image: "images/climate_action.png", link: "https://www.sierraclub.org/volunteer" },
-        { name: "Workers' Rights", image: "images/workers_rights.png", link: "https://www.jwj.org/take-action" },
-        { name: "LGBTQ+ Rights", image: "images/lgbtq_rights.png", link: "https://www.hrc.org/get-involved/volunteer" },
-        { name: "Healthcare Reform", image: "images/healthcare_reform.png", link: "https://www.pih.org/get-involved" },
-        { name: "Criminal Justice", image: "images/criminal_justice.png", link: "https://www.sentencingproject.org/advocacy/get-involved/" },
-        { name: "Education Rights", image: "images/education_rights.png", link: "https://www.communitiesinschools.org/ways-to-get-involved/" },
-        { name: "Housing Rights", image: "images/housing_rights.png", link: "https://nlihc.org/take-action" },
-        { name: "Immigration Rights", image: "images/immigration_rights.png", link: "https://unitedwedream.org/here-to-stay-network/" },
-        { name: "Reproductive Rights", image: "images/reproductive_rights.png", link: "https://reproductivefreedomforall.org/take-action/" },
-        { name: "Voting Rights", image: "images/voting_rights.png", link: "https://www.lwv.org/local-leagues/find-local-league?field_zip_code_value=" },
-        { name: "Veteran Support", image: "images/veteran_support.png", link: "https://www.woundedwarriorproject.org/give-back" },
-        { name: "Food Security", image: "images/food_security.png", link: "https://www.feedingamerica.org/find-your-local-foodbank" },
-        { name: "Public Health", image: "images/public_health.png", link: "https://www.redcross.org/volunteer/become-a-volunteer.html?srsltid=AfmBOoo5KnuxtwPyfcslFT0z-7QTPmCsxp7LGqQuXaRb-DLm404m8" },
-        { name: "Other", image: "images/other_focus.png", link: "https://www.volunteermatch.org" }
+        { name: "Racial Justice",     image: "images/racial_justice.png",    link: "https://naacp.org/take-action" },
+        { name: "Climate Action",     image: "images/climate_action.png",    link: "https://www.sierraclub.org/volunteer" },
+        { name: "Workers' Rights",    image: "images/workers_rights.png",    link: "https://www.jwj.org/take-action" },
+        { name: "LGBTQ+ Rights",      image: "images/lgbtq_rights.png",      link: "https://www.hrc.org/get-involved/volunteer" },
+        { name: "Healthcare Reform",  image: "images/healthcare_reform.png", link: "https://www.pih.org/get-involved" },
+        { name: "Criminal Justice",   image: "images/criminal_justice.png",  link: "https://www.sentencingproject.org/advocacy/get-involved/" },
+        { name: "Education Rights",   image: "images/education_rights.png",  link: "https://www.communitiesinschools.org/ways-to-get-involved/" },
+        { name: "Housing Rights",     image: "images/housing_rights.png",    link: "https://nlihc.org/take-action" },
+        { name: "Immigration Rights", image: "images/immigration_rights.png",link: "https://unitedwedream.org/here-to-stay-network/" },
+        { name: "Reproductive Rights",image: "images/reproductive_rights.png",link: "https://reproductivefreedomforall.org/take-action/" },
+        { name: "Voting Rights",      image: "images/voting_rights.png",     link: "https://www.lwv.org/local-leagues/find-local-league?field_zip_code_value=" },
+        { name: "Veteran Support",    image: "images/veteran_support.png",   link: "https://www.woundedwarriorproject.org/give-back" },
+        { name: "Food Security",      image: "images/food_security.png",     link: "https://www.feedingamerica.org/find-your-local-foodbank" },
+        { name: "Public Health",      image: "images/public_health.png",     link: "https://www.redcross.org/volunteer/become-a-volunteer.html?srsltid=AfmBOoo5KnuxtwPyfcslFT0z-7QTPmCsxp7LGqQuXaRb-DLm404m8" },
+        { name: "Other",              image: "images/other_focus.png",       link: "https://www.volunteermatch.org" }
       ];
 
-      // Update activist type info
+      // Update the main type
       if (activistTypes[activistType]) {
         resultTitle.textContent = activistType;
         resultDescription.textContent = activistTypes[activistType].description;
@@ -199,19 +200,27 @@
         org2.href = "#";
       }
 
-      // Render issue focus as clickable icons using focusMapping
+      // Render exactly the user’s 3 chosen focuses with label underneath
       if (issueFocus.length > 0) {
+        // Show the user’s chosen focuses as text
         issueFocusText.textContent = issueFocus.join(", ");
+
+        // For each chosen focus, build the .focus-item block with label beneath
         const focusHTML = issueFocus.slice(0, 3).map(focusName => {
           const match = focusMapping.find(item => item.name === focusName);
-          if (match) {
-            return `<a href="${match.link}" target="_blank" class="focus-link">
-                      <img src="${match.image}" class="focus-icon" alt="${match.name}" title="${match.name}">
-                    </a>`;
-          } else {
-            return "";
-          }
+          if (!match) return "";
+
+          // Insert label inside the same anchor block:
+          return `
+            <div class="focus-item">
+              <a href="${match.link}" target="_blank" class="focus-link">
+                <img src="${match.image}" class="focus-icon" alt="${match.name}" title="${match.name}">
+                <span class="focus-label">${match.name}</span>
+              </a>
+            </div>
+          `;
         }).join("");
+
         issueFocusContainer.innerHTML = focusHTML;
       } else {
         issueFocusText.textContent = "Various Issues";
@@ -220,24 +229,9 @@
       // Show results container
       document.getElementById("result-container").style.display = "block";
 
-      // Mapping activist type to its specific results page
-      const typeToPageMapping = {
-        "Frontline Mobilizer": "frontline.html",
-        "Community Caregiver": "community.html",
-        "Strategist & Organizer": "organizer.html",
-        "Educator & Storyteller": "storyteller.html",
-        "Digital Defender": "defender.html",
-        "Political Advocate": "advocate.html",
-        "Resource Builder": "builder.html"
-      };
-
-      // Make the "Share My Results" button redirect to the corresponding page
+      // If you have special logic to redirect on share:
       shareButton.addEventListener("click", function() {
-        if (typeToPageMapping[activistType]) {
-          window.location.href = typeToPageMapping[activistType];
-        } else {
-          alert("No results page for your activist type.");
-        }
+        alert("No special share logic set up; implement if needed!");
       });
     });
   </script>
