@@ -57,7 +57,14 @@ body {
   text-align: center;
   margin: 10px 0;
   padding-bottom: 10px;
-  border-bottom: 2px solid #007BFF; /* blue line */
+  border-bottom: none;
+}
+
+/* Single blue underline under Issue Focus icons */
+#issue-focus-container {
+  border-bottom: 2px solid #007BFF;
+  padding: 12px 0;
+  margin-bottom: 20px;
 }
 
 .button-group a {
@@ -253,10 +260,5 @@ button#copy-button:hover {
   #issue-focus-text {
   display: none !important;
 }
-/* --- BLUE UNDERLINE BELOW ISSUE FOCUS ICONS --- */
-#issue-focus-container {
-  border-bottom: 2px solid #007BFF !important;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-}
+
 }
