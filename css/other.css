@@ -1,4 +1,4 @@
-/* --- GENERAL PAGE STYLES (For Other Pages) --- */
+/* --- PAGE WRAPPER --- */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -9,92 +9,26 @@ body {
   box-sizing: border-box;
 }
 
-/* --- MAIN CONTENT CONTAINER --- */
-.main-content {
+/* --- MAIN CONTAINER --- */
+.main-container {
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding: 20px;
-  background: white;
+  background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  text-align: left; /* For content pages, left alignment is common */
   box-sizing: border-box;
 }
 
-/* --- HEADINGS --- */
-.main-content h1,
-.main-content h2,
-.main-content h3 {
-  color: #4169E1;
-  text-align: center;
-  margin-bottom: 15px;
+/* --- RESULT CONTAINER --- */
+.result-container {
+  text-align: center; /* center everything in the result container */
+  margin: 0 auto;
 }
 
-/* Adjust heading sizes as needed */
-.main-content h1 {
-  font-size: 32px;
-  font-weight: bold;
-}
-.main-content h2 {
-  font-size: 28px;
-}
-.main-content h3 {
-  font-size: 24px;
-}
-
-/* --- PARAGRAPH TEXT --- */
-.main-content p {
-  color: #333;
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-
-/* --- LINKS --- */
-.main-content a {
-  color: #007BFF;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.main-content a:hover {
-  color: #0056b3;
-}
-
-/* --- BUTTON STYLES --- */
-.button {
-  display: inline-block;
-  padding: 14px 24px;
-  font-size: 18px;
-  border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
-  transition: background-color 0.3s ease;
-  margin: 10px 0;
-  box-sizing: border-box;
-}
-
-.button.blue {
-  background-color: #007BFF;
-  color: white;
-}
-
-.button.blue:hover {
-  background-color: #0056b3;
-}
-
-.button.green {
-  background-color: #28a745;
-  color: white;
-}
-
-.button.green:hover {
-  background-color: #218838;
-}
-
-/* --- IMAGES --- */
-.main-content img {
+/* --- IMAGE --- */
+.result-container img {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
@@ -102,29 +36,78 @@ body {
   margin: 0 auto 20px;
 }
 
+/* --- HEADINGS & TEXT --- */
+.text-container h1.thank-you {
+  color: #4169E1;
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.text-container p.subtext {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* --- ACTION BUTTONS WRAPPER --- */
+.action-buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* --- BUTTON STYLES --- */
+.result-btn {
+  display: inline-block;
+  padding: 14px 24px;
+  font-size: 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  margin: 10px 10px; /* spacing between buttons */
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+/* Variation: Blue Button */
+.result-btn.blue {
+  background-color: #007BFF;
+  color: #fff;
+}
+.result-btn.blue:hover {
+  background-color: #0056b3;
+}
+
+/* Variation: Green Button */
+.result-btn.green {
+  background-color: #28a745;
+  color: #fff;
+}
+.result-btn.green:hover {
+  background-color: #218838;
+}
+
 /* --- RESPONSIVE ADJUSTMENTS --- */
 @media screen and (max-width: 600px) {
   body {
     padding: 10px;
   }
-  
-  .main-content {
+
+  .main-container {
     width: 100%;
     padding: 15px;
     box-sizing: border-box;
   }
-  
-  .main-content h1 {
+
+  .text-container h1.thank-you {
     font-size: 28px;
   }
   
-  .main-content p,
-  .main-content h2,
-  .main-content h3 {
+  .text-container p.subtext {
     font-size: 16px;
   }
   
-  .button {
+  .result-btn {
     font-size: 16px;
     padding: 12px 16px;
   }
