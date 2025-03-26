@@ -259,5 +259,5 @@ button#copy-button:hover {
   padding-bottom: 12px;
   margin-bottom: 20px;
 }
-
+border-bottom: 4px solid red;
 }
