@@ -1,52 +1,65 @@
-/***************************************************
-  FRONTLINE-SPECIFIC OVERRIDES
-  (Loaded after base.css)
-****************************************************/
+/************************************************
+  other.css (For Frontline or Other Persona Pages)
+************************************************/
 
-/* 1) Ensure container is left-aligned where needed,
-      but remain centered overall via base.css. 
-      The base .container sets text-align: center, 
-      so we override with .frontline-container. */
+/* 1) Container Override: Left-Align Text */
 .frontline-container {
-  text-align: left;  /* Force text to be left-aligned inside the container */
+  text-align: left;  /* override any default center from base.css */
 }
 
-/* 2) Subtext Box:
-   - center the box itself with margin: 0 auto
-   - keep text left-justified inside
-*/
+/* 2) Headings in the Container (optional, if you want h1 left-aligned too) */
+.frontline-container h1 {
+  text-align: left;        /* left-align the h1 instead of center */
+  margin-top: 0.5em;       /* adjust spacing if you like */
+}
+
+/* 3) Subtext Box (center the box, but left-align the text within it) */
 .subtext-box {
   max-width: 600px;
-  margin: 0 auto 20px auto; /* center horizontally, add spacing on bottom */
-  text-align: left;
+  margin: 0 auto 20px;     /* center horizontally, add bottom spacing */
+  text-align: left;        /* ensures paragraphs are left-aligned */
 }
 
-/* 3) Frontline Image: 
-   - optional styling if you want a specific width or margin.
-   - by default, base.css might set images to display: block and margin auto.
-*/
-.frontline-image {
-  display: block;
-  margin: 20px auto;  /* center the image horizontally */
+.subtext-box p {
+  font-size: 18px;         /* or keep your base.css size, if you prefer */
+  margin-bottom: 15px;
+}
+
+/* 4) Responsive Image: no overflow */
+.frontline-container img {
   max-width: 100%;
   height: auto;
+  display: block;
+  margin: 20px auto;       /* center the image horizontally */
+  border-radius: 10px;     /* optional corner rounding */
 }
 
-/* 4) Two-Column Buttons:
-   - Using CSS grid to create 2 columns on larger screens
-   - Revert to single column on mobile via media query
-*/
+/* 5) Two-Column Button Layout */
 .two-column-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns for wide screens */
-  gap: 10px;                      /* space between items */
+  grid-template-columns: 1fr 1fr; /* 2 columns on larger screens */
+  gap: 10px;
   margin-top: 20px;
 }
 
-/* 5) Responsive: stack buttons on narrow screens */
-@media screen and (max-width: 600px) {
-  .two-column-buttons {
-    grid-template-columns: 1fr; /* single column on mobile */
-  }
+.two-column-buttons a {
+  /* If needed, ensure consistent sizing or override base button styles */
+  display: inline-block;
+  font-size: 18px;  /* or match your base.css */
+  text-align: center;
+  color: #fff;      /* text color for the button */
+  border-radius: 5px;
+  padding: 14px 24px;
+  transition: background-color 0.3s ease;
 }
 
+/* 6) Mobile Stacking */
+@media screen and (max-width: 600px) {
+  .two-column-buttons {
+    grid-template-columns: 1fr; /* stack in a single column */
+  }
+
+  .two-column-buttons a {
+    width: 100%;        /* make each button full width */
+  }
+}
