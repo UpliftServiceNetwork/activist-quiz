@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <title>Quiz Results</title>
   <link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/results.css">
-
+  <link rel="stylesheet" href="css/results.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Additional rules that can be moved to style.css */
+    /* Additional inline rules that can be moved to style.css if desired */
     .button-group {
       text-align: center;
       margin: 10px 0;
@@ -29,151 +28,116 @@
     .share-button-container button {
       margin: 0 auto;
     }
-    /* Focus item styles */
-    .focus-item {
-      display: inline-block;
-      text-align: center;
-      margin: 5px;
-    }
-    .focus-link {
-      display: inline-block;
-      transition: transform 0.2s ease, border 0.2s ease;
-    }
-    .focus-link:hover {
-      transform: scale(1.05);
-      border: 2px solid #007BFF;
-    }
-    .focus-icon {
-      width: 80px;
-      height: auto;
-      border-radius: 8px;
-    }
-    .focus-label {
-      margin-top: 5px;
-      font-size: 14px;
-      color: #333;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Your Activist Type</h1>
 
-    <div id="result-container" 
+    <!-- RESULTS CONTAINER: Removed inline display:none so it's visible -->
+    <div id="result-container">
       <!-- Activist Type & Description -->
       <h2 id="result-title"></h2>
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
-<div id="issue-focus-container">
-  <div class="focus-item">
-    <a href="https://naacp.org/take-action" class="focus-link">
-      <img src="images/racial_justice.png" class="focus-icon" alt="Racial Justice">
-      <span class="focus-label">Racial Justice</span>
-    </a>
-  </div>
-  <div class="focus-item">
-    <a href="https://www.sierraclub.org/volunteer" class="focus-link">
-      <img src="images/climate_action.png" class="focus-icon" alt="Climate Action">
-      <span class="focus-label">Climate Action</span>
-    </a>
-  </div>
-  <!-- Repeat the same .focus-item block for each remaining focus area -->
-</div>
+
       <!-- Issue Focus Actions -->
-<h3>Issue Focus</h3>
-<p>Based on your priorities, these causes need your voice. Tap an issue to explore how you can get involved.</p>  
+      <h3>Issue Focus</h3>
+      <p>Based on your priorities, these causes need your voice. Tap an issue to explore how you can get involved.</p>
 
-<div class="focus-item">
-  <a href="https://naacp.org/take-action" class="focus-link">
-    <img src="images/racial_justice.png" class="focus-icon" alt="Racial Justice">
-    <span class="focus-label">Racial Justice</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.sierraclub.org/volunteer" class="focus-link">
-    <img src="images/climate_action.png" class="focus-icon" alt="Climate Action">
-    <span class="focus-label">Climate Action</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.jwj.org/take-action" class="focus-link">
-    <img src="images/workers_rights.png" class="focus-icon" alt="Workers' Rights">
-    <span class="focus-label">Workers' Rights</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.hrc.org/get-involved/volunteer" class="focus-link">
-    <img src="images/lgbtq_rights.png" class="focus-icon" alt="LGBTQ+ Rights">
-    <span class="focus-label">LGBTQ+ Rights</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.pih.org/get-involved" class="focus-link">
-    <img src="images/healthcare_reform.png" class="focus-icon" alt="Healthcare Reform">
-    <span class="focus-label">Healthcare Reform</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.sentencingproject.org/advocacy/get-involved/" class="focus-link">
-    <img src="images/criminal_justice.png" class="focus-icon" alt="Criminal Justice">
-    <span class="focus-label">Criminal Justice</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.communitiesinschools.org/ways-to-get-involved/" class="focus-link">
-    <img src="images/education_rights.png" class="focus-icon" alt="Education Rights">
-    <span class="focus-label">Education Rights</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://nlihc.org/take-action" class="focus-link">
-    <img src="images/housing_rights.png" class="focus-icon" alt="Housing Rights">
-    <span class="focus-label">Housing Rights</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://unitedwedream.org/here-to-stay-network/" class="focus-link">
-    <img src="images/immigration_rights.png" class="focus-icon" alt="Immigration Rights">
-    <span class="focus-label">Immigration Rights</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://reproductivefreedomforall.org/take-action/" class="focus-link">
-    <img src="images/reproductive_rights.png" class="focus-icon" alt="Reproductive Rights">
-    <span class="focus-label">Reproductive Rights</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.lwv.org/local-leagues/find-local-league?field_zip_code_value=" class="focus-link">
-    <img src="images/voting_rights.png" class="focus-icon" alt="Voting Rights">
-    <span class="focus-label">Voting Rights</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.woundedwarriorproject.org/give-back" class="focus-link">
-    <img src="images/veteran_support.png" class="focus-icon" alt="Veteran Support">
-    <span class="focus-label">Veteran Support</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.feedingamerica.org/find-your-local-foodbank" class="focus-link">
-    <img src="images/food_security.png" class="focus-icon" alt="Food Security">
-    <span class="focus-label">Food Security</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.redcross.org/volunteer/become-a-volunteer.html" class="focus-link">
-    <img src="images/public_health.png" class="focus-icon" alt="Public Health">
-    <span class="focus-label">Public Health</span>
-  </a>
-</div>
-<div class="focus-item">
-  <a href="https://www.volunteermatch.org" class="focus-link">
-    <img src="images/other_focus.png" class="focus-icon" alt="Other">
-    <span class="focus-label">Other</span>
-  </a>
-</div>
-
+      <!-- Issue Focus Container with all focus items -->
+      <div id="issue-focus-container">
+        <div class="focus-item">
+          <a href="https://naacp.org/take-action" class="focus-link">
+            <img src="images/racial_justice.png" class="focus-icon" alt="Racial Justice">
+            <span class="focus-label">Racial Justice</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.sierraclub.org/volunteer" class="focus-link">
+            <img src="images/climate_action.png" class="focus-icon" alt="Climate Action">
+            <span class="focus-label">Climate Action</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.jwj.org/take-action" class="focus-link">
+            <img src="images/workers_rights.png" class="focus-icon" alt="Workers' Rights">
+            <span class="focus-label">Workers' Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.hrc.org/get-involved/volunteer" class="focus-link">
+            <img src="images/lgbtq_rights.png" class="focus-icon" alt="LGBTQ+ Rights">
+            <span class="focus-label">LGBTQ+ Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.pih.org/get-involved" class="focus-link">
+            <img src="images/healthcare_reform.png" class="focus-icon" alt="Healthcare Reform">
+            <span class="focus-label">Healthcare Reform</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.sentencingproject.org/advocacy/get-involved/" class="focus-link">
+            <img src="images/criminal_justice.png" class="focus-icon" alt="Criminal Justice">
+            <span class="focus-label">Criminal Justice</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.communitiesinschools.org/ways-to-get-involved/" class="focus-link">
+            <img src="images/education_rights.png" class="focus-icon" alt="Education Rights">
+            <span class="focus-label">Education Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://nlihc.org/take-action" class="focus-link">
+            <img src="images/housing_rights.png" class="focus-icon" alt="Housing Rights">
+            <span class="focus-label">Housing Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://unitedwedream.org/here-to-stay-network/" class="focus-link">
+            <img src="images/immigration_rights.png" class="focus-icon" alt="Immigration Rights">
+            <span class="focus-label">Immigration Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://reproductivefreedomforall.org/take-action/" class="focus-link">
+            <img src="images/reproductive_rights.png" class="focus-icon" alt="Reproductive Rights">
+            <span class="focus-label">Reproductive Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.lwv.org/local-leagues/find-local-league?field_zip_code_value=" class="focus-link">
+            <img src="images/voting_rights.png" class="focus-icon" alt="Voting Rights">
+            <span class="focus-label">Voting Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.woundedwarriorproject.org/give-back" class="focus-link">
+            <img src="images/veteran_support.png" class="focus-icon" alt="Veteran Support">
+            <span class="focus-label">Veteran Support</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.feedingamerica.org/find-your-local-foodbank" class="focus-link">
+            <img src="images/food_security.png" class="focus-icon" alt="Food Security">
+            <span class="focus-label">Food Security</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.redcross.org/volunteer/become-a-volunteer.html" class="focus-link">
+            <img src="images/public_health.png" class="focus-icon" alt="Public Health">
+            <span class="focus-label">Public Health</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.volunteermatch.org" class="focus-link">
+            <img src="images/other_focus.png" class="focus-icon" alt="Other">
+            <span class="focus-label">Other</span>
+          </a>
+        </div>
+      </div>
 
       <!-- Quick Activist Actions -->
       <h3>Quick Activist Actions</h3>
@@ -191,17 +155,21 @@
         <a href="https://upliftservicenetwork.com/log-in-2/" class="result-btn blue" target="_blank">Learn More</a>
       </div>
 
-      <!-- Share My Results Button at the bottom -->
+      <!-- Share My Results Button -->
       <div class="share-button-container">
         <button id="share-button" class="result-btn green">Share My Results</button>
       </div>
     </div>
 
+    <p class="subtitle">Discover your unique activist style!</p>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Retrieve stored values
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
+      const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]
+
 
       // DOM element references
       const resultTitle = document.getElementById("result-title");
