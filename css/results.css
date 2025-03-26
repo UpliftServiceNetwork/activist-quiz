@@ -84,20 +84,10 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.result-btn.green {
-  background-color: #28a745;
-  color: white;
-}
-.result-btn.green:hover {
-  background-color: #218838;
-}
-.result-btn.blue {
-  background-color: #007BFF;
-  color: white;
-}
-.result-btn.blue:hover {
-  background-color: #0056b3;
-}
+.result-btn.green { background-color: #28a745; color: white; }
+.result-btn.green:hover { background-color: #218838; }
+.result-btn.blue { background-color: #007BFF; color: white; }
+.result-btn.blue:hover { background-color: #0056b3; }
 
 /* Copy button */
 button#copy-button {
@@ -110,11 +100,9 @@ button#copy-button {
   cursor: pointer;
   font-size: 18px;
 }
-button#copy-button:hover {
-  background-color: #0056b3;
-}
+button#copy-button:hover { background-color: #0056b3; }
 
-/* --- ISSUE FOCUS ICONS --- */
+/* --- ISSUE FOCUS ICONS (ONE underline only) --- */
 #issue-focus-container {
   display: flex;
   flex-wrap: wrap;
@@ -138,12 +126,10 @@ button#copy-button:hover {
   border: 2px solid #007BFF;
   border-radius: 8px;
   padding: 8px;
-  text-decoration: none;
   transition: border-color 0.2s ease;
+  text-decoration: none;
 }
-.focus-link:hover {
-  border-color: #28a745;
-}
+.focus-link:hover { border-color: #28a745; }
 
 .focus-icon {
   width: 80px;
@@ -160,13 +146,8 @@ button#copy-button:hover {
 
 /* --- RESPONSIVE --- */
 @media screen and (max-width: 600px) {
-  .container {
-    width: 98%;
-    padding: 15px 5%;
-  }
-  #result-container {
-    padding: 10px;
-  }
+  .container { width: 98%; padding: 15px 5%; }
+  #result-container { padding: 10px; }
   h1 { font-size: 30px; }
   h2 { font-size: 26px; }
   h3 { font-size: 24px; }
