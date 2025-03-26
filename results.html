@@ -39,11 +39,10 @@
       <p id="result-description"></p>
       <img id="persona-image" src="" alt="Your Activist Persona" style="display:none;">
 
-      <!-- Issue Focus Actions -->
-      <h3>Issue Focus</h3>
-      <p>Based on your priorities, these causes need your voice. Tap an issue to explore how you can get involved.</p>
-
-      <p id="issue-focus-text" style="font-weight:600; margin:10px 0;"></p>
+<!-- Issue Focus Actions -->
+<h3>Issue Focus</h3>
+<p>Based on your priorities, these causes need your voice. Tap an issue to explore how you can get involved.</p>
+<div id="issue-focus-container"></div>
 
       <!-- Issue Focus Container for the user-selected icons -->
       <div id="issue-focus-container"></div>
@@ -83,7 +82,6 @@
       const resultTitle = document.getElementById("result-title");
       const resultDescription = document.getElementById("result-description");
       const resultImage = document.getElementById("persona-image");
-      const issueFocusText = document.getElementById("issue-focus-text");
       const issueFocusContainer = document.getElementById("issue-focus-container");
       const org1 = document.getElementById("org1");
       const org2 = document.getElementById("org2");
@@ -200,7 +198,6 @@
    // Render exactly the user’s 3 chosen focuses with label underneath
       if (issueFocus.length > 0) {
         // Show the user’s chosen focuses as text
-        issueFocusText.textContent = issueFocus.join(", ");
         const focusHTML = issueFocus.slice(0, 3).map(focusName => {
           const match = focusMapping.find(item => item.name === focusName);
           if (!match) return "";
