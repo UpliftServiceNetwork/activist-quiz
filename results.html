@@ -7,20 +7,18 @@
   <link rel="stylesheet" href="css/results.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Additional inline rules that can be moved to style.css if desired */
+    /* Additional inline rules (optional; these can be moved to results.css) */
     .button-group {
       text-align: center;
       margin: 10px 0;
     }
     .button-group a {
-      margin: 5px; /* Small gap between buttons */
+      margin: 5px;
       display: inline-block;
     }
-    /* Remove inner box shadow from the results container */
     #result-container {
       box-shadow: none;
     }
-    /* Center the Share My Results button */
     .share-button-container {
       text-align: center;
       margin-top: 20px;
@@ -34,7 +32,7 @@
   <div class="container">
     <h1>Your Activist Type</h1>
 
-    <!-- RESULTS CONTAINER: Removed inline display:none so it's visible -->
+    <!-- RESULTS CONTAINER: Visible -->
     <div id="result-container">
       <!-- Activist Type & Description -->
       <h2 id="result-title"></h2>
@@ -45,10 +43,40 @@
       <h3>Issue Focus</h3>
       <p>Based on your priorities, these causes need your voice. Tap an issue to explore how you can get involved.</p>
 
-      <!-- Issue Focus Container with all focus items -->
+      <!-- Issue Focus Container with one set of focus items -->
       <div id="issue-focus-container">
+        <!-- Replace/add as many focus-item blocks as needed (this example shows 5; add up to 15 if desired) -->
+        <div class="focus-item">
+          <a href="https://naacp.org/take-action" class="focus-link">
+            <img src="images/racial_justice.png" class="focus-icon" alt="Racial Justice">
+            <span class="focus-label">Racial Justice</span>
           </a>
         </div>
+        <div class="focus-item">
+          <a href="https://www.sierraclub.org/volunteer" class="focus-link">
+            <img src="images/climate_action.png" class="focus-icon" alt="Climate Action">
+            <span class="focus-label">Climate Action</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.jwj.org/take-action" class="focus-link">
+            <img src="images/workers_rights.png" class="focus-icon" alt="Workers' Rights">
+            <span class="focus-label">Workers' Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.hrc.org/get-involved/volunteer" class="focus-link">
+            <img src="images/lgbtq_rights.png" class="focus-icon" alt="LGBTQ+ Rights">
+            <span class="focus-label">LGBTQ+ Rights</span>
+          </a>
+        </div>
+        <div class="focus-item">
+          <a href="https://www.pih.org/get-involved" class="focus-link">
+            <img src="images/healthcare_reform.png" class="focus-icon" alt="Healthcare Reform">
+            <span class="focus-label">Healthcare Reform</span>
+          </a>
+        </div>
+        <!-- Add additional focus-item blocks here as needed -->
       </div>
 
       <!-- Quick Activist Actions -->
@@ -78,10 +106,9 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Retrieve stored values
+      // Retrieve stored values from localStorage
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
-      const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]
-
+      const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
 
       // DOM element references
       const resultTitle = document.getElementById("result-title");
