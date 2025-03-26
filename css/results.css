@@ -253,10 +253,10 @@ button#copy-button:hover {
   #issue-focus-text {
   display: none !important;
 }
-/* Add blue line under the Issue Focus icon row */
+/* --- BLUE UNDERLINE BELOW ISSUE FOCUS ICONS --- */
 #issue-focus-container {
-  border-bottom: 2px solid #007BFF;
-  padding-bottom: 10px;
+  border-bottom: 2px solid #007BFF !important;
+  padding-bottom: 12px;
   margin-bottom: 20px;
 }
 
