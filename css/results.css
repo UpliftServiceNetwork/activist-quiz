@@ -18,32 +18,26 @@ body {
   margin: 0 auto;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  box-sizing: border-box;
 }
 
 /* --- RESULTS PAGE STYLES --- */
-/* Remove default box shadow, margin on #result-container */
 #result-container {
   box-shadow: none;
   margin-top: 20px;
 }
 
-/* Headings in #result-container */
 #result-container h1,
 #result-container h2,
 #result-container h3 {
   color: #4169E1;
-  text-align: center;
   margin-bottom: 15px;
 }
 
-/* If there's a .subtitle inside .container */
 .container .subtitle {
   text-align: center;
 }
 
-/* Persona image styling */
+/* Persona image */
 #persona-image {
   display: block;
   margin: 10px auto;
@@ -60,28 +54,21 @@ body {
   border-bottom: none;
 }
 
-/* Single blue underline under Issue Focus icons */
-#issue-focus-container {
-  border-bottom: 2px solid #007BFF;
-  padding: 12px 0;
-  margin-bottom: 20px;
-}
-
 .button-group a {
-  display: inline-block; /* side-by-side on desktop */
+  display: inline-block;
   margin: 5px;
   text-decoration: none;
 }
 
-/* Share-Button Container */
+/* Share button */
 .share-button-container {
   text-align: center;
   margin-top: 20px;
 }
 
 .share-button-container button {
-  margin: 0 auto;
   display: inline-block;
+  margin: 0 auto;
 }
 
 /* --- RESULTS PAGE BUTTON STYLES --- */
@@ -95,170 +82,95 @@ body {
   text-decoration: none;
   text-align: center;
   transition: background-color 0.3s ease;
-  box-sizing: border-box;
 }
 
 .result-btn.green {
   background-color: #28a745;
   color: white;
 }
-
 .result-btn.green:hover {
   background-color: #218838;
 }
-
 .result-btn.blue {
   background-color: #007BFF;
   color: white;
 }
-
 .result-btn.blue:hover {
   background-color: #0056b3;
 }
 
-/* Copy button styling (if used) */
+/* Copy button */
 button#copy-button {
   background-color: #007bff;
   color: white;
   border: none;
   padding: 12px;
-  margin-top: 15px;
+  margin: 15px auto 0;
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
-  transition: background-color 0.3s ease;
-  display: block;
-  width: auto;
-  margin: 0 auto;
 }
-
 button#copy-button:hover {
   background-color: #0056b3;
 }
 
-/* --- FOCUS ITEM STYLES (Issue Focus Icons) --- */
-/* Issue Focus Container -> 3 icons side by side */
+/* --- ISSUE FOCUS ICONS --- */
 #issue-focus-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
+  border-bottom: 2px solid #007BFF;
+  padding: 12px 0;
+  margin-bottom: 20px;
 }
 
-/* Outer wrapper for each icon + label */
 .focus-item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* The clickable box with permanent border */
 .focus-link {
   display: flex;
-  flex-direction: column; /* stack icon above label */
+  flex-direction: column;
   align-items: center;
   border: 2px solid #007BFF;
   border-radius: 8px;
   padding: 8px;
-  transition: border-color 0.2s ease;
   text-decoration: none;
+  transition: border-color 0.2s ease;
 }
-
 .focus-link:hover {
-  border-color: #28a745; /* green on hover */
+  border-color: #28a745;
 }
 
-/* The icon itself */
 .focus-icon {
   width: 80px;
   height: auto;
   border-radius: 8px;
 }
 
-/* The label underneath */
 .focus-label {
   margin-top: 6px;
   font-size: 14px;
   font-weight: 600;
   color: #333;
-  text-align: center;
 }
 
-
-
-/* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
+/* --- RESPONSIVE --- */
 @media screen and (max-width: 600px) {
-
   .container {
     width: 98%;
     padding: 15px 5%;
-    margin: 0 auto;
   }
-
-  form,
   #result-container {
-    width: 100%;
     padding: 10px;
-    margin: 0 auto;
   }
-
-  h1 {
-    font-size: 30px;
-  }
-
-  h2 {
-    font-size: 26px;
-  }
-
-  h3 {
-    font-size: 24px;
-  }
-
-  #persona-image {
-    max-width: 90%;
-  }
-
-  .focus-icon {
-    width: 60px;
-    height: auto;
-  }
-
-  button#copy-button {
-    padding: 14px;
-  }
-
-  .share-button-container {
-    margin-top: 15px;
-  }
-
-  .result-btn {
-    font-size: 16px;
-    padding: 12px 16px;
-  }
-
-  /* Typography tweaks for headings on mobile */
-  #result-container h1,
-  #result-container h2,
-  #result-container h3 {
-    font-family: Arial, sans-serif;
-    font-weight: 700;
-  }
-
-  /* Make body text normal weight, but slightly tighter line-height */
-  #result-container p {
-    font-family: Arial, sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-
-  /* Buttons keep same font-weight (700) and size (adjusted to 16px) on mobile */
-  .result-btn {
-    font-family: Arial, sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-  }
-  #issue-focus-text {
-  display: none !important;
-}
-
+  h1 { font-size: 30px; }
+  h2 { font-size: 26px; }
+  h3 { font-size: 24px; }
+  #persona-image { max-width: 90%; }
+  .focus-icon { width: 60px; }
+  .result-btn { font-size: 16px; padding: 12px 16px; }
 }
