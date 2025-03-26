@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/results.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
     /* Additional inline rules (optional; these can be moved to results.css) */
     .button-group {
@@ -43,6 +42,9 @@
       <!-- Issue Focus Actions -->
       <h3>Issue Focus</h3>
       <p>Based on your priorities, these causes need your voice. Tap an issue to explore how you can get involved.</p>
+      
+      <!-- Added missing element for issueFocusText -->
+      <p id="issue-focus-text" style="font-weight:600; margin:10px 0;"></p>
 
       <!-- Issue Focus Container for the user-selected icons -->
       <div id="issue-focus-container"></div>
@@ -72,7 +74,6 @@
     </div> <!-- /#result-container -->
   </div> <!-- /.container -->
 
-  <!-- The script that handles localStorage answers & dynamic icons -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Retrieve stored values from localStorage
@@ -201,13 +202,9 @@
       if (issueFocus.length > 0) {
         // Show the user’s chosen focuses as text
         issueFocusText.textContent = issueFocus.join(", ");
-
-        // For each chosen focus, build the .focus-item block with label beneath
         const focusHTML = issueFocus.slice(0, 3).map(focusName => {
           const match = focusMapping.find(item => item.name === focusName);
           if (!match) return "";
-
-          // Insert label inside the same anchor block:
           return `
             <div class="focus-item">
               <a href="${match.link}" target="_blank" class="focus-link">
@@ -217,7 +214,6 @@
             </div>
           `;
         }).join("");
-
         issueFocusContainer.innerHTML = focusHTML;
       } else {
         issueFocusText.textContent = "Various Issues";
@@ -226,9 +222,24 @@
       // Show results container
       document.getElementById("result-container").style.display = "block";
 
-      // If you have special logic to redirect on share:
+      // Mapping activist type to its specific results page
+      const typeToPageMapping = {
+        "Frontline Mobilizer": "frontline.html",
+        "Community Caregiver": "community.html",
+        "Strategist & Organizer": "organizer.html",
+        "Educator & Storyteller": "storyteller.html",
+        "Digital Defender": "defender.html",
+        "Political Advocate": "advocate.html",
+        "Resource Builder": "builder.html"
+      };
+
+      // Make the "Share My Results" button redirect to the corresponding page
       shareButton.addEventListener("click", function() {
-        alert("No special share logic set up; implement if needed!");
+        if (typeToPageMapping[activistType]) {
+          window.location.href = typeToPageMapping[activistType];
+        } else {
+          alert("No results page for your activist type.");
+        }
       });
     });
   </script>
