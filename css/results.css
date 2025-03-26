@@ -383,10 +383,13 @@ button#copy-button:hover {
 }
 
 .focus-link {
+  display: flex;
+  flex-direction: column; /* stack label under icon */
+  align-items: center;    /* center them horizontally */
   border: 2px solid #007BFF;
   border-radius: 8px;
   padding: 8px;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s ease;
   text-decoration: none;
 }
 
