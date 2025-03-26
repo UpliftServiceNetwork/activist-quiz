@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Frontline Mobilizer Results</title>
 
   <!-- Open Graph Meta Tags -->
@@ -13,19 +13,26 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- CSS Files -->
+  <!-- Ensure mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Your Base Styles (base.css) -->
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/other.css">
+  
+  <!-- Additional Overrides for Frontline (frontline.css) -->
+  <link rel="stylesheet" href="css/frontline.css">
 </head>
 <body>
-  <div class="page-container">
 
-    <!-- Left-aligned Heading -->
-    <h1 class="thank-you">Thank You for Taking the Quiz!</h1>
+  <!-- Main Container from base.css (.container) 
+       plus an additional class "frontline-container" 
+       to apply your custom overrides. -->
+  <div class="container frontline-container">
 
-    <!-- Centered container for "small text," left-justified inside -->
+    <!-- Heading (already styled in base.css) -->
+    <h1>Thank You for Taking the Quiz!</h1>
+
+    <!-- Subtext Container: Center the box, but left-align the text within it -->
     <div class="subtext-box">
       <p>
         Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
@@ -34,34 +41,42 @@
       </p>
     </div>
 
-    <!-- Image (non-clickable on this page) -->
-    <img src="images/frontline_result.png?v=3" alt="Frontline Mobilizer Persona" />
+    <!-- Frontline Image (if needed) -->
+    <img src="images/frontline_result.png" alt="Frontline Mobilizer Persona" class="frontline-image" />
 
-    <!-- Buttons: Two-column on larger screens, stacked on mobile -->
-    <div class="button-grid">
-      <!-- First column: Green share buttons -->
-      <a class="button green" id="facebookShareButton" href="javascript:void(0)">Share on Facebook</a>
-      <a class="button green" id="blueskyShareButton" href="javascript:void(0)">Share on BlueSky</a>
-
-      <!-- Second column: Blue buttons -->
-      <a class="button blue" href="https://upliftservicenetwork.com" target="_blank">Uplift Service Network</a>
-      <a class="button blue" href="index.html">Take the Quiz Again</a>
+    <!-- Two-column button group:
+         Green share buttons first, Blue buttons second -->
+    <div class="two-column-buttons">
+      <a href="javascript:void(0)" class="result-btn green" id="facebookShareButton">
+        Share on Facebook
+      </a>
+      <a href="javascript:void(0)" class="result-btn green" id="blueskyShareButton">
+        Share on BlueSky
+      </a>
+      <a href="https://upliftservicenetwork.com" class="result-btn blue" target="_blank">
+        Uplift Service Network
+      </a>
+      <a href="index.html" class="result-btn blue">
+        Take the Quiz Again
+      </a>
     </div>
 
-  </div> <!-- end .page-container -->
+  </div> <!-- end container -->
 
-  <!-- Social Sharing Scripts -->
+  <!-- Your Sharing Scripts -->
   <script>
     const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/frontline-share.html";
     const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
 
     document.getElementById("facebookShareButton").addEventListener("click", function () {
-      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`;
+      const facebookUrl =
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`;
       window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
     });
 
     document.getElementById("blueskyShareButton").addEventListener("click", function () {
-      const blueskyUrl = `https://bsky.app/compose?text=${encodeURIComponent(`${shareText} ${shareURL}`)}`;
+      const blueskyUrl =
+        `https://bsky.app/compose?text=${encodeURIComponent(`${shareText} ${shareURL}`)}`;
       window.open(blueskyUrl, "bluesky-share-dialog", "width=626,height=436");
     });
   </script>
