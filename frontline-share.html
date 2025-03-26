@@ -13,13 +13,35 @@
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Mobile Responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 
+    AUTO-REDIRECT AFTER 3 SECONDS:
+    You can adjust "3" to any delay you prefer.
+    If you want an immediate redirect, use 0.
+  -->
+  <meta http-equiv="refresh" content="3;url=index.html" />
 </head>
-<body>
-  <p>Click on the image below to return to the quiz:</p>
-  <!-- Make sure the anchor wraps the image -->
+<body style="text-align:center; font-family:Arial, sans-serif; background:#f4f4f4; padding:40px;">
+  
+  <h1>Redirecting to the Quiz...</h1>
+  <p>You’ll be taken back to the quiz shortly.</p>
+  <p>
+    If not, 
+    <a href="index.html" style="color:#007BFF; text-decoration:underline;">
+      click here
+    </a>.
+  </p>
+
+  <!-- (Optional) If you still want a fallback link on the image: -->
   <a href="index.html">
-    <img src="images/frontline_result.png?v=2" alt="Share Frontline Mobilizer Result" style="cursor: pointer;" />
+    <img 
+      src="images/frontline_result.png?v=2" 
+      alt="Share Frontline Mobilizer Result" 
+      style="cursor:pointer; max-width:100%; height:auto; margin-top:20px; border-radius:10px;"
+    />
   </a>
+
 </body>
 </html>
