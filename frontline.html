@@ -1,4 +1,4 @@
-t<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -52,7 +52,7 @@ t<!DOCTYPE html>
     p {
       font-size: 20px;
       margin-bottom: 1em;
-      text-align: center; /* We'll override to left as needed */
+      text-align: center; /* We'll override to left if needed */
       color: #333;
     }
 
@@ -113,11 +113,10 @@ t<!DOCTYPE html>
       text-align: left;
     }
 
-    /* Headline remains centered? 
-       If you want the h1 also left-aligned, remove this override. */
+    /* Keep the h1 centered */
     .frontline-container h1 {
-      text-align: center
-      margin-top: 0.5em; /* adjust spacing if needed */
+      text-align: center;
+      margin-top: 0.5em; /* <--- the missing semicolon is now here */
     }
 
     /* Subtext box: center itself, but left-align inside */
@@ -180,19 +179,13 @@ t<!DOCTYPE html>
         width: 100%; /* full width buttons */
       }
     }
-
-    /* Extra: If you have a second @media that boldens text, 
-       you can replicate it here or remove it if not needed. */
   </style>
 </head>
 <body>
 
   <div class="container frontline-container">
-
-    <!-- H1 left-aligned (overridden above) -->
     <h1>Thank You for Taking the Quiz!</h1>
 
-    <!-- Subtext container, left-aligned text, centered box -->
     <div class="subtext-box">
       <p>
         Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
@@ -201,16 +194,17 @@ t<!DOCTYPE html>
       </p>
     </div>
 
-    <!-- Frontline Image -->
     <img src="https://upliftservicenetwork.github.io/activist-quiz/images/frontline_result.png"
          alt="Frontline Mobilizer Persona" />
 
-    <!-- Two-column button layout:
-         Green share buttons first, then blue buttons -->
     <div class="two-column-buttons">
       <!-- Green Buttons (Left / Top) -->
-      <a href="javascript:void(0)" class="result-btn green" id="facebookShareButton">Share on Facebook</a>
-      <a href="javascript:void(0)" class="result-btn green" id="blueskyShareButton">Share on BlueSky</a>
+      <a href="javascript:void(0)" class="result-btn green" id="facebookShareButton">
+        Share on Facebook
+      </a>
+      <a href="javascript:void(0)" class="result-btn green" id="blueskyShareButton">
+        Share on BlueSky
+      </a>
 
       <!-- Blue Buttons (Right / Bottom) -->
       <a href="https://upliftservicenetwork.com" class="result-btn blue" target="_blank">
@@ -218,7 +212,6 @@ t<!DOCTYPE html>
       </a>
       <a href="index.html" class="result-btn blue">Take the Quiz Again</a>
     </div>
-
   </div><!-- /.container.frontline-container -->
 
   <!-- Sharing Scripts -->
