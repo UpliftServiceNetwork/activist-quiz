@@ -202,9 +202,7 @@
       if (issueFocus.length > 0) {
         // Show the user’s chosen focuses as text
         issueFocusText.textContent = issueFocus.join(", ");
-        const focusHTML = issueFocus.slice(0, 3).map(focusName => {
-          const match = focusMapping.find(item => item.name === focusName);
-          if (!match) return "";
+        const focusHTML = issueFocus.slice(0, 3).map(focusName => {/* ... */}).join("");
           return `
             <div class="focus-item">
               <a href="${match.link}" target="_blank" class="focus-link">
