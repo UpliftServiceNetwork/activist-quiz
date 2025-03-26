@@ -1,34 +1,54 @@
+/* Resets / Base rules (optional) */
+
 /* --- PAGE WRAPPER --- */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   margin: 0;
   padding: 20px;
+  font-family: Arial, sans-serif;
   font-size: 18px;
-  text-align: center;
+  background-color: #f4f4f4;
   box-sizing: border-box;
 }
 
-/* --- MAIN CONTAINER --- */
-.main-container {
+/* Make all elements, pseudo-elements use border-box */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* --- MAIN PAGE CONTAINER --- */
+.page-container {
   max-width: 800px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto;            /* center horizontally */
   padding: 20px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  box-sizing: border-box;
+  text-align: center;        /* center the heading, image, etc. */
 }
 
-/* --- RESULT CONTAINER --- */
-.result-container {
-  text-align: center; /* center everything in the result container */
-  margin: 0 auto;
+/* --- HEADING --- */
+.thank-you {
+  color: #4169E1;
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+/* --- SUBTEXT CONTAINER --- */
+.subtext-container {
+  text-align: left;          /* left-justify the text inside */
+  margin-bottom: 20px;
+}
+
+.subtext-container p {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
 /* --- IMAGE --- */
-.result-container img {
+.page-container img {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
@@ -36,54 +56,41 @@ body {
   margin: 0 auto 20px;
 }
 
-/* --- HEADINGS & TEXT --- */
-.text-container h1.thank-you {
-  color: #4169E1;
-  font-size: 32px;
-  margin-bottom: 15px;
-}
-
-.text-container p.subtext {
-  color: #333;
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-
-/* --- ACTION BUTTONS WRAPPER --- */
+/* --- ACTION BUTTONS --- */
 .action-buttons {
   margin-top: 20px;
-  text-align: center;
+  display: flex;             /* use flexbox */
+  flex-wrap: wrap;           /* allow wrapping on smaller screens */
+  justify-content: center;   /* center the buttons in the container */
+  gap: 10px;                 /* spacing between buttons */
 }
 
 /* --- BUTTON STYLES --- */
-.result-btn {
+.button {
   display: inline-block;
   padding: 14px 24px;
   font-size: 18px;
   border-radius: 5px;
   text-decoration: none;
   text-align: center;
-  margin: 10px 10px; /* spacing between buttons */
-  box-sizing: border-box;
   transition: background-color 0.3s ease;
+  color: #fff;
+  min-width: 220px;          /* ensure consistent button width on desktops */
 }
 
 /* Variation: Blue Button */
-.result-btn.blue {
+.button.blue {
   background-color: #007BFF;
-  color: #fff;
 }
-.result-btn.blue:hover {
+.button.blue:hover {
   background-color: #0056b3;
 }
 
 /* Variation: Green Button */
-.result-btn.green {
+.button.green {
   background-color: #28a745;
-  color: #fff;
 }
-.result-btn.green:hover {
+.button.green:hover {
   background-color: #218838;
 }
 
@@ -93,22 +100,27 @@ body {
     padding: 10px;
   }
 
-  .main-container {
-    width: 100%;
+  .page-container {
     padding: 15px;
-    box-sizing: border-box;
   }
 
-  .text-container h1.thank-you {
+  .thank-you {
     font-size: 28px;
   }
-  
-  .text-container p.subtext {
+
+  .subtext-container p {
     font-size: 16px;
   }
-  
-  .result-btn {
-    font-size: 16px;
-    padding: 12px 16px;
+
+  /* Stack buttons vertically on mobile */
+  .action-buttons {
+    flex-direction: column;  
+    align-items: stretch;    /* make each button span the container width */
+  }
+
+  .button {
+    min-width: auto;        /* let them resize to full width on mobile */
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
