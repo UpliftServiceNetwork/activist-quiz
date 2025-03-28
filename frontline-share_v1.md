@@ -1,6 +1,6 @@
 ---
 layout: none
-permalink: /activist-quiz/frontline-share-v1.html
+permalink: /activist-quiz/frontline-share_v1.html
 ---
 
 <!DOCTYPE html>
