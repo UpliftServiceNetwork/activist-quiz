@@ -202,21 +202,18 @@
   <p>Then post the image with this link in your caption:</p>
   <input type="text" value="https://upliftservicenetwork.github.io/activist-quiz" id="shareLink" readonly style="width:90%; padding:8px; font-size:16px; text-align:center; border:1px solid #ccc; border-radius:5px;" onclick="this.select(); document.execCommand('copy');">
   <p style="font-size:14px; color:#444;">(Click to copy the link)</p>
+<div class="two-column-buttons">
+  <!-- Green Button spans both columns -->
+  <a href="javascript:void(0)" class="result-btn green" id="facebookShareButton" style="grid-column: span 2;">
+    Share on Facebook
+  </a>
+
+  <!-- Blue Buttons side-by-side -->
+  <a href="https://upliftservicenetwork.com" class="result-btn blue" target="_blank">
+    Uplift Service Network
+  </a>
+  <a href="index.html" class="result-btn blue">Take the Quiz Again</a>
 </div>
-    <div class="two-column-buttons">
-      <!-- Green Buttons (Left / Top) -->
-      <a href="javascript:void(0)" class="result-btn green" id="facebookShareButton">
-        Share on Facebook
-      </a>
-
-      <!-- Blue Buttons (Right / Bottom) -->
-      <a href="https://upliftservicenetwork.com" class="result-btn blue" target="_blank">
-        Uplift Service Network
-      </a>
-      <a href="index.html" class="result-btn blue">Take the Quiz Again</a>
-    </div>
-  </div><!-- /.container.frontline-container -->
-
   <!-- Sharing Scripts -->
   <script>
     const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/frontline-share_v1.html";
