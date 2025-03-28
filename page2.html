@@ -35,31 +35,40 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const quizFormPage2 = document.getElementById("quiz-form-page2");
-      const checkboxes = document.querySelectorAll('input[name="activistFocus"]');
+  document.addEventListener("DOMContentLoaded", function () {
+    // ✅ Ensure activistType is still stored from page1
+    const activistType = localStorage.getItem("activistType");
+    if (!activistType) {
+      // Redirect back if somehow skipped page 1
+      window.location.href = "page1.html";
+    }
 
-      // Limit selection to 3 checkboxes
-      checkboxes.forEach(cb => {
-        cb.addEventListener("change", function() {
-          const checkedCount = Array.from(checkboxes).filter(ch => ch.checked).length;
-          if (checkedCount >= 3) {
-            checkboxes.forEach(ch => { if (!ch.checked) ch.disabled = true; });
-          } else {
-            checkboxes.forEach(ch => ch.disabled = false);
-          }
-        });
-      });
+    const quizFormPage2 = document.getElementById("quiz-form-page2");
+    const checkboxes = document.querySelectorAll('input[name="activistFocus"]');
 
-      quizFormPage2.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const selectedFocuses = Array.from(checkboxes)
-          .filter(cb => cb.checked)
-          .map(cb => cb.value);
-        localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
-        window.location.href = "results.html";
+    // Limit selection to 3 checkboxes
+    checkboxes.forEach(cb => {
+      cb.addEventListener("change", function() {
+        const checkedCount = Array.from(checkboxes).filter(ch => ch.checked).length;
+        if (checkedCount >= 3) {
+          checkboxes.forEach(ch => { if (!ch.checked) ch.disabled = true; });
+        } else {
+          checkboxes.forEach(ch => ch.disabled = false);
+        }
       });
     });
-  </script>
+
+    quizFormPage2.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const selectedFocuses = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+      localStorage.setItem("activistFocus", JSON.stringify(selectedFocuses));
+      // ✅ Redirect to results
+      window.location.href = "results.html";
+    });
+  });
+</script>
+
 </body>
 </html>
