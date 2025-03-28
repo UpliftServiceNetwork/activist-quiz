@@ -1,3 +1,8 @@
+---
+layout: none
+permalink: /activist-quiz/frontline-share-v1.html
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,27 +10,21 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Frontline Activist Result</title>
 
-  <!-- Facebook Open Graph Tags -->
   <meta property="og:title" content="I'm a Frontline Activist! ✊" />
   <meta property="og:description" content="I just took the Activist Quiz. Find your role in the movement!" />
   <meta property="og:image" content="https://upliftservicenetwork.github.io/activist-quiz/images/frontline-result.png" />
-  <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/frontline-share_v1.html" />
+  <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/frontline-share-v1.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-
-  <!-- ❌ NO meta refresh here! Facebook stops reading if this is present -->
 </head>
 <body>
-  <p>Redirecting you to the quiz in a moment…</p>
-  <!-- Invisible image helps some scrapers see it -->
-  <img src="https://upliftservicenetwork.github.io/activist-quiz/images/frontline-result.png" alt="Frontline Activist" style="display:none;" />
-
+  <p>Redirecting you to the quiz…</p>
+  <img src="https://upliftservicenetwork.github.io/activist-quiz/images/frontline-result.png" alt="Frontline" style="display:none;" />
   <script>
-    // Wait 6 seconds so Facebook finishes scraping
     setTimeout(() => {
       window.location.href = "https://upliftservicenetwork.github.io/activist-quiz/index.html";
-    }, 6000);
+    }, 5000);
   </script>
 </body>
 </html>
