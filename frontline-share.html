@@ -2,18 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta property="og:title" content="You got: Frontline Activist!" />
-  <meta property="og:description" content="See your result and join the movement." />
-  <meta property="og:image" content="https://yourdomain.com/images/frontline-result_v1.png" />
-  <meta property="og:url" content="https://yourdomain.com/frontline.html" />
+  <title>Frontline Activist Result</title>
+  
+  <!-- Open Graph tags -->
+  <meta property="og:title" content="I'm a Frontline Activist! ✊" />
+  <meta property="og:description" content="I just took the Activist Quiz. Find your role in the movement!" />
+  <meta property="og:image" content="https://yourdomain.org/images/frontline-result.png" />
+  <meta property="og:url" content="https://yourdomain.org/frontline-share.html" />
   <meta property="og:type" content="website" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sharing...</title>
 
-  <!-- Optional delay for Facebook to scrape before redirecting -->
-  <meta http-equiv="refresh" content="3;url=https://yourdomain.com/frontline.html" />
+  <!-- Facebook forces HTTPS and valid URLs -->
+  <meta http-equiv="refresh" content="3;url=https://yourdomain.org/index.html" />
 </head>
 <body>
-  <p>Redirecting to your result…</p>
+  <p>Redirecting you to the quiz…</p>
+  <script>
+    // Optional fallback if meta refresh doesn't work
+    setTimeout(() => {
+      window.location.href = "https://yourdomain.org/index.html";
+    }, 3000);
+  </script>
 </body>
 </html>
