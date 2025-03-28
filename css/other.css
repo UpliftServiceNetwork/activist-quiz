@@ -56,9 +56,12 @@
 /* 5) Stack buttons on mobile screens */
 @media screen and (max-width: 600px) {
   .two-column-buttons {
-    grid-template-columns: 1fr; /* single column (stacked) */
+    grid-template-columns: 1fr;
   }
   .two-column-buttons a {
-    width: 100%; /* each button spans full width */
+    width: 100%;
+    display: block;
+    text-align: center;
+    min-height: 60px; /* ensures equal button height even if one wraps */
   }
 }
