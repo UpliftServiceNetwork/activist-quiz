@@ -53,17 +53,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* 5) Stack buttons on mobile screens */
-@media screen and (max-width: 600px) {
-  .two-column-buttons {
-    grid-template-columns: 1fr;
-  }
-  .two-column-buttons a {
-    width: 100%;
-    display: block;
-    text-align: center;
-    min-height: 60px; /* ensures equal button height even if one wraps */
-  }
   #result-title {
   font-size: 32px;
   font-weight: 700;
@@ -79,4 +68,16 @@
   text-align: center;
   margin-top: 0;
 }
+
+/* 5) Stack buttons on mobile screens */
+@media screen and (max-width: 600px) {
+  .two-column-buttons {
+    grid-template-columns: 1fr;
+  }
+  .two-column-buttons a {
+    width: 100%;
+    display: block;
+    text-align: center;
+    min-height: 60px; /* ensures equal button height even if one wraps */
+  }
 }
