@@ -13,7 +13,7 @@ permalink: /activist-quiz/frontline-share_v1.html
   <meta property="og:title" content="I'm a Frontline Activist! ✊" />
   <meta property="og:description" content="I just took the Activist Quiz. Find your role in the movement!" />
   <meta property="og:image" content="https://upliftservicenetwork.github.io/activist-quiz/images/frontline-result.png" />
-  <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/frontline-share-v1.html" />
+  <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/frontline-share_v1.html" />
   <meta property="og:type" content="website" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -28,3 +28,4 @@ permalink: /activist-quiz/frontline-share_v1.html
   </script>
 </body>
 </html>
+
