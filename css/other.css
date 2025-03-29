@@ -1,7 +1,6 @@
 /************************************************
   other.css (Used by frontline.html, etc.)
 ************************************************/
-
 /* 1) Container for each "persona" page 
    - We do NOT override text-align here, so the title (h1) and paragraphs
      remain centered by default from base.css.
@@ -9,7 +8,6 @@
 .frontline-container {
   /* text-align: center; <-- Already inherited from base.css, no override needed */
 }
-
 /* 2) Keep your subtext box if you want a special area for paragraphs
    - Currently, it will follow the base.css alignment (center).
    - If you change your mind and want left-justified text, 
@@ -23,7 +21,6 @@
   font-size: 18px;         /* override base if you want slightly smaller or bigger */
   margin-bottom: 15px;
 }
-
 /* 3) Make sure images scale responsively without overflowing */
 .frontline-container img {
   max-width: 100%;
@@ -32,7 +29,6 @@
   margin: 20px auto;  /* center horizontally */
   border-radius: 10px;
 }
-
 /* 4) Two-column button layout (green share buttons first, blue second) */
 .two-column-buttons {
   display: grid;
@@ -40,7 +36,6 @@
   gap: 10px;
   margin-top: 20px;
 }
-
 /* Ensure each button looks good. 
    (The colors .result-btn.green / .result-btn.blue come from base.css) */
 .two-column-buttons a {
@@ -52,14 +47,12 @@
   padding: 14px 24px;
   transition: background-color 0.3s ease;
 }
-
-  #result-title {
+#result-title {
   font-size: 32px;
   font-weight: 700;
   text-align: center;
   margin-bottom: 10px;
 }
-
 #result-description {
   font-size: 22px;
   line-height: 1.6;
@@ -68,7 +61,6 @@
   text-align: center;
   margin-top: 0;
 }
-
 /* 5) Stack buttons on mobile screens */
 @media screen and (max-width: 600px) {
   .two-column-buttons {
@@ -80,7 +72,7 @@
     text-align: center;
     min-height: 60px; /* ensures equal button height even if one wraps */
   }
-  /* Add these rules to your other.css file */
+}
 
 /* Common container styles for all persona types */
 .advocate-container,
@@ -124,6 +116,16 @@
 
 /* Make sure images scale responsively on mobile */
 @media screen and (max-width: 600px) {
+  .advocate-container h1,
+  .builder-container h1,
+  .community-container h1,
+  .defender-container h1,
+  .frontline-container h1,
+  .organizer-container h1,
+  .storyteller-container h1 {
+    font-size: 24px;
+  }
+  
   .advocate-container img,
   .builder-container img,
   .community-container img,
