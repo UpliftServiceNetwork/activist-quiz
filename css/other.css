@@ -114,21 +114,23 @@
 .organizer-container img,
 .storyteller-container img {
   max-width: 100%;
+  width: auto;
   height: auto;
   display: block;
   margin: 20px auto;
   border-radius: 10px;
+  max-height: 500px; /* Limit maximum height */
 }
 
-/* Mobile responsive styles for all persona types */
+/* Make sure images scale responsively on mobile */
 @media screen and (max-width: 600px) {
-  .advocate-container h1,
-  .builder-container h1,
-  .community-container h1,
-  .defender-container h1,
-  .frontline-container h1,
-  .organizer-container h1,
-  .storyteller-container h1 {
-    font-size: 24px;
+  .advocate-container img,
+  .builder-container img,
+  .community-container img,
+  .defender-container img,
+  .frontline-container img,
+  .organizer-container img,
+  .storyteller-container img {
+    max-height: 350px; /* Smaller maximum height on mobile */
   }
 }
