@@ -2,190 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Advocate Mobilizer Results</title>
-
+  <title>Advocate Results</title>
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="TAKE THE QUIZ! Find activism opportunities that fit for you!" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://upliftservicenetwork.com/wp-content/uploads/2025/03/advocate_result.png" />
+  <meta property="og:image" content="https://upliftservicenetwork.com/wp-content/uploads/2025/03/political_result.png" />
   <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/advocate-share.html" />
+  <meta property="og:description" content="Find out what type of activist you are and discover opportunities that match your strengths." />
+  <meta property="og:site_name" content="Uplift Service Network" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-
   <!-- Responsive Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ALL STYLES IN ONE PLACE (same as your frontline-share.html) -->
-  <style>
-    /* === [BASE STYLES] === */
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      font-weight: 400;
-      color: #333;
-      background-color: #f4f4f4;
-      font-size: 18px;
-      line-height: 1.6;
-      box-sizing: border-box;
-    }
-    *, *::before, *::after {
-      box-sizing: inherit;
-    }
-
-    /* Headings (global) */
-    h1, h2, h3 {
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-      color: #4169E1;
-      margin: 1em 0 0.5em;
-      text-align: center; /* We'll override as needed below */
-    }
-    h1 { font-size: 32px; }
-    h2 { font-size: 24px; }
-    h3 { font-size: 20px; }
-
-    /* Paragraphs (global) */
-    p {
-      font-size: 20px;
-      margin-bottom: 1em;
-      text-align: center; /* We'll override to left if needed */
-      color: #333;
-    }
-
-    /* Buttons (global) */
-    a.result-btn, button, .start-quiz-btn {
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      text-decoration: none;
-    }
-
-    /* Shared container (base) */
-    .container {
-      max-width: 600px;
-      width: 100%;
-      background: #fff;
-      padding: 20px;
-      margin: 0 auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center; /* We'll override below */
-    }
-
-    /* Button group (base) */
-    .button-group {
-      text-align: center;
-      margin: 10px 0;
-    }
-    .button-group a {
-      display: inline-block;
-      margin: 5px;
-      font-size: 18px;
-      padding: 14px 24px;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-      box-sizing: border-box;
-      color: #fff;
-    }
-    /* Blue button style */
-    .result-btn.blue {
-      background-color: #007BFF;
-    }
-    .result-btn.blue:hover {
-      background-color: #0056b3;
-    }
-    /* Green button style */
-    .result-btn.green {
-      background-color: #28a745;
-    }
-    .result-btn.green:hover {
-      background-color: #218838;
-    }
-
-    /* === [ADVOCATE-SPECIFIC OVERRIDES & LAYOUT] === */
-
-    /* Override container to left-align text */
-    .container.frontline-container {
-      text-align: left;
-    }
-
-    /* Keep the h1 centered */
-    .frontline-container h1 {
-      text-align: center;
-      margin-top: 0.5em;
-    }
-
-    /* Subtext box: center itself, but left-align inside */
-    .subtext-box {
-      max-width: 600px;        /* same or smaller than container width */
-      margin: 0 auto 20px;     /* center the box, add bottom spacing */
-      text-align: left;        /* left-align text */
-    }
-    .subtext-box p {
-      font-size: 18px;
-      margin-bottom: 15px;
-    }
-
-    /* Make sure images don't overflow */
-    .frontline-container img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 20px auto;       /* center horizontally */
-      border-radius: 10px;
-    }
-
-    /* Two-column button layout (green first, blue second) */
-    .two-column-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* 2 columns on larger screens */
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .two-column-buttons a {
-      display: inline-block;
-      padding: 14px 24px;
-      font-size: 18px;
-      text-align: center;
-      border-radius: 5px;
-      color: #fff;
-      transition: background-color 0.3s ease;
-    }
-
-    /* Responsive media query for mobile (stack buttons, smaller fonts) */
-    @media screen and (max-width: 600px) {
-      body {
-        padding: 10px;
-        font-size: 16px; /* optional smaller base on mobile */
-      }
-      .container {
-        width: 100%;
-        padding: 15px;
-      }
-      .frontline-container h1 {
-        font-size: 24px;
-      }
-      .subtext-box p {
-        font-size: 16px;
-      }
-      .two-column-buttons {
-        grid-template-columns: 1fr; /* stack in one column */
-      }
-      .two-column-buttons a {
-        width: 100%; /* full width buttons */
-      }
-    }
-  </style>
+  <!-- Link to CSS files -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/other.css">
 </head>
 <body>
-
-  <div class="container frontline-container">
+  <div class="container advocate-container">
     <h1>Thank You for Taking the Quiz!</h1>
-
     <div class="subtext-box">
       <p>
         Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
@@ -193,10 +29,8 @@
         to the next level.
       </p>
     </div>
-
-    <img src="https://upliftservicenetwork.github.io/activist-quiz/images/advocate_result.png"
-         alt="Advocate Mobilizer Persona" />
-    
+    <img src="https://upliftservicenetwork.github.io/activist-quiz/images/political_result.png"
+         alt="Advocate Persona" />
     <div class="bluesky-share-helper" style="text-align:center; margin-top: 20px;">
       <p><strong>Want to share this on Bluesky or Instagram?</strong></p>
       <p>Tap and hold (on mobile) or right-click (on desktop) the image above to save it.</p>
@@ -204,13 +38,11 @@
       <input type="text" value="https://upliftservicenetwork.github.io/activist-quiz" id="shareLink" readonly style="width:90%; padding:8px; font-size:16px; text-align:center; border:1px solid #ccc; border-radius:5px;" onclick="this.select(); document.execCommand('copy');">
       <p style="font-size:14px; color:#444;">(Click to copy the link)</p>
     </div>
-
     <div class="two-column-buttons">
       <!-- Green Button spans both columns -->
       <a href="javascript:void(0)" class="result-btn green" id="facebookShareButton" style="grid-column: span 2;">
         Share on Facebook
       </a>
-
       <!-- Blue Buttons side-by-side -->
       <a href="https://upliftservicenetwork.com" class="result-btn blue" target="_blank">
         Uplift Service Network
@@ -218,17 +50,14 @@
       <a href="index.html" class="result-btn blue">Take the Quiz Again</a>
     </div>
   </div>
-
   <!-- Sharing Scripts -->
   <script>
     const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/advocate-share.html";
     const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
-
     document.getElementById("facebookShareButton").addEventListener("click", function () {
       const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`;
       window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
     });
   </script>
-
 </body>
 </html>
