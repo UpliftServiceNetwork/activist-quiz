@@ -80,4 +80,55 @@
     text-align: center;
     min-height: 60px; /* ensures equal button height even if one wraps */
   }
+  /* Add these rules to your other.css file */
+
+/* Common container styles for all persona types */
+.advocate-container,
+.builder-container,
+.community-container,
+.defender-container,
+.frontline-container,
+.organizer-container,
+.storyteller-container {
+  text-align: left;
+}
+
+/* Heading styles for all persona types */
+.advocate-container h1,
+.builder-container h1,
+.community-container h1,
+.defender-container h1,
+.frontline-container h1,
+.organizer-container h1,
+.storyteller-container h1 {
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+/* Image styles for all persona types */
+.advocate-container img,
+.builder-container img,
+.community-container img,
+.defender-container img,
+.frontline-container img,
+.organizer-container img,
+.storyteller-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+/* Mobile responsive styles for all persona types */
+@media screen and (max-width: 600px) {
+  .advocate-container h1,
+  .builder-container h1,
+  .community-container h1,
+  .defender-container h1,
+  .frontline-container h1,
+  .organizer-container h1,
+  .storyteller-container h1 {
+    font-size: 24px;
+  }
 }
