@@ -49,11 +49,12 @@
 /* 4) Two-column button layout (green share buttons first, blue second) */
 .two-column-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns for wider screens */
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
-
 /* Ensure each button looks good. 
    (The colors .result-btn.green / .result-btn.blue come from base.css) */
 .two-column-buttons a {
@@ -62,11 +63,19 @@
   justify-content: center;
   text-align: center;
   min-height: 60px;
-  padding: 14px 24px;
   font-size: 18px;
   border-radius: 5px;
   color: #fff;
   transition: background-color 0.3s ease;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 15px; /* Reduced padding */
+  word-break: break-word; /* Allow text to break if needed */
+  hyphens: auto; /* Enable hyphenation */
+  text-decoration: none !important;
+}
+.two-column-buttons a:hover {
+  text-decoration: none !important;
 }
 
 /* Heading styles for all persona types */
@@ -99,11 +108,13 @@ input[type="text"] {
 
 /* 5) Stack buttons on mobile screens and fix centering */
 @media screen and (max-width: 600px) {
-  /* Container fixes for mobile */
+/* Container fixes for mobile */
   .container {
-    width: calc(100% - 20px);
+    width: 95%; /* Slightly narrower than before */
     padding: 15px 10px;
     margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent overflow */
   }
   
   body {
@@ -111,16 +122,27 @@ input[type="text"] {
     margin: 0;
   }
   
-  /* Stack buttons on mobile */
+ /* Stack buttons on mobile */
   .two-column-buttons {
     grid-template-columns: 1fr; /* stack in one column */
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
   }
   
   .two-column-buttons a {
-    width: 100%; /* full width buttons */
-    display: block;
-    text-align: center;
-    min-height: 50px;
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px; /* Smaller font */
+    padding: 10px 8px; /* Smaller padding */
+    min-height: 45px; /* Reduced height */
+    margin: 0; /* Remove any margins */
+  }
+  
+  /* Override any span settings that might cause overflow */
+  .two-column-buttons a[style*="grid-column: span"] {
+    grid-column: auto !important; /* Override any span settings on mobile */
   }
   
   /* Smaller headings on mobile */
