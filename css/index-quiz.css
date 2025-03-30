@@ -120,14 +120,14 @@ form p {
   /* Increase intro text size */
   .intro {
     font-size: 20px !important;
-    line-height: 1.6 !important;
+    line-height: 1.3 !important;
     margin: 20px 0 !important;
   }
   
   /* Increase subtitle size */
   .subtitle {
     font-size: 18px !important;
-    line-height: 1.6 !important;
+    line-height: 1.3 !important;
     margin: 15px 0 !important;
   }
   
