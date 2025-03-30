@@ -135,4 +135,67 @@
   .storyteller-container img {
     max-height: 350px; /* Smaller maximum height on mobile */
   }
+  /* Mobile responsiveness fixes - Add to your other.css file */
+
+/* Two-column button layout - make more robust */
+.two-column-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns for wider screens */
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.two-column-buttons a {
+  display: flex;           /* Use flexbox for better content alignment */
+  align-items: center;     /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  padding: 14px 10px;      /* Reduce horizontal padding a bit */
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  height: 100%;            /* Ensure buttons have consistent height */
+  box-sizing: border-box;  /* Include padding in height calculation */
+  word-break: break-word;  /* Allow text to break if needed */
+  hyphens: auto;           /* Enable hyphenation */
+  min-height: 60px;        /* Ensure minimum height for touch targets */
+}
+
+/* Mobile styles - stack buttons and ensure consistent sizing */
+@media screen and (max-width: 600px) {
+  /* Better container padding for mobile */
+  .container {
+    padding: 15px 12px;
+  }
+  
+  /* Smaller headings on mobile */
+  h1 {
+    font-size: 26px;
+  }
+  
+  /* Stack buttons vertically on mobile */
+  .two-column-buttons {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 12px; /* Increase gap between stacked buttons */
+  }
+  
+  /* Ensure buttons are full width and consistently sized */
+  .two-column-buttons a {
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 8px;
+    font-size: 16px; /* Slightly smaller font on mobile */
+  }
+  
+  /* Fix for the green button that spans columns */
+  .two-column-buttons a.result-btn.green {
+    grid-column: 1; /* Reset grid-column on mobile */
+  }
+  
+  /* Fix for small screens to ensure buttons are easily tappable */
+  .result-btn {
+    margin-bottom: 5px;
+    touch-action: manipulation; /* Optimize for touch */
+  }
 }
