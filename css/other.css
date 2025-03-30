@@ -159,4 +159,19 @@ input[type="text"] {
     padding-left: 15px;
     padding-right: 15px;
   }
+  /* Add this to your other.css file to remove underlines from buttons */
+
+/* Remove underlines from all button links */
+.two-column-buttons a,
+.result-btn,
+a.result-btn {
+  text-decoration: none !important;
+}
+
+/* Also ensure no underline on hover states */
+.two-column-buttons a:hover,
+.result-btn:hover,
+a.result-btn:hover {
+  text-decoration: none !important;
+}
 }
