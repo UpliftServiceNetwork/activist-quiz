@@ -3,46 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <title>Organizer Results</title>
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="TAKE THE QUIZ! Find activism opportunities that fit for you!" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://upliftservicenetwork.com/wp-content/uploads/2025/03/organizer_result.png" />
   <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/organizer-share.html" />
-  <meta property="og:description" content="Find out what type of activist you are and discover opportunities that match your strengths." />
-  <meta property="og:site_name" content="Uplift Service Network" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
+
   <!-- Responsive Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- Link to CSS files -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/other.css">
+  
+  <style>
+    /* Additional styles for this page */
+    @media screen and (max-width: 600px) {
+      /* Less bold text on mobile */
+      p {
+        font-weight: normal;
+      }
+      
+      /* Make the image appear higher without the removed text */
+      .organizer-container img {
+        margin-top: 10px;
+      }
+    }
+    
+    /* Style for sharing instructions */
+    .sharing-instructions {
+      background-color: #f7f7f7;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 15px 0;
+      text-align: left;
+    }
+    
+    .sharing-instructions h3 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
+    
+    .sharing-instructions p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+  </style>
 </head>
 <body>
   <div class="container organizer-container">
     <h1>Thank You for Taking the Quiz!</h1>
-    <div class="subtext-box">
-      <p>
-        Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
-        If you'd like to connect to <strong>The Uplift Service Network</strong>, we'd love to take your match
-        to the next level.
-      </p>
-    </div>
+
+    <!-- Removed the subtext-box with text above the photo -->
+
     <img src="https://upliftservicenetwork.github.io/activist-quiz/images/organizer_result.png"
          alt="Organizer Persona" />
-    <div class="bluesky-share-helper" style="text-align:center; margin-top: 20px;">
-      <p><strong>Want to share this on Bluesky or Instagram?</strong></p>
-      <p>Tap and hold (on mobile) or right-click (on desktop) the image above to save it.</p>
-      <p>Then post the image with this link in your caption:</p>
-      <input type="text" value="https://upliftservicenetwork.github.io/activist-quiz" id="shareLink" readonly style="width:90%; padding:8px; font-size:16px; text-align:center; border:1px solid #ccc; border-radius:5px;" onclick="this.select(); document.execCommand('copy');">
-      <p style="font-size:14px; color:#444;">(Click to copy the link)</p>
+         
+    <input type="text" value="https://upliftservicenetwork.github.io/activist-quiz" id="shareLink" readonly 
+           style="width:90%; padding:8px; font-size:16px; text-align:center; border:1px solid #ccc; border-radius:5px;" 
+           onclick="this.select(); document.execCommand('copy');">
+    <p style="font-size:14px; color:#444; text-align:center;">(Click to copy the link)</p>
+    
+    <div class="sharing-instructions">
+      <h3>Sharing your results takes a couple of steps:</h3>
+      <p>1. <strong>Save the image above</strong> - Tap and hold (on mobile) or right-click (on desktop) the image, then select "Save Image"</p>
+      <p>2. <strong>Copy the quiz link</strong> - Click the text box above to copy the link</p>
+      <p>3. <strong>Share both on social media</strong> - We would appreciate if you share the link to encourage others to take the quiz and make a difference!</p>
     </div>
+
     <div class="two-column-buttons">
       <!-- Green Button spans both columns -->
       <a href="javascript:void(0)" class="result-btn green" id="facebookShareButton" style="grid-column: span 2;">
-        Share on Facebook
+        Share on Facebook App
       </a>
+
       <!-- Blue Buttons side-by-side -->
       <a href="https://upliftservicenetwork.com" class="result-btn blue" target="_blank">
         Uplift Service Network
@@ -50,10 +91,12 @@
       <a href="index.html" class="result-btn blue">Take the Quiz Again</a>
     </div>
   </div>
+  
   <!-- Sharing Scripts -->
   <script>
     const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/organizer-share.html";
     const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
+
     document.getElementById("facebookShareButton").addEventListener("click", function () {
       const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`;
       window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
