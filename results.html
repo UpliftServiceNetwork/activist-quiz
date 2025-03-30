@@ -72,6 +72,13 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Force hide debug panel if it exists (for mobile compatibility)
+      const debugPanel = document.getElementById('debug-panel');
+      if (debugPanel) {
+        debugPanel.style.display = 'none';
+        debugPanel.remove();
+      }
+      
       // Retrieve stored values from localStorage
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
