@@ -33,6 +33,28 @@
         margin-top: 10px;
       }
     }
+    
+    /* Style for sharing instructions */
+    .sharing-instructions {
+      background-color: #f7f7f7;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 15px 0;
+      text-align: left;
+    }
+    
+    .sharing-instructions h3 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
+    
+    .sharing-instructions p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -47,12 +69,13 @@
     <input type="text" value="https://upliftservicenetwork.github.io/activist-quiz" id="shareLink" readonly 
            style="width:90%; padding:8px; font-size:16px; text-align:center; border:1px solid #ccc; border-radius:5px;" 
            onclick="this.select(); document.execCommand('copy');">
-    <p style="font-size:14px; color:#444;">(Click to copy the link)</p>
+    <p style="font-size:14px; color:#444; text-align:center;">(Click to copy the link)</p>
     
-    <div class="bluesky-share-helper" style="text-align:center; margin-top: 20px;">
-      <p><strong>Want to share this on Bluesky or Instagram?</strong></p>
-      <p>Tap and hold (on mobile) or right-click (on desktop) the image above to save it.</p>
-      <p>Then post the image with this link in your caption:</p>
+    <div class="sharing-instructions">
+      <h3>Sharing your results takes a couple of steps:</h3>
+      <p>1. <strong>Save the image above</strong> - Tap and hold (on mobile) or right-click (on desktop) the image, then select "Save Image"</p>
+      <p>2. <strong>Copy the quiz link</strong> - Click the text box above to copy the link</p>
+      <p>3. <strong>Share both on social media</strong> - We would appreciate if you share the link to encourage others to take the quiz and make a difference!</p>
     </div>
 
     <div class="two-column-buttons">
