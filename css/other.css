@@ -18,89 +18,64 @@
   <!-- Link to CSS files -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/other.css">
-  <!-- Additional styles for better mobile experience -->
+  <!-- Strict containment styles -->
   <style>
-    /* Container styling to ensure proper containment */
-    .container {
-      max-width: 600px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 20px;
-      box-sizing: border-box;
-      overflow: hidden; /* Prevent content from spilling out */
+    /* Override global img styles that might be causing overflow */
+    .container img {
+      max-width: 100% !important;
+      width: auto !important;
+      height: auto !important;
+      box-sizing: border-box !important;
     }
     
-    /* Side-by-side layout for image and link */
-    .image-and-link {
+    /* Image + sharing side by side layout */
+    .image-and-sharing {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
       margin: 20px 0;
+      gap: 15px;
     }
     
-    /* Image styling with strict containment */
     .image-container {
-      flex: 0 0 55%;
+      flex: 3; /* Takes 3/5 of the width */
+      max-width: 60%;
     }
     
     .image-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
       display: block;
+      border-radius: 8px;
+      max-width: 100%;
     }
     
-    /* Link container */
-    .link-container {
-      flex: 0 0 40%;
-    }
-    
-    /* Copy link box */
-    .copy-link-container {
+    .sharing-container {
+      flex: 2; /* Takes 2/5 of the width */
+      max-width: 40%;
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
     
-    .copy-link-container input {
+    /* Copy link input and button */
+    .copy-link-input {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       font-size: 14px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 4px;
       margin-bottom: 10px;
     }
     
-    .copy-button {
+    .copy-link-button {
       background-color: #007BFF;
       color: white;
       border: none;
-      border-radius: 5px;
-      padding: 10px;
-      cursor: pointer;
+      border-radius: 4px;
+      padding: 8px;
       font-size: 14px;
-      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
     }
     
-    .copy-button:hover {
-      background-color: #0056b3;
-    }
-    
-    /* Facebook sharing button */
-    .facebook-button {
-      background-color: #3b5998;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 10px;
-      border-radius: 5px;
-      display: block;
-      margin-top: 10px;
-      text-align: center;
-    }
-    
-    /* Equal blue buttons */
+    /* Make equal sized buttons */
     .two-column-buttons {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -113,23 +88,23 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      min-height: 60px;
-      padding: 14px 10px;
-      font-size: 18px;
+      min-height: 50px;
+      padding: 10px;
+      font-size: 16px;
       height: 100%;
-      width: 100%;
       box-sizing: border-box;
     }
     
     /* Responsive layout for mobile */
     @media screen and (max-width: 600px) {
-      .image-and-link {
+      .image-and-sharing {
         flex-direction: column;
       }
       
-      .image-container, .link-container {
-        flex: 0 0 100%;
-        width: 100%;
+      .image-container,
+      .sharing-container {
+        flex: 1;
+        max-width: 100%;
       }
       
       .two-column-buttons {
@@ -149,29 +124,31 @@
       </p>
     </div>
     
-    <!-- Side-by-side layout for image and link -->
-    <div class="image-and-link">
-      <!-- Image with proper containment -->
+    <!-- Image and sharing section side by side -->
+    <div class="image-and-sharing">
+      <!-- Image with strict containment -->
       <div class="image-container">
         <img src="https://upliftservicenetwork.github.io/activist-quiz/images/persona_result.png"
-             alt="Persona Results" id="resultImage" />
+             alt="Persona Results" width="100%" />
       </div>
       
-      <!-- Link container -->
-      <div class="link-container">
+      <!-- Sharing options -->
+      <div class="sharing-container">
         <p><strong>Share your result:</strong></p>
+        <input type="text" class="copy-link-input" id="shareLink" 
+               value="https://upliftservicenetwork.github.io/activist-quiz" readonly>
+        <button class="copy-link-button" onclick="copyShareLink()">Copy Link</button>
         
-        <div class="copy-link-container">
-          <input type="text" value="https://upliftservicenetwork.github.io/activist-quiz" id="shareLink" readonly>
-          <button class="copy-button" onclick="copyShareLink()">Copy Link</button>
-        </div>
-        
-        <a href="#" class="facebook-button" id="facebookShareButton">Share on Facebook</a>
+        <!-- Facebook share button -->
+        <a href="javascript:void(0)" class="result-btn green" id="facebookShareButton" 
+           style="display:block; text-align:center; margin-top:10px;">
+          Share on Facebook
+        </a>
       </div>
     </div>
     
+    <!-- Bottom buttons - Equal size with proper containment -->
     <div class="two-column-buttons">
-      <!-- Blue Buttons side-by-side -->
       <a href="https://upliftservicenetwork.com" class="result-btn blue" target="_blank">
         Uplift Service Network
       </a>
@@ -189,29 +166,12 @@
       alert('Link copied to clipboard!');
     }
     
-    // Variables for sharing
-    const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/persona-share.html";
-    const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
-    
-    // Facebook sharing with mobile detection
-    document.getElementById("facebookShareButton").addEventListener("click", function(e) {
-      e.preventDefault();
-      
-      // Try to detect if on mobile
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      
-      if (isMobile) {
-        // On mobile, try to use the Facebook app if installed
-        window.location.href = `fb://facewebmodal/f?href=${encodeURIComponent(shareURL)}`;
-        
-        // Fallback to browser if app doesn't open after a short delay
-        setTimeout(function() {
-          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`, "_blank");
-        }, 300);
-      } else {
-        // On desktop, use standard sharing dialog
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`, "facebook-share-dialog", "width=626,height=436");
-      }
+    // Facebook sharing
+    document.getElementById("facebookShareButton").addEventListener("click", function() {
+      const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/persona-share.html";
+      const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`;
+      window.open(facebookUrl, "facebook-share-dialog", "width=626,height=436");
     });
   </script>
 </body>
