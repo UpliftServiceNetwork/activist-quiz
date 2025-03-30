@@ -1,201 +1,209 @@
-/************************************************
-  other.css (Used by frontline.html, etc.)
-************************************************/
-/* 1) Container for each "persona" page 
-   - We do NOT override text-align here, so the title (h1) and paragraphs
-     remain centered by default from base.css.
-*/
-.frontline-container {
-  /* text-align: center; <-- Already inherited from base.css, no override needed */
-}
-/* 2) Keep your subtext box if you want a special area for paragraphs
-   - Currently, it will follow the base.css alignment (center).
-   - If you change your mind and want left-justified text, 
-     add `text-align: left;` below. */
-.subtext-box {
-  max-width: 600px;
-  margin: 0 auto 20px;     /* center the box on the page */
-  /* text-align: left;    <-- only UN-comment if you decide to left-align text */
-}
-.subtext-box p {
-  font-size: 18px;         /* override base if you want slightly smaller or bigger */
-  margin-bottom: 15px;
-}
-/* 3) Make sure images scale responsively without overflowing */
-.frontline-container img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 20px auto;  /* center horizontally */
-  border-radius: 10px;
-}
-/* 4) Two-column button layout (green share buttons first, blue second) */
-.two-column-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns for wider screens */
-  gap: 10px;
-  margin-top: 20px;
-}
-/* Ensure each button looks good. 
-   (The colors .result-btn.green / .result-btn.blue come from base.css) */
-.two-column-buttons a {
-  display: inline-block;
-  font-size: 18px;
-  text-align: center;
-  color: #fff;
-  border-radius: 5px;
-  padding: 14px 24px;
-  transition: background-color 0.3s ease;
-}
-#result-title {
-  font-size: 32px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 10px;
-}
-#result-description {
-  font-size: 22px;
-  line-height: 1.6;
-  font-weight: 500;
-  color: #333;
-  text-align: center;
-  margin-top: 0;
-}
-/* 5) Stack buttons on mobile screens */
-@media screen and (max-width: 600px) {
-  .two-column-buttons {
-    grid-template-columns: 1fr;
-  }
-  .two-column-buttons a {
-    width: 100%;
-    display: block;
-    text-align: center;
-    min-height: 60px; /* ensures equal button height even if one wraps */
-  }
-}
-
-/* Common container styles for all persona types */
-.advocate-container,
-.builder-container,
-.community-container,
-.defender-container,
-.frontline-container,
-.organizer-container,
-.storyteller-container {
-  text-align: left;
-}
-
-/* Heading styles for all persona types */
-.advocate-container h1,
-.builder-container h1,
-.community-container h1,
-.defender-container h1,
-.frontline-container h1,
-.organizer-container h1,
-.storyteller-container h1 {
-  text-align: center;
-  margin-top: 0.5em;
-}
-
-/* Image styles for all persona types */
-.advocate-container img,
-.builder-container img,
-.community-container img,
-.defender-container img,
-.frontline-container img,
-.organizer-container img,
-.storyteller-container img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  display: block;
-  margin: 20px auto;
-  border-radius: 10px;
-  max-height: 500px; /* Limit maximum height */
-}
-
-/* Make sure images scale responsively on mobile */
-@media screen and (max-width: 600px) {
-  .advocate-container h1,
-  .builder-container h1,
-  .community-container h1,
-  .defender-container h1,
-  .frontline-container h1,
-  .organizer-container h1,
-  .storyteller-container h1 {
-    font-size: 24px;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Persona Results</title>
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="TAKE THE QUIZ! Find activism opportunities that fit for you!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://upliftservicenetwork.com/wp-content/uploads/2025/03/image_result.png" />
+  <meta property="og:url" content="https://upliftservicenetwork.github.io/activist-quiz/persona-share.html" />
+  <meta property="og:description" content="Find out what type of activist you are and discover opportunities that match your strengths." />
+  <meta property="og:site_name" content="Uplift Service Network" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Responsive Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Link to CSS files -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/other.css">
+  <!-- Additional styles for better mobile experience -->
+  <style>
+    /* Image styling */
+    .persona-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 15px auto;
+      display: block;
+    }
+    
+    /* Sharing section styling */
+    .sharing-options {
+      background-color: #f7f7f7;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .sharing-options h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    /* Sharing instructions */
+    .sharing-instructions {
+      font-size: 16px;
+      margin-bottom: 15px;
+      color: #444;
+    }
+    
+    /* Copy link box */
+    .copy-link-container {
+      display: flex;
+      margin: 15px 0;
+      flex-direction: column;
+    }
+    
+    .copy-link-container input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .copy-button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 12px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .copy-button:hover {
+      background-color: #0056b3;
+    }
+    
+    /* Facebook sharing button */
+    .facebook-button {
+      background-color: #3b5998;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 12px 15px;
+      border-radius: 5px;
+      display: block;
+      margin: 15px auto;
+      text-align: center;
+      max-width: 200px;
+    }
+    
+    /* Equal blue buttons */
+    .two-column-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .two-column-buttons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 60px;
+      padding: 14px 10px;
+      font-size: 18px;
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    @media screen and (max-width: 600px) {
+      .two-column-buttons {
+        grid-template-columns: 1fr;
+      }
+      
+      .facebook-button {
+        width: 100%;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container persona-container">
+    <h1>Thank You for Taking the Quiz!</h1>
+    <div class="subtext-box">
+      <p>
+        Feel free to take it again to get matched to quick actions. We encourage you to share with friends.
+        If you'd like to connect to <strong>The Uplift Service Network</strong>, we'd love to take your match
+        to the next level.
+      </p>
+    </div>
+    
+    <!-- Result image -->
+    <img src="https://upliftservicenetwork.github.io/activist-quiz/images/persona_result.png"
+         alt="Persona Results" id="resultImage" />
+    
+    <!-- Better mobile-friendly sharing options -->
+    <div class="sharing-options">
+      <h3>Share Your Results</h3>
+      
+      <p class="sharing-instructions">
+        1. Save the image above (press and hold on mobile, right-click on desktop)<br>
+        2. Copy the link below to share with your image
+      </p>
+      
+      <div class="copy-link-container">
+        <input type="text" value="https://upliftservicenetwork.github.io/activist-quiz" id="shareLink" readonly>
+        <button class="copy-button" onclick="copyShareLink()">Copy Link</button>
+      </div>
+      
+      <a href="#" class="facebook-button" id="facebookShareButton">Share on Facebook</a>
+    </div>
+    
+    <div class="two-column-buttons">
+      <!-- Blue Buttons side-by-side -->
+      <a href="https://upliftservicenetwork.com" class="result-btn blue" target="_blank">
+        Uplift Service Network
+      </a>
+      <a href="index.html" class="result-btn blue">Take the Quiz Again</a>
+    </div>
+  </div>
   
-  .advocate-container img,
-  .builder-container img,
-  .community-container img,
-  .defender-container img,
-  .frontline-container img,
-  .organizer-container img,
-  .storyteller-container img {
-    max-height: 350px; /* Smaller maximum height on mobile */
-  }
-  /* Mobile responsiveness fixes - Add to your other.css file */
-
-/* Two-column button layout - make more robust */
-.two-column-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns for wider screens */
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.two-column-buttons a {
-  display: flex;           /* Use flexbox for better content alignment */
-  align-items: center;     /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
-  padding: 14px 10px;      /* Reduce horizontal padding a bit */
-  font-size: 18px;
-  text-align: center;
-  color: #fff;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  height: 100%;            /* Ensure buttons have consistent height */
-  box-sizing: border-box;  /* Include padding in height calculation */
-  word-break: break-word;  /* Allow text to break if needed */
-  hyphens: auto;           /* Enable hyphenation */
-  min-height: 60px;        /* Ensure minimum height for touch targets */
-}
-
-/* Mobile styles - stack buttons and ensure consistent sizing */
-@media screen and (max-width: 600px) {
-  /* Better container padding for mobile */
-  .container {
-    padding: 15px 12px;
-  }
-  
-  /* Smaller headings on mobile */
-  h1 {
-    font-size: 26px;
-  }
-  
-  /* Stack buttons vertically on mobile */
-  .two-column-buttons {
-    grid-template-columns: 1fr; /* Single column */
-    gap: 12px; /* Increase gap between stacked buttons */
-  }
-  
-  /* Ensure buttons are full width and consistently sized */
-  .two-column-buttons a {
-    width: 100%;
-    min-height: 50px;
-    padding: 12px 8px;
-    font-size: 16px; /* Slightly smaller font on mobile */
-  }
-  
-  /* Fix for the green button that spans columns */
-  .two-column-buttons a.result-btn.green {
-    grid-column: 1; /* Reset grid-column on mobile */
-  }
-  
-  /* Fix for small screens to ensure buttons are easily tappable */
-  .result-btn {
-    margin-bottom: 5px;
-    touch-action: manipulation; /* Optimize for touch */
-  }
-}
+  <!-- Scripts -->
+  <script>
+    // Function to copy the share link
+    function copyShareLink() {
+      const shareLink = document.getElementById('shareLink');
+      shareLink.select();
+      document.execCommand('copy');
+      alert('Link copied to clipboard!');
+    }
+    
+    // Variables for sharing
+    const shareURL = "https://upliftservicenetwork.github.io/activist-quiz/persona-share.html";
+    const shareText = "TAKE THE QUIZ! Find activism opportunities that fit for you!";
+    
+    // Facebook sharing - alternative approach for better mobile compatibility
+    document.getElementById("facebookShareButton").addEventListener("click", function(e) {
+      e.preventDefault();
+      
+      // Try to detect if on mobile
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // On mobile, try to use the Facebook app if installed
+        window.location.href = `fb://facewebmodal/f?href=${encodeURIComponent(shareURL)}`;
+        
+        // Fallback to browser if app doesn't open after a short delay
+        setTimeout(function() {
+          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`, "_blank");
+        }, 300);
+      } else {
+        // On desktop, use standard sharing dialog
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}&quote=${encodeURIComponent(shareText)}`, "facebook-share-dialog", "width=626,height=436");
+      }
+    });
+  </script>
+</body>
+</html>
