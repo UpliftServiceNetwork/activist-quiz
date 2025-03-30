@@ -26,20 +26,12 @@
     .share-button-container button {
       margin: 0 auto;
     }
-    
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Your Activist Type</h1>
     
-    <!-- Debug Panel - Hidden by default -->
-    <div id="debug-panel">
-      <h3>Debug Information</h3>
-      <div id="debug-info"></div>
-      <button class="debug-button" onclick="clearLocalStorage()">Clear localStorage</button>
-    </div>
-
     <!-- RESULTS CONTAINER: Visible -->
     <div id="result-container">
       <!-- Activist Type & Description -->
@@ -79,44 +71,10 @@
   </div> <!-- /.container -->
 
   <script>
-    // Enable debug panel with Ctrl+Shift+D
-    document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        const debugPanel = document.getElementById('debug-panel');
-        debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
-      }
-    });
-    
-    function clearLocalStorage() {
-      localStorage.clear();
-      updateDebugInfo("localStorage cleared!");
-      setTimeout(() => location.reload(), 1000);
-    }
-    
-    function updateDebugInfo(message) {
-      const debugInfo = document.getElementById('debug-info');
-      if (debugInfo) {
-        debugInfo.innerHTML += `<p>${message}</p>`;
-      }
-    }
-    
     document.addEventListener("DOMContentLoaded", function () {
-      // Show debug info automatically
-      document.getElementById('debug-panel').style.display = 'block';
-      
-      // Debug localStorage
-      updateDebugInfo(`<strong>localStorage contents:</strong>`);
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        updateDebugInfo(`${key}: ${localStorage.getItem(key)}`);
-      }
-      
       // Retrieve stored values from localStorage
       const activistType = localStorage.getItem("activistType") || "Uncategorized";
       const issueFocus = JSON.parse(localStorage.getItem("activistFocus") || "[]");
-      
-      updateDebugInfo(`<strong>activistType:</strong> ${activistType}`);
-      updateDebugInfo(`<strong>issueFocus:</strong> ${JSON.stringify(issueFocus)}`);
 
       // DOM element references
       const resultTitle = document.getElementById("result-title");
@@ -186,10 +144,6 @@
           ]
         }
       };
-      
-      // Debug available activist types
-      updateDebugInfo(`<strong>Available activist types:</strong> ${Object.keys(activistTypes).join(', ')}`);
-      updateDebugInfo(`<strong>Does activist type exist?</strong> ${activistType in activistTypes}`);
 
       // Define fixed mapping for each focus area (15 total)
       const focusMapping = [
@@ -210,85 +164,53 @@
         { name: "Other",              image: "images/other_focus.png",       link: "https://www.volunteermatch.org" }
       ];
 
-      try {
-        // Update the main type
-        if (activistTypes[activistType]) {
-          updateDebugInfo(`Setting title and description for: ${activistType}`);
-          resultTitle.textContent = activistType;
-          resultDescription.textContent = activistTypes[activistType].description;
-          
-          updateDebugInfo(`Setting image: ${activistTypes[activistType].image}`);
-          resultImage.src = activistTypes[activistType].image;
-          resultImage.style.display = "block";
+      // Update the main type
+      if (activistTypes[activistType]) {
+        resultTitle.textContent = activistType;
+        resultDescription.textContent = activistTypes[activistType].description;
+        resultImage.src = activistTypes[activistType].image;
+        resultImage.style.display = "block";
 
-          const orgs = activistTypes[activistType].organizations;
-          if (orgs && orgs.length >= 2) {
-            updateDebugInfo(`Setting organizations: ${orgs[0].name}, ${orgs[1].name}`);
-            org1.textContent = orgs[0].name;
-            org1.href = orgs[0].link;
-            org2.textContent = orgs[1].name;
-            org2.href = orgs[1].link;
-          } else {
-            updateDebugInfo(`No organizations found, using defaults`);
-            org1.textContent = "No Org Available";
-            org1.href = "#";
-            org2.textContent = "No Org Available";
-            org2.href = "#";
-          }
+        const orgs = activistTypes[activistType].organizations;
+        if (orgs && orgs.length >= 2) {
+          org1.textContent = orgs[0].name;
+          org1.href = orgs[0].link;
+          org2.textContent = orgs[1].name;
+          org2.href = orgs[1].link;
         } else {
-          updateDebugInfo(`Activist type "${activistType}" not found in activistTypes`);
-          resultTitle.textContent = "Uncategorized";
-          resultDescription.textContent = "We couldn't match your activist style. Please try again.";
-          resultImage.style.display = "none";
           org1.textContent = "No Org Available";
           org1.href = "#";
           org2.textContent = "No Org Available";
           org2.href = "#";
         }
-      } catch (error) {
-        updateDebugInfo(`<strong>ERROR:</strong> ${error.message}`);
-        console.error("Error updating main content:", error);
+      } else {
+        resultTitle.textContent = "Uncategorized";
+        resultDescription.textContent = "We couldn't match your activist style. Please try again.";
+        resultImage.style.display = "none";
+        org1.textContent = "No Org Available";
+        org1.href = "#";
+        org2.textContent = "No Org Available";
+        org2.href = "#";
       }
 
-      try {
-        // Render exactly the user's 3 chosen focuses with label underneath
-        if (issueFocus.length > 0) {
-          updateDebugInfo(`Rendering issue focuses: ${issueFocus.join(', ')}`);
-          // Show the user's chosen focuses as text
-          const focusHTML = issueFocus.slice(0, 3).map(focusName => {
-            const match = focusMapping.find(item => item.name === focusName);
-            if (!match) {
-              updateDebugInfo(`No match found for focus: ${focusName}`);
-              return "";
-            }
-            updateDebugInfo(`Found match for focus: ${focusName}`);
-            return `
-              <div class="focus-item">
-                <a href="${match.link}" target="_blank" class="focus-link">
-                  <img src="${match.image}" class="focus-icon" alt="${match.name}" title="${match.name}">
-                  <span class="focus-label">${match.name}</span>
-                </a>
-              </div>
-            `;
-          }).join("");
-          issueFocusContainer.innerHTML = focusHTML;
-        } else {
-          updateDebugInfo(`No issue focus found`);
-          // Try-catch for issueFocusText which might not exist
-          try {
-            const issueFocusText = document.getElementById("issueFocusText");
-            if (issueFocusText) {
-              issueFocusText.textContent = "Various Issues";
-            } else {
-              updateDebugInfo(`issueFocusText element not found`);
-            }
-          } catch (e) {
-            updateDebugInfo(`Error with issueFocusText: ${e.message}`);
+      // Render exactly the user's 3 chosen focuses with label underneath
+      if (issueFocus.length > 0) {
+        // Show the user's chosen focuses as text
+        const focusHTML = issueFocus.slice(0, 3).map(focusName => {
+          const match = focusMapping.find(item => item.name === focusName);
+          if (!match) {
+            return "";
           }
-        }
-      } catch (error) {
-        updateDebugInfo(`<strong>ERROR:</strong> ${error.message}`);
-        console.error("Error rendering focus items:", error);
+          return `
+            <div class="focus-item">
+              <a href="${match.link}" target="_blank" class="focus-link">
+                <img src="${match.image}" class="focus-icon" alt="${match.name}" title="${match.name}">
+                <span class="focus-label">${match.name}</span>
+              </a>
+            </div>
+          `;
+        }).join("");
+        issueFocusContainer.innerHTML = focusHTML;
       }
 
       // Show results container
@@ -304,20 +226,12 @@
         "Political Advocate": "advocate.html",
         "Resource Builder": "builder.html"
       };
-      
-      updateDebugInfo(`<strong>Type to page mapping:</strong>`);
-      for (const [type, page] of Object.entries(typeToPageMapping)) {
-        updateDebugInfo(`${type} → ${page}`);
-      }
 
       // Make the "Share My Results" button redirect to the corresponding page
       shareButton.addEventListener("click", function() {
-        updateDebugInfo(`Share button clicked, activist type: ${activistType}`);
         if (typeToPageMapping[activistType]) {
-          updateDebugInfo(`Redirecting to: ${typeToPageMapping[activistType]}`);
           window.location.href = typeToPageMapping[activistType];
         } else {
-          updateDebugInfo(`No results page found for: ${activistType}`);
           alert("No results page for your activist type.");
         }
       });
