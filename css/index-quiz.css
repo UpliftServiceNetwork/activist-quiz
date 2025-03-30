@@ -1,6 +1,4 @@
 /* === INDEX & QUIZ PAGE STYLES === */
-
-}
 /* Intro & Subtitle Text for Index Page */
 .intro {
   font-size: 18px;
@@ -8,7 +6,6 @@
   color: #333;
   text-align: center;
 }
-
 .subtitle {
   font-size: 16px;
   margin: 10px 0;
@@ -25,14 +22,12 @@
     display: block;
   }
 }
-
 /* --- MOBILE FIX: INDEX & QUIZ PAGES --- */
 @media screen and (max-width: 600px) {
   body {
     display: block;
     padding: 10px;
   }
-
   .container {
     width: 100%;
     max-width: 100%;
@@ -40,7 +35,6 @@
     margin: 0 auto;
     box-sizing: border-box;
   }
-
   .lead-image {
     width: 100%;
     max-width: 100%;
@@ -48,9 +42,7 @@
     display: block;
     margin: 0 auto 20px;
   }
-
 }
-
 /* Start Quiz Button (Index Page) */
 .start-quiz-btn {
   background-color: #007BFF;
@@ -66,11 +58,9 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 .start-quiz-btn:hover {
   background-color: #0056b3;
 }
-
 /* --- QUIZ FORM STYLES (Page1 & Page2) --- */
 form {
   text-align: left;
@@ -82,23 +72,19 @@ form {
   margin: 20px auto;
   box-sizing: border-box;
 }
-
 form p {
   margin-bottom: 15px;
   font-size: 18px;
 }
-
-/* === PAGE 1 SPECIFIC STYLES === */
+/* === PAGE 1 SPECIFIC STYLES === */
 .container h1 {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 12px;
 }
-
 #quiz-form-page1 p {
   margin-bottom: 8px;
 }
-
 #quiz-form-page1 label {
   display: block;
   font-size: 16px;
@@ -111,46 +97,47 @@ form p {
   margin: 4px 0;      /* only 4px above & below each option */
   font-weight: 500;   /* a bit bolder without increasing font size */
 }
-
 #quiz-form-page1 p,
 #quiz-form-page2 p {
   margin-bottom: 8px; /* less gap between the question text and first option */
 }
+/* --- END OF PAGE 1 STYLES --- */
 
-/* --- END OF PAGE 1 STYLES --- */
-/* Text readability improvements for mobile */
+/* More aggressive text readability improvements for mobile */
 @media screen and (max-width: 600px) {
-  /* General text styling */
-  body {
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 1.5;
+  /* Force normal font weight on all text elements */
+  body, p, .intro, .subtitle, h1, h2, h3, label, button, div, span {
+    font-weight: normal !important;
   }
   
-  /* Intro text styling - increase size and remove bold */
+  /* Increase intro text size */
   .intro {
-    font-size: 20px;
-    font-weight: normal;
-    line-height: 1.6;
-    margin: 20px 0;
+    font-size: 20px !important;
+    line-height: 1.6 !important;
+    margin: 20px 0 !important;
   }
   
-  /* Subtitle styling - increase size and remove bold */
+  /* Increase subtitle size */
   .subtitle {
-    font-size: 18px;
-    font-weight: normal;
-    margin: 15px 0;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    margin: 15px 0 !important;
   }
   
-  /* Make heading less bold but maintain prominence */
+  /* Adjust heading size but keep it prominent */
   .container h1 {
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 1.3;
+    font-size: 26px !important;
+    line-height: 1.3 !important;
   }
   
-  /* Reduce weight of all other elements */
-  p, label, button {
-    font-weight: normal;
+  /* Override quiz form text styles */
+  form p, #quiz-form-page1 p, #quiz-form-page2 p {
+    font-weight: normal !important;
+    font-size: 18px !important;
+  }
+  
+  #quiz-form-page1 label, #quiz-form-page2 label {
+    font-weight: normal !important;
+    font-size: 18px !important;
   }
 }
